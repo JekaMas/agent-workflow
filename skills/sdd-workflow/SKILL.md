@@ -24,3 +24,7 @@ Select `sdd-go` or `sdd-rust` only for actual language work without an adequate
 project equivalent. Load verification-design for consequential evidence/review.
 Keep one task list, update plans within intent, continue authorized repair, and
 retain exact blockers. No automatic model call, delegation or external action.
+
+For stateful sequence properties in any language, select this package's
+`skills/event-sequence-pbt/SKILL.md`. Go diagnostic and optimization references
+are conditional routes from sdd-go, not default reading.

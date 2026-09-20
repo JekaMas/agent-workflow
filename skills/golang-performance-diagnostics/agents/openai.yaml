@@ -1,0 +1,4 @@
+interface:
+  display_name: "Go Performance Diagnostics"
+  short_description: "Measure and identify Go performance bottlenecks."
+  default_prompt: "Use $golang-performance-diagnostics to measure this Go workload and identify the exact performance owner before proposing a fix."

@@ -31,3 +31,13 @@ Verify tracked source with scripts/audit_sources.py --path <source-root>; add
 --personal and --workspace <workspace-root> for installed routing. It resolves
 symlinks and checks Git tracking/ignore rules. Backups and caches are not active
 instruction owners and remain outside this source inventory.
+
+## Specialist ownership
+
+Shared skills own Go hang diagnostics, performance diagnostics/optimization and
+language-independent event-sequence testing. Retain their conditional reference
+routing and cross-skill links. The Go diagnostics/optimization pair ships together.
+Language examples are adapters, not universal framework requirements. Changes to
+specialist distribution need fresh-clone resolution checks for both client routes,
+language selection, unmanaged collisions and upgrades. Existing product commands,
+approvals, test sets and domain oracles remain in consumer adapters.

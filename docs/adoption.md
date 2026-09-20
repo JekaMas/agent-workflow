@@ -109,3 +109,28 @@ Active personal instruction/skill files resolve into tracked files in the releas
 Git checkout. Backups, installer state and inactive old export snapshots are
 recovery data, not active workflow source. Releases with edits or untracked files
 are rejected before activation. Update from a clean canonical source checkout.
+
+## Specialist skills in adopted repositories
+
+The tracked project profile selects language routes through `languages` (for
+example `["go", "rust"]`). Every newly adopted repository gets an
+`event-sequence-pbt` adapter. Go adds `sdd-go`, `golang-testing`,
+`golang-performance-diagnostics` and `golang-optimization`; Rust adds `sdd-rust`.
+Other languages use the same event/model/oracle contract with their existing
+framework. The bootstrap does not install testing or profiling tools.
+
+Codex discovers the thin `.agents/skills/<name>/SKILL.md` adapters; Claude can
+invoke `/<name>` through `.claude/commands/<name>.md`. Both read canonical content
+under the consumer's pinned `.agents/workflow/skills/`. References stay in that
+package and load only for the current question. Ordinary Go work does not load
+all specialist references; event-sequence testing activates for stateful risks.
+
+After cloning a consumer, run `git submodule update --init --recursive` to obtain
+its exact shared source. Existing adopted repositories receive new routes through
+the usual reviewed bootstrap preview/apply update. Custom integrations use a
+reviewed local adapter or tracked relative link; no automatic overwrite. Removing
+languages that would orphan managed routes requires an explicit migration.
+
+Personal installation still exposes only the four sdd-* routers, avoiding a
+second global copy of specialist names. Those routers can load conditional
+specialists from their selected package when no project equivalent exists.

@@ -44,3 +44,14 @@ Run from the consumer root; select a new output directory for each run:
   native route if it differs, retain its output and do not mislabel an unsupported
   adapter as a pass. Proof routes also require the project's actual source-bound
   target; the bootstrap does not copy Smart Example proof targets into a new repo.
+
+## Conditional specialists
+
+Use event-sequence-pbt for stateful retry, recovery, ordering or concurrency
+properties in any language. Its generic model/oracle/replay procedure is shared;
+framework recipes load separately and have explicit capability limits.
+For Go hangs select golang-testing. For Go performance questions select
+golang-performance-diagnostics, then golang-optimization once measurements
+justify a change. These skills return results to the same OpenSpec change.
+Project adapters and Claude commands are generated according to the tracked
+profile; canonical skill bodies live under this pin's skills directory.

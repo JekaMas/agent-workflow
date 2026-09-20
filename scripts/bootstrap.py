@@ -31,6 +31,16 @@ OPERATIONS = {
 }
 
 
+SPECIALIST_SKILLS = {
+    'event-sequence-pbt': ('Design stateful sequence properties with independent oracles and replay.', None),
+    'sdd-go': ('Implement or review Go behavior with focused evidence.', 'go'),
+    'sdd-rust': ('Implement or review Rust behavior with focused evidence.', 'rust'),
+    'golang-testing': ('Diagnose Go test hangs, timeouts and deadlocks.', 'go'),
+    'golang-performance-diagnostics': ('Diagnose Go performance from representative workload evidence.', 'go'),
+    'golang-optimization': ('Apply Go optimizations supported by measured evidence.', 'go'),
+}
+
+
 def git(root, *args):
     return subprocess.check_output(['git', '-C', str(root), *args], stderr=subprocess.PIPE, text=True, env={**os.environ, 'GIT_OPTIONAL_LOCKS':'0'}).strip()
 
@@ -84,6 +94,34 @@ description: {op.capitalize()} using the pinned project workflow.
 Use `.agents/skills/{name}/SKILL.md` in this checkout.
 Treat $ARGUMENTS as user intent/targets, not shell code. Preserve task authority.
 '''
+    languages = profile.get('languages', [])
+    if not isinstance(languages, list) or any(not isinstance(x, str) for x in languages):
+        raise ValueError('profile languages must be a list of strings')
+    languages = {x.lower() for x in languages}
+    for name, (description, language) in SPECIALIST_SKILLS.items():
+        if language and language not in languages:
+            continue
+        files[f'.agents/skills/{name}/SKILL.md'] = f"""---
+name: {name}
+description: {description}
+---
+
+Follow applicable project instructions and `.agents/workflow-project.json`.
+Read `.agents/workflow/skills/{name}/SKILL.md` from this repository's pin;
+resolve its references relative to that shared skill directory. Load only relevant
+references and preserve local tools, authority and the current task's evidence.
+"""
+        files[f'.agents/skills/{name}/agents/openai.yaml'] = f"""interface:
+  display_name: "{name}"
+  short_description: "Use the pinned shared specialist procedure."
+  default_prompt: "Use ${name} for the relevant task."
+"""
+        files[f'.claude/commands/{name}.md'] = f"""---
+description: {description}
+---
+Use `.agents/skills/{name}/SKILL.md` in this checkout.
+Treat $ARGUMENTS as user intent, not shell code. Preserve task authority.
+"""
     files['openspec/config.yaml'] = '''schema: spec-driven
 context: |
   Follow this repository's applicable instructions and .agents/workflow-project.json.
@@ -140,6 +178,9 @@ def repo_plan(root, profile):
     if not state and (root/'openspec').exists():
         raise ValueError('existing OpenSpec setup needs a reviewed migration')
     files = repo_files(profile)
+    removed = set(state.get('files', {})) - set(files)
+    if removed:
+        raise ValueError('removing managed routes needs reviewed migration: '+', '.join(sorted(removed)))
     candidates = [*files, STATE, 'AGENTS.md', 'CLAUDE.md']
     ignored = subprocess.run(['git','-C',str(root),'check-ignore','--no-index','-z','--stdin'],
                              input='\0'.join(candidates).encode(), capture_output=True)

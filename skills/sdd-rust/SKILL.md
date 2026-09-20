@@ -27,3 +27,6 @@ whole binary. Inspect assumptions/stubs/bounds and replay useful counterexamples
 Repair findings without weakening contracts, revalidate affected checks and return
 actual evidence and limits to the governing workflow. Missing/unsupported/timeout
 results remain non-success. Use shared verification-design when evidence needs design.
+
+For stateful sequence properties, select sibling `event-sequence-pbt/SKILL.md`;
+load its language adapter only when relevant.

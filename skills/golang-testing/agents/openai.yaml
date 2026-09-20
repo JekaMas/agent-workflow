@@ -1,0 +1,4 @@
+interface:
+  display_name: "Go Testing"
+  short_description: "Diagnose Go test hangs and deadlocks."
+  default_prompt: "Use $golang-testing to isolate a hanging or slow Go test and inspect its goroutine stacks before patching."
