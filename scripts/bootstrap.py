@@ -90,25 +90,7 @@ Use `.agents/skills/{name}/SKILL.md` in this checkout.
 Treat $ARGUMENTS as user intent, not shell code. Preserve task authority.
 """
     files['openspec/config.yaml'] = render_config(profile)
-    files['docs/SDD_WORKFLOW.md'] = '''# Development workflow
-
-For substantial work use OpenSpec Propose → Apply → Verify; revise artifacts when
-new evidence changes the approach. Small edits do not need a ceremonial change.
-Codex uses `$openspec-propose`, `$openspec-apply-change`, `$openspec-verify-change`.
-Claude uses `/opsx:propose`, `/opsx:apply`, `/opsx:verify`. Include the task/change.
-Apply owns relevant checks, inspection, authorized repair and revalidation.
-
-The selected change's tasks.md is the only checklist. Required unavailable checks
-remain incomplete. Archive completed changes explicitly; publication/deployment
-have their own authority. The full procedure is in `.agents/workflow/docs/project-flow.md`.
-
-Use `$project-check` or `/opsx:check` with workflow, spec <change>, ready <change>
-or a selected language target. Exact local commands remain in project instructions
-and `.agents/workflow-project.json`; the shared package does not impose product suites.
-
-Inspect setup ownership with `python3 .agents/workflow/scripts/bootstrap.py status --repo .`.
-Shared updates are explicit and pinned; see `.agents/workflow/docs/adoption.md`.
-'''
+    files['docs/SDD_WORKFLOW.md'] = (SOURCE/'docs/quickstart.md').read_text()
     return files
 
 
