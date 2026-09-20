@@ -25,6 +25,7 @@ def audit(paths):
             repos[root]={'tracked':set(tracked),'paths':[]}
         relative=path.relative_to(root).as_posix();repos[root]['paths'].append(relative)
         if relative not in repos[root]['tracked']: errors.append('untracked source: '+str(path))
+    if not files: errors.append('no workflow source files selected')
     rows=[]
     for root,data in repos.items():
         result=subprocess.run(['git','-C',str(root),'check-ignore','--no-index','-z','--stdin'],input='\0'.join(data['paths']).encode(),capture_output=True)

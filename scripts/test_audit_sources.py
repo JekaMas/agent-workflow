@@ -17,6 +17,10 @@ class SourceAudit(unittest.TestCase):
             self.assertEqual('failed',audit([repo])['status'])
             (repo/'.gitignore').write_text('SKILL.md\n')
             self.assertTrue(any('ignored source' in e for e in audit([alias])['errors']))
+    def test_empty_inventory_is_not_success(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual('failed', audit([Path(tmp)])['status'])
+
     def test_export_copy_is_not_git_backed(self):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp)/'SKILL.md';p.write_text('copy')
