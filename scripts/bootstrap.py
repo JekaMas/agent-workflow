@@ -142,6 +142,13 @@ def repo_plan(root, profile):
     if not state and (root/'openspec').exists():
         raise ValueError('existing OpenSpec setup needs a reviewed migration')
     files = repo_files(profile)
+    candidates = [*files, STATE, 'AGENTS.md', 'CLAUDE.md']
+    ignored = subprocess.run(['git','-C',str(root),'check-ignore','--no-index','-z','--stdin'],
+                             input='\0'.join(candidates).encode(), capture_output=True)
+    if ignored.returncode not in (0,1):
+        raise ValueError('publication ignore check unavailable')
+    if ignored.returncode == 0:
+        raise ValueError('workflow files are ignored: '+ignored.stdout.decode().replace('\0', ', '))
     for name in files:
         p = safe(root, name)
         actual = fingerprint(p)
