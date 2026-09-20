@@ -4,6 +4,9 @@ Reusable, evidence-driven OpenSpec delivery and verification design, with a
 stdlib local-check runner. Consume a pinned Git revision; project adapters own
 product requirements, authority, commands and actual supported configurations.
 
+Start with the [developer quickstart](docs/quickstart.md); use the
+[detailed flow](docs/project-flow.md) for evidence and completion rules.
+
 ## Skills
 
 - `skills/openspec-delivery/SKILL.md`: start, resume, plan, implement and finish.

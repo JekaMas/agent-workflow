@@ -1,5 +1,7 @@
 # Portable project workflow
 
+For everyday use, start with [the quickstart](quickstart.md).
+
 Read applicable project instructions and `.agents/workflow-project.json`. The
 project pin owns shared procedures. The profile records actual roots and conventions;
 it does not authorize installation, services or external access.
@@ -25,10 +27,20 @@ Load generic sdd-go/sdd-rust only when local language skills do not already supp
 adequate guidance. Property, fuzz, concurrency, simulation, proof and performance
 routes are conditional; do not run a catalog merely because it is available.
 
-For archive/sync, inspect delta/main requirements, preserve unrelated changes and
-validate affected main specs strictly. A new capability needs a meaningful Purpose;
-archive-generated placeholders are not acceptance. Publication/deployment require
-current authority. New material intent belongs in a separate change.
+## Sync and archive
+
+Sync is optional before archive: it merges selected delta requirements into main
+specs without closing the change. Archive can synchronize directly or follow an
+already validated sync. Inspect exact selected roots and changes, preserve unrelated
+specs, and run strict validation for every affected main spec after either path.
+A meaningful Purpose must satisfy the installed validator; a placeholder or too-short
+Purpose can leave strict validation failing even when archive exits successfully.
+Repair the resulting spec and revalidate before reporting closure.
+
+Archive only completed, authorized work. For bulk requests assess each selected
+change separately and preserve unselected or incomplete work. Readiness checks do
+not authorize archive; archive does not authorize publication or deployment. New
+material intent belongs in a separate change.
 
 ## Exact local check commands
 
@@ -36,7 +48,7 @@ Run from the consumer root; select a new output directory for each run:
 
 - `workflow`: `python3 -B .agents/workflow/scripts/bootstrap.py status --repo .`,
   then `python3 .agents/workflow/scripts/check_opsx_routes.py --root .` and
-  `make -C .agents/workflow check`. Preserve either failure. Shared mechanics
+  `make -C .agents/workflow check`. Preserve every failure. Shared mechanics
   use their own fixtures; this is not product or consumer artifact validation.
 - `spec <change>`: `python3 -B .agents/workflow/scripts/local_verify.py openspec
   --cwd . --change <change> --scope openspec --require-project-guidance
