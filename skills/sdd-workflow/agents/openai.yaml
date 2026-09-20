@@ -1,0 +1,4 @@
+interface:
+  display_name: "sdd-workflow"
+  short_description: "Use the shared sdd-workflow procedure."
+  default_prompt: "Use $sdd-workflow for the requested task."
