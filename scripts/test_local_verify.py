@@ -28,6 +28,40 @@ def go_events(result="pass"):
 
 
 class LocalVerifyTest(unittest.TestCase):
+    def test_proof_summaries_require_nonempty_success(self):
+        passing = {
+            'kani': 'VERIFICATION:- SUCCESSFUL\nComplete - 1 successfully verified harnesses, 0 failures, 1 total.',
+            'verus': 'verification results:: 1 verified, 0 errors',
+            'gobra': 'Gobra found 1 methods and functions.\n0 specified members of the package under verification are trusted or abstract.\nGobra found 0 errors.'}
+        for kind, raw in passing.items():
+            with self.subTest(kind=kind):
+                self.assertEqual('passed', verify.proof_result(kind, raw)[0])
+                self.assertEqual('incomplete', verify.proof_result(kind, '')[0])
+                self.assertEqual('incomplete', verify.proof_result(kind, raw.replace('1 ', '0 '))[0])
+        self.assertEqual('incomplete', verify.proof_result('kani', passing['kani'] + '\n- Status: FAILURE')[0])
+        self.assertEqual('incomplete', verify.proof_result('verus', passing['verus'] + '\nverification results:: 0 verified, 1 errors')[0])
+        self.assertEqual('incomplete', verify.proof_result('gobra', passing['gobra'] + '\nGobra found 1 errors.')[0])
+        self.assertEqual('incomplete', verify.proof_result('gobra', passing['gobra'].replace('0 specified', '1 specified'))[0])
+
+    def test_proof_process_failure_and_stale_source_cannot_pass(self):
+        for condition in ('failed', 'stale', 'empty', 'unavailable', 'timed_out'):
+            with self.subTest(condition=condition), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                source = root / 'target.rs'
+                source.write_text('source')
+                output = root / 'result.json'
+                def process(command, cwd, env, timeout, prefix=None):
+                    version = '--version' in command
+                    if not version and condition == 'stale': source.write_text('changed')
+                    return {'command':command, 'status': condition if not version and condition in ('unavailable','timed_out') else 'exited',
+                            'exit_code': 1 if not version and condition == 'failed' else 0,
+                            'stdout':'pinned' if version else '' if condition == 'empty' else 'verification results:: 1 verified, 0 errors', 'stderr':''}
+                with patch.object(verify, 'run_process', side_effect=process), contextlib.redirect_stdout(io.StringIO()):
+                    code = verify.main(['verus','--cwd',str(root),'--scope','target.rs','--proof-target','target.rs',
+                                        '--tool','verus','--expect-version','pinned','--output',str(output)])
+                self.assertNotEqual(code, 0)
+                self.assertNotEqual(json.loads(output.read_text())['status'], 'passed')
+
     def test_completed_go_test_is_selected_evidence(self):
         status, details = verify.go_result(go_events())
         self.assertEqual("passed", status)

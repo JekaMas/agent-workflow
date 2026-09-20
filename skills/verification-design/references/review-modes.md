@@ -25,25 +25,51 @@ mandatory independent agent, new role hierarchy or per-review approval is added.
 A judge's `supported` means supported by the inspected evidence within its limits,
 not proof or permission to mark DONE. Inspect consequential citations yourself.
 
-## Optional local model invocation
+## API-backed review and judging
 
-The existing agent is the default reviewer. For an explicitly selected local
-inference experiment, `python3 scripts/local_review.py --help` exposes a single
-stateless Ollama request, without tools, agent dispatch or autonomous iteration.
-It never starts a server, pulls a model or changes global configuration. Use only
-an already running, authorized cloud-disabled loopback server with local weights;
-verify server configuration separately. Loopback transport alone cannot attest it.
-Select reviewed non-secret files explicitly and an exact model tag. Results retain
-input hashes/text, model digest, runtime version, context/output settings, final
-answer and metrics; hidden model reasoning is not stored. Missing prerequisites,
-stale input, malformed output and generation limits are non-success.
+The current agent remains the default reviewer. For an authorized separate model
+call, `python3 scripts/model_review.py --help` exposes a single stateless request.
+It has no tools, agent dispatch, retries or provider fallback. Configure a provider,
+model ID and optional base URL; supply credentials through a named environment
+variable. Review the explicitly selected files for secrets before transmission.
+Calls go to the recorded HTTPS endpoint; hosted inference is not free local execution.
+No inference service or model is installed or started by this workflow.
 
-Model output is advisory even when the command succeeds. Assess specification
-consistency, implementation conformance, evidence adequacy and residual risk
-separately. Challenge the result with source inspection or a discriminating check.
-Record unavailable inference as NOT_RUN/BLOCKED as applicable, not as a passed review.
-Compare known bugs, clean changes, partially fixed behavior and misleading green
-reports with a small fresh challenge set. Keep source, runtime/model digest,
-quantization, sampling and budgets fixed; measure missed defects, false findings,
-useful-feedback latency and memory where accessible. Transport fixtures establish
-client behavior only; they do not qualify model quality.
+| Provider | Default protocol | Key environment variable |
+|---|---|---|
+| `deepseek` | Chat Completions | `DEEPSEEK_API_KEY` |
+| `claude` | Anthropic Messages | `ANTHROPIC_API_KEY` |
+| `codex` | OpenAI Responses | `OPENAI_API_KEY` |
+| `glm` | Chat Completions | `ZAI_API_KEY` |
+
+`--base-url`, `--protocol` and `--api-key-env` support an explicitly selected
+compatible gateway. The key value is never a CLI argument or retained evidence.
+HTTPS verification stays enabled; redirects and environment proxies are disabled
+to avoid implicit credential forwarding. A trusted `--ca-file` may be supplied.
+A Codex API model uses the Responses route; this is not Codex app/session login.
+Choose an API model available to the account; unsupported combinations fail visibly.
+
+Use `--purpose review` to generate findings, or `--purpose judge` to assess a
+claim. Repeated `--dimension` selects intent_fidelity, spec_consistency,
+implementation_conformance, oracle_adequacy, compatibility_security or
+evidence_completeness. Each dimension returns supported, violated or
+insufficient_evidence; overall support cannot hide a dimensional violation/gap.
+Each decisive citation must resolve to a supplied file and line. Existence is a
+structural check, not proof of semantic support; inspect consequential citations.
+Missing context returns to retrieval/investigation, findings to authorized repair.
+
+Records retain input hashes/text, endpoint/protocol, requested and returned model,
+rubric version/hash, explicit settings, provider token usage, final answer and
+elapsed time. Hidden reasoning and authentication headers are not retained.
+Hosted weights cannot be independently attested; identifiers are not local weight
+pins. If a documented alias resolves differently, select its exact expected
+snapshot explicitly with `--expected-response-model`. No automatic substitution.
+
+Missing credentials, stale source, malformed/incomplete output, mismatched model,
+invalid citations and unavailable calls remain non-success. Exit 0 only records
+an advisory review. No verdict overrides failed deterministic evidence or grants
+DONE. Evaluate clean, known-bug and misleading-green packets with expectations
+withheld from inputs; inspect misses, false findings, citations, latency and token
+usage. Keep packets/settings fixed for comparisons and label a small pilot as
+such. API prices and model versions may change; do not infer cost from token
+counts without a current applicable price. Model agreement is not proof.

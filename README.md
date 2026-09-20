@@ -18,7 +18,7 @@ A missing checkout is a reported dependency, never permission to use another rev
 ## Local runner
 
 `python3 scripts/local_verify.py --help` exposes selected Go, Cargo, OpenSpec
-and workflow checks. Results preserve commands, cwd, version, scope, exits and
+and workflow checks, plus selected Kani/Verus/Gobra proof routes. Results preserve commands, cwd, version, scope, exits and
 artifacts. Static Cargo checks do not execute tests. Go selection accepts anchored
 top-level names; exact subtest selection needs a separately inspected native run.
 Required skipped/empty/failed checks do not pass. Output paths cannot overwrite
@@ -50,13 +50,14 @@ integer clamp. It retains red/green/fault/restored/empty-selection evidence and
 file-load byte measurements. It is a scripted same-session rehearsal, not a
 fresh model evaluation or a measurement of hidden runtime context.
 
-## Optional local review
+## Configurable model review
 
 The verification-design skill routes spec, implementation and feedback review.
-`python3 scripts/local_review.py --help` selects a single stateless request to an
-existing cloud-disabled loopback Ollama service and local model. No service startup,
-model download, agent dispatch or task-completion grant is provided. Outputs are
-advisory; native check results and source inspection still determine acceptance.
-Protocol regressions run under `make check`; model quality must be evaluated in the
-consumer using authorized non-secret evidence. Implementation-proof procedures
-are conditional references, not a claim that provers are installed.
+`python3 scripts/model_review.py --help` selects one stateless API-backed review
+or judge request using DeepSeek, Anthropic Messages, OpenAI Responses (including
+available Codex API models) or GLM-compatible Chat Completions. Supply an exact
+model, URL when overriding the provider default, and the name of a key environment
+variable. Credentials, hidden reasoning and raw error bodies are not retained.
+There is no provider fallback, tool/agent dispatch or service/model installation.
+Hosted API execution may incur provider charges; it is not a free-local claim.
+The shared review procedure defines dimensional judgments and evidence limits.

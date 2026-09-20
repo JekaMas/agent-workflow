@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import datetime as dt
 import json
 import math
@@ -221,7 +222,39 @@ def go_result(raw: str | Iterable[str], expected_packages: set[str] | None = Non
     return "passed", details
 
 
+def proof_result(kind: str, raw: str) -> tuple[str, dict]:
+    """Qualify pinned native summaries; a process exit alone is insufficient."""
+    if kind == 'kani':
+        match = re.search(r'Complete - (\d+) successfully verified harnesses, (\d+) failures, (\d+) total', raw)
+        ok = bool(match and int(match[1]) > 0 and int(match[2]) == 0 and match[1] == match[3]
+                  and 'VERIFICATION:- SUCCESSFUL' in raw and 'VERIFICATION:- FAILED' not in raw and '- Status: FAILURE' not in raw)
+    elif kind == 'verus':
+        rows = re.findall(r'verification results:: (\d+) verified, (\d+) errors', raw)
+        ok = len(rows) == 1 and int(rows[0][0]) > 0 and int(rows[0][1]) == 0
+    else:
+        members = re.findall(r'Gobra found (\d+) methods and functions', raw)
+        errors = re.findall(r'Gobra found (\d+) errors', raw)
+        abstract = re.findall(r'(\d+) specified members? of the package under verification (?:is|are) trusted or abstract', raw)
+        ok = (len(members) == 1 and int(members[0]) > 0 and errors and all(int(n) == 0 for n in errors)
+              and abstract and all(int(n) == 0 for n in abstract) and 'timed out' not in raw.lower())
+    return ('passed' if ok else 'incomplete'), {'claim': 'selected implementation obligation under recorded semantics; not whole-product proof'}
+
+
 def command_plan(args: argparse.Namespace) -> tuple[list[str], list[tuple[str, list[str]]]]:
+    if args.kind in {'kani', 'verus', 'gobra'}:
+        if not args.tool or not args.proof_target or not args.expect_version:
+            raise ValueError('proof requires explicit --tool, --proof-target and --expect-version')
+        target = str(args.proof_target.resolve())
+        if args.kind == 'gobra':
+            if not args.jar or not args.solver:
+                raise ValueError('Gobra requires exact --jar and --solver')
+            prefix = [args.tool, '-Xmx1g', '-Xss128m', '-jar', str(args.jar.resolve())]
+            return [*prefix, '--version'], [('proof', [*prefix, '-i', target, '--overflow', '--logLevel', 'DEBUG', '--z3Exe', str(args.solver.resolve())])]
+        if args.kind == 'kani':
+            if not args.harness:
+                raise ValueError('Kani requires one exact --harness')
+            return [args.tool, '--version'], [('proof', [args.tool, target, '--harness', args.harness, '-Z', 'concrete-playback', '--concrete-playback', 'print'])]
+        return [args.tool, '--version'], [('proof', [args.tool, target])]
     if args.kind == "workflow-tests":
         return [sys.executable, "--version"], [("workflow-tests", [sys.executable, str(Path(__file__).resolve()), "_workflow-tests"])]
     if args.kind == "openspec":
@@ -261,7 +294,7 @@ def command_plan(args: argparse.Namespace) -> tuple[list[str], list[tuple[str, l
 
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
-    result.add_argument("kind", choices=["workflow-tests", "openspec", "go-test", "go-lint", "cargo-fmt", "cargo-clippy"])
+    result.add_argument("kind", choices=["workflow-tests", "openspec", "go-test", "go-lint", "cargo-fmt", "cargo-clippy", "kani", "verus", "gobra"])
     result.add_argument("--cwd", type=Path, required=True)
     result.add_argument("--scope", action="append", required=True, help="affected relative path; metadata, not a second task list")
     output = result.add_mutually_exclusive_group(required=True)
@@ -276,6 +309,11 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--test", help="anchored top-level Go test selector; slash-containing exact-leaf subtest selectors are unsupported")
     result.add_argument("--race", action="store_true")
     result.add_argument("--manifest")
+    result.add_argument("--proof-target", type=Path, help="exact generated source; cwd-relative, with consumer correspondence evidence")
+    result.add_argument("--harness")
+    result.add_argument("--expect-version", help="selected version text required in native output")
+    result.add_argument("--jar", type=Path)
+    result.add_argument("--solver", type=Path)
     return result
 
 
@@ -305,12 +343,25 @@ def main(argv: list[str] | None = None) -> int:
             raise ValueError("existing --cwd and finite positive --timeout required")
         if any(not scope.strip() or Path(scope).is_absolute() or ".." in Path(scope).parts for scope in args.scope):
             raise ValueError("--scope must contain nonempty repository-relative paths")
+        if args.kind in {'kani', 'verus', 'gobra'}:
+            if not args.proof_target:
+                raise ValueError('missing proof target')
+            args.proof_target = (cwd / args.proof_target).resolve()
+            if not args.proof_target.is_file():
+                raise ValueError('proof target missing')
+            report['proof_source_sha256'] = hashlib.sha256(args.proof_target.read_bytes()).hexdigest()
+            report['proof_artifact_sha256'] = {}
+            for path in [Path(args.tool)] if args.kind != 'gobra' and args.tool else [args.jar, args.solver]:
+                if path and path.is_file():
+                    report['proof_artifact_sha256'][str(path.resolve())] = hashlib.sha256(path.read_bytes()).hexdigest()
         version_command, commands = command_plan(args)
         version = run_process(version_command, cwd, env, min(args.timeout, 15), args.output.with_name(f"{args.output.name}.version"))
         report["tool"] = {"command": version_command, "version": version["stdout"].strip(), "exit_code": version["exit_code"]}
         report["steps"].append(version)
         if version["status"] != "exited" or version["exit_code"] != 0:
             report["status"] = version["status"] if version["status"] != "exited" else "tool_version_failed"
+        elif args.kind in {'kani', 'verus', 'gobra'} and args.expect_version not in version['stdout'] + version['stderr']:
+            report['status'] = 'unsupported_tool_version'
         elif args.kind == "openspec" and version["stdout"].strip() != OPENSPEC_VERSION:
             report["status"] = "unsupported_tool_version"
         elif args.kind == "go-lint" and not re.search(rf"\b{re.escape(GOLANGCI_VERSION)}\b", version["stdout"]):
@@ -325,6 +376,13 @@ def main(argv: list[str] | None = None) -> int:
                     status, details = process["status"], {}
                 elif process["exit_code"] != 0:
                     status, details = "failed", {}
+                elif args.kind in {'kani', 'verus', 'gobra'}:
+                    if hashlib.sha256(args.proof_target.read_bytes()).hexdigest() != report['proof_source_sha256']:
+                        status, details = 'stale_source', {}
+                    elif process.get('stdout_truncated') or process.get('stderr_truncated'):
+                        status, details = 'incomplete', {'reason': 'summary exceeds parser capture; inspect full native logs'}
+                    else:
+                        status, details = proof_result(args.kind, process['stdout'] + process['stderr'])
                 elif args.kind == "openspec":
                     if label.startswith("guidance:"):
                         status, details = guidance_result(process["stdout"], cwd, args.change, label.split(":")[1])
@@ -355,7 +413,7 @@ def main(argv: list[str] | None = None) -> int:
                 report["status"] = status
                 if status != "passed":
                     break
-    except ValueError as error:
+    except (ValueError, OSError) as error:
         report["reason"] = str(error)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     for index, step in enumerate(report["steps"]):

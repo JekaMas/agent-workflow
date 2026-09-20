@@ -45,3 +45,21 @@ Sources for qualification: [Kani installation](https://model-checking.github.io/
 [Kani unwinding](https://model-checking.github.io/kani/tutorial-loop-unwinding.html),
 [Verus](https://github.com/verus-lang/verus), and
 [Gobra](https://github.com/viperproject/gobra).
+
+## Executable runner
+
+`python3 scripts/local_verify.py kani|verus|gobra --help` exposes native proof
+routes. Supply an exact source via `--proof-target`, working directory and scope,
+installed `--tool`, pinned `--expect-version`, and new output. Kani requires
+`--harness`; Gobra requires `--jar` and `--solver`. The runner preserves native
+exit/logs, tool artifact hashes and source freshness. It requires nonempty native
+verification summaries, and Gobra's inspected route enables overflow checks and
+rejects trusted/abstract selected members. Unsupported summaries remain incomplete.
+These are narrow adapters qualified against the consumer's pinned releases;
+changing a version requires qualifying its summaries and semantics again.
+
+The consumer owns source extraction/correspondence, contracts, toolchain/solver
+pins, replay inputs and integration tests. Keep those inputs in version control.
+Generate disposable variants from current source and retain both failed and
+restored outcomes. Runtime tests of counterexamples remain distinct from solver
+results. No installation or product rewrite follows from invoking this skill.
