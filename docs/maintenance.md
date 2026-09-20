@@ -2,7 +2,7 @@
 
 Keep generic procedures in shared skills/docs, global entrypoints in defaults,
 installer mechanics in scripts/bootstrap.py and repo generation in its repo_files
-function. Client discovery metadata and scripts are portable; project APIs, domain
+function using the canonical integration renderer. Client discovery metadata and scripts are portable; project APIs, domain
 constraints, actual manifests, product test selection and proof targets stay local.
 Do not copy an entire product skill into personal scope merely to reuse a paragraph.
 
@@ -41,3 +41,12 @@ Language examples are adapters, not universal framework requirements. Changes to
 specialist distribution need fresh-clone resolution checks for both client routes,
 language selection, unmanaged collisions and upgrades. Existing product commands,
 approvals, test sets and domain oracles remain in consumer adapters.
+
+OpenSpec operation semantics and artifact rules have one owner:
+`scripts/integration_templates/`. `scripts/integration.py` renders both new and
+existing consumers. Never maintain a richer separate set in a product repository.
+`docs/operations.md` owns the operation loading map; project guides supply local
+commands, references and knowledge. Check all 14 paths with
+`scripts/check_opsx_routes.py --root <consumer>` and run native instruction tests.
+Migration reports stay in the affected consumer's change record as evidence,
+not as another authoritative execution procedure.

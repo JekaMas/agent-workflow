@@ -8,7 +8,9 @@ Use the installed OpenSpec schema and native instructions. Proposal expresses
 intent; specs require observable behavior and rejection cases; design records
 choices, dependencies and evidence; tasks.md is the only task list. Detail the next
 useful increment, revise within intent, and continue authorized implementation,
-inspection, repair and revalidation. Shared openspec-delivery owns completion.
+inspection, repair and revalidation. Shared openspec-delivery owns completion. Use docs/operations.md from this
+package for operation-specific loading; all operation adapters and full OpenSpec
+rules are rendered from the same canonical templates.
 
 Operation skills in `.agents/skills/openspec-*` and Claude opsx commands route here.
 `check workflow` runs the shared mechanics plus bootstrap ownership check;
@@ -33,7 +35,8 @@ current authority. New material intent belongs in a separate change.
 Run from the consumer root; select a new output directory for each run:
 
 - `workflow`: `python3 -B .agents/workflow/scripts/bootstrap.py status --repo .`,
-  then `make -C .agents/workflow check`. Preserve either failure. Shared mechanics
+  then `python3 .agents/workflow/scripts/check_opsx_routes.py --root .` and
+  `make -C .agents/workflow check`. Preserve either failure. Shared mechanics
   use their own fixtures; this is not product or consumer artifact validation.
 - `spec <change>`: `python3 -B .agents/workflow/scripts/local_verify.py openspec
   --cwd . --change <change> --scope openspec --require-project-guidance

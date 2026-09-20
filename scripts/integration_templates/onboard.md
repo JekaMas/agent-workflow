@@ -1,0 +1,1 @@
+Explain installed commands and artifact ownership using a small user-approved scope. Follow new, artifact creation, apply and verify as authorized, recording actual evidence. Use a disposable example when demonstration rather than product implementation is requested. Archive only with completion and authority.

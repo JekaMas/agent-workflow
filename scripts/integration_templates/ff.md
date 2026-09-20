@@ -1,0 +1,1 @@
+Read status and create missing artifacts in native dependency order using each instruction response. Stop at apply readiness for a planning-only request; continue to implementation if the enclosing task authorizes it.

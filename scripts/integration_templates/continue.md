@@ -1,0 +1,1 @@
+Read status and select the next ready artifact. Retrieve its native instructions and required dependencies, then author it from the actual intent. A continue-only request produces that next artifact; an enclosing delivery request proceeds through remaining authorized work.

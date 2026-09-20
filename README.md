@@ -34,6 +34,14 @@ No specialist is mandatory reading for unrelated work. Consumer product commands
 toolchains, domain contracts and approval boundaries remain local. See
 [maintenance](docs/maintenance.md) for updating canonical source and consumer pins.
 
+## Canonical OpenSpec integration
+
+All consumers use the same full operation procedures and artifact/apply/archive
+rules from `scripts/integration_templates/`. The renderer produces native project
+configuration and client adapters; project profiles select local references.
+See [operations](docs/operations.md) and [adoption](docs/adoption.md). The route
+validator rejects divergence instead of allowing a separate product-only lifecycle.
+
 ## Local runner
 
 `python3 scripts/local_verify.py --help` exposes selected Go, Cargo, OpenSpec

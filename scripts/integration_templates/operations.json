@@ -1,0 +1,58 @@
+{
+  "maintain": {
+    "skill": "workflow-maintenance",
+    "description": "Change workflow structure, skills, OpenSpec integration or verification tooling."
+  },
+  "check": {
+    "skill": "openspec-check",
+    "description": "Run selected workflow, OpenSpec, Rust, Go or assurance checks and report evidence."
+  },
+  "explore": {
+    "skill": "openspec-explore",
+    "description": "Explore a change before deciding implementation."
+  },
+  "new": {
+    "skill": "openspec-new-change",
+    "description": "Start an OpenSpec change."
+  },
+  "continue": {
+    "skill": "openspec-continue-change",
+    "description": "Create the next ready OpenSpec artifact."
+  },
+  "ff": {
+    "skill": "openspec-ff-change",
+    "description": "Prepare implementation-ready OpenSpec artifacts."
+  },
+  "propose": {
+    "skill": "openspec-propose",
+    "description": "Propose a complete scoped OpenSpec change."
+  },
+  "update": {
+    "skill": "openspec-update-change",
+    "description": "Revise an existing OpenSpec plan."
+  },
+  "apply": {
+    "skill": "openspec-apply-change",
+    "description": "Implement and repair an OpenSpec change."
+  },
+  "verify": {
+    "skill": "openspec-verify-change",
+    "description": "Review OpenSpec conformance and evidence."
+  },
+  "sync": {
+    "skill": "openspec-sync-specs",
+    "description": "Synchronize approved delta specifications."
+  },
+  "archive": {
+    "skill": "openspec-archive-change",
+    "description": "Archive a completed OpenSpec change."
+  },
+  "bulk-archive": {
+    "skill": "openspec-bulk-archive-change",
+    "description": "Archive selected completed OpenSpec changes."
+  },
+  "onboard": {
+    "skill": "openspec-onboard",
+    "description": "Guide an authorized OpenSpec walkthrough."
+  }
+}

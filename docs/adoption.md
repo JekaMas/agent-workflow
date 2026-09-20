@@ -134,3 +134,32 @@ languages that would orphan managed routes requires an explicit migration.
 Personal installation still exposes only the four sdd-* routers, avoiding a
 second global copy of specialist names. Those routers can load conditional
 specialists from their selected package when no project equivalent exists.
+
+## One OpenSpec integration for all consumers
+
+`scripts/integration_templates/` owns all 14 operation procedures and the full
+artifact/apply/archive rules. `scripts/integration.py` renders those into project
+skill adapters, Claude commands and `openspec/config.yaml`; OpenSpec reads the
+concrete config, not an unsupported YAML include. Bootstrap uses this same renderer.
+
+A project's tracked `.agents/workflow-project.json` may select `integration.flow`,
+`checks`, `verification` and `maintenance` reference paths plus `openspec_context`.
+Keep product knowledge and commands in those references. `check_skill` preserves
+an existing openspec-check or project-check identity; both use the same procedure.
+`workflow_make_group` optionally requires every target in a local Make group to
+be documented in its check guide. Make is not required for new consumers.
+
+Managed adopters use the normal bootstrap update. For an already reviewed custom
+integration, inspect the profile and run the renderer first without writes:
+
+```sh
+python3 .agents/workflow/scripts/integration.py --root .
+python3 .agents/workflow/scripts/integration.py --root . --write
+python3 .agents/workflow/scripts/check_opsx_routes.py --root .
+```
+
+The write mode intentionally replaces the rendered outputs; use it only after
+reviewing local deltas into shared templates or project references. It is not an
+automatic conflict bypass. Do not use it to bypass bootstrap ownership hashes in
+a managed adopter. The route check rejects adapter/config drift, missing local
+references and ignored commands. Inspect native emitted guidance after rule edits.
