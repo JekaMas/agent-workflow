@@ -39,6 +39,13 @@ No CI service, global configuration or product runtime is installed by this pack
 ## Provenance
 
 Initially extracted with user authorization from the Smart Example local-workflow
-migration. This repository is private; no third-party redistribution license is
-asserted. Product KB, credentials, historical campaign approvals and audit inputs
+migration. No third-party redistribution license is asserted. Product KB, credentials, historical campaign approvals and audit inputs
 are not part of the shared package.
+
+## Rehearse a complete change
+
+`python3 scripts/rehearse_flow.py --output-dir /new/local/path --go-tool /existing/go`
+uses the installed OpenSpec and Go toolchain to plan and implement a disposable
+integer clamp. It retains red/green/fault/restored/empty-selection evidence and
+file-load byte measurements. It is a scripted same-session rehearsal, not a
+fresh model evaluation or a measurement of hidden runtime context.
