@@ -26,3 +26,8 @@ establish mechanics and limits, not independent model quality or universal speed
 Publish only under current authority and push shared source before consumer pins.
 Do not place private repository reports, credentials or personal backup contents
 in this public package. Setup/update/rollback instructions are in docs/adoption.md.
+
+Verify tracked source with scripts/audit_sources.py --path <source-root>; add
+--personal and --workspace <workspace-root> for installed routing. It resolves
+symlinks and checks Git tracking/ignore rules. Backups and caches are not active
+instruction owners and remain outside this source inventory.

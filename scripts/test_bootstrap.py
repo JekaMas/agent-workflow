@@ -84,6 +84,16 @@ class BootstrapTests(unittest.TestCase):
         self.assertEqual('old defaults',Path(history['files'][str(p)]['backup']).read_text())
         self.install();self.assertTrue(p.is_symlink());self.assertIn('Personal development',p.read_text())
         self.assertFalse((self.home/'.agents/skills/openspec-apply-change').exists())
+        release=(self.home/'.local/share/agent-workflow/current').resolve()
+        self.assertTrue((release/'.git').is_dir())
+        self.assertEqual('defaults/personal.md',self.git(release,'ls-files','--error-unmatch','defaults/personal.md'))
+        self.assertEqual('', self.git(release,'status','--porcelain'))
+
+    def test_untracked_active_skill_refuses_reactivation(self):
+        self.install()
+        release=(self.home/'.local/share/agent-workflow/current').resolve()
+        (release/'skills/sdd-workflow/untracked.md').write_text('unexpected instruction')
+        with self.assertRaisesRegex(ValueError,'untracked release'): self.install()
 
     def test_personal_managed_edit_rejected(self):
         self.install();p=self.home/'.codex/AGENTS.md';p.unlink();p.write_text('local override')

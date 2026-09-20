@@ -2,12 +2,10 @@
 """Preview/apply pinned personal defaults or repository workflow adoption. No tool installation."""
 import argparse
 import hashlib
-import io
 import json
 import os
 from pathlib import Path
 import subprocess
-import tarfile
 import tempfile
 import time
 
@@ -225,24 +223,17 @@ def personal(source, revision, home, workspace, apply, replace):
     if not release.exists():
         release.parent.mkdir(parents=True,exist_ok=True)
         stage = Path(tempfile.mkdtemp(prefix='release-',dir=release.parent))
-        raw = subprocess.check_output(['git','-C',str(source),'archive',revision])
-        with tarfile.open(fileobj=io.BytesIO(raw)) as archive:
-            # Package releases may contain regular files/directories only.
-            for item in archive.getmembers():
-                if not (item.isfile() or item.isdir()) or Path(item.name).is_absolute() or '..' in Path(item.name).parts:
-                    raise ValueError('unsafe release member')
-            for item in archive.getmembers():
-                destination=stage/item.name
-                if item.isdir(): destination.mkdir(parents=True,exist_ok=True)
-                else:
-                    destination.parent.mkdir(parents=True,exist_ok=True)
-                    destination.write_bytes(archive.extractfile(item).read())
-        hashes={p.relative_to(stage).as_posix():digest(p.read_bytes()) for p in stage.rglob('*') if p.is_file()}
-        (stage/'.release.json').write_text(json.dumps(hashes,sort_keys=True)+'\n')
+        subprocess.run(['git','clone','--no-hardlinks','--no-checkout',str(source),str(stage)],check=True)
+        subprocess.run(['git','-C',str(stage),'checkout','--detach',revision],check=True)
         stage.rename(release)
-    hashes=json.loads((release/'.release.json').read_text())
-    if any(not (release/name).is_file() or digest((release/name).read_bytes())!=value for name,value in hashes.items()):
-        raise ValueError('modified release; refuse activation')
+    if not (release/'.git').is_dir():
+        raise ValueError('legacy exported release is not Git-backed; select a new reviewed release')
+    if git(release,'rev-parse','HEAD') != revision or git(release,'status','--porcelain','--untracked-files=all'):
+        raise ValueError('modified or untracked release; refuse activation')
+    for folder in ['defaults','skills','docs','scripts']:
+        for path in (release/folder).rglob('*'):
+            if path.is_file() and '__pycache__' not in path.parts:
+                git(release,'ls-files','--error-unmatch','--',path.relative_to(release).as_posix())
     if state.get('revision') == revision and all(state.get('targets',{}).get(str(p)) == fingerprint(p) and p.is_symlink() for p in targets) and all(p.exists() for p in links):
         print('Already installed at selected revision')
         return

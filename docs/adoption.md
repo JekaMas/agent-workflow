@@ -17,7 +17,7 @@ python3 -B scripts/bootstrap.py personal --replace-global --apply
 
 The first command previews. The second is appropriate only under explicit authority
 to replace personal instructions. It backs up existing Codex/Claude instruction
-files, installs the exact committed package into a local release directory, and
+files, installs the exact committed package into a detached Git release checkout, and
 links thin global instructions plus four distinctly named skills: sdd-workflow,
 sdd-maintenance, sdd-go and sdd-rust. It does not install global openspec-* adapters,
 which could shadow project implementations. Existing unrelated skills stay intact.
@@ -70,8 +70,7 @@ The default source URL is the public agent-workflow repository. Publish the sele
 shared commit before adopting it from that URL. `--source-url` supports an explicitly
 selected alternate repository, including a local fixture. Local-file transport is
 enabled only for that single Git command, never in global config. `--source` names
-the clean local source checkout; it is required when running an installer from an
-installed archive release, which has no Git metadata. Use --revision only when the
+the clean local source checkout; it is required when running an installer from a location other than the intended canonical source checkout. Use --revision only when the
 source checkout is already at that exact commit; the tool never switches it for you.
 
 An existing OpenSpec tree, existing workflow checkout or unowned output collision
@@ -105,3 +104,8 @@ opening it alone does not authorize configuration changes. Team members use the 
 wrappers and submodule, not another developer's home paths. Skills remain plain
 portable files; a plugin package is optional distribution, not a new runtime or
 permission requirement. Do not automatically rewrite global OpenSpec profile settings.
+
+Active personal instruction/skill files resolve into tracked files in the release
+Git checkout. Backups, installer state and inactive old export snapshots are
+recovery data, not active workflow source. Releases with edits or untracked files
+are rejected before activation. Update from a clean canonical source checkout.
