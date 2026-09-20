@@ -1,0 +1,4 @@
+interface:
+  display_name: "sdd-maintenance"
+  short_description: "Use the shared sdd-maintenance procedure."
+  default_prompt: "Use $sdd-maintenance for the requested task."

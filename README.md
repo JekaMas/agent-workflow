@@ -61,3 +61,13 @@ variable. Credentials, hidden reasoning and raw error bodies are not retained.
 There is no provider fallback, tool/agent dispatch or service/model installation.
 Hosted API execution may incur provider charges; it is not a free-local claim.
 The shared review procedure defines dimensional judgments and evidence limits.
+
+## Personal defaults and repository adoption
+
+Use [docs/adoption.md](docs/adoption.md) for previewable personal install/update,
+recoverable backups and pinned project adoption. Personal sdd-workflow routes to
+existing project conventions first; sdd-maintenance updates the workflow itself.
+Generic sdd-go and sdd-rust procedures are conditional fallbacks, not product policy.
+Project adapters preserve existing instructions and actual commands. See
+[docs/maintenance.md](docs/maintenance.md) for source ownership and validation.
+The installer adds no hooks, permissions, models, runtimes or product CI.
