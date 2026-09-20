@@ -1,0 +1,1 @@
+Inspect the question, relevant specs and source. Investigate uncertainty and record useful decisions in the selected change when authorized. Exploration alone does not authorize implementation. Return to the enclosing delivery task when it includes implementation.

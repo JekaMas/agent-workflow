@@ -1,0 +1,1 @@
+Resolve intent and a unique kebab-case name; inspect related changes. Run `openspec new change <name> --schema spec-driven --json`, then status. For a new-only request, report the created change and next artifact. For a larger authorized task, proceed to the needed artifact operations.

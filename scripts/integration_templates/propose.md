@@ -1,0 +1,1 @@
+Resolve intent, create a matching change if needed, then use native artifact instructions to produce proposal, specs, design and tasks in dependency order. Preserve meaningful uncertainty and required evidence. A proposal-only request does not authorize product implementation.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Go Optimization"
+  short_description: "Evidence-backed Go optimization, basic through advanced."
+  default_prompt: "Use $golang-optimization to optimize this Go path from measured evidence through the appropriate algorithm, compiler, or runtime gate."

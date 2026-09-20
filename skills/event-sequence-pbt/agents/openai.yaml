@@ -1,0 +1,4 @@
+interface:
+  display_name: "Event-Sequence PBT"
+  short_description: "Test stateful event sequences with properties."
+  default_prompt: "Use $event-sequence-pbt to design or review stateful event-sequence property tests."

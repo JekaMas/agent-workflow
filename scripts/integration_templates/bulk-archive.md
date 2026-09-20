@@ -1,0 +1,1 @@
+Enumerate the exact requested changes and reconcile shared-spec conflicts. Assess completion and authority separately for each; archive eligible changes using native instructions, inspect each resulting diff and report skipped/blocking changes. Do not infer completion from artifact presence.

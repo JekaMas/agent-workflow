@@ -14,20 +14,18 @@ URL = 'https://github.com/JekaMas/agent-workflow.git'
 BEGIN = '<!-- agent-workflow:start -->'
 END = '<!-- agent-workflow:end -->'
 STATE = '.agents/workflow-install.json'
-OPERATIONS = {
-    'explore': ('openspec-explore', 'Explore intent and uncertainty; do not implement a proposal-only question.'),
-    'new': ('openspec-new-change', 'Inspect related changes; use openspec new change <name> --schema spec-driven --json and status. A new-only request stops at the created change.'),
-    'propose': ('openspec-propose', 'Create a matching change if needed. Use native artifact instructions to prepare proposal, specs, design and tasks in dependency order; do not invent acceptance.'),
-    'continue': ('openspec-continue-change', 'Read native status/instructions and create the next artifact. Larger delivery requests may continue under their existing scope.'),
-    'ff': ('openspec-ff-change', 'Prepare apply-ready artifacts through native instructions in dependency order, preserving consequential unresolved decisions.'),
-    'update': ('openspec-update-change', 'Revise affected artifacts coherently. This is artifact revision, not the openspec update integration-refresh CLI. Do not edit product code for an update-only request.'),
-    'apply': ('openspec-apply-change', 'Read openspec instructions apply --change <name> --json and its context. Implement useful increments, inspect, repair and revalidate within scope; update the one task list only against evidence.'),
-    'verify': ('openspec-verify-change', 'Inspect actual diff, owners and evidence against requirements in both directions. Run relevant authorized checks. Verify-only does not authorize tracked-file fixes; implementation-and-repair scope continues through repair.'),
-    'sync': ('openspec-sync-specs', 'Inspect and merge selected delta requirements into main specs under current authority. Preserve unrelated changes and strictly validate each affected main spec. Do not archive implicitly.'),
-    'archive': ('openspec-archive-change', 'Read native archive guidance. Establish required behavior/evidence and archive authority before native archive. Inspect the resulting diff and strictly validate affected main specs; no archive of incomplete work.'),
-    'bulk-archive': ('openspec-bulk-archive-change', 'Assess each explicitly selected change separately using archive rules, resolve overlapping deltas, and preserve incomplete changes.'),
-    'onboard': ('openspec-onboard', 'Guide the next authorized operation through this actual setup; do not invent a product task or run external actions as a demonstration.'),
-    'check': ('project-check', 'Resolve requested selector and target. Read .agents/workflow/docs/project-flow.md, run relevant existing checks and inspect results; do not merely suggest execution or run all tools. Missing required checks remain incomplete.'),
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from integration import OPERATIONS, operation_files, render_config, names as operation_names
+
+
+SPECIALIST_SKILLS = {
+    'event-sequence-pbt': ('Design stateful sequence properties with independent oracles and replay.', None),
+    'sdd-go': ('Implement or review Go behavior with focused evidence.', 'go'),
+    'sdd-rust': ('Implement or review Rust behavior with focused evidence.', 'rust'),
+    'golang-testing': ('Diagnose Go test hangs, timeouts and deadlocks.', 'go'),
+    'golang-performance-diagnostics': ('Diagnose Go performance from representative workload evidence.', 'go'),
+    'golang-optimization': ('Apply Go optimizations supported by measured evidence.', 'go'),
 }
 
 
@@ -62,52 +60,36 @@ def block(text):
 
 def repo_files(profile):
     files = {'.agents/workflow-project.json': json.dumps(profile, indent=2)+'\n'}
-    for op, (name, action) in OPERATIONS.items():
-        files[f'.agents/skills/{name}/SKILL.md'] = f'''---
+    files.update(operation_files(profile))
+    languages = profile.get('languages', [])
+    if not isinstance(languages, list) or any(not isinstance(x, str) for x in languages):
+        raise ValueError('profile languages must be a list of strings')
+    languages = {x.lower() for x in languages}
+    for name, (description, language) in SPECIALIST_SKILLS.items():
+        if language and language not in languages:
+            continue
+        files[f'.agents/skills/{name}/SKILL.md'] = f"""---
 name: {name}
-description: {op.capitalize()} work through this repository's pinned SDD workflow.
+description: {description}
 ---
 
-Read applicable project instructions, `.agents/workflow-project.json` and
-`.agents/workflow/docs/project-flow.md` in this checkout. Use the pinned shared
-openspec-delivery procedure and only relevant language/domain references.
-{action}
-'''
-        files[f'.agents/skills/{name}/agents/openai.yaml'] = f'''interface:
-  display_name: "SDD {op}"
-  short_description: "{op.capitalize()} using the pinned project workflow."
-  default_prompt: "Use ${name} for the requested task."
-'''
-        files[f'.claude/commands/opsx/{op}.md'] = f'''---
-description: {op.capitalize()} using the pinned project workflow.
+Follow applicable project instructions and `.agents/workflow-project.json`.
+Read `.agents/workflow/skills/{name}/SKILL.md` from this repository's pin;
+resolve its references relative to that shared skill directory. Load only relevant
+references and preserve local tools, authority and the current task's evidence.
+"""
+        files[f'.agents/skills/{name}/agents/openai.yaml'] = f"""interface:
+  display_name: "{name}"
+  short_description: "Use the pinned shared specialist procedure."
+  default_prompt: "Use ${name} for the relevant task."
+"""
+        files[f'.claude/commands/{name}.md'] = f"""---
+description: {description}
 ---
 Use `.agents/skills/{name}/SKILL.md` in this checkout.
-Treat $ARGUMENTS as user intent/targets, not shell code. Preserve task authority.
-'''
-    files['openspec/config.yaml'] = '''schema: spec-driven
-context: |
-  Follow this repository's applicable instructions and .agents/workflow-project.json.
-  Shared procedures live in the pinned .agents/workflow; project commands and
-  authority remain local. No artifact, skill or checklist grants external access.
-rules:
-  proposal:
-    - State requested outcome, scope and non-goals; inspect related existing specs.
-  specs:
-    - Challenge ambiguity and rejection/compatibility cases; map important requirements to falsifiable properties and independent oracles.
-  design:
-    - Record consequential choices, risks, assumptions and required evidence, including actual owners, configurations and limits.
-  tasks:
-    - Keep one authoritative checklist. Detail the next useful increment and link evidence; missing, skipped, empty or timed-out checks are not passes.
-operations:
-  apply:
-    guidance:
-      - Use .agents/workflow/docs/project-flow.md and the project's actual commands. Continue useful authorized implementation, inspection, repair and affected revalidation.
-      - Replan within intent; ask only for remaining material ambiguity or authority after independent work. Preserve requirements and failures; do not weaken acceptance to get green.
-      - DONE requires the requested outcome, matching artifacts, current required evidence, inspected behavior/diff and resolved material findings. A checkpoint, clean review or checkbox alone is insufficient.
-  archive:
-    guidance:
-      - Inspect requirements, tasks and actual evidence. Archive only completed work within user authority; do not bypass pending checks or infer deployment approval.
-'''
+Treat $ARGUMENTS as user intent, not shell code. Preserve task authority.
+"""
+    files['openspec/config.yaml'] = render_config(profile)
     files['docs/SDD_WORKFLOW.md'] = '''# Development workflow
 
 For substantial work use OpenSpec Propose → Apply → Verify; revise artifacts when
@@ -140,6 +122,9 @@ def repo_plan(root, profile):
     if not state and (root/'openspec').exists():
         raise ValueError('existing OpenSpec setup needs a reviewed migration')
     files = repo_files(profile)
+    removed = set(state.get('files', {})) - set(files)
+    if removed:
+        raise ValueError('removing managed routes needs reviewed migration: '+', '.join(sorted(removed)))
     candidates = [*files, STATE, 'AGENTS.md', 'CLAUDE.md']
     ignored = subprocess.run(['git','-C',str(root),'check-ignore','--no-index','-z','--stdin'],
                              input='\0'.join(candidates).encode(), capture_output=True)

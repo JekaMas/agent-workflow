@@ -56,8 +56,46 @@ class BootstrapTests(unittest.TestCase):
         text=(self.root/'AGENTS.md').read_text()
         self.assertTrue(text.startswith('Keep domain constraints.'))
         self.assertEqual(1,text.count(b.BEGIN));self.assertEqual(self.rev,self.git(self.root,'rev-parse',':.agents/workflow'))
-        for op,(name,_) in b.OPERATIONS.items():
+        for op,name in b.operation_names(self.profile).items():
             self.assertIn(name,(self.root/f'.claude/commands/opsx/{op}.md').read_text())
+
+    def test_specialists_resolve_from_both_clients_in_fresh_clone(self):
+        self.adopt()
+        self.git(self.root,'add','.')
+        self.git(self.root,'commit','-qm','adopt')
+        clone=self.base/'fresh'
+        self.git(self.base,'clone','-q',str(self.root),str(clone))
+        self.git(clone,'-c','protocol.file.allow=always','submodule','update','--init')
+        for name,(description,language) in b.SPECIALIST_SKILLS.items():
+            if language == 'rust':
+                self.assertFalse((clone/f'.agents/skills/{name}').exists());continue
+            route=clone/f'.agents/skills/{name}/SKILL.md'
+            target=f'.agents/workflow/skills/{name}/SKILL.md'
+            self.assertIn(target,route.read_text())
+            self.assertTrue((clone/target).is_file())
+            self.assertIn(str(route.relative_to(clone)),(clone/f'.claude/commands/{name}.md').read_text())
+        self.assertTrue((clone/'.agents/workflow/skills/golang-optimization/../golang-performance-diagnostics/references/cpu-cache-analysis.md').is_file())
+        from check_opsx_routes import inspect
+        self.assertEqual([],inspect(clone)['errors'])
+        config=clone/'openspec/config.yaml'
+        config.write_text(config.read_text().replace('Never mark a required','Always mark a required'))
+        self.assertIn('shared integration drift: openspec/config.yaml',inspect(clone)['errors'])
+
+    def test_language_selection_and_removal_boundary(self):
+        self.profile['languages']=['rust','python'];self.adopt()
+        self.assertTrue((self.root/'.agents/skills/event-sequence-pbt/SKILL.md').is_file())
+        self.assertTrue((self.root/'.agents/skills/sdd-rust/SKILL.md').is_file())
+        self.assertFalse((self.root/'.agents/skills/golang-testing').exists())
+        self.profile['languages']=[]
+        with self.assertRaisesRegex(ValueError,'removing managed routes'):self.adopt()
+        self.assertTrue((self.root/'.agents/skills/sdd-rust/SKILL.md').is_file())
+
+    def test_specialist_collision_does_not_overwrite(self):
+        p=self.root/'.agents/skills/event-sequence-pbt/SKILL.md'
+        p.parent.mkdir(parents=True);p.write_text('project oracle contract')
+        with self.assertRaisesRegex(ValueError,'unmanaged'):self.adopt()
+        self.assertEqual('project oracle contract',p.read_text())
+        self.assertFalse((self.root/'.agents/workflow').exists())
 
     def test_user_edits_outside_block_survive_update(self):
         self.adopt();p=self.root/'AGENTS.md';p.write_text('New rule.\n'+p.read_text());self.adopt()

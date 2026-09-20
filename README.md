@@ -15,6 +15,33 @@ not automatic skill discovery. Keep its initialization explicit:
 `git submodule update --init .agents/workflow` from a configured consumer.
 A missing checkout is a reported dependency, never permission to use another revision.
 
+## New repositories and specialist skills
+
+Use the preview/apply bootstrap in [adoption](docs/adoption.md). It installs
+versioned project adapters and a pinned submodule, not global tools. The tracked
+project profile selects Go/Rust routes; event-sequence testing is available for
+all languages. Codex adapters and Claude commands resolve the same canonical
+source after submodule initialization.
+
+- `skills/sdd-go` and `skills/sdd-rust`: general language evidence and routing.
+- `skills/golang-testing`: focused hang/timeout stack diagnosis.
+- `skills/golang-performance-diagnostics` and `skills/golang-optimization`:
+  measurement before optimization, with conditional advanced references.
+- `skills/event-sequence-pbt`: independent state models, domain events,
+  dispositions, shrinking and replay in any language; framework recipes are optional.
+
+No specialist is mandatory reading for unrelated work. Consumer product commands,
+toolchains, domain contracts and approval boundaries remain local. See
+[maintenance](docs/maintenance.md) for updating canonical source and consumer pins.
+
+## Canonical OpenSpec integration
+
+All consumers use the same full operation procedures and artifact/apply/archive
+rules from `scripts/integration_templates/`. The renderer produces native project
+configuration and client adapters; project profiles select local references.
+See [operations](docs/operations.md) and [adoption](docs/adoption.md). The route
+validator rejects divergence instead of allowing a separate product-only lifecycle.
+
 ## Local runner
 
 `python3 scripts/local_verify.py --help` exposes selected Go, Cargo, OpenSpec

@@ -2,7 +2,7 @@
 
 Keep generic procedures in shared skills/docs, global entrypoints in defaults,
 installer mechanics in scripts/bootstrap.py and repo generation in its repo_files
-function. Client discovery metadata and scripts are portable; project APIs, domain
+function using the canonical integration renderer. Client discovery metadata and scripts are portable; project APIs, domain
 constraints, actual manifests, product test selection and proof targets stay local.
 Do not copy an entire product skill into personal scope merely to reuse a paragraph.
 
@@ -31,3 +31,30 @@ Verify tracked source with scripts/audit_sources.py --path <source-root>; add
 --personal and --workspace <workspace-root> for installed routing. It resolves
 symlinks and checks Git tracking/ignore rules. Backups and caches are not active
 instruction owners and remain outside this source inventory.
+
+## Specialist ownership
+
+Shared skills own Go hang diagnostics, performance diagnostics/optimization and
+language-independent event-sequence testing. Retain their conditional reference
+routing and cross-skill links. The Go diagnostics/optimization pair ships together.
+Language examples are adapters, not universal framework requirements. Changes to
+specialist distribution need fresh-clone resolution checks for both client routes,
+language selection, unmanaged collisions and upgrades. Existing product commands,
+approvals, test sets and domain oracles remain in consumer adapters.
+
+OpenSpec operation semantics and artifact rules have one owner:
+`scripts/integration_templates/`. `scripts/integration.py` renders both new and
+existing consumers. Never maintain a richer separate set in a product repository.
+`docs/operations.md` owns the operation loading map; project guides supply local
+commands, references and knowledge. Check all 14 paths with
+`scripts/check_opsx_routes.py --root <consumer>` and run native instruction tests.
+Migration reports stay in the affected consumer's change record as evidence,
+not as another authoritative execution procedure.
+
+Sync/archive/bulk-archive share `integration_templates/spec-validation.md`;
+the renderer includes it in each required entrypoint. Keep this single source
+instead of copying the strict-main-spec procedure between templates. Native
+`test_full_lifecycle.py` fixtures exercise direct archive, prior sync, modified
+requirements, selected bulk closure, invalid-main repair and incomplete-task
+refusal in disposable repositories. Never run these closure experiments against
+consumer changes. Generated output equality is intentional, not another owner.

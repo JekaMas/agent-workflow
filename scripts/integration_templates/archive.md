@@ -1,0 +1,1 @@
+Read native archive instructions and current requirements/tasks/evidence. Establish the shared DONE criteria and archive authority before `openspec archive <name> --json --yes`. Inspect resulting spec/archive diff. Missing required evidence remains incomplete; archive does not authorize deployment.

@@ -28,3 +28,9 @@ oracles and decisive negative cases. Retain failing seeds/traces and classify
 implementation, oracle, environment and unresolved causes. Repair within authority,
 rerun affected checks and return evidence to the governing task; do not mark a
 missing check passed. Use shared verification-design for consequential evidence.
+
+For stateful sequence properties, select sibling `event-sequence-pbt/SKILL.md`;
+load its language adapter only when relevant.
+For hangs/timeouts select sibling `golang-testing`; for measured performance
+questions select `golang-performance-diagnostics`, then `golang-optimization`
+when evidence supports a fix. Resolve these within this package, not a global copy.
