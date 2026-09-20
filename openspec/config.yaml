@@ -1,0 +1,19 @@
+schema: spec-driven
+context: |
+  Reusable local workflow tooling. Preserve scope, authority and evidence limits.
+rules:
+  proposal:
+    - State intent and acceptance scope.
+  specs:
+    - Express observable properties and meaningful oracles.
+  design:
+    - State assumptions, risks and evidence boundaries.
+  tasks:
+    - Keep one task list with completion evidence.
+operations:
+  apply:
+    guidance:
+      - Continue authorized implementation, review and repair until required evidence supports acceptance.
+  archive:
+    guidance:
+      - Archive only after completion; missing required evidence remains incomplete.
