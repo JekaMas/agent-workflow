@@ -49,3 +49,14 @@ uses the installed OpenSpec and Go toolchain to plan and implement a disposable
 integer clamp. It retains red/green/fault/restored/empty-selection evidence and
 file-load byte measurements. It is a scripted same-session rehearsal, not a
 fresh model evaluation or a measurement of hidden runtime context.
+
+## Optional local review
+
+The verification-design skill routes spec, implementation and feedback review.
+`python3 scripts/local_review.py --help` selects a single stateless request to an
+existing cloud-disabled loopback Ollama service and local model. No service startup,
+model download, agent dispatch or task-completion grant is provided. Outputs are
+advisory; native check results and source inspection still determine acceptance.
+Protocol regressions run under `make check`; model quality must be evaluated in the
+consumer using authorized non-secret evidence. Implementation-proof procedures
+are conditional references, not a claim that provers are installed.
