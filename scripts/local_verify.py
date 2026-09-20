@@ -27,7 +27,7 @@ def workflow_tests() -> int:
     """Run only workflow-mechanics tests, rejecting missing or skipped coverage."""
     import unittest
 
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    sys.path.insert(0, os.environ.get("LOCAL_VERIFY_PROJECT_ROOT", str(Path(__file__).resolve().parents[1])))
     names = ["scripts.test_local_verify", "scripts.test_openspec_workflow"]
     suites = [unittest.defaultTestLoader.loadTestsFromName(name) for name in names]
     selected = {name: suite.countTestCases() for name, suite in zip(names, suites)}

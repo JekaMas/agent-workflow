@@ -29,6 +29,8 @@ are rejected until compatibility is qualified. Cargo defaults to Cargo.toml;
 consumers pass their actual manifest. Project config is supplied by the consumer.
 `LOCAL_VERIFY_PROJECT_CONFIG` selects a consumer config for native integration
 fixtures; otherwise this repository's example config is used.
+`LOCAL_VERIFY_PROJECT_ROOT` selects consumer test modules for a consumer adapter
+check; otherwise shared regression modules are selected.
 
 `make check` runs parser/process and installed native OpenSpec fixtures. Optional
 native Go/Cargo adapter experiments live in scripts/test_local_verify_{go,cargo}.py.

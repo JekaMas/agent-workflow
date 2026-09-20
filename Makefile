@@ -4,4 +4,3 @@ check:
 
 verify-go-test:
 	python3 scripts/local_verify.py go-test --cwd . --package "$(VERIFY_PACKAGES)" --test '$(value VERIFY_TEST)' --scope "$(VERIFY_SCOPE)" --output-dir data/checks
-
