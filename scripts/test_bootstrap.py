@@ -42,6 +42,11 @@ class BootstrapTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unmanaged'): self.adopt()
         self.assertEqual('custom owner',p.read_text());self.assertFalse((self.root/'.agents/workflow').exists())
 
+    def test_ignored_workflow_route_rejected_before_writes(self):
+        (self.root/'.gitignore').write_text('.claude/\n')
+        with self.assertRaisesRegex(ValueError,'workflow files are ignored'): self.adopt()
+        self.assertFalse((self.root/'.agents/workflow').exists())
+
     def test_existing_openspec_not_overwritten(self):
         (self.root/'openspec').mkdir()
         with self.assertRaisesRegex(ValueError,'existing OpenSpec'): self.adopt()

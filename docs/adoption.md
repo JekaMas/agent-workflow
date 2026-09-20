@@ -61,7 +61,8 @@ python3 -B scripts/bootstrap.py repo --repo /path/to/project --profile /path/to/
 
 This adds a pinned `.agents/workflow` submodule, project profile, operation skills,
 Claude command shims, OpenSpec configuration, short project guide and bounded routing
-blocks in AGENTS.md/CLAUDE.md. Existing instruction text outside the blocks survives.
+blocks in AGENTS.md/CLAUDE.md. Existing instruction text outside the blocks survives. Ignored workflow outputs
+are refused before installation; do not hide required setup behind local ignore rules.
 Git submodule setup stages .gitmodules and the exact gitlink; review and stage generated
 files normally. No product file is edited and no product command is executed.
 
