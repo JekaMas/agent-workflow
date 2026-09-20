@@ -62,6 +62,21 @@ class LocalVerifyTest(unittest.TestCase):
                 self.assertNotEqual(code, 0)
                 self.assertNotEqual(json.loads(output.read_text())['status'], 'passed')
 
+    def test_proof_failures_keep_property_setup_unknown_and_unsupported_distinct(self):
+        cases = [
+            ('kani', 'VERIFICATION:- FAILED\n- Status: FAILURE', 'property_violation'),
+            ('verus', 'error: postcondition not satisfied', 'property_violation'),
+            ('gobra', 'Postcondition might not hold.', 'property_violation'),
+            ('verus', 'error[E0425]: cannot find value', 'harness_or_environment'),
+            ('kani', 'error: Failed to invoke goto-cc', 'harness_or_environment'),
+            ('kani', 'VERIFICATION:- UNKNOWN', 'solver_unknown'),
+            ('gobra', 'unsupported construct in selected target', 'unsupported'),
+            ('verus', 'unrecognized diagnostic', 'unclassified_failure'),
+        ]
+        for kind, raw, expected in cases:
+            with self.subTest(kind=kind, raw=raw):
+                self.assertEqual(expected, verify.proof_failure(kind, raw))
+
     def test_completed_go_test_is_selected_evidence(self):
         status, details = verify.go_result(go_events())
         self.assertEqual("passed", status)

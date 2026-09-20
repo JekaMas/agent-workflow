@@ -240,6 +240,22 @@ def proof_result(kind: str, raw: str) -> tuple[str, dict]:
     return ('passed' if ok else 'incomplete'), {'claim': 'selected implementation obligation under recorded semantics; not whole-product proof'}
 
 
+def proof_failure(kind: str, raw: str) -> str:
+    """Classify known native diagnostics, never infer a product defect from exit 1."""
+    if re.search(r'(?im)^.*(?:solver returned unknown|VERIFICATION:- UNKNOWN)\s*$', raw):
+        return 'solver_unknown'
+    if re.search(r'(?im)^.*(?:unsupported feature|unsupported construct|not supported by (?:kani|verus|gobra))', raw):
+        return 'unsupported'
+    if re.search(r'(?im)^error\[E[0-9]+\]|^error: (?:could not compile|failed to (?:invoke|find))', raw):
+        return 'harness_or_environment'
+    violations = {
+        'kani': 'VERIFICATION:- FAILED' in raw and '- Status: FAILURE' in raw,
+        'verus': bool(re.search(r'(?m)^error: (?:postcondition|precondition|assertion) (?:not satisfied|failed)', raw)),
+        'gobra': 'Postcondition might not hold.' in raw or 'Assertion might not hold.' in raw,
+    }
+    return 'property_violation' if violations.get(kind) else 'unclassified_failure'
+
+
 def command_plan(args: argparse.Namespace) -> tuple[list[str], list[tuple[str, list[str]]]]:
     if args.kind in {'kani', 'verus', 'gobra'}:
         if not args.tool or not args.proof_target or not args.expect_version:
@@ -376,6 +392,9 @@ def main(argv: list[str] | None = None) -> int:
                     status, details = process["status"], {}
                 elif process["exit_code"] != 0:
                     status, details = "failed", {}
+                    if args.kind in {'kani', 'verus', 'gobra'}:
+                        details['failure_class'] = proof_failure(args.kind, process['stdout'] + process['stderr'])
+                        details['limit'] = 'native diagnostic category; inspect contract, harness and implementation before assigning a product defect'
                 elif args.kind in {'kani', 'verus', 'gobra'}:
                     if hashlib.sha256(args.proof_target.read_bytes()).hexdigest() != report['proof_source_sha256']:
                         status, details = 'stale_source', {}
