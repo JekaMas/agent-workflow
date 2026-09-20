@@ -1,0 +1,4 @@
+interface:
+  display_name: "sdd-rust"
+  short_description: "Use the shared sdd-rust procedure."
+  default_prompt: "Use $sdd-rust for the requested task."

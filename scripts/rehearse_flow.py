@@ -15,6 +15,7 @@ import sys
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output-dir', type=Path, required=True)
 p.add_argument('--go-tool', required=True)
+p.add_argument('--adopt', action='store_true', help='qualify the portable bootstrap before the same native flow')
 a = p.parse_args()
 a.output_dir.mkdir(parents=True, exist_ok=False)
 output = a.output_dir.resolve()
@@ -42,8 +43,15 @@ def write(path, text):
     q.write_text(text)
 
 write('AGENTS.md', 'Use the installed OpenSpec spec-driven flow. Implement only the clamp library.\nUse local Go tests; no services or dependencies. Keep one task list and actual evidence.\n')
-(project / 'openspec').mkdir()
-shutil.copy2(root / 'openspec/config.yaml', project / 'openspec/config.yaml')
+if a.adopt:
+    run('fixture-init', ['git', 'init', '-q'])
+    run('fixture-stage', ['git', 'add', 'AGENTS.md'])
+    run('fixture-commit', ['git', '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'fixture'])
+    run('adoption', [sys.executable, str(root/'scripts/bootstrap.py'), 'repo', '--repo', str(project), '--source', str(root), '--source-url', str(root), '--apply'])
+    run('adoption-status', [sys.executable, str(root/'scripts/bootstrap.py'), 'status', '--repo', str(project)])
+else:
+    (project / 'openspec').mkdir()
+    shutil.copy2(root / 'openspec/config.yaml', project / 'openspec/config.yaml')
 run('openspec-version', ['openspec', '--version'])
 go_version = run('go-version', [a.go_tool, 'version'])
 run('new-change', ['openspec', 'new', 'change', 'bounded-clamp', '--schema', 'spec-driven', '--json'])
@@ -162,6 +170,9 @@ stages={
  'planning':[root/'skills/openspec-delivery/SKILL.md',root/'skills/openspec-delivery/references/delivery.md',root/'skills/verification-design/SKILL.md',root/'skills/verification-design/references/verification.md',project/'openspec/config.yaml']+[output/(s+'-instructions.stdout') for s in ['proposal','specs','design','tasks']],
  'implementation':[output/'apply-instructions.stdout']+[project/(change+n) for n in ['proposal.md','design.md','tasks.md','specs/bounded-clamp/spec.md']]
 }
+if a.adopt:
+    stages['initial'] += [root/'defaults/personal.md', root/'skills/sdd-workflow/SKILL.md', project/'.agents/skills/openspec-propose/SKILL.md']
+    stages['planning'] += [project/'.agents/workflow-project.json', root/'docs/project-flow.md']
 report={'claim':'scripted same-session rehearsal; bytes of explicitly selected files, not actual model tokens or a fresh agent context','stages':{},'steps':steps,'result':'passed'}
 for stage,files in stages.items():
     report['stages'][stage]={'bytes':sum(f.stat().st_size for f in files),'files':[{'path':str(f),'bytes':f.stat().st_size,'sha256':hashlib.sha256(f.read_bytes()).hexdigest()} for f in files]}

@@ -1,5 +1,7 @@
 .PHONY: check verify-go-test
 check:
+	python3 -B scripts/test_audit_sources.py
+	python3 -B scripts/test_bootstrap.py
 	python3 -B scripts/test_model_review.py
 	PYTHONDONTWRITEBYTECODE=1 python3 scripts/local_verify.py workflow-tests --cwd . --scope scripts --output-dir data/checks --timeout 120
 
