@@ -1,6 +1,6 @@
 .PHONY: check verify-go-test
 check:
-	python3 -B -m unittest discover -s scripts -p test_local_review.py
+	python3 -B scripts/test_local_review.py
 	PYTHONDONTWRITEBYTECODE=1 python3 scripts/local_verify.py workflow-tests --cwd . --scope scripts --output-dir data/checks --timeout 120
 
 verify-go-test:

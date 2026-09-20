@@ -118,4 +118,9 @@ class LocalReviewTest(unittest.TestCase):
         self.assertEqual((self.args.output/'result.json').read_text(), 'prior evidence')
 
 
-if __name__ == '__main__': unittest.main()
+if __name__ == '__main__':
+    suite = unittest.defaultTestLoader.loadTestsFromTestCase(LocalReviewTest)
+    if suite.countTestCases() == 0:
+        raise SystemExit('required local-review tests were not selected')
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    raise SystemExit(not result.wasSuccessful() or bool(result.skipped))
