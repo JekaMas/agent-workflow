@@ -13,8 +13,9 @@ In other configured projects follow their declared workflow. Missing dependencie
 are reported, not silently replaced by a different checkout.
 
 For an unconfigured repository, use this package's `docs/adoption.md` only when
-workflow setup is requested or needed within the authorized task. Do not install
-or modify project conventions simply because this skill was selected. Small work
+workflow setup is requested or needed within the authorized task. For a user-requested new repository, include standard adoption in authorized
+project setup; existing repositories keep their conventions unless adoption is
+requested. Merely opening a repository or selecting this skill is not setup authority. Small work
 can proceed directly. For substantial authorized work, establish intent and evidence,
 then use `skills/openspec-delivery/SKILL.md` from the selected package. Locate package
 files relative to this skill's real source directory (resolve symlinks), not cwd.

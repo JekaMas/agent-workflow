@@ -99,8 +99,9 @@ installer does not reset a repository to conceal an environment failure.
 ## New repositories and distribution
 
 The personal sdd-workflow route makes the method available in new repositories.
-Use sdd-maintenance to request adoption; creating files is explicit task work, not
-a silent side effect of opening a repo. Team members use the versioned project
+A user request to create a new repository includes standard workflow adoption
+within authorized project setup. Use sdd-maintenance for an existing repository;
+opening it alone does not authorize configuration changes. Team members use the versioned project
 wrappers and submodule, not another developer's home paths. Skills remain plain
 portable files; a plugin package is optional distribution, not a new runtime or
 permission requirement. Do not automatically rewrite global OpenSpec profile settings.

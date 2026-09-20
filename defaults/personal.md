@@ -4,6 +4,8 @@ Follow runtime precedence and all applicable project instructions. Resolve the
 actual repository/worktree before repository-aware tools or project skills.
 For substantial development, use `sdd-workflow`: prefer the repository's existing
 workflow and pinned procedures. Use `sdd-maintenance` for workflow changes.
+When the user requests a new repository, include the standard workflow in the
+authorized project setup using existing tools; do not silently install prerequisites.
 Small edits need proportionate inspection, not automatic setup or planning.
 
 Preserve exact requirements and useful project knowledge. Do not silently weaken
