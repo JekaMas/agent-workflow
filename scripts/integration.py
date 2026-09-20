@@ -56,6 +56,8 @@ Use `.agents/workflow/docs/operations.md` for relevant operation loading and
 `{cfg['flow']}` for project commands. Keep user authority and task scope.
 
 '''+substitute((TEMPLATES/(op+'.md')).read_text(),cfg)
+        if op in ('sync','archive','bulk-archive'):
+            files[f'.agents/skills/{name}/SKILL.md']+='\n'+(TEMPLATES/'spec-validation.md').read_text()
         if op=='maintain':files[f'.agents/skills/{name}/SKILL.md']+=f"\nProject maintenance reference: `{cfg['maintenance']}`.\n"
         files[f'.agents/skills/{name}/agents/openai.yaml']=f'''interface:
   display_name: "OpenSpec {op}"

@@ -50,3 +50,11 @@ commands, references and knowledge. Check all 14 paths with
 `scripts/check_opsx_routes.py --root <consumer>` and run native instruction tests.
 Migration reports stay in the affected consumer's change record as evidence,
 not as another authoritative execution procedure.
+
+Sync/archive/bulk-archive share `integration_templates/spec-validation.md`;
+the renderer includes it in each required entrypoint. Keep this single source
+instead of copying the strict-main-spec procedure between templates. Native
+`test_full_lifecycle.py` fixtures exercise direct archive, prior sync, modified
+requirements, selected bulk closure, invalid-main repair and incomplete-task
+refusal in disposable repositories. Never run these closure experiments against
+consumer changes. Generated output equality is intentional, not another owner.
