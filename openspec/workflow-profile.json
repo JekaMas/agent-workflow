@@ -1,7 +1,7 @@
 {
   "openspec_context": "Reusable local workflow tooling. Preserve scope, authority and evidence limits.",
   "integration": {
-    "flow": "docs/project-flow.md",
+    "flow": "docs/maintenance.md",
     "checks": "docs/maintenance.md",
     "verification": "skills/verification-design/SKILL.md",
     "maintenance": "docs/maintenance.md"

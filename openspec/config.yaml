@@ -29,7 +29,7 @@ rules:
 operations:
   apply:
     guidance:
-      - Follow docs/project-flow.md. Continue through useful authorized implementation, inspection, repair and affected revalidation without asking whether to continue.
+      - Follow docs/maintenance.md. Continue through useful authorized implementation, inspection, repair and affected revalidation without asking whether to continue.
       - Replan within the same intent as evidence changes. Update specs/design/tasks coherently; a materially different intent or independently deliverable scope needs a separate change proposal, not silent scope growth.
       - First complete independent authorized work before asking for a missing material decision or permission. Record exact blockers and unblock actions; do not turn a checkpoint or debugging result into task completion.
       - Recheck the affected specification and validation contract before semantic implementation; revise artifacts within scope when evidence changes.
@@ -41,6 +41,6 @@ operations:
       - DONE includes verified no-change completion and requires the requested outcome, matching artifacts, passing required checks on the final relevant code, diff/behavior inspection and resolved material findings. Report limitations and separate local completion from external approval/deployment.
   archive:
     guidance:
-      - Archive only after the DONE evidence review in docs/project-flow.md; artifact readiness, checkbox totals and a verification summary alone are insufficient.
+      - Archive only after the DONE evidence review in docs/maintenance.md; artifact readiness, checkbox totals and a verification summary alone are insufficient.
       - Inspect pending tasks, required evidence and unresolved findings. Do not force or bypass incomplete work into an archive. Inspect the proposed spec synchronization and preserve unrelated active changes.
       - Archival records completion; it does not execute deployment/publication or grant external authority. Retain a bounded evidence and resume/history pointer.

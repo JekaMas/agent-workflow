@@ -5,6 +5,8 @@
 ## 2. Consumer migration
 - [x] 2.1 Replace duplicate bodies with links/adapters; preserve local contracts.
 - [x] 2.2 Update ownership decisions and maintenance documentation.
-- [ ] 2.3 Validate shared and consumer wiring; inspect preservation and final diff.
+- [x] 2.3 Validate shared and consumer wiring; inspect preservation and final diff.
 ## 3. Delivery
-- [ ] 3.1 Commit shared source, update consumer pin and report publication/evidence status.
+- [x] 3.1 Commit shared source, update consumer pin and report publication/evidence status.
+
+Validation and preservation: see evidence.md. Local extraction complete; publication follows existing authority. No consumer change or shared change has been archived.

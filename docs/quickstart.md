@@ -82,4 +82,4 @@ are missing; file checks alone do not establish UI availability.
 
 Workflow maintainers: reusable specs and changes belong in agent-workflow's
 `openspec/` tree; product requirements and rollout evidence belong in the consumer.
-See [maintenance](maintenance.md) for shared skill/reference ownership.
+See the shared package’s `docs/maintenance.md` for skill/reference ownership.
