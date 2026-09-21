@@ -6,6 +6,6 @@
 - [x] 2.2 Qualify fresh, managed and existing-setup routes and rejection paths.
 ## 3. Finish consumers and documentation
 - [x] 3.1 Update ownership inventory, workflow and quickstart documentation.
-- [ ] 3.2 Validate shared and consumer routes, inspect final diff, publish and update pins.
+- [x] 3.2 Validate shared and consumer routes, inspect final diff, publish and update pins.
 
-Progress: extraction and 26 adoption fixtures passed. Final shared aggregate, consumer pin/adapter checks and publication remain under 3.2. See evidence.md for scope and observed failures.
+Completed local implementation and validation; see evidence.md. Shared publication and dependent pin delivery use existing task authority. No change was archived.

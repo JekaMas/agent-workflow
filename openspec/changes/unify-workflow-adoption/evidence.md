@@ -20,3 +20,14 @@
 These are code/fixture/native mechanics and self-review evidence. No product runtime, hosted inference, external deployment, fresh-agent efficacy comparison or client UI refresh was executed. Product protected-operation/search conventions, operational runbooks, native proof targets and registered campaign manifests remain local. Historical inventories are not runtime imports.
 
 Optional policy ownership: explicit-authority, exhaustive-investigation and coordinated-review text was moved without relaxing its safeguards. Smart Example explicitly selects these shared policies; new adopters do not inherit them automatically. This preserves authority while removing consumer-owned generic text. Event/property change-impact rules also moved to event-sequence-pbt; local tests-short/Go campaign selection remains local.
+
+## Final observed checks
+
+- Final shared `make check`: passed (2 portable policy, 6 native lifecycle, 4 specialist/config, 3 source-audit, 26 bootstrap and 13 API-control fixtures, plus runner/native workflow tests).
+- Smart Example `make workflow-check`: passed with shared source be9367b and staged final adapters/policies. Local packaging/reference policy: 42 skills and five negative/positive fixtures passed; publication's seven fixtures passed. These establish wiring and selected policy semantics, not product behavior.
+- Core and Pelacli managed preview/apply updates: passed; managed-file/pin status and all 14 operation routes passed in each. Existing profiles/domain instructions preserved; both receive debugging/conflict client routes and the updated quickstart.
+- Shared source tracking: 146 files in selected skills/scripts/docs/policies/OpenSpec roots, no errors. Changed Markdown link inspection resolved 16 shared and 34 consumer links after pin update.
+- Strict validation of unify-workflow-adoption passed. No archive/sync or product change was performed.
+- Whitespace-only EOF findings in extracted documents were corrected before final diff inspection; these were formatting defects, not behavior failures.
+
+Canonical write owners: agent-workflow on feat/shared-evidence-language-guidance; Smart Example on chore/agent-flow-local-checks-20260920; existing Core/Pelacli pilot checkouts on chore/shared-sdd-workflow. Shared submodule checkouts receive only published pins; no independent edits to their source. Source commits identify the final documentation/bookkeeping revision; behavior checks above bind the final relevant implementation and adapter content.
