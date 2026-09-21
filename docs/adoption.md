@@ -109,10 +109,12 @@ URLs are supported explicitly for fixtures; no global Git transport change.
 
 ## Finish setup
 
-From the consumer:
+From the consumer, after reviewing and staging the intended setup files (publication validation rejects untracked sources):
 
 ```sh
 python3 -B .agents/workflow/scripts/bootstrap.py status --repo .
+python3 -B .agents/workflow/scripts/skill_packages.py --root . --policy .agents/skill-policy.json validate
+python3 -B .agents/workflow/scripts/workflow_publication.py --root . --policy .agents/publication-policy.json
 python3 -B .agents/workflow/scripts/check_opsx_routes.py --root .
 ```
 
@@ -134,7 +136,7 @@ unreviewed drift. If project-owned configuration needs changing, review the inte
 migration and adjust the integration explicitly rather than tricking the updater.
 
 Use `python3 -B .agents/workflow/scripts/bootstrap.py status --repo .` to inspect
-managed files, routing blocks and pin. Run shared `make check` and the selected
+managed files, routing blocks and pin. Run all consumer workflow checks in docs/project-flow.md (including packaging and publication), shared `make check` and the selected
 project's native OpenSpec checks. Installed product commands remain project-owned.
 Use the exact checks in docs/project-flow.md; missing native prerequisites are not
 passes. A failed clone/fetch leaves visible partial Git setup for inspection; the
@@ -207,3 +209,14 @@ reviewing local deltas into shared templates or project references. It is not an
 automatic conflict bypass. Do not use it to bypass bootstrap ownership hashes in
 a managed adopter. The route check rejects adapter/config drift, missing local
 references and ignored commands. Inspect native emitted guidance after rule edits.
+
+Generated policy files select packaging rules and publication scope. Profiles may
+supply `skill_policy` and `publication_policy` objects; preserve existing stricter
+consumer policies when migrating. Ordinary managed updates add missing policy
+outputs but refuse unmanaged collisions. Default packaging does not impose Smart
+Example's metadata budget, flat references or approval conventions.
+
+The default publication inventory includes generated sources and local instruction/
+integration references selected by the profile. Extend its explicit roots/owners
+for additional project-specific workflow scripts and assets; source discovery does
+not parse arbitrary prose or claim the whole repository reference graph is covered.

@@ -16,11 +16,11 @@ END = '<!-- agent-workflow:end -->'
 STATE = '.agents/workflow-install.json'
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from integration import OPERATIONS, operation_files, render_config, names as operation_names
+from integration import OPERATIONS, operation_files, render_config, names as operation_names, settings as integration_settings
 
 
 SPECIALIST_SKILLS = {
-    'hypothesis-debugging': ('Investigate unresolved failures and continue authorized repair.', None),
+    'hypothesis-debugging': ('Diagnose a failed direct attempt or unknown failure owner.', None),
     'conflict-resolution': ('Resolve Git conflicts while preserving intended behavior.', None),
     'event-sequence-pbt': ('Design stateful sequence properties with independent oracles and replay.', None),
     'sdd-go': ('Implement or review Go behavior with focused evidence.', 'go'),
@@ -63,6 +63,23 @@ def block(text):
 def repo_files(profile):
     files = {'.agents/workflow-project.json': json.dumps(profile, indent=2)+'\n'}
     files.update(operation_files(profile))
+    skill_policy = profile.get('skill_policy', {})
+    local_references = [name for name in integration_settings(profile).values()
+                        if not name.startswith('.agents/workflow/')]
+    publication_policy = profile.get('publication_policy', {
+        'roots': ['.agents/skills', '.claude/commands', 'openspec'],
+        'owners': ['AGENTS.md', 'CLAUDE.md', '.gitmodules',
+                   '.agents/workflow-project.json', '.agents/workflow-install.json',
+                   '.agents/skill-policy.json', '.agents/publication-policy.json',
+                   'docs/SDD_WORKFLOW.md', *profile.get('instructions', []), *local_references],
+        'exclude_parts': ['__pycache__'],
+        'shared_path': '.agents/workflow',
+        'required_skills': ['openspec-delivery', 'verification-design'],
+    })
+    if not isinstance(skill_policy, dict) or not isinstance(publication_policy, dict):
+        raise ValueError('skill_policy and publication_policy must be objects')
+    files['.agents/skill-policy.json'] = json.dumps(skill_policy, indent=2)+'\n'
+    files['.agents/publication-policy.json'] = json.dumps(publication_policy, indent=2)+'\n'
     languages = profile.get('languages', [])
     if not isinstance(languages, list) or any(not isinstance(x, str) for x in languages):
         raise ValueError('profile languages must be a list of strings')

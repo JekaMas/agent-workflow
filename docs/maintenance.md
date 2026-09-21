@@ -92,3 +92,9 @@ plan hashes as semantic review or authority. Skill/source tests must retain
 missing/ignored/stale failures and policy separation.
 
 `policies/` owns reusable optional conventions selected explicitly by a consumer. Explicit-authority, exhaustive-investigation and coordinated-review retain their original safeguards, but are not new default approval/index/delegation requirements for every repository. Never infer selection or permission from their presence.
+
+For extraction reviews, compare the source commit, shared replacement and retained
+consumer adapter together. Separate exact moves/minor adaptations from changes to
+coverage units, mandatory assertions, activation, approval or stopping behavior.
+Requested feature additions are not evidence of relocation equivalence. Record
+unavailable pre-extraction source as a provenance gap, not a preservation pass.

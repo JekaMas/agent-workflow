@@ -31,3 +31,13 @@ Optional policy ownership: explicit-authority, exhaustive-investigation and coor
 - Whitespace-only EOF findings in extracted documents were corrected before final diff inspection; these were formatting defects, not behavior failures.
 
 Canonical write owners: agent-workflow on feat/shared-evidence-language-guidance; Smart Example on chore/agent-flow-local-checks-20260920; existing Core/Pelacli pilot checkouts on chore/shared-sdd-workflow. Shared submodule checkouts receive only published pins; no independent edits to their source. Source commits identify the final documentation/bookkeeping revision; behavior checks above bind the final relevant implementation and adapter content.
+
+## Extraction-equivalence repair qualification
+
+Write scope: shared feat/shared-evidence-language-guidance from 885ecc8 and Smart Example chore/agent-flow-local-checks-20260920 from d9845acab; no other repositories, personal settings or product code changed. One writer; no subagents. Prior baseline equivalence claims are qualified by extraction-equivalence.md.
+
+- Shared `make check` on the final repair implementation: passed (2 policy, 6 native lifecycle, 4 specialist/config, 3 source-audit, 33 bootstrap and 13 API-control fixtures, plus runner/native workflow checks).
+- The seven added bootstrap tests execute the actual packaging/publication CLIs for clean staged sources, untracked and force-added ignored skill rejection, staged missing-reference rejection, selected consumer budget enforcement, legacy managed-policy addition, unmanaged-policy preservation and unpublished local-profile reference rejection. One test covers both untracked and ignored cases.
+- Native OpenSpec 1.13.1 strict validation of unify-workflow-adoption: passed. Changed shared Markdown links: five resolved; diff whitespace check passed.
+- Restored instruction clauses were compared with their pre-extraction counterparts and paper witnesses in extraction-equivalence.md. No fresh-agent behavior or actual product PBT run is claimed.
+- Consumer final pin/workflow/spec/publication checks remain under task 4.3 until recorded; no missing check is marked passed.

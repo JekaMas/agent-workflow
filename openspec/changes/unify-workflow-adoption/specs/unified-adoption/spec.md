@@ -20,3 +20,24 @@ Reusable publication and skill validators SHALL accept consumer inventory and pa
 #### Scenario: Consumer policy violation
 - **WHEN** a selected local policy or required source is violated
 - **THEN** validation returns failure without changing permissions or silently dropping the check
+
+### Requirement: Preservation of extracted evidence contracts
+Shared procedures SHALL retain per-run effective property coverage, programmatic independent-model assertions, per-fix debugging evidence and feature-by-feature conflict validation. Previously authorized integrated repair SHALL remain within the same change without a mandatory separate-role handoff.
+#### Scenario: Aggregate masks a missing per-run disposition
+- **WHEN** two runs collectively exercise all required dispositions but one run omits a required disposition
+- **THEN** that run fails its programmatic coverage contract and aggregate totals do not close it
+#### Scenario: Proposed fix includes an unconfirmed cause
+- **WHEN** one cause lacks a confirming discriminator or planned proving test
+- **THEN** that correction remains an investigation item and is not bundled into confirmed repairs
+#### Scenario: Current conflict slice is unresolved
+- **WHEN** a feature slice is neither validated nor explicitly blocked
+- **THEN** unrelated conflict slices are not interleaved with it
+
+### Requirement: Consumer checks are reachable by default
+The default adopted workflow SHALL invoke skill packaging and source-publication checks with explicit consumer policy, alongside managed-state, route and shared-mechanics checks. Failure of any required check SHALL remain failure.
+#### Scenario: Unpublished active skill
+- **WHEN** an otherwise valid consumer adds an untracked or ignored active skill
+- **THEN** its publication check fails even if shared fixtures and generated operation routes pass
+#### Scenario: Missing skill reference
+- **WHEN** a staged consumer skill names an unavailable local reference
+- **THEN** its packaging check fails even when its source is published

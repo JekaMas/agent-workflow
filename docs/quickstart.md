@@ -80,7 +80,7 @@ For a separate check use `/opsx:check` or the Codex check skill selected by the
 project profile (`project-check` or `openspec-check`). Use the project's check guide
 for exact selectors. Workflow checks are for workflow changes, not every product edit.
 
-Unresolved failures use hypothesis-debugging; Git conflicts use conflict-resolution.
+A failed direct attempt or unknown failure owner uses hypothesis-debugging; Git conflicts use conflict-resolution.
 Both stay within the current task and authority. Go hang diagnosis, performance diagnostics/optimization, Rust evidence and
 language-independent event-sequence testing load only for the relevant risk.
 The project pin supplies shared procedures; project commands and contracts stay local.
@@ -93,3 +93,7 @@ are missing; file checks alone do not establish UI availability.
 Workflow maintainers: reusable specs and changes belong in agent-workflow's
 `openspec/` tree; product requirements and rollout evidence belong in the consumer.
 See the shared package’s `docs/maintenance.md` for skill/reference ownership.
+
+A workflow check includes the consumer's skill packaging and source-publication
+checks, not only shared fixtures. Review and stage intended new workflow files
+before publication validation; do not ignore required sources to obtain a pass.

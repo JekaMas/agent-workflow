@@ -18,7 +18,7 @@ Use these rules:
 - Start with the cheapest useful discriminator when the cause or oracle is
   uncertain. Batch already-understood independent cases when that saves setup;
   do not postpone informative feedback until every case is authored.
-- Combine overlapping names in one anchored package command. Run independent commands concurrently only when task authority, resources and
+- Combine overlapping names in one anchored package command. Launch independent commands concurrently by default when task authority, resources and
   measurement isolation permit; retain each command's bounded output and exit.
 - Inspect the whole wave, classify every failure, and fix all independent
   confirmed owners before affected revalidation. Rerun a command when its inputs
