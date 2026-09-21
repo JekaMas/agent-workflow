@@ -1,0 +1,4 @@
+interface:
+  display_name: "hypothesis-debugging"
+  short_description: "Use the shared conditional engineering procedure."
+  default_prompt: "Use $hypothesis-debugging for the requested task."

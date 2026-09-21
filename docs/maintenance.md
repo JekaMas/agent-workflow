@@ -58,3 +58,43 @@ instead of copying the strict-main-spec procedure between templates. Native
 requirements, selected bulk closure, invalid-main repair and incomplete-task
 refusal in disposable repositories. Never run these closure experiments against
 consumer changes. Generated output equality is intentional, not another owner.
+
+## Specification and engineering ownership
+
+The shared `openspec/specs/portable-workflow/spec.md` owns reusable adoption and
+integration requirements. Start generic workflow changes in this repository's
+`openspec/changes/`; keep consumer rollout tasks and historical evidence in the
+affected consumer. File count in a historical change is not a count of active
+custom procedures. Do not export private captures into this public package.
+
+`verification-design/references/` owns portable behavior boundaries, isolation,
+properties, scheduling, risk selection, architecture/resource inspection and
+substitution claims. `sdd-go/references/` and `sdd-rust/references/` own conditional
+language guidance. Consumer adapters retain domain errors, signing, exact commands,
+toolchains, approval policies and campaign obligations. Update the shared body
+and pinned consumer together; do not create a second canonical copy.
+
+This repository's own OpenSpec config uses `openspec/workflow-profile.json` and
+`integration.render_config`; its paths resolve directly to this source checkout.
+Re-render that config when rules/profile changes and run `make check`. Consumer
+rendering continues to use its `.agents/workflow-project.json` profile.
+
+Shared main specs also own `adaptive-development-workflow` (planning through completion) and `assurance-routing` (review modes/provider controls/claim limits). Consumer E2E lane contracts and native proof-generator acceptance remain local.
+
+For instruction/KB ownership changes use [knowledge maintenance](knowledge-maintenance.md). Shared hypothesis-debugging and conflict-resolution own general procedures; consumers keep operational sources and protected contracts. Generic provider setup is in [model review](model-review.md).
+
+Shared `skill_packages.py` owns packaging and explicit workspace-link operations;
+`workflow_publication.py` owns consumer-index/pin checks. Consumers provide policy
+JSON and thin wrappers. `audit_sources.py` remains the separate resolved Git-owner
+audit, including personal links; these checks establish different boundaries.
+Bootstrap owns manifest discovery and reviewed migration snapshots. Never treat
+plan hashes as semantic review or authority. Skill/source tests must retain
+missing/ignored/stale failures and policy separation.
+
+`policies/` owns reusable optional conventions selected explicitly by a consumer. Explicit-authority, exhaustive-investigation and coordinated-review retain their original safeguards, but are not new default approval/index/delegation requirements for every repository. Never infer selection or permission from their presence.
+
+For extraction reviews, compare the source commit, shared replacement and retained
+consumer adapter together. Separate exact moves/minor adaptations from changes to
+coverage units, mandatory assertions, activation, approval or stopping behavior.
+Requested feature additions are not evidence of relocation equivalence. Record
+unavailable pre-extraction source as a provenance gap, not a preservation pass.

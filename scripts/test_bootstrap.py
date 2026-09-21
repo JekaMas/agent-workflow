@@ -18,7 +18,7 @@ class BootstrapTests(unittest.TestCase):
             path.mkdir();self.git(path,'init','-q');self.git(path,'config','user.name','Fixture');self.git(path,'config','user.email','fixture@example.invalid')
         (self.root/'AGENTS.md').write_text('Keep domain constraints.\n')
         self.git(self.root,'add','.');self.git(self.root,'commit','-qm','domain')
-        for folder in ['defaults','skills','docs','scripts']:
+        for folder in ['defaults','skills','docs','scripts','policies']:
             shutil.copytree(b.SOURCE/folder,self.source/folder,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
         self.git(self.source,'add','.');self.git(self.source,'commit','-qm','source')
         self.rev=self.git(self.source,'rev-parse','HEAD');self.profile={'schema':1,'languages':['go'],'notes':'native commands only'}
@@ -155,5 +155,163 @@ class BootstrapTests(unittest.TestCase):
         self.git(self.source,'add','.');self.git(self.source,'commit','-qm','upgrade');self.rev=self.git(self.source,'rev-parse','HEAD')
         self.adopt();b.status(self.root)
         self.assertTrue((self.root/'.agents/workflow/docs/new.md').exists())
+
+class ExistingAdoptionTests(unittest.TestCase):
+    setUp = BootstrapTests.setUp
+    git = BootstrapTests.git
+    def test_detects_real_modules_without_build_vendor_or_links(self):
+        for name in ['go.mod', 'crates/tool/Cargo.toml', 'vendor/ignore/go.mod', 'target/Cargo.toml']:
+            path=self.root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text('fixture')
+        (self.root/'link').symlink_to(self.source, target_is_directory=True)
+        result=b.discover_profile(self.root)
+        self.assertEqual(['go','rust'], result['languages'])
+        self.assertEqual({'go':['.'],'rust':['crates/tool']}, result['module_roots'])
+
+    def test_reviewed_existing_setup_preserves_active_artifacts(self):
+        config=self.root/'openspec/config.yaml';config.parent.mkdir();config.write_text('schema: spec-driven\ncontext: Existing domain rules live in AGENTS.md\n')
+        task=self.root/'openspec/changes/active/tasks.md';task.parent.mkdir(parents=True);task.write_text('- [ ] Preserve active work\n')
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        before=task.read_bytes()
+        b.repo_apply(self.root,self.profile,self.source,self.rev,str(self.source),True,plan)
+        self.assertEqual(before,task.read_bytes())
+        self.assertTrue((self.root/'AGENTS.md').read_text().startswith('Keep domain constraints.'))
+        b.status(self.root)
+
+    def test_stale_migration_refuses_before_any_setup(self):
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        (self.root/'AGENTS.md').write_text('New domain contract\n')
+        with self.assertRaisesRegex(ValueError,'stale'):
+            b.repo_apply(self.root,self.profile,self.source,self.rev,str(self.source),True,plan)
+        self.assertFalse((self.root/'.agents/workflow').exists())
+        self.assertEqual('New domain contract\n',(self.root/'AGENTS.md').read_text())
+
+    def test_changed_profile_and_revision_reject_plan(self):
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        for profile,revision in [({**self.profile,'languages':['rust']},self.rev),(self.profile,'another-revision')]:
+            with self.assertRaisesRegex(ValueError,'stale'):
+                b.check_migration(self.root,profile,revision,str(self.source),plan)
+
+    def test_custom_schema_is_not_replaced(self):
+        config=self.root/'openspec/config.yaml';config.parent.mkdir();config.write_text('schema: custom-schema\n')
+        with self.assertRaisesRegex(ValueError,'dedicated migration'):
+            b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        self.assertFalse((self.root/'.agents').exists())
+
+    def test_reviewed_alias_cannot_overwrite_another_owner(self):
+        owner=self.root/'owned';owner.mkdir();target=owner/'SKILL.md';target.write_text('Preserve owner')
+        alias=self.root/'.agents/skills/openspec-explore';alias.parent.mkdir(parents=True);alias.symlink_to(owner, target_is_directory=True)
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        with self.assertRaisesRegex(ValueError,'output alias'):
+            b.repo_apply(self.root,self.profile,self.source,self.rev,str(self.source),True,plan)
+        self.assertEqual('Preserve owner',target.read_text())
+        self.assertFalse((self.root/'.agents/workflow').exists())
+
+    def test_empty_new_git_repository(self):
+        root=self.base/'empty';root.mkdir();self.git(root,'init','-q')
+        profile=b.discover_profile(root)
+        b.repo_apply(root,profile,self.source,self.rev,str(self.source),True)
+        b.status(root)
+
+    def test_cli_prepare_outputs_inspectable_files_without_target_edits(self):
+        config=self.root/'openspec/config.yaml';config.parent.mkdir();config.write_text('schema: spec-driven\n')
+        before=self.git(self.root,'status','--porcelain')
+        plan=self.base/'review.json';preview=self.base/'proposed'
+        result=subprocess.run(['python3','-B',str(b.SOURCE/'scripts/bootstrap.py'),'prepare','--repo',str(self.root),'--source',str(self.source),'--source-url',str(self.source),'--plan-out',str(plan),'--preview-dir',str(preview)],capture_output=True,text=True)
+        self.assertEqual(0,result.returncode,result.stderr)
+        self.assertEqual(before,self.git(self.root,'status','--porcelain'))
+        self.assertTrue((preview/'openspec/config.yaml').is_file())
+        self.assertIn('before',json.loads(plan.read_text()))
+
+class ConsumerVerificationTests(unittest.TestCase):
+    setUp = BootstrapTests.setUp
+    git = BootstrapTests.git
+    adopt = BootstrapTests.adopt
+
+    def ready(self):
+        self.adopt()
+        self.git(self.root, 'add', '.')
+
+    def check(self, script, *args):
+        import sys
+        return subprocess.run([sys.executable, '-B', str(self.root/'.agents/workflow/scripts'/script), *args],
+                              cwd=self.root, capture_output=True, text=True, timeout=30)
+
+    def packaging(self):
+        return self.check('skill_packages.py', '--root', '.', '--policy', '.agents/skill-policy.json', 'validate')
+
+    def publication(self):
+        return self.check('workflow_publication.py', '--root', '.', '--policy', '.agents/publication-policy.json')
+
+    def extra_skill(self, body=''):
+        path=self.root/'.agents/skills/extra/SKILL.md';path.parent.mkdir(parents=True)
+        path.write_text('---\nname: extra\ndescription: Inspect the selected fixture.\n---\n'+body)
+        return path
+
+    def test_staged_adopter_runs_both_consumer_checks(self):
+        self.ready()
+        for result in [self.packaging(), self.publication()]:
+            self.assertEqual(0, result.returncode, result.stdout+result.stderr)
+        b.status(self.root)
+
+    def test_untracked_and_force_added_ignored_skill_fail_publication(self):
+        self.ready();self.extra_skill()
+        result=self.publication()
+        self.assertNotEqual(0,result.returncode)
+        self.assertIn('unpublished workflow candidate: .agents/skills/extra/SKILL.md',result.stdout)
+        (self.root/'.gitignore').write_text('.agents/skills/extra/\n')
+        self.git(self.root,'add','-f','.agents/skills/extra/SKILL.md')
+        result=self.publication()
+        self.assertNotEqual(0,result.returncode)
+        self.assertIn('ignored workflow candidate: .agents/skills/extra/SKILL.md',result.stdout)
+
+    def test_staged_skill_with_missing_reference_fails_packaging(self):
+        self.ready();self.extra_skill('Read `references/missing.md`.\n');self.git(self.root,'add','.')
+        result=self.packaging()
+        self.assertNotEqual(0,result.returncode)
+        self.assertIn('unresolved routed reference',result.stderr)
+        self.assertEqual(0,self.publication().returncode)
+
+    def test_selected_consumer_policy_is_preserved_and_enforced(self):
+        self.profile['skill_policy']={'metadata_budget_bytes':1}
+        self.ready()
+        self.assertEqual(self.profile['skill_policy'],json.loads((self.root/'.agents/skill-policy.json').read_text()))
+        result=self.packaging()
+        self.assertNotEqual(0,result.returncode)
+        self.assertIn('budget is 1',result.stderr)
+
+    def legacy_policy_state(self, keep_files=False):
+        state_path=self.root/b.STATE
+        state=json.loads(state_path.read_text())
+        for name in ['.agents/skill-policy.json','.agents/publication-policy.json']:
+            del state['files'][name]
+            if not keep_files:
+                (self.root/name).unlink()
+        state_path.write_text(json.dumps(state))
+
+    def test_older_managed_install_receives_missing_policy_outputs(self):
+        self.ready();self.legacy_policy_state()
+        before=(self.root/'AGENTS.md').read_bytes()
+        self.adopt()
+        self.git(self.root,'add','.')
+        self.assertEqual(before,(self.root/'AGENTS.md').read_bytes())
+        self.assertEqual(0,self.packaging().returncode)
+        self.assertEqual(0,self.publication().returncode)
+        b.status(self.root)
+
+    def test_older_install_preserves_unmanaged_policy_collision(self):
+        self.ready();self.legacy_policy_state(keep_files=True)
+        path=self.root/'.agents/skill-policy.json';path.write_text('{"metadata_budget_bytes": 77}\n')
+        with self.assertRaisesRegex(ValueError,'unmanaged or modified'):
+            self.adopt()
+        self.assertEqual({'metadata_budget_bytes':77},json.loads(path.read_text()))
+
+    def test_local_profile_reference_must_be_published(self):
+        self.profile['integration']={'flow':'docs/project-flow.md'}
+        path=self.root/'docs/project-flow.md';path.parent.mkdir();path.write_text('Project command owner')
+        self.ready()
+        self.git(self.root,'rm','--cached','--','docs/project-flow.md')
+        result=self.publication()
+        self.assertNotEqual(0,result.returncode)
+        self.assertIn('unpublished workflow candidate: docs/project-flow.md',result.stdout)
 
 if __name__=='__main__': unittest.main()

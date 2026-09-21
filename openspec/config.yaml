@@ -9,15 +9,15 @@ rules:
     - State intent, relevant outcomes, non-goals and affected capabilities; inspect related existing specs before adding one.
     - Record material scope/authority questions, not routine implementation choices; do not require approval merely because this artifact exists.
   specs:
-    - Before semantic implementation, challenge intent, ambiguity, contradictions, missing cases and oracle adequacy using the shared verification procedure routed by .agents/workflow/skills/verification-design/SKILL.md; this is not an automatic approval gate.
+    - Before semantic implementation, challenge intent, ambiguity, contradictions, missing cases and oracle adequacy using the shared verification procedure routed by skills/verification-design/SKILL.md; this is not an automatic approval gate.
     - Express observable requirements and meaningful positive, invalid and boundary scenarios; identify the required evidence or oracle for important invariants.
     - Preserve integer precision, serialization, error, version and recovery semantics at mixed-language boundaries; state unsupported cases explicitly.
     - Map important requirements to falsifiable properties, independent oracles, suitable test types and existing cases; do not add duplicate coverage without a distinct purpose.
     - Do not substitute model agreement, simulated time or downstream rejection for a stronger requested contract.
   design:
     - Record consequential choices, dependencies, risks, assumptions, approval boundaries and rationale; link evidence rather than duplicate requirements or tasks.
-    - Connect important requirements to actual implementation owners, independent oracles and evidence; inspect each material delta for an authorized purpose. Use .agents/workflow/skills/verification-design/SKILL.md as relevant.
-    - Link a proportionate validation contract from existing artifacts using .agents/workflow/skills/verification-design/SKILL.md. Distinguish required checks from optional experiments and record adapter/model bounds; select existing tools by concrete risk.
+    - Connect important requirements to actual implementation owners, independent oracles and evidence; inspect each material delta for an authorized purpose. Use skills/verification-design/SKILL.md as relevant.
+    - Link a proportionate validation contract from existing artifacts using skills/verification-design/SKILL.md. Distinguish required checks from optional experiments and record adapter/model bounds; select existing tools by concrete risk.
     - Revisit decisions when evidence changes the approach within intent; ask only for material decisions, incompatible requirements, weaker acceptance or expanded authority.
   tasks:
     - Keep this the sole authoritative checklist, with stable numbered checkboxes and a completion check or evidence link per task.
@@ -29,18 +29,18 @@ rules:
 operations:
   apply:
     guidance:
-      - Follow .agents/workflow/docs/project-flow.md. Continue through useful authorized implementation, inspection, repair and affected revalidation without asking whether to continue.
+      - Follow docs/maintenance.md. Continue through useful authorized implementation, inspection, repair and affected revalidation without asking whether to continue.
       - Replan within the same intent as evidence changes. Update specs/design/tasks coherently; a materially different intent or independently deliverable scope needs a separate change proposal, not silent scope growth.
       - First complete independent authorized work before asking for a missing material decision or permission. Record exact blockers and unblock actions; do not turn a checkpoint or debugging result into task completion.
       - Recheck the affected specification and validation contract before semantic implementation; revise artifacts within scope when evidence changes.
-      - Qualify decisive feedback and retain material failure/replay evidence using .agents/workflow/skills/verification-design/SKILL.md. Verify the whole requested outcome before no-change completion; a partial fix or passing retry is insufficient.
-      - Review actual code and evidence using .agents/workflow/skills/verification-design/SKILL.md. Repair material in-scope findings and revalidate affected results; a review stage is not a handoff or task completion. Do not claim independent review for self-review.
-      - Reconcile required properties and selected test sets with actual executed cases/families, skips, configurations and gaps using .agents/workflow/skills/verification-design/SKILL.md. Manifest validity is not execution or oracle evidence.
-      - Execute relevant existing commands through .agents/workflow/docs/project-flow.md; users need not invoke Make separately. Select the documented workflow, specification and readiness checks plus required behavioral evidence. Missing checks are not passes.
+      - Qualify decisive feedback and retain material failure/replay evidence using skills/verification-design/SKILL.md. Verify the whole requested outcome before no-change completion; a partial fix or passing retry is insufficient.
+      - Review actual code and evidence using skills/verification-design/SKILL.md. Repair material in-scope findings and revalidate affected results; a review stage is not a handoff or task completion. Do not claim independent review for self-review.
+      - Reconcile required properties and selected test sets with actual executed cases/families, skips, configurations and gaps using skills/verification-design/SKILL.md. Manifest validity is not execution or oracle evidence.
+      - Execute relevant existing commands through docs/maintenance.md; users need not invoke Make separately. Select the documented workflow, specification and readiness checks plus required behavioral evidence. Missing checks are not passes.
       - Use relevant domain skills and risk-based local checks. Read-only audit stopping applies only to audit scope; it does not limit an authorized implementation workflow.
       - DONE includes verified no-change completion and requires the requested outcome, matching artifacts, passing required checks on the final relevant code, diff/behavior inspection and resolved material findings. Report limitations and separate local completion from external approval/deployment.
   archive:
     guidance:
-      - Archive only after the DONE evidence review in .agents/workflow/docs/project-flow.md; artifact readiness, checkbox totals and a verification summary alone are insufficient.
+      - Archive only after the DONE evidence review in docs/maintenance.md; artifact readiness, checkbox totals and a verification summary alone are insufficient.
       - Inspect pending tasks, required evidence and unresolved findings. Do not force or bypass incomplete work into an archive. Inspect the proposed spec synchronization and preserve unrelated active changes.
       - Archival records completion; it does not execute deployment/publication or grant external authority. Retain a bounded evidence and resume/history pointer.

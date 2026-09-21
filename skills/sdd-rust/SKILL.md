@@ -30,3 +30,11 @@ results remain non-success. Use shared verification-design when evidence needs d
 
 For stateful sequence properties, select sibling `event-sequence-pbt/SKILL.md`;
 load its language adapter only when relevant.
+
+## Conditional references
+
+- `references/async-lifecycle-and-testing.md`: async ownership, cancellation, test seams and dependency checks.
+- `references/boundaries-and-resources.md`: typed validation, errors, resource bounds and canonical data where required.
+
+Framework, provider/signing details, toolchain and actual test selectors stay in
+the consumer adapter. Do not bulk-load references for unrelated edits.

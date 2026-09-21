@@ -46,10 +46,18 @@ material intent belongs in a separate change.
 
 Run from the consumer root; select a new output directory for each run:
 
-- `workflow`: `python3 -B .agents/workflow/scripts/bootstrap.py status --repo .`,
-  then `python3 .agents/workflow/scripts/check_opsx_routes.py --root .` and
-  `make -C .agents/workflow check`. Preserve every failure. Shared mechanics
-  use their own fixtures; this is not product or consumer artifact validation.
+- `workflow`: run every applicable consumer check below and retain each exit;
+  failure of one does not become a pass because a later command succeeds:
+  1. `python3 -B .agents/workflow/scripts/bootstrap.py status --repo .` for managed adopters; custom adapters use their documented state/pin check.
+  2. `python3 -B .agents/workflow/scripts/skill_packages.py --root . --policy .agents/skill-policy.json validate`.
+  3. `python3 -B .agents/workflow/scripts/workflow_publication.py --root . --policy .agents/publication-policy.json`.
+  4. `python3 -B .agents/workflow/scripts/check_opsx_routes.py --root .`.
+  5. `make -C .agents/workflow check` for shared mechanics.
+  Inspect and stage the intended new setup sources before publication validation;
+  an untracked/ignored active source is a failure, not a setup pass. The generated
+  policy files keep consumer choices explicit. Existing custom consumers may use
+  equivalent wrappers, but must retain packaging and publication checks. These
+  checks do not establish product behavior or selected artifact validity.
 - `spec <change>`: `python3 -B .agents/workflow/scripts/local_verify.py openspec
   --cwd . --change <change> --scope openspec --require-project-guidance
   --output-dir <evidence-directory>`.
@@ -70,3 +78,15 @@ golang-performance-diagnostics, then golang-optimization once measurements
 justify a change. These skills return results to the same OpenSpec change.
 Project adapters and Claude commands are generated according to the tracked
 profile; canonical skill bodies live under this pin's skills directory.
+
+## Shared and project responsibilities
+
+Generic operation/rule, delivery, review/testing/repair, debugging, conflict, language
+and maintenance procedures live in this package. Project profiles/adapters own
+commands, toolchain support, domain knowledge, operational gates and concrete proof
+targets. Use docs/adoption.md for detection, safe existing-setup migration and updates.
+Generic validator code accepts project policy; packaging budgets and campaign
+requirements do not become universal defaults. New reusable workflow requirements
+and changes belong in this package's openspec tree.
+
+Use [native CLI usage](native-openspec.md) for artifact commands and [local adapter limits](local-checks.md) when selecting runner checks.

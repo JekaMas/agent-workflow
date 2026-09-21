@@ -28,3 +28,5 @@ retain exact blockers. No automatic model call, delegation or external action.
 For stateful sequence properties in any language, select this package's
 `skills/event-sequence-pbt/SKILL.md`. Go diagnostic and optimization references
 are conditional routes from sdd-go, not default reading.
+
+After a failed direct attempt or when the failure owner is unknown, use this package’s `skills/hypothesis-debugging/SKILL.md`; for requested merge/rebase/cherry-pick conflicts use `skills/conflict-resolution/SKILL.md`. Preserve task authority and continue the same change.

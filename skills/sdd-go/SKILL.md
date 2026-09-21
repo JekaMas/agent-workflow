@@ -34,3 +34,12 @@ load its language adapter only when relevant.
 For hangs/timeouts select sibling `golang-testing`; for measured performance
 questions select `golang-performance-diagnostics`, then `golang-optimization`
 when evidence supports a fix. Resolve these within this package, not a global copy.
+
+## Conditional references
+
+- `references/design-types-and-errors.md`: package/API design and canonical boundary values.
+- `references/concurrency-and-memory.md`: goroutines, cancellation, queues and resource lifetime.
+- `references/testing-and-http.md`: HTTP seams and boundary test selection.
+- `references/language-and-tooling.md`: generation, build variants and static-analysis policy.
+
+Keep the consumer's error taxonomy, assertion/helper conventions and tool versions.

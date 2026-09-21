@@ -89,9 +89,9 @@ actually exercised. Declare a typed event disposition before implementation:
 The first two dispositions are effective coverage when required by the event
 contract. A skipped precondition is never coverage. A label, counter increment,
 test-local toggle, or early return does not prove an event. Generate causal
-prerequisites and establish the required disposition coverage across the selected
-evidence set. Use directed witnesses for rare required cases; do not depend on
-every random seed reaching all classes. If invalid placement is part of the property, invoke the
+prerequisites and require every declared disposition in the event contract at
+least once per run. Use directed witnesses within the run for rare required
+cases; do not replace per-run coverage with totals pooled across runs. If invalid placement is part of the property, invoke the
 production boundary and assert `observed_no_mutation` instead of silently
 skipping it. Do not use one boolean such as `changed` as the sole coverage
 classification because it conflates a verified rejection with an unexercised
@@ -166,11 +166,14 @@ other evidence. Keep required checks distinct from optional exploratory campaign
 A short suite that skips a required property does not satisfy it; retain a documented
 local selection and report actual execution, failure, skip and replay evidence.
 
-Qualify the harness with directed boundary cases and a relevant defect where useful.
-Record observed dispositions and independent comparisons in existing task evidence;
-a separate ledger or manifest is needed only when it improves traceability. Repair
-unreachable events and vacuous comparisons before treating a longer campaign as
-acceptance evidence. Bounded investigation may continue to diagnose those gaps.
+The focused PBT must programmatically assert its typed-disposition matrix and
+independent model coverage: every required fact maps to an independent model
+field/transition, an actual SUT observation and a comparison. A compact in-memory
+map or existing harness assertions are sufficient; no new manifest is required.
+Do not start the full PBT while a required disposition is zero, a required event
+is covered only by `skipped_precondition`, or a required model fact lacks an
+independent oracle. Repair the harness and rerun the focused selector first.
+Retain the observed assertions and replay evidence in the current change.
 Isolate measurement-sensitive checks from competing load and retain minimized
 regressions rather than repeatedly rerunning an unchanged expensive campaign.
 
@@ -181,7 +184,7 @@ Do not accept the PBT until:
 - positive properties name their fairness assumptions and negative properties
   cover missing, stale, unauthorized, duplicate, malformed, and reordered input;
 - event dependencies and invalid-event behavior are explicit;
-- every required event class has every nonzero `applied` or
+- in each run, every required event class has every nonzero `applied` or
   `observed_no_mutation` disposition named by its declared contract;
   `skipped_precondition`, silent no-op events, and test-local state substitution
   do not satisfy the matrix;
@@ -194,3 +197,5 @@ Do not accept the PBT until:
   test; and
 - a failure is replayable from its seed and minimized event sequence, with a
   deterministic regression test retained for every confirmed bug.
+
+For changes to existing state/property suites, use `references/change-impact.md` to map invalidated coverage and its verification owner.
