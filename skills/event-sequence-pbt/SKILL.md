@@ -194,3 +194,5 @@ Do not accept the PBT until:
   test; and
 - a failure is replayable from its seed and minimized event sequence, with a
   deterministic regression test retained for every confirmed bug.
+
+For changes to existing state/property suites, use `references/change-impact.md` to map invalidated coverage and its verification owner.

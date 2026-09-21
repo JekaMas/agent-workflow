@@ -18,3 +18,5 @@
 
 ## Limits
 These are code/fixture/native mechanics and self-review evidence. No product runtime, hosted inference, external deployment, fresh-agent efficacy comparison or client UI refresh was executed. Product protected-operation/search conventions, operational runbooks, native proof targets and registered campaign manifests remain local. Historical inventories are not runtime imports.
+
+Optional policy ownership: explicit-authority, exhaustive-investigation and coordinated-review text was moved without relaxing its safeguards. Smart Example explicitly selects these shared policies; new adopters do not inherit them automatically. This preserves authority while removing consumer-owned generic text. Event/property change-impact rules also moved to event-sequence-pbt; local tests-short/Go campaign selection remains local.

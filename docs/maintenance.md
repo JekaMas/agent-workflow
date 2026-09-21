@@ -90,3 +90,5 @@ audit, including personal links; these checks establish different boundaries.
 Bootstrap owns manifest discovery and reviewed migration snapshots. Never treat
 plan hashes as semantic review or authority. Skill/source tests must retain
 missing/ignored/stale failures and policy separation.
+
+`policies/` owns reusable optional conventions selected explicitly by a consumer. Explicit-authority, exhaustive-investigation and coordinated-review retain their original safeguards, but are not new default approval/index/delegation requirements for every repository. Never infer selection or permission from their presence.

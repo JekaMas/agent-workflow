@@ -22,4 +22,3 @@ and `python3 -B .agents/workflow/scripts/test_local_verify_cargo.py --output-dir
 They use only disposable synthetic packages/crates and never prove product
 behavior. The Go experiment has eight expected outcome cases; Cargo has four. Product Go/Rust tests are selected only for their
 actual change risk. Inspect actual live-call gates before selecting Rust tests: Cargo offline resolution does not prevent test network calls.
-

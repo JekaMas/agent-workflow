@@ -18,7 +18,7 @@ class BootstrapTests(unittest.TestCase):
             path.mkdir();self.git(path,'init','-q');self.git(path,'config','user.name','Fixture');self.git(path,'config','user.email','fixture@example.invalid')
         (self.root/'AGENTS.md').write_text('Keep domain constraints.\n')
         self.git(self.root,'add','.');self.git(self.root,'commit','-qm','domain')
-        for folder in ['defaults','skills','docs','scripts']:
+        for folder in ['defaults','skills','docs','scripts','policies']:
             shutil.copytree(b.SOURCE/folder,self.source/folder,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
         self.git(self.source,'add','.');self.git(self.source,'commit','-qm','source')
         self.rev=self.git(self.source,'rev-parse','HEAD');self.profile={'schema':1,'languages':['go'],'notes':'native commands only'}
