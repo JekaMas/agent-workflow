@@ -25,4 +25,3 @@ Optional preserved investigation policy; applies only where selected by project/
   This rule takes precedence over read-minimization or context-budget guidance:
   output may be bounded and summarized, but discovery and disposition may not
   be sampled or narrowed.
-

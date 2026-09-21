@@ -17,4 +17,3 @@ Use the mapping as follows:
   harness, registry, or production-owner semantics change; and
 - preserve a deterministic regression in the ordinary regression gate for every
   confirmed property failure.
-
