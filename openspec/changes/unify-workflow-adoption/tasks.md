@@ -13,6 +13,6 @@ Completed local implementation and validation; see evidence.md. Shared publicati
 ## 4. Repair extraction-equivalence findings
 - [x] 4.1 Restore per-run PBT assertions, complete debugging admission and feature-slice conflict sequencing.
 - [x] 4.2 Wire existing consumer validators into default adoption and qualify missing/untracked/ignored-source failures.
-- [ ] 4.3 Record preserved behavior versus separately requested redesign; validate shared and Smart Example, then commit/push updated pins and docs.
+- [x] 4.3 Record preserved behavior versus separately requested redesign; validate shared and Smart Example, then commit/push updated pins and docs.
 
 Reopened after commit-by-commit review. Earlier completed checks remain historical evidence; this repair must supply current results before DONE.
