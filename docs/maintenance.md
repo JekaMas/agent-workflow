@@ -58,3 +58,25 @@ instead of copying the strict-main-spec procedure between templates. Native
 requirements, selected bulk closure, invalid-main repair and incomplete-task
 refusal in disposable repositories. Never run these closure experiments against
 consumer changes. Generated output equality is intentional, not another owner.
+
+## Specification and engineering ownership
+
+The shared `openspec/specs/portable-workflow/spec.md` owns reusable adoption and
+integration requirements. Start generic workflow changes in this repository's
+`openspec/changes/`; keep consumer rollout tasks and historical evidence in the
+affected consumer. File count in a historical change is not a count of active
+custom procedures. Do not export private captures into this public package.
+
+`verification-design/references/` owns portable behavior boundaries, isolation,
+properties, scheduling, risk selection, architecture/resource inspection and
+substitution claims. `sdd-go/references/` and `sdd-rust/references/` own conditional
+language guidance. Consumer adapters retain domain errors, signing, exact commands,
+toolchains, approval policies and campaign obligations. Update the shared body
+and pinned consumer together; do not create a second canonical copy.
+
+This repository's own OpenSpec config uses `openspec/workflow-profile.json` and
+`integration.render_config`; its paths resolve directly to this source checkout.
+Re-render that config when rules/profile changes and run `make check`. Consumer
+rendering continues to use its `.agents/workflow-project.json` profile.
+
+Shared main specs also own `adaptive-development-workflow` (planning through completion) and `assurance-routing` (review modes/provider controls/claim limits). Consumer E2E lane contracts and native proof-generator acceptance remain local.
