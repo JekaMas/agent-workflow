@@ -7,6 +7,21 @@ product requirements, authority, commands and actual supported configurations.
 Start with the [developer quickstart](docs/quickstart.md); use the
 [detailed flow](docs/project-flow.md) for evidence and completion rules.
 
+## Wire a repository
+
+From this clean reviewed checkout, preview and apply:
+
+```sh
+python3 -B scripts/bootstrap.py repo --repo /path/to/project
+python3 -B scripts/bootstrap.py repo --repo /path/to/project --apply
+```
+
+Git must already be initialized. Languages/module roots are detected; an explicit
+profile can override them. Existing OpenSpec/custom integrations use the inspectable
+`prepare` → reviewed `--migration-plan` route in [adoption](docs/adoption.md), preserving
+active changes. No tools/framework are installed. After cloning an adopted repo,
+initialize its pinned submodule and use [the quickstart](docs/quickstart.md).
+
 ## Skills
 
 - `skills/openspec-delivery/SKILL.md`: start, resume, plan, implement and finish.
@@ -26,6 +41,8 @@ project profile selects Go/Rust routes; event-sequence testing is available for
 all languages. Codex adapters and Claude commands resolve the same canonical
 source after submodule initialization.
 
+- `skills/hypothesis-debugging`: discriminate unresolved failures and continue authorized repair.
+- `skills/conflict-resolution`: preserve both sides’ intended behavior through Git conflicts.
 - `skills/sdd-go` and `skills/sdd-rust`: general language evidence and routing.
 - `skills/golang-testing`: focused hang/timeout stack diagnosis.
 - `skills/golang-performance-diagnostics` and `skills/golang-optimization`:

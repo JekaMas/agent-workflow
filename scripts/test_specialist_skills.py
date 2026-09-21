@@ -4,7 +4,7 @@ import re
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-UI_NAMES=('event-sequence-pbt','golang-testing','golang-performance-diagnostics','golang-optimization')
+UI_NAMES=('hypothesis-debugging','conflict-resolution','event-sequence-pbt','golang-testing','golang-performance-diagnostics','golang-optimization')
 NAMES=UI_NAMES+('verification-design','sdd-go','sdd-rust')
 
 class SpecialistPackages(unittest.TestCase):

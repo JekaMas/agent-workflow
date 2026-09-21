@@ -4,6 +4,15 @@ Open the intended repository in Codex or Claude. Initialize its pinned workflow
 with `git submodule update --init .agents/workflow` when needed. Use the installed
 OpenSpec setup; do not regenerate the project's integrations. Make is optional.
 
+## First-time setup
+
+If the repository already has `.agents/workflow`, initialize the pinned submodule;
+do not reinstall. Otherwise ask the agent: “Adopt JekaMas/agent-workflow here;
+preserve existing instructions and active OpenSpec changes, inspect the proposed
+migration, apply it and validate the wiring.” The shared package's docs/adoption.md
+contains the preview/apply commands for new repositories and the reviewed migration
+path for existing OpenSpec setups. This requires no Makefile or personal plugin.
+
 ## Develop a task
 
 1. **Describe the outcome.** Provide the issue or request, constraints and examples.
@@ -71,7 +80,8 @@ For a separate check use `/opsx:check` or the Codex check skill selected by the
 project profile (`project-check` or `openspec-check`). Use the project's check guide
 for exact selectors. Workflow checks are for workflow changes, not every product edit.
 
-Go hang diagnosis, performance diagnostics/optimization, Rust evidence and
+Unresolved failures use hypothesis-debugging; Git conflicts use conflict-resolution.
+Both stay within the current task and authority. Go hang diagnosis, performance diagnostics/optimization, Rust evidence and
 language-independent event-sequence testing load only for the relevant risk.
 The project pin supplies shared procedures; project commands and contracts stay local.
 

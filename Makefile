@@ -1,5 +1,6 @@
 .PHONY: check verify-go-test
 check:
+	python3 -B scripts/test_portable_policies.py
 	python3 -B scripts/test_full_lifecycle.py
 	python3 -B scripts/test_specialist_skills.py
 	python3 -B scripts/test_audit_sources.py

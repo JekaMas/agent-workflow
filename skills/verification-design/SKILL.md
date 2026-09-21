@@ -29,3 +29,5 @@ loads for routine text inspection.
 Load only the reference needed by the current question. Consumer policies own
 actual command selection and campaign requirements. These references are part of
 the same implementation/review/repair loop; they do not impose a separate handoff.
+
+For implementation inspection use `references/code-inspection.md`; consumer adapters supply domain contracts and exact evidence gates.

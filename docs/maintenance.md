@@ -80,3 +80,13 @@ Re-render that config when rules/profile changes and run `make check`. Consumer
 rendering continues to use its `.agents/workflow-project.json` profile.
 
 Shared main specs also own `adaptive-development-workflow` (planning through completion) and `assurance-routing` (review modes/provider controls/claim limits). Consumer E2E lane contracts and native proof-generator acceptance remain local.
+
+For instruction/KB ownership changes use [knowledge maintenance](knowledge-maintenance.md). Shared hypothesis-debugging and conflict-resolution own general procedures; consumers keep operational sources and protected contracts. Generic provider setup is in [model review](model-review.md).
+
+Shared `skill_packages.py` owns packaging and explicit workspace-link operations;
+`workflow_publication.py` owns consumer-index/pin checks. Consumers provide policy
+JSON and thin wrappers. `audit_sources.py` remains the separate resolved Git-owner
+audit, including personal links; these checks establish different boundaries.
+Bootstrap owns manifest discovery and reviewed migration snapshots. Never treat
+plan hashes as semantic review or authority. Skill/source tests must retain
+missing/ignored/stale failures and policy separation.

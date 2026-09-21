@@ -44,39 +44,84 @@ symlink targets. A release rollback uses a clean checkout of the chosen earlier
 release and the personal installer again; do not manually move current without
 reconciling its state file. Never publish personal backups with this package.
 
-## Adopt a repository
+## New repository or existing repository without OpenSpec
 
-Create an isolated project branch/worktree as appropriate. Inspect its existing
-instructions, module roots, commands, lint/tool versions and expected runtime side
-effects. Prepare a project profile JSON with languages, module roots, references
-to project-owned commands and important exceptions; it is documentation, not code
-that the bootstrap executes. Keep secrets and developer-machine paths out of it.
-
-From the clean shared checkout:
+One-time source checkout (Git and Python 3.10+ required):
 
 ```sh
-python3 -B scripts/bootstrap.py repo --repo /path/to/project --profile /path/to/profile.json
-python3 -B scripts/bootstrap.py repo --repo /path/to/project --profile /path/to/profile.json --apply
+git clone https://github.com/JekaMas/agent-workflow.git /path/to/agent-workflow
+cd /path/to/agent-workflow
 ```
 
-This adds a pinned `.agents/workflow` submodule, project profile, operation skills,
-Claude command shims, OpenSpec configuration, short project guide and bounded routing
-blocks in AGENTS.md/CLAUDE.md. Existing instruction text outside the blocks survives. Ignored workflow outputs
-are refused before installation; do not hide required setup behind local ignore rules.
-Git submodule setup stages .gitmodules and the exact gitlink; review and stage generated
-files normally. No product file is edited and no product command is executed.
+Use a clean reviewed revision. Before merge, select the reviewed feature commit;
+cloning main alone does not include an unmerged change. Initialize a new project's
+Git repository first with `git init /path/to/project` if needed.
 
-The default source URL is the public agent-workflow repository. Publish the selected
-shared commit before adopting it from that URL. `--source-url` supports an explicitly
-selected alternate repository, including a local fixture. Local-file transport is
-enabled only for that single Git command, never in global config. `--source` names
-the clean local source checkout; it is required when running an installer from a location other than the intended canonical source checkout. Use --revision only when the
-source checkout is already at that exact commit; the tool never switches it for you.
+```sh
+python3 -B scripts/bootstrap.py repo --repo /path/to/project
+python3 -B scripts/bootstrap.py repo --repo /path/to/project --apply
+```
 
-An existing OpenSpec tree, existing workflow checkout or unowned output collision
-is a migration boundary: the bootstrap refuses it. Inspect and adapt that project's
-existing integration instead of overwriting it. Smart Example retains its custom
-adapters and is updated through its own maintenance flow.
+The first command previews; the second applies. No profile file is required:
+Go/Rust manifests propose language routes and module roots. Existing AGENTS/CLAUDE
+text is preserved around one managed routing block. Review detected roots and
+actual toolchains/commands; discovery does not execute product checks. Other
+languages get the same lifecycle, debugging, conflict and sequence-testing routes.
+Use `--profile /path/to/profile.json` when overriding detection or supplying project
+command references, context and exceptions. The resulting profile is tracked.
+
+The tool adds the exact shared submodule pin, Codex skills, Claude commands,
+OpenSpec configuration and docs/SDD_WORKFLOW.md. It installs no tools, dependencies,
+models, plugins or hooks. OpenSpec remains a separately installed prerequisite;
+its absence is not successful native validation. Review and commit generated files,
+.gitmodules and the gitlink. Ignored required outputs and unowned collisions fail.
+
+## Existing OpenSpec or custom workflow integration
+
+Use the same source checkout. Preserve the installed schema and all active changes.
+For an existing spec-driven setup:
+
+```sh
+python3 -B scripts/bootstrap.py prepare --repo /path/to/project --plan-out /tmp/workflow-adoption.json --preview-dir /tmp/workflow-proposed
+# Inspect the existing config/skills and proposed outputs; preserve useful custom
+# rules in project profile references. Reprepare with --profile if needed.
+python3 -B scripts/bootstrap.py repo --repo /path/to/project --migration-plan /tmp/workflow-adoption.json
+python3 -B scripts/bootstrap.py repo --repo /path/to/project --migration-plan /tmp/workflow-adoption.json --apply
+```
+
+`prepare` writes only the explicitly named review record (or prints it when
+--plan-out is omitted). It never overwrites an earlier record. The record lists
+prior fingerprints and proposed output hashes, the project profile, exact source
+revision and affected paths; it is not permission. Review rendered files under /tmp/workflow-proposed against existing sources, not hashes alone. The preview directory must be new and outside the target repository. Passing a reviewed plan explicitly selects replacement of its listed
+integration outputs. Reconcile custom instructions before applying; preparation
+cannot infer which custom rule is obsolete. Use the same --profile for prepare
+and apply when one was selected. Any drift in affected files, profile or revision
+rejects before setup. A different/custom schema requires a deliberate schema
+migration and remains untouched by this path.
+
+Existing output symlinks need explicit conversion to regular adapters before managed adoption; the installer refuses to write through an alias into another owner. Custom consumers may retain those links and use reviewed pin/render updates instead.
+
+The installer never writes existing specs, changes, tasks or historical evidence.
+It can adopt a clean existing shared submodule only when its indexed pin and source
+URL agree. Existing managed installations use normal update, not migration-plan
+mode. No --force option bypasses file identity or ignore checks. Local file source
+URLs are supported explicitly for fixtures; no global Git transport change.
+
+## Finish setup
+
+From the consumer:
+
+```sh
+python3 -B .agents/workflow/scripts/bootstrap.py status --repo .
+python3 -B .agents/workflow/scripts/check_opsx_routes.py --root .
+```
+
+Inspect native OpenSpec status/instructions for an existing selected change or a
+disposable fixture; do not create or archive a product change solely for setup.
+Refresh Codex/Claude discovery if needed. After a fresh clone, developers only need
+`git submodule update --init --recursive` plus already-documented prerequisites.
+No personal installation or Makefile is required. Plain-language tasks can follow
+AGENTS.md/CLAUDE.md and docs/SDD_WORKFLOW.md in any agent; UI aliases are conveniences.
 
 ## Repository updates and checks
 
@@ -113,8 +158,8 @@ are rejected before activation. Update from a clean canonical source checkout.
 ## Specialist skills in adopted repositories
 
 The tracked project profile selects language routes through `languages` (for
-example `["go", "rust"]`). Every newly adopted repository gets an
-`event-sequence-pbt` adapter. Go adds `sdd-go`, `golang-testing`,
+example `["go", "rust"]`). Every newly adopted repository gets `hypothesis-debugging`, `conflict-resolution` and
+`event-sequence-pbt` adapters. Go adds `sdd-go`, `golang-testing`,
 `golang-performance-diagnostics` and `golang-optimization`; Rust adds `sdd-rust`.
 Other languages use the same event/model/oracle contract with their existing
 framework. The bootstrap does not install testing or profiling tools.
@@ -127,8 +172,7 @@ all specialist references; event-sequence testing activates for stateful risks.
 
 After cloning a consumer, run `git submodule update --init --recursive` to obtain
 its exact shared source. Existing adopted repositories receive new routes through
-the usual reviewed bootstrap preview/apply update. Custom integrations use a
-reviewed local adapter or tracked relative link; no automatic overwrite. Removing
+the usual reviewed bootstrap preview/apply update. Custom integrations can use the reviewed prepare/adopt path above, or retain reviewed local adapters/relative links; no automatic overwrite. Removing
 languages that would orphan managed routes requires an explicit migration.
 
 Personal installation still exposes only the four sdd-* routers, avoiding a

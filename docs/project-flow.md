@@ -70,3 +70,15 @@ golang-performance-diagnostics, then golang-optimization once measurements
 justify a change. These skills return results to the same OpenSpec change.
 Project adapters and Claude commands are generated according to the tracked
 profile; canonical skill bodies live under this pin's skills directory.
+
+## Shared and project responsibilities
+
+Generic operation/rule, delivery, review/testing/repair, debugging, conflict, language
+and maintenance procedures live in this package. Project profiles/adapters own
+commands, toolchain support, domain knowledge, operational gates and concrete proof
+targets. Use docs/adoption.md for detection, safe existing-setup migration and updates.
+Generic validator code accepts project policy; packaging budgets and campaign
+requirements do not become universal defaults. New reusable workflow requirements
+and changes belong in this package's openspec tree.
+
+Use [native CLI usage](native-openspec.md) for artifact commands and [local adapter limits](local-checks.md) when selecting runner checks.

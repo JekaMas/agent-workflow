@@ -1,0 +1,4 @@
+interface:
+  display_name: "conflict-resolution"
+  short_description: "Use the shared conditional engineering procedure."
+  default_prompt: "Use $conflict-resolution for the requested task."

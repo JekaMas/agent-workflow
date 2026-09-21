@@ -156,4 +156,70 @@ class BootstrapTests(unittest.TestCase):
         self.adopt();b.status(self.root)
         self.assertTrue((self.root/'.agents/workflow/docs/new.md').exists())
 
+class ExistingAdoptionTests(unittest.TestCase):
+    setUp = BootstrapTests.setUp
+    git = BootstrapTests.git
+    def test_detects_real_modules_without_build_vendor_or_links(self):
+        for name in ['go.mod', 'crates/tool/Cargo.toml', 'vendor/ignore/go.mod', 'target/Cargo.toml']:
+            path=self.root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text('fixture')
+        (self.root/'link').symlink_to(self.source, target_is_directory=True)
+        result=b.discover_profile(self.root)
+        self.assertEqual(['go','rust'], result['languages'])
+        self.assertEqual({'go':['.'],'rust':['crates/tool']}, result['module_roots'])
+
+    def test_reviewed_existing_setup_preserves_active_artifacts(self):
+        config=self.root/'openspec/config.yaml';config.parent.mkdir();config.write_text('schema: spec-driven\ncontext: Existing domain rules live in AGENTS.md\n')
+        task=self.root/'openspec/changes/active/tasks.md';task.parent.mkdir(parents=True);task.write_text('- [ ] Preserve active work\n')
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        before=task.read_bytes()
+        b.repo_apply(self.root,self.profile,self.source,self.rev,str(self.source),True,plan)
+        self.assertEqual(before,task.read_bytes())
+        self.assertTrue((self.root/'AGENTS.md').read_text().startswith('Keep domain constraints.'))
+        b.status(self.root)
+
+    def test_stale_migration_refuses_before_any_setup(self):
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        (self.root/'AGENTS.md').write_text('New domain contract\n')
+        with self.assertRaisesRegex(ValueError,'stale'):
+            b.repo_apply(self.root,self.profile,self.source,self.rev,str(self.source),True,plan)
+        self.assertFalse((self.root/'.agents/workflow').exists())
+        self.assertEqual('New domain contract\n',(self.root/'AGENTS.md').read_text())
+
+    def test_changed_profile_and_revision_reject_plan(self):
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        for profile,revision in [({**self.profile,'languages':['rust']},self.rev),(self.profile,'another-revision')]:
+            with self.assertRaisesRegex(ValueError,'stale'):
+                b.check_migration(self.root,profile,revision,str(self.source),plan)
+
+    def test_custom_schema_is_not_replaced(self):
+        config=self.root/'openspec/config.yaml';config.parent.mkdir();config.write_text('schema: custom-schema\n')
+        with self.assertRaisesRegex(ValueError,'dedicated migration'):
+            b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        self.assertFalse((self.root/'.agents').exists())
+
+    def test_reviewed_alias_cannot_overwrite_another_owner(self):
+        owner=self.root/'owned';owner.mkdir();target=owner/'SKILL.md';target.write_text('Preserve owner')
+        alias=self.root/'.agents/skills/openspec-explore';alias.parent.mkdir(parents=True);alias.symlink_to(owner, target_is_directory=True)
+        plan=b.prepare_migration(self.root,self.profile,self.rev,str(self.source))
+        with self.assertRaisesRegex(ValueError,'output alias'):
+            b.repo_apply(self.root,self.profile,self.source,self.rev,str(self.source),True,plan)
+        self.assertEqual('Preserve owner',target.read_text())
+        self.assertFalse((self.root/'.agents/workflow').exists())
+
+    def test_empty_new_git_repository(self):
+        root=self.base/'empty';root.mkdir();self.git(root,'init','-q')
+        profile=b.discover_profile(root)
+        b.repo_apply(root,profile,self.source,self.rev,str(self.source),True)
+        b.status(root)
+
+    def test_cli_prepare_outputs_inspectable_files_without_target_edits(self):
+        config=self.root/'openspec/config.yaml';config.parent.mkdir();config.write_text('schema: spec-driven\n')
+        before=self.git(self.root,'status','--porcelain')
+        plan=self.base/'review.json';preview=self.base/'proposed'
+        result=subprocess.run(['python3','-B',str(b.SOURCE/'scripts/bootstrap.py'),'prepare','--repo',str(self.root),'--source',str(self.source),'--source-url',str(self.source),'--plan-out',str(plan),'--preview-dir',str(preview)],capture_output=True,text=True)
+        self.assertEqual(0,result.returncode,result.stderr)
+        self.assertEqual(before,self.git(self.root,'status','--porcelain'))
+        self.assertTrue((preview/'openspec/config.yaml').is_file())
+        self.assertIn('before',json.loads(plan.read_text()))
+
 if __name__=='__main__': unittest.main()
