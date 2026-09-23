@@ -6,3 +6,9 @@ acceptance criteria; do not run the whole catalog. Ask only for unresolved targe
 ambiguity or missing authority after independent work.
 A standalone check reports findings; existing implementation authority continues
 through repair and affected revalidation. Checks alone never mark tasks DONE.
+
+For behavioral OpenSpec work, `spec` validates the complete evidence DAG,
+`spec-tests` executes a nonempty affected closure selected by requirement,
+property, owner or changed path, and `ready` executes the complete required DAG
+with the evidence tool's `run --all` operation.
+Report intended and observed exact test identities; a zero selection is failure.

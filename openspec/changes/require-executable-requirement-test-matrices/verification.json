@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "change": "require-executable-requirement-test-matrices",
+  "requirements": [
+    {
+      "id": "R1",
+      "capability": "adaptive-development-workflow",
+      "title": "Executable requirement evidence graph",
+      "fingerprint": "98df567db1270be5fac24f998423ca4e3d7e328b8c67a2af65fac34cd46c2834"
+    },
+    {
+      "id": "R2",
+      "capability": "adaptive-development-workflow",
+      "title": "Searchable evidence ownership",
+      "fingerprint": "e69e853acf0019673e3a15e1da5c115305adc0cc122788d8e76eaa9da8243e04"
+    },
+    {
+      "id": "R3",
+      "capability": "portable-workflow",
+      "title": "Portable requirement evidence tooling",
+      "fingerprint": "57a9ba6cf17ba9cc8d58b7c196e25c629682d3acd083e26b86f7cceab465c989"
+    }
+  ],
+  "properties": [
+    {
+      "id": "R1.P1",
+      "requirement_id": "R1",
+      "scenarios": ["Requirement and scenario coverage is complete"],
+      "statement": "Every exact requirement and scenario is represented and every scenario edge has positive and negative cases.",
+      "owner": "scripts/requirement_tests.py:EvidenceGraph.validate",
+      "oracle": "Parsed delta-spec identities equal the manifest graph and each scenario edge has both polarities.",
+      "source_globs": ["openspec/changes/**/specs/**/spec.md", "openspec/changes/**/verification.json", "scripts/requirement_tests.py", "scripts/test_requirement_tests.py"]
+    },
+    {
+      "id": "R1.P2",
+      "requirement_id": "R1",
+      "scenarios": ["Affected increment is applied or verified"],
+      "statement": "An affected selection executes each canonical command once and observes every expected exact test identity.",
+      "owner": "scripts/requirement_tests.py:run_selection",
+      "oracle": "Selected cases and observed exact identities agree and command identities are unique.",
+      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py", "scripts/integration_templates/apply.md", "scripts/integration_templates/verify.md"]
+    },
+    {
+      "id": "R1.P3",
+      "requirement_id": "R1",
+      "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
+      "statement": "Final readiness cannot pass with planned, blocked, skipped, missing, failed or unauthorized evidence.",
+      "owner": "scripts/requirement_tests.py:run_selection",
+      "oracle": "The aggregate result preserves the strongest non-passing case state.",
+      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py", "scripts/integration_templates/check.md"]
+    },
+    {
+      "id": "R1.P4",
+      "requirement_id": "R1",
+      "scenarios": ["Specification or test source drifts"],
+      "statement": "Specification or test-source drift invalidates prior evidence before execution.",
+      "owner": "scripts/requirement_tests.py:EvidenceGraph.validate",
+      "oracle": "Current SHA-256 fingerprints equal the manifest pins.",
+      "source_globs": ["openspec/changes/**/specs/**/spec.md", "scripts/**/*test*.py", "scripts/requirement_tests.py"]
+    },
+    {
+      "id": "R1.P5",
+      "requirement_id": "R1",
+      "scenarios": ["Test coverage appears duplicated"],
+      "statement": "Duplicate case edges and duplicate execution definitions are rejected while selected commands remain deduplicated.",
+      "owner": "scripts/requirement_tests.py:EvidenceGraph.validate",
+      "oracle": "Canonical case and command keys are unique and one selected command executes once.",
+      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py"]
+    },
+    {
+      "id": "R2.P1",
+      "requirement_id": "R2",
+      "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
+      "statement": "Forward and reverse selectors return only the sorted unique affected graph closure.",
+      "owner": "scripts/requirement_tests.py:EvidenceGraph.select",
+      "oracle": "Requirement, owner and matching-path selections are equal while an unrelated path selects nothing.",
+      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py"]
+    },
+    {
+      "id": "R3.P1",
+      "requirement_id": "R3",
+      "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
+      "statement": "Rendered operation routes require structural validation, affected execution and final complete execution.",
+      "owner": "scripts/integration_templates",
+      "oracle": "The canonical templates and rendered config contain the exact evidence-graph routes and do not conflate validation with execution.",
+      "source_globs": ["scripts/integration_templates/**", "openspec/config.yaml", "scripts/test_requirement_tests.py"]
+    },
+    {
+      "id": "R3.P2",
+      "requirement_id": "R3",
+      "scenarios": ["Consumer requires a newer Go toolchain"],
+      "statement": "Go may use an already-cached required toolchain but dependency and toolchain network access remain disabled.",
+      "owner": "scripts/local_verify.py:child_environment",
+      "oracle": "Child environment is GOTOOLCHAIN=auto with GOPROXY=off and unavailable execution remains non-passing.",
+      "source_globs": ["scripts/local_verify.py", "scripts/test_local_verify.py", "docs/local-checks.md"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "R1.P1.POS", "property_id": "R1.P1", "polarity": "positive", "scenarios": ["Requirement and scenario coverage is complete"],
+      "observable": "A complete graph constructs and resolves its exact closure.",
+      "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "distinct_reason": "Establishes complete graph construction for R1.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P1.NEG", "property_id": "R1.P1", "polarity": "negative", "scenarios": ["Requirement and scenario coverage is complete"],
+      "observable": "Missing polarity or uncovered scenario is rejected.",
+      "test_id": "test_missing_polarity_and_uncovered_scenario_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_polarity_and_uncovered_scenario_fail)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P2.POS", "property_id": "R1.P2", "polarity": "positive", "scenarios": ["Affected increment is applied or verified"],
+      "observable": "One canonical command executes both selected cases exactly once.",
+      "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "distinct_reason": "Proves execution and exact observation for R1.P2.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P2.NEG", "property_id": "R1.P2", "polarity": "negative", "scenarios": ["Affected increment is applied or verified"],
+      "observable": "An unregistered marker or nonzero command cannot pass.",
+      "test_id": "test_missing_expected_identity_and_command_failure_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_expected_identity_and_command_failure_cannot_pass)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P3.POS", "property_id": "R1.P3", "polarity": "positive", "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
+      "observable": "A complete local closure with all exact identities passes.",
+      "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "distinct_reason": "Establishes the successful final-closure state for R1.P3.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P3.NEG", "property_id": "R1.P3", "polarity": "negative", "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
+      "observable": "Planned or protected cases stay incomplete without authority.",
+      "test_id": "test_planned_and_protected_cases_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P4.POS", "property_id": "R1.P4", "polarity": "positive", "scenarios": ["Specification or test source drifts"],
+      "observable": "Current specification and test-source pins admit the graph.",
+      "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "distinct_reason": "Establishes matching current pins for R1.P4.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P4.NEG.SPEC", "property_id": "R1.P4", "polarity": "negative", "scenarios": ["Specification or test source drifts"],
+      "observable": "A changed requirement body invalidates the specification pin.",
+      "test_id": "test_stale_specification_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_specification_fingerprint_fails)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P4.NEG.SOURCE", "property_id": "R1.P4", "polarity": "negative", "scenarios": ["Specification or test source drifts"],
+      "observable": "A changed test source invalidates the case pin.",
+      "test_id": "test_stale_test_source_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P5.POS", "property_id": "R1.P5", "polarity": "positive", "scenarios": ["Test coverage appears duplicated"],
+      "observable": "Several cases sharing one command execute that command once.",
+      "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "distinct_reason": "Proves deduplicated command scheduling for R1.P5.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R1.P5.NEG", "property_id": "R1.P5", "polarity": "negative", "scenarios": ["Test coverage appears duplicated"],
+      "observable": "Duplicate case edges and command definitions are rejected.",
+      "test_id": "test_duplicate_case_and_command_definitions_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R2.P1.POS", "property_id": "R2.P1", "polarity": "positive", "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
+      "observable": "Requirement, owner and matching-path selectors return the same sorted closure.",
+      "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "distinct_reason": "Proves indexed selector equivalence for R2.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R2.P1.NEG", "property_id": "R2.P1", "polarity": "negative", "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
+      "observable": "An unrelated changed path resolves no properties instead of a broad suite neighbor.",
+      "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "distinct_reason": "The same test has a separate negative assertion excluding unrelated paths for R2.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R3.P1.POS", "property_id": "R3.P1", "polarity": "positive", "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
+      "observable": "Rendered routes contain validate, affected execution and complete final execution.",
+      "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R3.P1.NEG", "property_id": "R3.P1", "polarity": "negative", "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
+      "observable": "Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "substitution": {"classification": "NO_TEST_DOUBLE"}
+    },
+    {
+      "id": "R3.P2.POS", "property_id": "R3.P2", "polarity": "positive", "scenarios": ["Consumer requires a newer Go toolchain"],
+      "observable": "The child environment allows cached toolchain resolution while disabling dependency network access.",
+      "test_id": "test_child_environment_allows_cached_required_go_toolchain_but_no_network (scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_local_verify.py", "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "substitution": {"classification": "APPROVED_TEST_DOUBLE", "approval": "User-authorized workflow test work on 2026-09-23", "replaced_owner": "subprocess environment observer", "forbidden_claim": "does not prove a toolchain is installed"}
+    },
+    {
+      "id": "R3.P2.NEG", "property_id": "R3.P2", "polarity": "negative", "scenarios": ["Consumer requires a newer Go toolchain"],
+      "observable": "An unavailable executable remains unavailable and writes non-passing evidence.",
+      "test_id": "test_missing_executable_writes_unavailable_artifact (scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact)",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_local_verify.py", "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "substitution": {"classification": "APPROVED_TEST_DOUBLE", "approval": "User-authorized workflow test work on 2026-09-23", "replaced_owner": "missing child executable", "forbidden_claim": "does not prove Go dependency availability"}
+    }
+  ],
+  "commands": [
+    {
+      "id": "workflow-evidence-unit-tests",
+      "runner": "command",
+      "argv": ["python3", "-B", "-m", "unittest", "scripts.test_requirement_tests", "scripts.test_local_verify", "-v"],
+      "cwd": ".",
+      "env": {},
+      "timeout_seconds": 120,
+      "authority": "local",
+      "expected_markers": [
+        "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
+        "test_missing_polarity_and_uncovered_scenario_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_polarity_and_uncovered_scenario_fail)",
+        "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
+        "test_missing_expected_identity_and_command_failure_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_expected_identity_and_command_failure_cannot_pass)",
+        "test_planned_and_protected_cases_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass)",
+        "test_stale_specification_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_specification_fingerprint_fails)",
+        "test_stale_test_source_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails)",
+        "test_duplicate_case_and_command_definitions_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail)",
+        "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
+        "test_child_environment_allows_cached_required_go_toolchain_but_no_network (scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network)",
+        "test_missing_executable_writes_unavailable_artifact (scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact)"
+      ]
+    }
+  ]
+}

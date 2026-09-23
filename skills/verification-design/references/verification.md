@@ -10,14 +10,14 @@ counterexample or independent reference to discriminate it; investigate a weak
 oracle before committing to semantic implementation. This normally completes
 autonomously, without a separate approval or role gate.
 
-For each important invariant, keep a proportionate validation contract in the
-existing spec/design or linked evidence: requirement ID, observable acceptance,
-owner/boundary, independent oracle, positive/negative/boundary cases, relevant
-fault/schedule assumptions, selected checks, scope/bounds/budget and required
-result. Explain meaningful exclusions. Revisit the contract when new evidence
-changes assumptions; do not duplicate tasks or create a mandatory new artifact.
-A typo may need only an inspection note. Structural OpenSpec validation does not
-establish that a specification is correct or that its oracle is adequate.
+For each behavioral requirement, keep its validation contract in the change-owned
+`verification.json` evidence DAG: exact pinned requirement/scenarios and test-source hashes, observable
+properties, owner/boundary, independent oracle, positive and negative cases,
+exact observed test identities, deduplicated commands, substitution boundaries,
+invalidation dependencies and required result. Revisit it when evidence changes
+assumptions. Routine nonbehavioral edits may use proportionate inspection instead.
+Structural OpenSpec validation does not establish that a specification is correct,
+that its oracle is adequate, or that its listed tests executed.
 
 ## Qualify decisive feedback
 
@@ -104,8 +104,8 @@ unintended zero selection or skipped required case is incomplete evidence.
 For consequential behavior, map existing requirement IDs to observable properties
 before adding tests. A property states inputs/preconditions, action or transition,
 expected relation/invariant, relevant bounds and forbidden outcomes. Identify the
-actual owner and an independently justified oracle. Keep the map in existing
-spec/design/evidence; it is not another task list or a mandatory document.
+actual owner and an independently justified oracle. Keep the executable map in the
+change-owned `verification.json`; it is evidence topology, not another task list.
 
 Use a compact row when relationships are otherwise hard to inspect:
 
@@ -117,6 +117,13 @@ selected check contributes an authorized property, regression or required gate.
 Several tests may cover one property at different boundaries; one test may cover
 several properties only if its observations discriminate each. A suite's name or
 test count is not evidence that the mapping holds.
+
+Use the graph's reverse indexes to select affected cases by requirement, property,
+owner or changed path. Run the deduplicated transitive closure for each increment
+and the complete required graph at final readiness. Every property needs explicit
+positive and negative cases, and every specification scenario needs a property
+edge. Missing, stale, planned-only, skipped, zero-selected, failed, timed-out or
+authority-blocked required nodes remain non-passing.
 
 | Property or risk | Suitable evidence; choose by actual obligation |
 |---|---|

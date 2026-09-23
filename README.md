@@ -71,6 +71,15 @@ top-level names; exact subtest selection needs a separately inspected native run
 Required skipped/empty/failed checks do not pass. Output paths cannot overwrite
 existing records. No dependency/tool installation is performed.
 
+Behavioral OpenSpec changes use
+`openspec/changes/<change>/verification.json` as an executable evidence DAG.
+`python3 scripts/requirement_tests.py --help` validates pinned requirement and
+scenario and exact test-source fingerprints, queries affected properties/cases/commands by requirement,
+owner or changed path, and executes either a selected closure or the complete
+graph. Every property has positive and negative cases; exact observed test
+identities, skips and missing selections are recorded rather than inferred from
+suite names or exit codes.
+
 Tested adapter versions: OpenSpec 1.13.1 and golangci-lint 2.11.3. Other versions
 are rejected until compatibility is qualified. Cargo defaults to Cargo.toml;
 consumers pass their actual manifest. Project config is supplied by the consumer.

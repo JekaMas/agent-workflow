@@ -10,9 +10,10 @@ because a passing parent does not prove the requested child ran; use a native
 command with inspected exact leaf evidence for that requirement, not a weaker
 parent-only substitute. Use native Go JSON output to confirm the exact child;
 `-list` cannot establish child execution. The helper already uses `-count=1`.
-Use the existing supported Go
-binary via PATH or the helper's `--tool` option: GOTOOLCHAIN=local prevents an
-implicit download. Package-specific build tags/features or unusual selections
+Use the existing supported Go binary via PATH or the helper's `--tool` option.
+The helper sets `GOTOOLCHAIN=auto` together with `GOPROXY=off`: an already-cached
+toolchain required by `go.mod` is usable, while an unavailable toolchain cannot
+download and remains a prerequisite failure. Package-specific build tags/features or unusual selections
 not exposed by this small adapter need an explicit native command and evidence;
 do not silently substitute the default configuration.
 

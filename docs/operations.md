@@ -25,8 +25,8 @@ and retain full outputs outside conversational context when useful.
 |---|---|---|
 | new / propose / continue / ff | Local workflow **Start/resume**; shared delivery **Start and plan**; selected native artifact instructions | Shared verification **Challenge the specification**, **Plan from requirements**, **Property and test-set matching** for consequential planning |
 | update | Selected affected artifacts; shared delivery **Execute and adapt** | Evidence contracts and decisions invalidated by the update |
-| apply / repair | Native apply context files; shared delivery **Execute and adapt**; matching language/owner procedures | Decisive feedback, failure diagnosis, relevant verification commands |
-| verify | Actual diff/results and acceptance; shared verification **Inspect, repair and revalidate**, **Completion and handoff** | Oracle qualification, coverage or overlap sections when needed |
+| apply / repair | Native apply context files; shared delivery **Execute and adapt**; matching language/owner procedures; affected `verification.json` closure | Decisive feedback, failure diagnosis, relevant verification commands |
+| verify | Actual diff/results and acceptance; validated and executed affected `verification.json` closure; shared verification **Inspect, repair and revalidate**, **Completion and handoff** | Oracle qualification, coverage or overlap sections when needed; final verification runs the complete graph |
 | sync / archive / bulk-archive | Selected status paths and native instructions; shared delivery **Review and finish** | Main-spec merge/selection and unresolved acceptance evidence |
 | explore / onboard | Requested question or next walkthrough operation | Its actual uncertainty or language/domain boundary |
 
@@ -63,6 +63,12 @@ review, repair and revalidation; no per-artifact approval or fixed iteration lim
 The shared delivery procedure owns DONE; project references own domain safeguards.
 `make` is optional. Direct native language commands or the local runner provide
 required evidence. OpenSpec structure alone does not establish behavior.
+
+Behavioral changes own `openspec/changes/<change>/verification.json`. Use
+`scripts/requirement_tests.py validate`, query a nonempty affected closure for
+incremental apply/verify, and execute `run --all` before final readiness. The graph
+pins specification points to properties, positive/negative cases, exact observed
+tests and deduplicated commands; missing or unexecuted nodes remain incomplete.
 
 Iteration uses update/continue/apply as needed. Repair uses apply followed by
 verify under existing implementation authority. `iterate` and `repair` are

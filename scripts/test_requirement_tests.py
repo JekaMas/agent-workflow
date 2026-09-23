@@ -1,0 +1,254 @@
+"""Requirement evidence DAG fixtures; no product or external service is used."""
+
+from __future__ import annotations
+
+import copy
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+
+from scripts import requirement_tests as evidence
+
+
+SPEC = """# Spec Delta
+
+## ADDED Requirements
+
+### Requirement: Preserve exact ownership
+The fixture SHALL retain one exact owner.
+
+#### Scenario: Matching owner
+- **WHEN** the owner matches
+- **THEN** access succeeds
+
+#### Scenario: Different owner
+- **WHEN** the owner differs
+- **THEN** access fails
+"""
+
+
+class RequirementEvidenceGraphTest(unittest.TestCase):
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory(prefix="requirement-evidence-")
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.change = "fixture-change"
+        self.change_root = self.root / "openspec" / "changes" / self.change
+        spec = self.change_root / "specs" / "ownership" / "spec.md"
+        spec.parent.mkdir(parents=True)
+        spec.write_text(SPEC, encoding="utf-8")
+        test_source = self.root / "tests" / "ownership_test.py"
+        test_source.parent.mkdir(parents=True)
+        test_source.write_text("# exact source pinned by the evidence graph\n", encoding="utf-8")
+        source_sha256 = evidence.sha256_bytes(test_source.read_bytes())
+        parsed = evidence.parse_delta_specs(self.change_root)
+        fingerprint = parsed[("ownership", "Preserve exact ownership")]["fingerprint"]
+        command = {
+            "id": "ownership-command",
+            "runner": "command",
+            "argv": [sys.executable, "-c", "print('positive-case\\nnegative-case')"],
+            "cwd": ".",
+            "timeout_seconds": 10,
+            "authority": "local",
+            "expected_markers": ["positive-case", "negative-case"],
+        }
+        self.manifest = {
+            "schema_version": 1,
+            "change": self.change,
+            "requirements": [{
+                "id": "R1", "capability": "ownership", "title": "Preserve exact ownership",
+                "fingerprint": fingerprint,
+            }],
+            "properties": [{
+                "id": "R1.P1", "requirement_id": "R1",
+                "scenarios": ["Matching owner", "Different owner"],
+                "statement": "Only the exact owner is admitted.",
+                "owner": "ownership-service", "oracle": "literal identity equality",
+                "source_globs": ["src/ownership/**", "tests/ownership_test.py"],
+            }],
+            "cases": [
+                {
+                    "id": "R1.P1.POS", "property_id": "R1.P1", "polarity": "positive",
+                    "scenarios": ["Matching owner", "Different owner"],
+                    "observable": "matching owner is admitted", "test_id": "positive-case",
+                    "command_id": "ownership-command", "state": "implemented",
+                    "source_path": "tests/ownership_test.py", "source_sha256": source_sha256,
+                    "substitution": {"classification": "NO_TEST_DOUBLE"},
+                },
+                {
+                    "id": "R1.P1.NEG", "property_id": "R1.P1", "polarity": "negative",
+                    "scenarios": ["Matching owner", "Different owner"],
+                    "observable": "different owner is rejected", "test_id": "negative-case",
+                    "command_id": "ownership-command", "state": "implemented",
+                    "source_path": "tests/ownership_test.py", "source_sha256": source_sha256,
+                    "substitution": {"classification": "NO_TEST_DOUBLE"},
+                },
+            ],
+            "commands": [command],
+        }
+        self.write_manifest()
+
+    def write_manifest(self) -> None:
+        (self.change_root / "verification.json").write_text(
+            json.dumps(self.manifest, indent=2) + "\n", encoding="utf-8"
+        )
+
+    def graph(self) -> evidence.EvidenceGraph:
+        return evidence.EvidenceGraph(self.root, self.change)
+
+    def test_valid_graph_queries_deterministic_affected_closure(self) -> None:
+        graph = self.graph()
+        by_requirement = graph.select(requirement_ids=["R1"])
+        by_owner = graph.select(owners=["ownership-service"])
+        by_path = graph.select(changed_paths=["src/ownership/store.py"])
+        by_case = graph.select(case_ids=["R1.P1.POS"])
+        by_command = graph.select(command_ids=["ownership-command"])
+        by_test = graph.select(test_ids=["negative-case"])
+        self.assertEqual(by_requirement, by_owner)
+        self.assertEqual(by_requirement, by_path)
+        self.assertEqual(by_requirement, by_case)
+        self.assertEqual(by_requirement, by_command)
+        self.assertEqual(by_requirement, by_test)
+        self.assertEqual(["R1.P1.POS", "R1.P1.NEG"], sorted(by_requirement["cases"], reverse=True))
+        described = graph.describe(by_requirement)
+        self.assertEqual("negative-case", described["nodes"]["cases"]["R1.P1.NEG"]["test_id"])
+        self.assertEqual("not_loaded", described["nodes"]["cases"]["R1.P1.NEG"]["latest_observed_status"])
+        with self.assertRaisesRegex(evidence.MatrixError, "selection resolved no properties"):
+            graph.select(changed_paths=["src/unrelated.py"])
+
+    def test_missing_polarity_and_uncovered_scenario_fail(self) -> None:
+        for mutation, message in (
+            (lambda manifest: manifest["cases"].pop(), "requires positive and negative"),
+            (lambda manifest: manifest["properties"][0].update(scenarios=["Matching owner"]), "uncovered scenarios"),
+        ):
+            with self.subTest(message=message):
+                original = copy.deepcopy(self.manifest)
+                mutation(self.manifest)
+                self.write_manifest()
+                with self.assertRaisesRegex(evidence.MatrixError, message):
+                    self.graph()
+                self.manifest = original
+
+        self.manifest["cases"][0]["scenarios"] = ["Matching owner"]
+        self.write_manifest()
+        with self.assertRaisesRegex(evidence.MatrixError, "scenario 'Different owner' requires positive and negative"):
+            self.graph()
+
+    def test_stale_specification_fingerprint_fails(self) -> None:
+        spec = self.change_root / "specs" / "ownership" / "spec.md"
+        spec.write_text(SPEC.replace("one exact owner", "the canonical exact owner"), encoding="utf-8")
+        with self.assertRaisesRegex(evidence.MatrixError, "stale specification fingerprint"):
+            self.graph()
+
+    def test_stale_test_source_fingerprint_fails(self) -> None:
+        (self.root / "tests" / "ownership_test.py").write_text("# changed test source\n", encoding="utf-8")
+        with self.assertRaisesRegex(evidence.MatrixError, "stale test source fingerprint"):
+            self.graph()
+
+    def test_duplicate_case_and_command_definitions_fail(self) -> None:
+        duplicate_case = copy.deepcopy(self.manifest["cases"][0])
+        duplicate_case["id"] = "R1.P1.POS.DUP"
+        self.manifest["cases"].append(duplicate_case)
+        self.write_manifest()
+        with self.assertRaisesRegex(evidence.MatrixError, "duplicate case edge"):
+            self.graph()
+
+        self.manifest["cases"].pop()
+        duplicate_command = copy.deepcopy(self.manifest["commands"][0])
+        duplicate_command["id"] = "duplicate-command"
+        self.manifest["commands"].append(duplicate_command)
+        self.manifest["cases"][1]["command_id"] = "duplicate-command"
+        self.write_manifest()
+        with self.assertRaisesRegex(evidence.MatrixError, "duplicate command definition"):
+            self.graph()
+
+    def test_one_canonical_command_executes_both_cases_once(self) -> None:
+        graph = self.graph()
+        output = self.root / "evidence" / "result.json"
+        report = evidence.run_selection(graph, graph.select(all_cases=True), output)
+        self.assertEqual("passed", report["status"])
+        self.assertEqual(1, len(report["commands"]))
+        self.assertEqual(
+            {"R1.P1.POS": "passed", "R1.P1.NEG": "passed"},
+            {identity: row["status"] for identity, row in report["cases"].items()},
+        )
+        self.assertEqual(
+            self.manifest["cases"][0]["source_sha256"],
+            report["cases"]["R1.P1.POS"]["source_sha256"],
+        )
+        self.assertTrue(output.is_file())
+
+    def test_planned_and_protected_cases_cannot_pass(self) -> None:
+        self.manifest["cases"][0]["state"] = "planned"
+        self.write_manifest()
+        graph = self.graph()
+        report = evidence.run_selection(
+            graph, graph.select(all_cases=True), self.root / "planned.json"
+        )
+        self.assertEqual("incomplete", report["status"])
+        self.assertEqual("planned", report["cases"]["R1.P1.POS"]["status"])
+
+        self.manifest["cases"][0]["state"] = "implemented"
+        self.manifest["commands"][0]["authority"] = "protected"
+        self.write_manifest()
+        graph = self.graph()
+        report = evidence.run_selection(
+            graph, graph.select(all_cases=True), self.root / "protected.json"
+        )
+        self.assertEqual("incomplete", report["status"])
+        self.assertEqual("authority_blocked", report["cases"]["R1.P1.POS"]["status"])
+
+    def test_missing_expected_identity_and_command_failure_cannot_pass(self) -> None:
+        self.manifest["cases"][0]["test_id"] = "absent-case"
+        self.write_manifest()
+        with self.assertRaisesRegex(evidence.MatrixError, "not an expected marker"):
+            self.graph()
+
+        self.manifest["cases"][0]["test_id"] = "positive-case"
+        self.manifest["commands"][0]["argv"] = [
+            sys.executable, "-c", "print('positive-case\\nnegative-case'); raise SystemExit(7)",
+        ]
+        self.write_manifest()
+        graph = self.graph()
+        report = evidence.run_selection(
+            graph, graph.select(all_cases=True), self.root / "failed.json"
+        )
+        self.assertEqual("failed", report["status"])
+        self.assertEqual(7, report["commands"][0]["exit_code"])
+
+    def test_go_and_cargo_observers_preserve_exact_failure_states(self) -> None:
+        go = "\n".join(json.dumps(row) for row in (
+            {"Action": "pass", "Package": "example/p", "Test": "TestPositive"},
+            {"Action": "skip", "Package": "example/p", "Test": "TestNegative"},
+            {"Action": "fail", "Package": "example/p", "Test": "TestFailed"},
+        ))
+        self.assertEqual({
+            "example/p::TestPositive": "pass",
+            "example/p::TestNegative": "skip",
+            "example/p::TestFailed": "fail",
+        }, evidence.parse_go_events(go))
+        cargo = "test ownership::positive ... ok\ntest ownership::negative ... FAILED\n"
+        self.assertEqual({
+            "ownership::positive": "pass", "ownership::negative": "fail",
+        }, evidence.parse_cargo_events(cargo))
+
+    def test_shared_routes_require_incremental_and_final_evidence_execution(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        apply = (root / "scripts" / "integration_templates" / "apply.md").read_text(encoding="utf-8")
+        verify = (root / "scripts" / "integration_templates" / "verify.md").read_text(encoding="utf-8")
+        check = (root / "scripts" / "integration_templates" / "check.md").read_text(encoding="utf-8")
+        config = (root / "openspec" / "config.yaml").read_text(encoding="utf-8")
+        self.assertIn("verification.json", apply)
+        self.assertIn("affected", apply)
+        self.assertIn("verification.json", verify)
+        self.assertIn("exact observed pass/fail/skip/missing", verify)
+        self.assertIn("spec-tests", check)
+        self.assertIn("run --all", check)
+        self.assertIn("verification.json", config)
+        self.assertNotIn("GOTOOLCHAIN=local", (root / "scripts" / "local_verify.py").read_text(encoding="utf-8"))
+
+
+if __name__ == "__main__":
+    unittest.main()

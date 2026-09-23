@@ -29,7 +29,11 @@ def workflow_tests() -> int:
     import unittest
 
     sys.path.insert(0, os.environ.get("LOCAL_VERIFY_PROJECT_ROOT", str(Path(__file__).resolve().parents[1])))
-    names = ["scripts.test_local_verify", "scripts.test_openspec_workflow"]
+    names = [
+        "scripts.test_local_verify",
+        "scripts.test_openspec_workflow",
+        "scripts.test_requirement_tests",
+    ]
     suites = [unittest.defaultTestLoader.loadTestsFromName(name) for name in names]
     selected = {name: suite.countTestCases() for name, suite in zip(names, suites)}
     if any(count == 0 for count in selected.values()):
@@ -352,7 +356,7 @@ def main(argv: list[str] | None = None) -> int:
               "status": "invalid_configuration", "claim": "selected check only; not overall DONE", "steps": []}
     env = os.environ.copy()
     env.update(OPENSPEC_TELEMETRY="0", OPENSPEC_NO_UPDATE_CHECK="1", DO_NOT_TRACK="1",
-               GOWORK="off", GOTOOLCHAIN="local", GOFLAGS="-mod=readonly", GOPROXY="off", GONOPROXY="none",
+               GOWORK="off", GOTOOLCHAIN="auto", GOFLAGS="-mod=readonly", GOPROXY="off", GONOPROXY="none",
                CARGO_NET_OFFLINE="true", RUSTUP_AUTO_INSTALL="0")
     try:
         if not cwd.is_dir() or not math.isfinite(args.timeout) or args.timeout <= 0:

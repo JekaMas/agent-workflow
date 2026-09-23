@@ -12,6 +12,9 @@ in proposal, observable requirements in specs, decisions/risks in design and one
 authoritative task list. Link bounded evidence. Artifact readiness is not product
 completion or approval. Challenge consequential specifications against ambiguous
 terms, incompatible requirements, missing cases and plausible wrong behavior.
+Before semantic implementation, create the change-owned `verification.json`
+evidence DAG and validate that each requirement/scenario reaches properties with
+positive and negative exact test cases.
 
 Detail the next useful increment, keeping later work coarse and the full requested
 outcome visible. Record objective, requirements, dependencies, important uncertainty,
@@ -40,6 +43,11 @@ notes with completed outcomes, remaining criteria, evidence and next action.
   evidence, appropriate diff/behavior inspection and resolved material findings.
   Report acceptance-consistent limitations and stop optional polishing. A verified
   already-satisfied outcome needs no artificial patch.
+
+At each increment, query the DAG by affected requirement, property, owner or path
+and run its deduplicated closure. At final readiness, run the complete required
+DAG. Observed exact test identities, not a manually selected package list or exit
+code alone, own execution evidence.
 
 ## Review and finish
 

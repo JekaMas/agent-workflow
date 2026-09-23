@@ -262,6 +262,21 @@ class LocalVerifyTest(unittest.TestCase):
             self.assertEqual("true", child_env["CARGO_NET_OFFLINE"])
             self.assertEqual("1", os.environ["RUSTUP_AUTO_INSTALL"])
 
+    def test_child_environment_allows_cached_required_go_toolchain_but_no_network(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "check.json"
+            version = {"command": ["go", "version"], "status": "exited", "exit_code": 1,
+                       "stdout": "", "stderr": "fixture unavailable", "duration_seconds": 0}
+            with patch.object(verify, "run_process", return_value=version) as process, contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(1, verify.main([
+                    "go-test", "--cwd", temporary, "--scope", ".", "--output", str(output),
+                    "--package", "./example", "--test", "^TestExample$",
+                ]))
+            child_env = process.call_args.args[2]
+            self.assertEqual("auto", child_env["GOTOOLCHAIN"])
+            self.assertEqual("off", child_env["GOPROXY"])
+            self.assertEqual("-mod=readonly", child_env["GOFLAGS"])
+
     def test_native_process_failure_retains_exit_and_output(self):
         result = verify.run_process([sys.executable, "-c", 'print("fixture failed"); raise SystemExit(7)'], Path.cwd(), os.environ.copy(), 5)
         self.assertEqual(7, result["exit_code"])
