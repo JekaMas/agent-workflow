@@ -19,7 +19,7 @@ import time
 from typing import Any
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 PREVIEW_BYTES = 64 * 1024
 REQUIREMENT = re.compile(r"^### Requirement: (.+?)\s*$")
 SCENARIO = re.compile(r"^#### Scenario: (.+?)\s*$")
@@ -62,17 +62,29 @@ def parse_delta_specs(change_root: Path) -> dict[tuple[str, str], dict[str, Any]
             if key in parsed:
                 raise MatrixError(f"duplicate spec requirement: {capability}::{title}")
             block = normalize_block(lines[start:end])
-            scenarios = [
-                match.group(1).strip()
-                for line in lines[start:end]
-                if (match := SCENARIO.match(line))
+            scenario_starts = [
+                index for index in range(start, end) if SCENARIO.match(lines[index])
             ]
+            scenarios = [SCENARIO.match(lines[index]).group(1).strip() for index in scenario_starts]
             if not scenarios:
                 raise MatrixError(f"requirement has no scenarios: {capability}::{title}")
+            scenario_fingerprints: dict[str, str] = {}
+            for scenario_offset, scenario_start in enumerate(scenario_starts):
+                scenario_end = (
+                    scenario_starts[scenario_offset + 1]
+                    if scenario_offset + 1 < len(scenario_starts)
+                    else end
+                )
+                scenario_title = SCENARIO.match(lines[scenario_start]).group(1).strip()
+                scenario_block = normalize_block(lines[scenario_start:scenario_end])
+                scenario_fingerprints[scenario_title] = sha256_bytes(
+                    (capability + "\n" + title + "\n" + scenario_block).encode()
+                )
             parsed[key] = {
                 "capability": capability,
                 "title": title,
                 "scenarios": scenarios,
+                "scenario_fingerprints": scenario_fingerprints,
                 "fingerprint": sha256_bytes((capability + "\n" + block).encode()),
                 "path": path.relative_to(change_root.parent.parent.parent).as_posix(),
             }
@@ -163,6 +175,7 @@ class EvidenceGraph:
         self.commands = unique_rows(self.raw.get("commands"), "commands")
         self.by_requirement: dict[str, set[str]] = defaultdict(set)
         self.by_scenario: dict[str, set[str]] = defaultdict(set)
+        self.by_scenario_cases: dict[str, set[str]] = defaultdict(set)
         self.by_owner: dict[str, set[str]] = defaultdict(set)
         self.by_case_command: dict[str, set[str]] = defaultdict(set)
         self.by_test: dict[str, set[str]] = defaultdict(set)
@@ -233,12 +246,17 @@ class EvidenceGraph:
             if polarity not in {"positive", "negative"}:
                 raise MatrixError(f"case {identity} polarity must be positive or negative")
             observable = required_text(row, "observable", f"case {identity}")
-            case_scenarios = unique_text_list(row, "scenarios", f"case {identity}")
+            scenario = required_text(row, "scenario", f"case {identity}")
             property_scenarios = set(self.properties[property_id]["scenarios"])
-            for scenario in case_scenarios:
-                if not isinstance(scenario, str) or scenario not in property_scenarios:
-                    raise MatrixError(f"case {identity} has unknown property scenario: {scenario!r}")
-                scenario_case_polarities[(property_id, scenario)].add(polarity)
+            if scenario not in property_scenarios:
+                raise MatrixError(f"case {identity} has unknown property scenario: {scenario!r}")
+            requirement_id = self.properties[property_id]["requirement_id"]
+            requirement = self.requirements[requirement_id]
+            spec = self.specs[(requirement["capability"], requirement["title"])]
+            if row.get("scenario_fingerprint") != spec["scenario_fingerprints"][scenario]:
+                raise MatrixError(f"stale scenario fingerprint: {identity}")
+            scenario_case_polarities[(property_id, scenario)].add(polarity)
+            self.by_scenario_cases[f"{requirement_id}::{scenario}"].add(identity)
             test_id = required_text(row, "test_id", f"case {identity}")
             command_id = required_text(row, "command_id", f"case {identity}")
             if command_id not in self.commands:
@@ -250,6 +268,14 @@ class EvidenceGraph:
                 required_text(row, "source_path", f"case {identity}"),
                 f"case {identity} source path",
             )
+            required_text(row, "setup", f"case {identity}")
+            required_text(row, "red_expectation", f"case {identity}")
+            required_text(row, "green_expectation", f"case {identity}")
+            invalidation_dependencies = unique_text_list(
+                row, "invalidation_dependencies", f"case {identity}"
+            )
+            for dependency in invalidation_dependencies:
+                safe_relative(dependency, f"case {identity} invalidation dependency")
             source_sha256 = row.get("source_sha256")
             if state == "implemented":
                 if not isinstance(source_sha256, str) or not re.fullmatch(r"[0-9a-f]{64}", source_sha256):
@@ -270,7 +296,7 @@ class EvidenceGraph:
                 raise MatrixError(f"case {identity} must disclose its substitution classification")
             if state == "implemented" and substitution.get("classification") == "UNDECIDED":
                 raise MatrixError(f"implemented case {identity} cannot have an undecided substitution boundary")
-            key = (property_id, polarity, observable, test_id, *sorted(set(case_scenarios)))
+            key = (property_id, scenario, polarity, observable, test_id)
             if key in seen_case_key:
                 raise MatrixError(f"duplicate case edge for property {property_id}: {identity}")
             seen_case_key.add(key)
@@ -353,57 +379,61 @@ class EvidenceGraph:
         all_cases: bool = False,
     ) -> dict[str, list[str]]:
         selected_properties: set[str] = set()
+        selected_cases: set[str] = set()
+        broad_properties: set[str] = set()
         if all_cases:
-            selected_properties.update(self.properties)
+            broad_properties.update(self.properties)
         for identity in requirement_ids or []:
             if identity not in self.requirements:
                 raise MatrixError(f"unknown requirement selector: {identity}")
-            selected_properties.update(self.by_requirement[identity])
+            broad_properties.update(self.by_requirement[identity])
         for identity in property_ids or []:
             if identity not in self.properties:
                 raise MatrixError(f"unknown property selector: {identity}")
-            selected_properties.add(identity)
+            broad_properties.add(identity)
         for selector in scenarios or []:
             if selector not in self.by_scenario:
                 raise MatrixError(f"unknown scenario selector: {selector}")
-            selected_properties.update(self.by_scenario[selector])
+            selected_cases.update(self.by_scenario_cases[selector])
         for owner in owners or []:
             if owner not in self.by_owner:
                 raise MatrixError(f"unknown owner selector: {owner}")
-            selected_properties.update(self.by_owner[owner])
+            broad_properties.update(self.by_owner[owner])
         for identity in case_ids or []:
             if identity not in self.cases:
                 raise MatrixError(f"unknown case selector: {identity}")
-            selected_properties.add(self.cases[identity]["property_id"])
+            selected_cases.add(identity)
         for identity in command_ids or []:
             if identity not in self.commands:
                 raise MatrixError(f"unknown command selector: {identity}")
-            selected_properties.update(
-                self.cases[case_id]["property_id"] for case_id in self.by_case_command[identity]
-            )
+            selected_cases.update(self.by_case_command[identity])
         for identity in test_ids or []:
             if identity not in self.by_test:
                 raise MatrixError(f"unknown test selector: {identity}")
-            selected_properties.update(
-                self.cases[case_id]["property_id"] for case_id in self.by_test[identity]
-            )
+            selected_cases.update(self.by_test[identity])
         for raw_path in changed_paths or []:
             path = safe_relative(raw_path, "changed path").as_posix()
             for identity, row in self.properties.items():
                 if any(fnmatch.fnmatch(path, pattern) for pattern in row["source_globs"]):
-                    selected_properties.add(identity)
-        if not selected_properties:
-            raise MatrixError("selection resolved no properties")
-        selected_cases = sorted(
-            identity for identity, row in self.cases.items() if row["property_id"] in selected_properties
+                    broad_properties.add(identity)
+        selected_cases.update(
+            identity for identity, row in self.cases.items()
+            if row["property_id"] in broad_properties
         )
-        command_ids = sorted({self.cases[identity]["command_id"] for identity in selected_cases})
+        selected_properties.update(broad_properties)
+        selected_properties.update(self.cases[identity]["property_id"] for identity in selected_cases)
+        if not selected_cases:
+            raise MatrixError("selection resolved no properties")
+        selected_case_ids = sorted(selected_cases)
+        selected_command_ids = sorted({
+            self.cases[identity]["command_id"] for identity in selected_case_ids
+        })
         requirement_set = sorted({self.properties[identity]["requirement_id"] for identity in selected_properties})
         return {
             "requirements": requirement_set,
             "properties": sorted(selected_properties),
-            "cases": selected_cases,
-            "commands": command_ids,
+            "cases": selected_case_ids,
+            "commands": selected_command_ids,
         }
 
     def summary(self, selection: dict[str, list[str]] | None = None) -> dict[str, Any]:
@@ -600,8 +630,13 @@ def run_selection(
                 "test_id": expected,
                 "property_id": case["property_id"],
                 "polarity": case["polarity"],
-                "scenarios": case["scenarios"],
+                "scenario": case["scenario"],
+                "scenario_fingerprint": case["scenario_fingerprint"],
+                "setup": case["setup"],
                 "observable": case["observable"],
+                "red_expectation": case["red_expectation"],
+                "green_expectation": case["green_expectation"],
+                "invalidation_dependencies": case["invalidation_dependencies"],
                 "source_path": case["source_path"],
                 "source_sha256": case.get("source_sha256"),
             }

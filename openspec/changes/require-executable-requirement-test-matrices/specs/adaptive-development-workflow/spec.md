@@ -6,14 +6,16 @@
 Every behavioral requirement in an OpenSpec change SHALL be pinned to a durable
 evidence graph before semantic implementation. The graph SHALL connect the exact
 specification requirement and scenarios to one or more falsifiable properties,
-and each property to explicit positive and negative cases, exact observable test
-identities, deduplicated commands, owners, oracles, substitution boundaries and
-semantic invalidation dependencies.
+and each property/scenario edge to distinct positive and negative cases. Every
+case SHALL name exactly one scenario fingerprint, setup, observable, red and green
+expectations, exact observable test identity, deduplicated command, owner, oracle,
+substitution boundary, and semantic invalidation dependencies.
 
 #### Scenario: Requirement and scenario coverage is complete
 - **WHEN** a change contains a behavioral requirement or scenario
 - **THEN** validation requires an exact graph node pinned to the current specification fingerprint
 - **AND** every scenario is covered by a property with at least one positive and one negative case
+- **AND** one case cannot claim several scenarios through one broad observable
 
 #### Scenario: Affected increment is applied or verified
 - **WHEN** apply or verify selects requirements, owners or changed source paths for the current increment
@@ -32,7 +34,7 @@ semantic invalidation dependencies.
 - **AND** historical green output cannot satisfy the changed node
 
 #### Scenario: Test coverage appears duplicated
-- **WHEN** two case nodes name the same property, polarity, observable and test identity
+- **WHEN** two case nodes name the same property, scenario, polarity, observable and test identity
 - **THEN** validation rejects the duplicate and retains one canonical case edge
 - **AND** one test may support distinct properties only when each edge names its distinct observable or failure class
 

@@ -12,7 +12,7 @@ rules:
     - Before semantic implementation, challenge intent, ambiguity, contradictions, missing cases and oracle adequacy using the shared verification procedure routed by skills/verification-design/SKILL.md; this is not an automatic approval gate.
     - Express observable requirements and meaningful positive, invalid and boundary scenarios; identify the required evidence or oracle for important invariants.
     - Preserve integer precision, serialization, error, version and recovery semantics at mixed-language boundaries; state unsupported cases explicitly.
-    - For every behavioral requirement, create or update the change-owned verification.json DAG before semantic implementation. Pin exact requirements/scenarios to properties and every property/scenario edge to positive and negative cases, exact observed test identities, test-source fingerprints, deduplicated commands, owners, oracles, substitutions and invalidation dependencies.
+    - For every behavioral requirement, create or update the change-owned verification.json DAG before semantic implementation. Pin exact requirements/scenarios to properties and every property/scenario edge to distinct positive and negative cases. Each case names exactly one scenario fingerprint, setup, observable, red and green expectations, exact observed test identity, test-source fingerprint, deduplicated command, substitution and invalidation dependencies.
     - Map requirements and evidence in both directions; a shared test needs explicit distinct observable edges and duplicate property/polarity/observable/test edges are invalid.
     - Do not substitute model agreement, simulated time or downstream rejection for a stronger requested contract.
   design:

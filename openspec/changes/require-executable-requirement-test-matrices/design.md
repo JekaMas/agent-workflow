@@ -40,9 +40,11 @@ node sets are:
   exact scenario titles and computed specification fingerprint;
 - `properties`: stable ID, requirement/scenario edges, owner, statement, oracle,
   source/invalidation globs and case edges;
-- `cases`: stable ID, polarity (`positive` or `negative`), exact observable,
-  explicit covered scenario edges, expected test identity, command edge, implementation state, exact test-source
-  path and SHA-256 fingerprint, and substitution disclosure;
+- `cases`: stable ID, polarity (`positive` or `negative`), exactly one scenario
+  title plus its own fingerprint, setup, exact observable, red/green expectations,
+  semantic invalidation dependencies, expected test identity, command edge,
+  implementation state, exact test-source path and SHA-256 fingerprint, and
+  substitution disclosure;
 - `commands`: canonical argv/cwd/environment/runner/timeout definition executed
   once for the selected case closure.
 
@@ -51,10 +53,11 @@ stale pins, zero selection, duplicated cases or unexecuted claims.
 
 ### 2. Fingerprint parsed specification points
 
-The tool parses delta specs and hashes a canonical tuple of capability path,
-requirement title, requirement body and ordered scenarios. Each requirement node
-stores this SHA-256. Exact title/scenario matching plus the fingerprint makes
-drift visible without inventing a second requirement ID syntax.
+The tool parses delta specs and hashes both the canonical requirement block and
+each individual scenario block. Requirement nodes store the requirement SHA-256;
+every case stores its one scenario SHA-256. Exact title/scenario matching plus
+both fingerprints makes drift visible without inventing a second requirement ID
+syntax or letting one broad case claim unrelated scenario clauses.
 
 Alternative: hash whole spec files. Rejected because one unrelated requirement
 edit would invalidate every case in the file and defeat incremental selection.
@@ -69,7 +72,7 @@ faster and safer than committing generated indexes.
 
 ### 4. Reject true duplicates while preserving distinct protection
 
-Within one property, `(polarity, observable, expected_test)` is unique. A command
+Within one property, `(scenario, polarity, observable, expected_test)` is unique. A command
 definition is keyed by its canonical execution tuple; identical definitions must
 share one command node. One observed test may support several properties only
 through separate edges whose observables or failure classes differ. This follows
@@ -99,9 +102,10 @@ nonzero exit, missing expected identity, skip or fail is non-passing.
   authority-blocked cases.
 
 Apply and verify MUST call affected `run`; final readiness MUST call `run --all`.
-Every scenario edge of every property requires both positive and negative cases;
-a requirement-level property pair cannot silently stand in for an unlisted
-scenario. An implemented case is valid only while its exact test-source file still matches
+Every scenario edge of every property requires both positive and negative cases,
+and one case is forbidden from naming more than one scenario. A requirement-level
+property pair cannot silently stand in for an unlisted scenario. An implemented
+case is valid only while its exact test-source file still matches
 its pinned SHA-256. Planned or blocked cases retain their intended source path but
 cannot pass. Result JSON records graph/spec/source hashes, Git HEAD and dirty state, requested
 selectors, intended cases, observed test identities, commands, exits and gaps.
@@ -120,8 +124,8 @@ fails without network installation.
   `UNDECIDED` substitution boundary; selected/final execution treats them as
   incomplete, and implementation is invalid until the boundary is classified.
 - **[One test contains several subcases]** → Store exact subtest identities when
-  emitted; otherwise the parent can support multiple edges only with distinct
-  observables and reviewable assertions.
+  emitted; otherwise the parent can support several single-scenario edges only
+  with distinct observables, red/green expectations and reviewable assertions.
 - **[Source globs are too broad]** → Report why each case was selected and keep
   unrelated package membership out of the invalidation model.
 - **[External cases cannot run locally]** → Keep their authority class and blocked

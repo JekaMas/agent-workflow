@@ -1,12 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "change": "require-executable-requirement-test-matrices",
   "requirements": [
     {
       "id": "R1",
       "capability": "adaptive-development-workflow",
       "title": "Executable requirement evidence graph",
-      "fingerprint": "98df567db1270be5fac24f998423ca4e3d7e328b8c67a2af65fac34cd46c2834"
+      "fingerprint": "64270767e9c7566f10d834c897ea0e8eb7d7b5ce04018a3dc9168b537b9558ce"
     },
     {
       "id": "R2",
@@ -25,202 +25,783 @@
     {
       "id": "R1.P1",
       "requirement_id": "R1",
-      "scenarios": ["Requirement and scenario coverage is complete"],
+      "scenarios": [
+        "Requirement and scenario coverage is complete"
+      ],
       "statement": "Every exact requirement and scenario is represented and every scenario edge has positive and negative cases.",
       "owner": "scripts/requirement_tests.py:EvidenceGraph.validate",
       "oracle": "Parsed delta-spec identities equal the manifest graph and each scenario edge has both polarities.",
-      "source_globs": ["openspec/changes/**/specs/**/spec.md", "openspec/changes/**/verification.json", "scripts/requirement_tests.py", "scripts/test_requirement_tests.py"]
+      "source_globs": [
+        "openspec/changes/**/specs/**/spec.md",
+        "openspec/changes/**/verification.json",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
       "id": "R1.P2",
       "requirement_id": "R1",
-      "scenarios": ["Affected increment is applied or verified"],
+      "scenarios": [
+        "Affected increment is applied or verified"
+      ],
       "statement": "An affected selection executes each canonical command once and observes every expected exact test identity.",
       "owner": "scripts/requirement_tests.py:run_selection",
       "oracle": "Selected cases and observed exact identities agree and command identities are unique.",
-      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py", "scripts/integration_templates/apply.md", "scripts/integration_templates/verify.md"]
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/apply.md",
+        "scripts/integration_templates/verify.md"
+      ]
     },
     {
       "id": "R1.P3",
       "requirement_id": "R1",
-      "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
+      "scenarios": [
+        "Final implementation readiness is checked",
+        "Required evidence crosses an authority boundary"
+      ],
       "statement": "Final readiness cannot pass with planned, blocked, skipped, missing, failed or unauthorized evidence.",
       "owner": "scripts/requirement_tests.py:run_selection",
       "oracle": "The aggregate result preserves the strongest non-passing case state.",
-      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py", "scripts/integration_templates/check.md"]
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/check.md"
+      ]
     },
     {
       "id": "R1.P4",
       "requirement_id": "R1",
-      "scenarios": ["Specification or test source drifts"],
+      "scenarios": [
+        "Specification or test source drifts"
+      ],
       "statement": "Specification or test-source drift invalidates prior evidence before execution.",
       "owner": "scripts/requirement_tests.py:EvidenceGraph.validate",
       "oracle": "Current SHA-256 fingerprints equal the manifest pins.",
-      "source_globs": ["openspec/changes/**/specs/**/spec.md", "scripts/**/*test*.py", "scripts/requirement_tests.py"]
+      "source_globs": [
+        "openspec/changes/**/specs/**/spec.md",
+        "scripts/**/*test*.py",
+        "scripts/requirement_tests.py"
+      ]
     },
     {
       "id": "R1.P5",
       "requirement_id": "R1",
-      "scenarios": ["Test coverage appears duplicated"],
+      "scenarios": [
+        "Test coverage appears duplicated"
+      ],
       "statement": "Duplicate case edges and duplicate execution definitions are rejected while selected commands remain deduplicated.",
       "owner": "scripts/requirement_tests.py:EvidenceGraph.validate",
       "oracle": "Canonical case and command keys are unique and one selected command executes once.",
-      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py"]
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
       "id": "R2.P1",
       "requirement_id": "R2",
-      "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
+      "scenarios": [
+        "A production owner changes",
+        "Reviewer traces one specification point"
+      ],
       "statement": "Forward and reverse selectors return only the sorted unique affected graph closure.",
       "owner": "scripts/requirement_tests.py:EvidenceGraph.select",
       "oracle": "Requirement, owner and matching-path selections are equal while an unrelated path selects nothing.",
-      "source_globs": ["scripts/requirement_tests.py", "scripts/test_requirement_tests.py"]
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
       "id": "R3.P1",
       "requirement_id": "R3",
-      "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
+      "scenarios": [
+        "Consumer validates an active change",
+        "Consumer verifies an increment",
+        "Consumer checks final readiness"
+      ],
       "statement": "Rendered operation routes require structural validation, affected execution and final complete execution.",
       "owner": "scripts/integration_templates",
       "oracle": "The canonical templates and rendered config contain the exact evidence-graph routes and do not conflate validation with execution.",
-      "source_globs": ["scripts/integration_templates/**", "openspec/config.yaml", "scripts/test_requirement_tests.py"]
+      "source_globs": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
       "id": "R3.P2",
       "requirement_id": "R3",
-      "scenarios": ["Consumer requires a newer Go toolchain"],
+      "scenarios": [
+        "Consumer requires a newer Go toolchain"
+      ],
       "statement": "Go may use an already-cached required toolchain but dependency and toolchain network access remain disabled.",
       "owner": "scripts/local_verify.py:child_environment",
       "oracle": "Child environment is GOTOOLCHAIN=auto with GOPROXY=off and unavailable execution remains non-passing.",
-      "source_globs": ["scripts/local_verify.py", "scripts/test_local_verify.py", "docs/local-checks.md"]
+      "source_globs": [
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py",
+        "docs/local-checks.md"
+      ]
     }
   ],
   "cases": [
     {
-      "id": "R1.P1.POS", "property_id": "R1.P1", "polarity": "positive", "scenarios": ["Requirement and scenario coverage is complete"],
+      "id": "R1.P1.POS",
+      "property_id": "R1.P1",
+      "polarity": "positive",
       "observable": "A complete graph constructs and resolves its exact closure.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "distinct_reason": "Establishes complete graph construction for R1.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Establishes complete graph construction for R1.P1.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "146b0024b4e2139672166e935ebeba087f188d296a608bd033121c69f52837b8",
+      "setup": "Execute the exact Requirement and scenario coverage is complete scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
+      "red_expectation": "The case fails if Requirement and scenario coverage is complete violates: A complete graph constructs and resolves its exact closure.",
+      "green_expectation": "The case passes only when A complete graph constructs and resolves its exact closure.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "openspec/changes/**/verification.json",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R1.P1.NEG", "property_id": "R1.P1", "polarity": "negative", "scenarios": ["Requirement and scenario coverage is complete"],
+      "id": "R1.P1.NEG",
+      "property_id": "R1.P1",
+      "polarity": "negative",
       "observable": "Missing polarity or uncovered scenario is rejected.",
       "test_id": "test_missing_polarity_and_uncovered_scenario_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_polarity_and_uncovered_scenario_fail)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "146b0024b4e2139672166e935ebeba087f188d296a608bd033121c69f52837b8",
+      "setup": "Execute the exact Requirement and scenario coverage is complete scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
+      "red_expectation": "The case fails if Requirement and scenario coverage is complete violates: Missing polarity or uncovered scenario is rejected.",
+      "green_expectation": "The case passes only when Missing polarity or uncovered scenario is rejected.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "openspec/changes/**/verification.json",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R1.P2.POS", "property_id": "R1.P2", "polarity": "positive", "scenarios": ["Affected increment is applied or verified"],
+      "id": "R1.P2.POS",
+      "property_id": "R1.P2",
+      "polarity": "positive",
       "observable": "One canonical command executes both selected cases exactly once.",
       "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "distinct_reason": "Proves execution and exact observation for R1.P2.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Proves execution and exact observation for R1.P2.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Affected increment is applied or verified",
+      "scenario_fingerprint": "28bc48176230ef0a785d9a8faa68f3d21c408c6b9138eecd591fe1824982ca58",
+      "setup": "Execute the exact Affected increment is applied or verified scenario at scripts/requirement_tests.py:run_selection.",
+      "red_expectation": "The case fails if Affected increment is applied or verified violates: One canonical command executes both selected cases exactly once.",
+      "green_expectation": "The case passes only when One canonical command executes both selected cases exactly once.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/apply.md",
+        "scripts/integration_templates/verify.md"
+      ]
     },
     {
-      "id": "R1.P2.NEG", "property_id": "R1.P2", "polarity": "negative", "scenarios": ["Affected increment is applied or verified"],
+      "id": "R1.P2.NEG",
+      "property_id": "R1.P2",
+      "polarity": "negative",
       "observable": "An unregistered marker or nonzero command cannot pass.",
       "test_id": "test_missing_expected_identity_and_command_failure_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_expected_identity_and_command_failure_cannot_pass)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Affected increment is applied or verified",
+      "scenario_fingerprint": "28bc48176230ef0a785d9a8faa68f3d21c408c6b9138eecd591fe1824982ca58",
+      "setup": "Execute the exact Affected increment is applied or verified scenario at scripts/requirement_tests.py:run_selection.",
+      "red_expectation": "The case fails if Affected increment is applied or verified violates: An unregistered marker or nonzero command cannot pass.",
+      "green_expectation": "The case passes only when An unregistered marker or nonzero command cannot pass.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/apply.md",
+        "scripts/integration_templates/verify.md"
+      ]
     },
     {
-      "id": "R1.P3.POS", "property_id": "R1.P3", "polarity": "positive", "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
+      "id": "R1.P3.POS.S1",
+      "property_id": "R1.P3",
+      "polarity": "positive",
       "observable": "A complete local closure with all exact identities passes.",
       "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "distinct_reason": "Establishes the successful final-closure state for R1.P3.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Establishes the successful final-closure state for R1.P3.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "5800a91be26630a729a597bf7ef9024c13f55cd597fd5b51a23ea4a54e91ea85",
+      "setup": "Execute the exact Final implementation readiness is checked scenario at scripts/requirement_tests.py:run_selection.",
+      "red_expectation": "The case fails if Final implementation readiness is checked violates: A complete local closure with all exact identities passes.",
+      "green_expectation": "The case passes only when A complete local closure with all exact identities passes.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/check.md"
+      ]
     },
     {
-      "id": "R1.P3.NEG", "property_id": "R1.P3", "polarity": "negative", "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
+      "id": "R1.P3.POS.S2",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "observable": "A complete local closure with all exact identities passes.",
+      "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Establishes the successful final-closure state for R1.P3.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Required evidence crosses an authority boundary",
+      "scenario_fingerprint": "617f63e28c8ef5f192621ee1f76c5986d5449e35a797ce7bf2245cf96630d535",
+      "setup": "Execute the exact Required evidence crosses an authority boundary scenario at scripts/requirement_tests.py:run_selection.",
+      "red_expectation": "The case fails if Required evidence crosses an authority boundary violates: A complete local closure with all exact identities passes.",
+      "green_expectation": "The case passes only when A complete local closure with all exact identities passes.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/check.md"
+      ]
+    },
+    {
+      "id": "R1.P3.NEG.S1",
+      "property_id": "R1.P3",
+      "polarity": "negative",
       "observable": "Planned or protected cases stay incomplete without authority.",
       "test_id": "test_planned_and_protected_cases_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "5800a91be26630a729a597bf7ef9024c13f55cd597fd5b51a23ea4a54e91ea85",
+      "setup": "Execute the exact Final implementation readiness is checked scenario at scripts/requirement_tests.py:run_selection.",
+      "red_expectation": "The case fails if Final implementation readiness is checked violates: Planned or protected cases stay incomplete without authority.",
+      "green_expectation": "The case passes only when Planned or protected cases stay incomplete without authority.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/check.md"
+      ]
     },
     {
-      "id": "R1.P4.POS", "property_id": "R1.P4", "polarity": "positive", "scenarios": ["Specification or test source drifts"],
+      "id": "R1.P3.NEG.S2",
+      "property_id": "R1.P3",
+      "polarity": "negative",
+      "observable": "Planned or protected cases stay incomplete without authority.",
+      "test_id": "test_planned_and_protected_cases_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Required evidence crosses an authority boundary",
+      "scenario_fingerprint": "617f63e28c8ef5f192621ee1f76c5986d5449e35a797ce7bf2245cf96630d535",
+      "setup": "Execute the exact Required evidence crosses an authority boundary scenario at scripts/requirement_tests.py:run_selection.",
+      "red_expectation": "The case fails if Required evidence crosses an authority boundary violates: Planned or protected cases stay incomplete without authority.",
+      "green_expectation": "The case passes only when Planned or protected cases stay incomplete without authority.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/integration_templates/check.md"
+      ]
+    },
+    {
+      "id": "R1.P4.POS",
+      "property_id": "R1.P4",
+      "polarity": "positive",
       "observable": "Current specification and test-source pins admit the graph.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "distinct_reason": "Establishes matching current pins for R1.P4.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Establishes matching current pins for R1.P4.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Specification or test source drifts",
+      "scenario_fingerprint": "45eeecc0c10eba56c6d99d8cf494c5cacf50e2afcb2f82e39656aafca17ba51f",
+      "setup": "Execute the exact Specification or test source drifts scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
+      "red_expectation": "The case fails if Specification or test source drifts violates: Current specification and test-source pins admit the graph.",
+      "green_expectation": "The case passes only when Current specification and test-source pins admit the graph.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "scripts/**/*test*.py",
+        "scripts/requirement_tests.py"
+      ]
     },
     {
-      "id": "R1.P4.NEG.SPEC", "property_id": "R1.P4", "polarity": "negative", "scenarios": ["Specification or test source drifts"],
+      "id": "R1.P4.NEG.SPEC",
+      "property_id": "R1.P4",
+      "polarity": "negative",
       "observable": "A changed requirement body invalidates the specification pin.",
       "test_id": "test_stale_specification_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_specification_fingerprint_fails)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Specification or test source drifts",
+      "scenario_fingerprint": "45eeecc0c10eba56c6d99d8cf494c5cacf50e2afcb2f82e39656aafca17ba51f",
+      "setup": "Execute the exact Specification or test source drifts scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
+      "red_expectation": "The case fails if Specification or test source drifts violates: A changed requirement body invalidates the specification pin.",
+      "green_expectation": "The case passes only when A changed requirement body invalidates the specification pin.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "scripts/**/*test*.py",
+        "scripts/requirement_tests.py"
+      ]
     },
     {
-      "id": "R1.P4.NEG.SOURCE", "property_id": "R1.P4", "polarity": "negative", "scenarios": ["Specification or test source drifts"],
+      "id": "R1.P4.NEG.SOURCE",
+      "property_id": "R1.P4",
+      "polarity": "negative",
       "observable": "A changed test source invalidates the case pin.",
       "test_id": "test_stale_test_source_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Specification or test source drifts",
+      "scenario_fingerprint": "45eeecc0c10eba56c6d99d8cf494c5cacf50e2afcb2f82e39656aafca17ba51f",
+      "setup": "Execute the exact Specification or test source drifts scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
+      "red_expectation": "The case fails if Specification or test source drifts violates: A changed test source invalidates the case pin.",
+      "green_expectation": "The case passes only when A changed test source invalidates the case pin.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "scripts/**/*test*.py",
+        "scripts/requirement_tests.py"
+      ]
     },
     {
-      "id": "R1.P5.POS", "property_id": "R1.P5", "polarity": "positive", "scenarios": ["Test coverage appears duplicated"],
+      "id": "R1.P5.POS",
+      "property_id": "R1.P5",
+      "polarity": "positive",
       "observable": "Several cases sharing one command execute that command once.",
       "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "distinct_reason": "Proves deduplicated command scheduling for R1.P5.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Proves deduplicated command scheduling for R1.P5.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Test coverage appears duplicated",
+      "scenario_fingerprint": "4b9cddcbd09bf81f5948870802857243b265159c8fe40c1e344367bfe2b83d29",
+      "setup": "Execute the exact Test coverage appears duplicated scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
+      "red_expectation": "The case fails if Test coverage appears duplicated violates: Several cases sharing one command execute that command once.",
+      "green_expectation": "The case passes only when Several cases sharing one command execute that command once.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R1.P5.NEG", "property_id": "R1.P5", "polarity": "negative", "scenarios": ["Test coverage appears duplicated"],
+      "id": "R1.P5.NEG",
+      "property_id": "R1.P5",
+      "polarity": "negative",
       "observable": "Duplicate case edges and command definitions are rejected.",
       "test_id": "test_duplicate_case_and_command_definitions_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Test coverage appears duplicated",
+      "scenario_fingerprint": "4b9cddcbd09bf81f5948870802857243b265159c8fe40c1e344367bfe2b83d29",
+      "setup": "Execute the exact Test coverage appears duplicated scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
+      "red_expectation": "The case fails if Test coverage appears duplicated violates: Duplicate case edges and command definitions are rejected.",
+      "green_expectation": "The case passes only when Duplicate case edges and command definitions are rejected.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R2.P1.POS", "property_id": "R2.P1", "polarity": "positive", "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
+      "id": "R2.P1.POS.S1",
+      "property_id": "R2.P1",
+      "polarity": "positive",
       "observable": "Requirement, owner and matching-path selectors return the same sorted closure.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "distinct_reason": "Proves indexed selector equivalence for R2.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Proves indexed selector equivalence for R2.P1.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "A production owner changes",
+      "scenario_fingerprint": "3c01a9459710fbdd7c4c320a452c1e3bf6e0884e80b004b7ef1e1387436c15bd",
+      "setup": "Execute the exact A production owner changes scenario at scripts/requirement_tests.py:EvidenceGraph.select.",
+      "red_expectation": "The case fails if A production owner changes violates: Requirement, owner and matching-path selectors return the same sorted closure.",
+      "green_expectation": "The case passes only when Requirement, owner and matching-path selectors return the same sorted closure.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R2.P1.NEG", "property_id": "R2.P1", "polarity": "negative", "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
+      "id": "R2.P1.POS.S2",
+      "property_id": "R2.P1",
+      "polarity": "positive",
+      "observable": "Requirement, owner and matching-path selectors return the same sorted closure.",
+      "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "Proves indexed selector equivalence for R2.P1.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Reviewer traces one specification point",
+      "scenario_fingerprint": "e0e852032c5f4bb2d32fa1234836295a74e64856ebf816355c32d8e1f69c9786",
+      "setup": "Execute the exact Reviewer traces one specification point scenario at scripts/requirement_tests.py:EvidenceGraph.select.",
+      "red_expectation": "The case fails if Reviewer traces one specification point violates: Requirement, owner and matching-path selectors return the same sorted closure.",
+      "green_expectation": "The case passes only when Requirement, owner and matching-path selectors return the same sorted closure.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R2.P1.NEG.S1",
+      "property_id": "R2.P1",
+      "polarity": "negative",
       "observable": "An unrelated changed path resolves no properties instead of a broad suite neighbor.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "distinct_reason": "The same test has a separate negative assertion excluding unrelated paths for R2.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "A production owner changes",
+      "scenario_fingerprint": "3c01a9459710fbdd7c4c320a452c1e3bf6e0884e80b004b7ef1e1387436c15bd",
+      "setup": "Execute the exact A production owner changes scenario at scripts/requirement_tests.py:EvidenceGraph.select.",
+      "red_expectation": "The case fails if A production owner changes violates: An unrelated changed path resolves no properties instead of a broad suite neighbor.",
+      "green_expectation": "The case passes only when An unrelated changed path resolves no properties instead of a broad suite neighbor.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R3.P1.POS", "property_id": "R3.P1", "polarity": "positive", "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
+      "id": "R2.P1.NEG.S2",
+      "property_id": "R2.P1",
+      "polarity": "negative",
+      "observable": "An unrelated changed path resolves no properties instead of a broad suite neighbor.",
+      "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "distinct_reason": "The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Reviewer traces one specification point",
+      "scenario_fingerprint": "e0e852032c5f4bb2d32fa1234836295a74e64856ebf816355c32d8e1f69c9786",
+      "setup": "Execute the exact Reviewer traces one specification point scenario at scripts/requirement_tests.py:EvidenceGraph.select.",
+      "red_expectation": "The case fails if Reviewer traces one specification point violates: An unrelated changed path resolves no properties instead of a broad suite neighbor.",
+      "green_expectation": "The case passes only when An unrelated changed path resolves no properties instead of a broad suite neighbor.",
+      "invalidation_dependencies": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P1.POS.S1",
+      "property_id": "R3.P1",
+      "polarity": "positive",
       "observable": "Rendered routes contain validate, affected execution and complete final execution.",
       "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Consumer validates an active change",
+      "scenario_fingerprint": "7f3ef575d0934e2fd1a20820d906b9fe51a90379426fb4141ddd1eaa75eb8d3d",
+      "setup": "Execute the exact Consumer validates an active change scenario at scripts/integration_templates.",
+      "red_expectation": "The case fails if Consumer validates an active change violates: Rendered routes contain validate, affected execution and complete final execution.",
+      "green_expectation": "The case passes only when Rendered routes contain validate, affected execution and complete final execution.",
+      "invalidation_dependencies": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R3.P1.NEG", "property_id": "R3.P1", "polarity": "negative", "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
+      "id": "R3.P1.POS.S2",
+      "property_id": "R3.P1",
+      "polarity": "positive",
+      "observable": "Rendered routes contain validate, affected execution and complete final execution.",
+      "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Consumer verifies an increment",
+      "scenario_fingerprint": "4b848e2a8884958fd78fe8d2ddca122c533370c527d83872216c27e726e3b34d",
+      "setup": "Execute the exact Consumer verifies an increment scenario at scripts/integration_templates.",
+      "red_expectation": "The case fails if Consumer verifies an increment violates: Rendered routes contain validate, affected execution and complete final execution.",
+      "green_expectation": "The case passes only when Rendered routes contain validate, affected execution and complete final execution.",
+      "invalidation_dependencies": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P1.POS.S3",
+      "property_id": "R3.P1",
+      "polarity": "positive",
+      "observable": "Rendered routes contain validate, affected execution and complete final execution.",
+      "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Consumer checks final readiness",
+      "scenario_fingerprint": "315b67c9a411fd6f81b669f79cb0dbe641f30d3869ff1c342ee990d69adaf547",
+      "setup": "Execute the exact Consumer checks final readiness scenario at scripts/integration_templates.",
+      "red_expectation": "The case fails if Consumer checks final readiness violates: Rendered routes contain validate, affected execution and complete final execution.",
+      "green_expectation": "The case passes only when Rendered routes contain validate, affected execution and complete final execution.",
+      "invalidation_dependencies": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P1.NEG.S1",
+      "property_id": "R3.P1",
+      "polarity": "negative",
       "observable": "Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
       "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "7bdd34e75abbeaab9394b1e0a0a27d531e14938aa0e76b9afe6bf52bd912c4a0",
-      "substitution": {"classification": "NO_TEST_DOUBLE"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Consumer validates an active change",
+      "scenario_fingerprint": "7f3ef575d0934e2fd1a20820d906b9fe51a90379426fb4141ddd1eaa75eb8d3d",
+      "setup": "Execute the exact Consumer validates an active change scenario at scripts/integration_templates.",
+      "red_expectation": "The case fails if Consumer validates an active change violates: Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "green_expectation": "The case passes only when Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "invalidation_dependencies": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "scripts/test_requirement_tests.py"
+      ]
     },
     {
-      "id": "R3.P2.POS", "property_id": "R3.P2", "polarity": "positive", "scenarios": ["Consumer requires a newer Go toolchain"],
+      "id": "R3.P1.NEG.S2",
+      "property_id": "R3.P1",
+      "polarity": "negative",
+      "observable": "Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Consumer verifies an increment",
+      "scenario_fingerprint": "4b848e2a8884958fd78fe8d2ddca122c533370c527d83872216c27e726e3b34d",
+      "setup": "Execute the exact Consumer verifies an increment scenario at scripts/integration_templates.",
+      "red_expectation": "The case fails if Consumer verifies an increment violates: Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "green_expectation": "The case passes only when Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "invalidation_dependencies": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P1.NEG.S3",
+      "property_id": "R3.P1",
+      "polarity": "negative",
+      "observable": "Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Consumer checks final readiness",
+      "scenario_fingerprint": "315b67c9a411fd6f81b669f79cb0dbe641f30d3869ff1c342ee990d69adaf547",
+      "setup": "Execute the exact Consumer checks final readiness scenario at scripts/integration_templates.",
+      "red_expectation": "The case fails if Consumer checks final readiness violates: Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "green_expectation": "The case passes only when Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
+      "invalidation_dependencies": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P2.POS",
+      "property_id": "R3.P2",
+      "polarity": "positive",
       "observable": "The child environment allows cached toolchain resolution while disabling dependency network access.",
       "test_id": "test_child_environment_allows_cached_required_go_toolchain_but_no_network (scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_local_verify.py", "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
-      "substitution": {"classification": "APPROVED_TEST_DOUBLE", "approval": "User-authorized workflow test work on 2026-09-23", "replaced_owner": "subprocess environment observer", "forbidden_claim": "does not prove a toolchain is installed"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "approval": "User-authorized workflow test work on 2026-09-23",
+        "replaced_owner": "subprocess environment observer",
+        "forbidden_claim": "does not prove a toolchain is installed"
+      },
+      "scenario": "Consumer requires a newer Go toolchain",
+      "scenario_fingerprint": "fc08c6be087af5bb30fb42ef631089f4c42258fc36ea5b5cee0555c2feba314b",
+      "setup": "Execute the exact Consumer requires a newer Go toolchain scenario at scripts/local_verify.py:child_environment.",
+      "red_expectation": "The case fails if Consumer requires a newer Go toolchain violates: The child environment allows cached toolchain resolution while disabling dependency network access.",
+      "green_expectation": "The case passes only when The child environment allows cached toolchain resolution while disabling dependency network access.",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py",
+        "docs/local-checks.md"
+      ]
     },
     {
-      "id": "R3.P2.NEG", "property_id": "R3.P2", "polarity": "negative", "scenarios": ["Consumer requires a newer Go toolchain"],
+      "id": "R3.P2.NEG",
+      "property_id": "R3.P2",
+      "polarity": "negative",
       "observable": "An unavailable executable remains unavailable and writes non-passing evidence.",
       "test_id": "test_missing_executable_writes_unavailable_artifact (scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_local_verify.py", "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
-      "substitution": {"classification": "APPROVED_TEST_DOUBLE", "approval": "User-authorized workflow test work on 2026-09-23", "replaced_owner": "missing child executable", "forbidden_claim": "does not prove Go dependency availability"}
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "approval": "User-authorized workflow test work on 2026-09-23",
+        "replaced_owner": "missing child executable",
+        "forbidden_claim": "does not prove Go dependency availability"
+      },
+      "scenario": "Consumer requires a newer Go toolchain",
+      "scenario_fingerprint": "fc08c6be087af5bb30fb42ef631089f4c42258fc36ea5b5cee0555c2feba314b",
+      "setup": "Execute the exact Consumer requires a newer Go toolchain scenario at scripts/local_verify.py:child_environment.",
+      "red_expectation": "The case fails if Consumer requires a newer Go toolchain violates: An unavailable executable remains unavailable and writes non-passing evidence.",
+      "green_expectation": "The case passes only when An unavailable executable remains unavailable and writes non-passing evidence.",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py",
+        "docs/local-checks.md"
+      ]
+    },
+    {
+      "id": "R1.P1.NEG.SINGLE_SCENARIO_CONTRACT",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "observable": "A case missing its single scenario fingerprint, setup, red/green expectation, or invalidation dependency is rejected.",
+      "test_id": "test_case_requires_one_exact_scenario_and_review_contract (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract)",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "146b0024b4e2139672166e935ebeba087f188d296a608bd033121c69f52837b8",
+      "setup": "Mutate one required single-scenario case field at a time in an otherwise valid graph.",
+      "red_expectation": "A graph that accepts a broad or review-incomplete case fails the contract.",
+      "green_expectation": "Every missing or stale single-scenario review field is rejected with a deterministic error.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "openspec/changes/**/verification.json",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ],
+      "distinct_reason": "Directly proves the schema-v2 single-scenario and review-contract fields rather than only polarity coverage."
     }
   ],
   "commands": [
     {
       "id": "workflow-evidence-unit-tests",
       "runner": "command",
-      "argv": ["python3", "-B", "-m", "unittest", "scripts.test_requirement_tests", "scripts.test_local_verify", "-v"],
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_requirement_tests",
+        "scripts.test_local_verify",
+        "-v"
+      ],
       "cwd": ".",
       "env": {},
       "timeout_seconds": 120,
@@ -236,7 +817,8 @@
         "test_duplicate_case_and_command_definitions_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail)",
         "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
         "test_child_environment_allows_cached_required_go_toolchain_but_no_network (scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network)",
-        "test_missing_executable_writes_unavailable_artifact (scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact)"
+        "test_missing_executable_writes_unavailable_artifact (scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact)",
+        "test_case_requires_one_exact_scenario_and_review_contract (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract)"
       ]
     }
   ]

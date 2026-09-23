@@ -25,3 +25,8 @@
 - [x] 4.3 Add the Smart Example GMX graph with all forty requirements/every scenario, explicit planned positive/negative cases and exact implemented I-1/I-2 cases; the I-1 property selection resolves 19 cases through two deduplicated commands.
 - [x] 4.4 Repair the two iteration-one fixtures, add `GMX-C02-TD-01..04` and `GMX-C03-TD-01` declarations, execute all 19 selected C02/C03 cases on stabilized Smart Example commit `e34a34a7f7d2b8e8ea04ec0c493de688c803256d`, and replace the false checkpoint claim with exact observed evidence.
 - [ ] 4.5 Run Smart Example workflow/spec validation and full current required graph closure once after final relevant edits; record any later GMX requirements as planned/incomplete rather than passed.
+
+## 5. Review-driven scenario precision
+
+- [x] 5.1 Reject multi-scenario case claims; pin every case to one exact scenario fingerprint and require setup, observable, red expectation, green expectation and invalidation dependencies.
+- [ ] 5.2 Migrate the shared and Smart Example graphs to schema v2, add the missing GMX stale/flat/portfolio cases, run the affected closures, update the Smart pin and retain final green workflow evidence.
