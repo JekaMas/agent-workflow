@@ -21,7 +21,7 @@
 ## 4. Shared and consumer proof
 
 - [x] 4.1 Add shared unit and lifecycle fixtures covering graph validation, search, execution, deduplication, drift and failure semantics; run the exact affected tests and `make check`.
-- [ ] 4.2 Publish a reviewable shared branch/PR, record its exact revision, and update Smart Example's pinned submodule/rendered integration without editing generated consumers independently.
-- [ ] 4.3 Add the Smart Example GMX graph with all specification requirements/scenarios and planned positive/negative cases; mark only implemented cases executable and verify iteration-one selection resolves the complete C02/C03 closure.
-- [ ] 4.4 Repair the two iteration-one fixtures, add case-level substitution declarations, execute all selected C02/C03 graph cases on the stabilized Smart Example tree, and replace the false checkpoint claim with exact observed evidence.
+- [x] 4.2 Publish reviewable PR #6 at shared revision `9216236921ad3555a5a9098347a43fded15975ac`, and update Smart Example commit `e34a34a7f7d2b8e8ea04ec0c493de688c803256d` to that exact submodule pin plus rendered integration.
+- [x] 4.3 Add the Smart Example GMX graph with all forty requirements/every scenario, explicit planned positive/negative cases and exact implemented I-1/I-2 cases; the I-1 property selection resolves 19 cases through two deduplicated commands.
+- [x] 4.4 Repair the two iteration-one fixtures, add `GMX-C02-TD-01..04` and `GMX-C03-TD-01` declarations, execute all 19 selected C02/C03 cases on stabilized Smart Example commit `e34a34a7f7d2b8e8ea04ec0c493de688c803256d`, and replace the false checkpoint claim with exact observed evidence.
 - [ ] 4.5 Run Smart Example workflow/spec validation and full current required graph closure once after final relevant edits; record any later GMX requirements as planned/incomplete rather than passed.
