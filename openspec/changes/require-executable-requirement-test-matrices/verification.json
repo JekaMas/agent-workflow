@@ -100,105 +100,105 @@
       "id": "R1.P1.POS", "property_id": "R1.P1", "polarity": "positive", "scenarios": ["Requirement and scenario coverage is complete"],
       "observable": "A complete graph constructs and resolves its exact closure.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "distinct_reason": "Establishes complete graph construction for R1.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P1.NEG", "property_id": "R1.P1", "polarity": "negative", "scenarios": ["Requirement and scenario coverage is complete"],
       "observable": "Missing polarity or uncovered scenario is rejected.",
       "test_id": "test_missing_polarity_and_uncovered_scenario_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_polarity_and_uncovered_scenario_fail)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P2.POS", "property_id": "R1.P2", "polarity": "positive", "scenarios": ["Affected increment is applied or verified"],
       "observable": "One canonical command executes both selected cases exactly once.",
       "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "distinct_reason": "Proves execution and exact observation for R1.P2.", "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P2.NEG", "property_id": "R1.P2", "polarity": "negative", "scenarios": ["Affected increment is applied or verified"],
       "observable": "An unregistered marker or nonzero command cannot pass.",
       "test_id": "test_missing_expected_identity_and_command_failure_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_expected_identity_and_command_failure_cannot_pass)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P3.POS", "property_id": "R1.P3", "polarity": "positive", "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
       "observable": "A complete local closure with all exact identities passes.",
       "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "distinct_reason": "Establishes the successful final-closure state for R1.P3.", "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P3.NEG", "property_id": "R1.P3", "polarity": "negative", "scenarios": ["Final implementation readiness is checked", "Required evidence crosses an authority boundary"],
       "observable": "Planned or protected cases stay incomplete without authority.",
       "test_id": "test_planned_and_protected_cases_cannot_pass (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P4.POS", "property_id": "R1.P4", "polarity": "positive", "scenarios": ["Specification or test source drifts"],
       "observable": "Current specification and test-source pins admit the graph.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "distinct_reason": "Establishes matching current pins for R1.P4.", "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P4.NEG.SPEC", "property_id": "R1.P4", "polarity": "negative", "scenarios": ["Specification or test source drifts"],
       "observable": "A changed requirement body invalidates the specification pin.",
       "test_id": "test_stale_specification_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_specification_fingerprint_fails)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P4.NEG.SOURCE", "property_id": "R1.P4", "polarity": "negative", "scenarios": ["Specification or test source drifts"],
       "observable": "A changed test source invalidates the case pin.",
       "test_id": "test_stale_test_source_fingerprint_fails (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P5.POS", "property_id": "R1.P5", "polarity": "positive", "scenarios": ["Test coverage appears duplicated"],
       "observable": "Several cases sharing one command execute that command once.",
       "test_id": "test_one_canonical_command_executes_both_cases_once (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "distinct_reason": "Proves deduplicated command scheduling for R1.P5.", "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R1.P5.NEG", "property_id": "R1.P5", "polarity": "negative", "scenarios": ["Test coverage appears duplicated"],
       "observable": "Duplicate case edges and command definitions are rejected.",
       "test_id": "test_duplicate_case_and_command_definitions_fail (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R2.P1.POS", "property_id": "R2.P1", "polarity": "positive", "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
       "observable": "Requirement, owner and matching-path selectors return the same sorted closure.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "distinct_reason": "Proves indexed selector equivalence for R2.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R2.P1.NEG", "property_id": "R2.P1", "polarity": "negative", "scenarios": ["A production owner changes", "Reviewer traces one specification point"],
       "observable": "An unrelated changed path resolves no properties instead of a broad suite neighbor.",
       "test_id": "test_valid_graph_queries_deterministic_affected_closure (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "distinct_reason": "The same test has a separate negative assertion excluding unrelated paths for R2.P1.", "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R3.P1.POS", "property_id": "R3.P1", "polarity": "positive", "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
       "observable": "Rendered routes contain validate, affected execution and complete final execution.",
       "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {
       "id": "R3.P1.NEG", "property_id": "R3.P1", "polarity": "negative", "scenarios": ["Consumer validates an active change", "Consumer verifies an increment", "Consumer checks final readiness"],
       "observable": "Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain.",
       "test_id": "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
-      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "fa0fcae7918fe1eefa9b169f1432abfee0cabb93bc9ee75adca175f67e82f2af",
+      "command_id": "workflow-evidence-unit-tests", "state": "implemented", "source_path": "scripts/test_requirement_tests.py", "source_sha256": "6bf4ae64fd200ae130fce1aac1f9f57d26827c1accd6e6d1b14056671c187427",
       "substitution": {"classification": "NO_TEST_DOUBLE"}
     },
     {

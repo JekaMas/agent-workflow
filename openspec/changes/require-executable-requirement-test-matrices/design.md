@@ -116,8 +116,9 @@ fails without network installation.
 ## Risks / Trade-offs
 
 - **[Large existing changes need initial mapping work]** → Allow structurally
-  complete `planned` cases during implementation; selected/final execution treats
-  them as incomplete.
+  complete `planned` cases during implementation, including an explicit
+  `UNDECIDED` substitution boundary; selected/final execution treats them as
+  incomplete, and implementation is invalid until the boundary is classified.
 - **[One test contains several subcases]** → Store exact subtest identities when
   emitted; otherwise the parent can support multiple edges only with distinct
   observables and reviewable assertions.

@@ -255,9 +255,11 @@ class EvidenceGraph:
                 raise MatrixError(f"case {identity} source_sha256 must be a SHA-256 fingerprint")
             substitution = row.get("substitution")
             if not isinstance(substitution, dict) or substitution.get("classification") not in {
-                "NO_TEST_DOUBLE", "APPROVED_TEST_DOUBLE", "EXTERNAL_BOUNDARY"
+                "NO_TEST_DOUBLE", "APPROVED_TEST_DOUBLE", "EXTERNAL_BOUNDARY", "UNDECIDED"
             }:
                 raise MatrixError(f"case {identity} must disclose its substitution classification")
+            if state == "implemented" and substitution.get("classification") == "UNDECIDED":
+                raise MatrixError(f"implemented case {identity} cannot have an undecided substitution boundary")
             key = (property_id, polarity, observable, test_id, *sorted(set(case_scenarios)))
             if key in seen_case_key:
                 raise MatrixError(f"duplicate case edge for property {property_id}: {identity}")

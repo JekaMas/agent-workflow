@@ -182,6 +182,7 @@ class RequirementEvidenceGraphTest(unittest.TestCase):
 
     def test_planned_and_protected_cases_cannot_pass(self) -> None:
         self.manifest["cases"][0]["state"] = "planned"
+        self.manifest["cases"][0]["substitution"] = {"classification": "UNDECIDED"}
         self.write_manifest()
         graph = self.graph()
         report = evidence.run_selection(
@@ -191,6 +192,10 @@ class RequirementEvidenceGraphTest(unittest.TestCase):
         self.assertEqual("planned", report["cases"]["R1.P1.POS"]["status"])
 
         self.manifest["cases"][0]["state"] = "implemented"
+        self.write_manifest()
+        with self.assertRaisesRegex(evidence.MatrixError, "cannot have an undecided substitution"):
+            self.graph()
+        self.manifest["cases"][0]["substitution"] = {"classification": "NO_TEST_DOUBLE"}
         self.manifest["commands"][0]["authority"] = "protected"
         self.write_manifest()
         graph = self.graph()
