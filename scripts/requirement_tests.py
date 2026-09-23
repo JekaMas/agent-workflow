@@ -873,9 +873,15 @@ def run_selection(
         exit_code = process["exit_code"]
         stdout = str(process["stdout"])
         stderr = str(process["stderr"])
-        combined = stdout + "\n" + stderr
+        stdout_complete = Path(str(process["stdout_artifact"])).read_text(
+            encoding="utf-8", errors="replace"
+        )
+        stderr_complete = Path(str(process["stderr_artifact"])).read_text(
+            encoding="utf-8", errors="replace"
+        )
+        combined = stdout_complete + "\n" + stderr_complete
         if row["runner"] == "go-test-json":
-            observed = parse_go_events(stdout)
+            observed = parse_go_events(stdout_complete)
         elif row["runner"] == "cargo-test":
             observed = parse_cargo_events(combined, row["test_namespace"])
         elif row["runner"] == "python-unittest":

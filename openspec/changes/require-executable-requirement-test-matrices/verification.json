@@ -281,7 +281,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -309,7 +309,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -337,7 +337,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -365,7 +365,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -393,7 +393,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -421,7 +421,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -449,7 +449,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -477,7 +477,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -505,7 +505,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -533,7 +533,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -561,7 +561,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -589,7 +589,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -617,7 +617,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -645,7 +645,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -673,7 +673,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -701,7 +701,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -729,7 +729,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -757,7 +757,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -785,7 +785,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -813,7 +813,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -841,7 +841,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -869,7 +869,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -897,7 +897,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -925,7 +925,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -953,7 +953,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -981,7 +981,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1009,7 +1009,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1121,7 +1121,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1149,7 +1149,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1177,7 +1177,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1205,7 +1205,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1289,7 +1289,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1317,7 +1317,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1345,7 +1345,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1373,7 +1373,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1401,7 +1401,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1429,7 +1429,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1457,7 +1457,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1485,7 +1485,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1513,7 +1513,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1541,7 +1541,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1569,7 +1569,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1597,7 +1597,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "204c0b45324b2b438532f725554450ebbc34f247ebb22ea9732828a89293370f",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1778,6 +1778,34 @@
         "classification": "NO_TEST_DOUBLE"
       },
       "distinct_reason": "Check decides discovered coverage disposition: test_missing_lane_scope_or_disposition_fails proves the R4.P2 negative edge."
+    },
+    {
+      "id": "R1.P7.POSITIVE.06",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_observer_reads_exact_identity_beyond_preview with the required unittest identity emitted after more than 64 KiB of output.",
+      "observable": "The full retained artifact, not the bounded preview, supplies the exact passing identity.",
+      "red_expectation": "A preview-only observer marks the required late identity missing.",
+      "green_expectation": "The observer parses the complete retained artifact and records the late identity as passed.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_observer_reads_exact_identity_beyond_preview",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "c6cf85b1d4d44f468801b0d7a0c9e497865be9e15c5e47bb98d91c0d22851090",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: the complete artifact remains the observer source beyond the preview boundary."
     }
   ],
   "commands": [

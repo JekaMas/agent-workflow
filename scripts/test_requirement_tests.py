@@ -556,6 +556,23 @@ class OwnershipTest(unittest.TestCase):
         self.assertTrue(command["stdout_truncated"])
         self.assertGreater(Path(command["stdout_artifact"]).stat().st_size, 64 * 1024)
 
+    def test_observer_reads_exact_identity_beyond_preview(self) -> None:
+        code = (
+            "import sys,unittest; "
+            "sys.stderr.write('x'*(70*1024)+'\\n'); "
+            "sys.argv=['unittest','-v','tests.ownership_test']; "
+            "unittest.main(module=None)"
+        )
+        self.manifest["commands"][0]["argv"] = [sys.executable, "-c", code, "unittest"]
+        self.write_manifest()
+        graph = self.graph()
+        report = evidence.run_selection(graph, graph.select(all_cases=True), self.root / "late.json")
+        self.assertEqual("passed", report["status"])
+        self.assertTrue(report["commands"][0]["stderr_truncated"])
+        self.assertEqual(
+            "passed", report["cases"]["R1.P1.DIFFERENT.NEG"]["status"],
+        )
+
     def test_manifest_and_output_cannot_escape_change_or_repository(self) -> None:
         outside = self.root.parent / "outside-verification.json"
         outside.write_text(json.dumps(self.manifest))
