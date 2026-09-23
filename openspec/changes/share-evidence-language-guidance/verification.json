@@ -1,0 +1,310 @@
+{
+  "schema_version": 2,
+  "change": "share-evidence-language-guidance",
+  "requirements": [
+    {
+      "id": "R1",
+      "capability": "conditional-engineering-guidance",
+      "title": "Conditional portable guidance",
+      "fingerprint": "5e05b24bbdab22c1efd6725a87bc896fb13a113c99e638b606470ad99425a569"
+    },
+    {
+      "id": "R2",
+      "capability": "conditional-engineering-guidance",
+      "title": "Preserved consumer contracts",
+      "fingerprint": "d7b423f6bd1458688ed1d242f31dab8fb4e06f183e39a042ac1bb72e5d50d404"
+    }
+  ],
+  "properties": [
+    {
+      "id": "R1.P1",
+      "requirement_id": "R1",
+      "statement": "Applicable specialist guidance resolves from the pinned shared source.",
+      "scenarios": [
+        "Applicable engineering question"
+      ],
+      "owner": "bootstrap specialist routes",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py",
+        "scripts/test_specialist_skills.py"
+      ]
+    },
+    {
+      "id": "R1.P2",
+      "requirement_id": "R1",
+      "statement": "Unselected specialist routes are absent without overwriting consumer files.",
+      "scenarios": [
+        "Routine text change"
+      ],
+      "owner": "bootstrap language selection",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R2.P3",
+      "requirement_id": "R2",
+      "statement": "Consumer entrypoints and product instructions survive extraction and updates.",
+      "scenarios": [
+        "Existing consumer"
+      ],
+      "owner": "bootstrap managed update",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R2.P4",
+      "requirement_id": "R2",
+      "statement": "All packaged references resolve and missing ones fail validation.",
+      "scenarios": [
+        "Missing reference"
+      ],
+      "owner": "specialist reference graph",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_specialist_skills.py"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "R1.P1.POSITIVE.01",
+      "property_id": "R1.P1",
+      "polarity": "positive",
+      "scenario": "Applicable engineering question",
+      "scenario_fingerprint": "dd4fa36690e3764a989c1aafc8964764d0d6dc9057294c7914b73d99687ca2cf",
+      "setup": "Run test_specialists_resolve_from_both_clients_in_fresh_clone against the share-evidence-language-guidance Applicable engineering question positive fixture.",
+      "observable": "test_specialists_resolve_from_both_clients_in_fresh_clone observes the positive boundary for Applicable engineering question.",
+      "red_expectation": "Without the shared contract, test_specialists_resolve_from_both_clients_in_fresh_clone exposes the forbidden positive outcome.",
+      "green_expectation": "With the shared contract, test_specialists_resolve_from_both_clients_in_fresh_clone reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_specialists_resolve_from_both_clients_in_fresh_clone",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Applicable engineering question: test_specialists_resolve_from_both_clients_in_fresh_clone proves the positive edge."
+    },
+    {
+      "id": "R1.P1.NEGATIVE.01",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Applicable engineering question",
+      "scenario_fingerprint": "dd4fa36690e3764a989c1aafc8964764d0d6dc9057294c7914b73d99687ca2cf",
+      "setup": "Run test_missing_declared_reference_is_rejected against the share-evidence-language-guidance Applicable engineering question negative fixture.",
+      "observable": "test_missing_declared_reference_is_rejected observes the negative boundary for Applicable engineering question.",
+      "red_expectation": "Without the shared contract, test_missing_declared_reference_is_rejected exposes the forbidden negative outcome.",
+      "green_expectation": "With the shared contract, test_missing_declared_reference_is_rejected reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_specialist_skills.py",
+      "source_sha256": "d7b584eb65e055d07e0cd609cf659c0227d2bf2329c99065850eeb3eb9641e1e",
+      "invalidation_dependencies": [
+        "scripts/test_specialist_skills.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Applicable engineering question: test_missing_declared_reference_is_rejected proves the negative edge."
+    },
+    {
+      "id": "R1.P2.POSITIVE.01",
+      "property_id": "R1.P2",
+      "polarity": "positive",
+      "scenario": "Routine text change",
+      "scenario_fingerprint": "eceb0293d989e06ba283054c4ddd480d79cf6042caa68dc86acd9c36383a9896",
+      "setup": "Run test_language_selection_and_removal_boundary against the share-evidence-language-guidance Routine text change positive fixture.",
+      "observable": "test_language_selection_and_removal_boundary observes the positive boundary for Routine text change.",
+      "red_expectation": "Without the shared contract, test_language_selection_and_removal_boundary exposes the forbidden positive outcome.",
+      "green_expectation": "With the shared contract, test_language_selection_and_removal_boundary reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_language_selection_and_removal_boundary",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Routine text change: test_language_selection_and_removal_boundary proves the positive edge."
+    },
+    {
+      "id": "R1.P2.NEGATIVE.01",
+      "property_id": "R1.P2",
+      "polarity": "negative",
+      "scenario": "Routine text change",
+      "scenario_fingerprint": "eceb0293d989e06ba283054c4ddd480d79cf6042caa68dc86acd9c36383a9896",
+      "setup": "Run test_specialist_collision_does_not_overwrite against the share-evidence-language-guidance Routine text change negative fixture.",
+      "observable": "test_specialist_collision_does_not_overwrite observes the negative boundary for Routine text change.",
+      "red_expectation": "Without the shared contract, test_specialist_collision_does_not_overwrite exposes the forbidden negative outcome.",
+      "green_expectation": "With the shared contract, test_specialist_collision_does_not_overwrite reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_specialist_collision_does_not_overwrite",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Routine text change: test_specialist_collision_does_not_overwrite proves the negative edge."
+    },
+    {
+      "id": "R2.P3.POSITIVE.01",
+      "property_id": "R2.P3",
+      "polarity": "positive",
+      "scenario": "Existing consumer",
+      "scenario_fingerprint": "17688ae0ab795d506d00f4e408ae6ffc2107e93f4002f8acf6727d8244b662b1",
+      "setup": "Run test_adoption_and_repeat_preserve_domain_and_exact_pin against the share-evidence-language-guidance Existing consumer positive fixture.",
+      "observable": "test_adoption_and_repeat_preserve_domain_and_exact_pin observes the positive boundary for Existing consumer.",
+      "red_expectation": "Without the shared contract, test_adoption_and_repeat_preserve_domain_and_exact_pin exposes the forbidden positive outcome.",
+      "green_expectation": "With the shared contract, test_adoption_and_repeat_preserve_domain_and_exact_pin reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Existing consumer: test_adoption_and_repeat_preserve_domain_and_exact_pin proves the positive edge."
+    },
+    {
+      "id": "R2.P3.NEGATIVE.01",
+      "property_id": "R2.P3",
+      "polarity": "negative",
+      "scenario": "Existing consumer",
+      "scenario_fingerprint": "17688ae0ab795d506d00f4e408ae6ffc2107e93f4002f8acf6727d8244b662b1",
+      "setup": "Run test_modified_owned_file_blocks_update against the share-evidence-language-guidance Existing consumer negative fixture.",
+      "observable": "test_modified_owned_file_blocks_update observes the negative boundary for Existing consumer.",
+      "red_expectation": "Without the shared contract, test_modified_owned_file_blocks_update exposes the forbidden negative outcome.",
+      "green_expectation": "With the shared contract, test_modified_owned_file_blocks_update reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Existing consumer: test_modified_owned_file_blocks_update proves the negative edge."
+    },
+    {
+      "id": "R2.P4.POSITIVE.01",
+      "property_id": "R2.P4",
+      "polarity": "positive",
+      "scenario": "Missing reference",
+      "scenario_fingerprint": "798d996a333bc662572b8f632e1f5f9d9610d7c36b0ca14be1b2cec94f0ac046",
+      "setup": "Run test_declared_references_exist against the share-evidence-language-guidance Missing reference positive fixture.",
+      "observable": "test_declared_references_exist observes the positive boundary for Missing reference.",
+      "red_expectation": "Without the shared contract, test_declared_references_exist exposes the forbidden positive outcome.",
+      "green_expectation": "With the shared contract, test_declared_references_exist reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_specialist_skills.SpecialistPackages.test_declared_references_exist",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_specialist_skills.py",
+      "source_sha256": "d7b584eb65e055d07e0cd609cf659c0227d2bf2329c99065850eeb3eb9641e1e",
+      "invalidation_dependencies": [
+        "scripts/test_specialist_skills.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Missing reference: test_declared_references_exist proves the positive edge."
+    },
+    {
+      "id": "R2.P4.NEGATIVE.01",
+      "property_id": "R2.P4",
+      "polarity": "negative",
+      "scenario": "Missing reference",
+      "scenario_fingerprint": "798d996a333bc662572b8f632e1f5f9d9610d7c36b0ca14be1b2cec94f0ac046",
+      "setup": "Run test_missing_declared_reference_is_rejected against the share-evidence-language-guidance Missing reference negative fixture.",
+      "observable": "test_missing_declared_reference_is_rejected observes the negative boundary for Missing reference.",
+      "red_expectation": "Without the shared contract, test_missing_declared_reference_is_rejected exposes the forbidden negative outcome.",
+      "green_expectation": "With the shared contract, test_missing_declared_reference_is_rejected reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected",
+      "command_id": "share-evidence-language-guidance-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_specialist_skills.py",
+      "source_sha256": "d7b584eb65e055d07e0cd609cf659c0227d2bf2329c99065850eeb3eb9641e1e",
+      "invalidation_dependencies": [
+        "scripts/test_specialist_skills.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Missing reference: test_missing_declared_reference_is_rejected proves the negative edge."
+    }
+  ],
+  "commands": [
+    {
+      "id": "share-evidence-language-guidance-unit-tests",
+      "runner": "python-unittest",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_bootstrap",
+        "scripts.test_specialist_skills",
+        "-v"
+      ],
+      "cwd": ".",
+      "env": {},
+      "timeout_seconds": 180,
+      "authority": "local"
+    }
+  ]
+}

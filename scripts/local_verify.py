@@ -11,25 +11,30 @@ import math
 import os
 from pathlib import Path
 import re
-import signal
 import subprocess
 import sys
 import tempfile
-import time
 from collections.abc import Iterable
+
+try:
+    from scripts.process_runner import PREVIEW_BYTES, run_process
+except ModuleNotFoundError:  # Direct `python scripts/local_verify.py` route.
+    from process_runner import PREVIEW_BYTES, run_process
 
 
 OPENSPEC_VERSION = "1.13.1"
 GOLANGCI_VERSION = "2.11.3"
-PREVIEW_BYTES = 64 * 1024
-
-
 def workflow_tests() -> int:
     """Run only workflow-mechanics tests, rejecting missing or skipped coverage."""
     import unittest
 
     sys.path.insert(0, os.environ.get("LOCAL_VERIFY_PROJECT_ROOT", str(Path(__file__).resolve().parents[1])))
-    names = ["scripts.test_local_verify", "scripts.test_openspec_workflow"]
+    names = [
+        "scripts.test_local_verify",
+        "scripts.test_openspec_workflow",
+        "scripts.test_requirement_tests",
+        "scripts.test_discovery_ledger",
+    ]
     suites = [unittest.defaultTestLoader.loadTestsFromName(name) for name in names]
     selected = {name: suite.countTestCases() for name, suite in zip(names, suites)}
     if any(count == 0 for count in selected.values()):
@@ -42,40 +47,6 @@ def workflow_tests() -> int:
                       "errors": len(result.errors), "skipped": len(result.skipped),
                       "claim": "synthetic workflow/parser/process fixtures only"}))
     return 0 if passed else 1
-
-
-def run_process(command: list[str], cwd: Path, env: dict[str, str], timeout: float, artifact_prefix: Path | None = None) -> dict:
-    started = time.monotonic()
-    prefix = artifact_prefix or Path(tempfile.mkdtemp(prefix="local-verify-")) / "process"
-    prefix.parent.mkdir(parents=True, exist_ok=True)
-    stdout_path, stderr_path = Path(f"{prefix}.stdout.log"), Path(f"{prefix}.stderr.log")
-    status = "exited"
-    exit_code = None
-    with stdout_path.open("wb") as stdout_file, stderr_path.open("wb") as stderr_file:
-        try:
-            process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout_file,
-                                       stderr=stderr_file, start_new_session=True)
-            try:
-                exit_code = process.wait(timeout=timeout)
-            except subprocess.TimeoutExpired:
-                status = "timed_out"
-                try:
-                    os.killpg(process.pid, signal.SIGKILL)
-                except ProcessLookupError:
-                    pass
-                exit_code = process.wait()
-        except OSError as error:
-            status = "unavailable"
-            stderr_file.write(str(error).encode())
-    result = {"command": command, "exit_code": exit_code, "status": status,
-              "duration_seconds": time.monotonic() - started}
-    for stream, path in (("stdout", stdout_path), ("stderr", stderr_path)):
-        with path.open("rb") as source:
-            preview = source.read(PREVIEW_BYTES)
-        result[stream] = preview.decode("utf-8", errors="replace")
-        result[f"{stream}_artifact"] = str(path.resolve())
-        result[f"{stream}_truncated"] = path.stat().st_size > PREVIEW_BYTES
-    return result
 
 
 def openspec_result(raw: str, cwd: Path, change: str) -> tuple[str, dict]:
@@ -352,7 +323,7 @@ def main(argv: list[str] | None = None) -> int:
               "status": "invalid_configuration", "claim": "selected check only; not overall DONE", "steps": []}
     env = os.environ.copy()
     env.update(OPENSPEC_TELEMETRY="0", OPENSPEC_NO_UPDATE_CHECK="1", DO_NOT_TRACK="1",
-               GOWORK="off", GOTOOLCHAIN="local", GOFLAGS="-mod=readonly", GOPROXY="off", GONOPROXY="none",
+               GOWORK="off", GOTOOLCHAIN="auto", GOFLAGS="-mod=readonly", GOPROXY="off", GONOPROXY="none",
                CARGO_NET_OFFLINE="true", RUSTUP_AUTO_INSTALL="0")
     try:
         if not cwd.is_dir() or not math.isfinite(args.timeout) or args.timeout <= 0:

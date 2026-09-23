@@ -7,7 +7,9 @@ description: Design or review consequential properties, test oracles, coverage, 
 
 Read the selected requirements and actual owner/boundaries, then the relevant
 section of `references/verification.md`. Match existing properties and tests before
-adding coverage. Consumer policy owns protected actions and required acceptance.
+adding coverage. Behavioral OpenSpec changes use the change-owned executable
+`verification.json` DAG; routine nonbehavioral edits remain proportionate.
+Consumer policy owns protected actions and required acceptance.
 Return findings/evidence to the current change; no separate task list or role is
 created. Routine text edits need proportionate inspection, not a test matrix.
 

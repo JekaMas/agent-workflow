@@ -118,6 +118,16 @@ python3 -B .agents/workflow/scripts/workflow_publication.py --root . --policy .a
 python3 -B .agents/workflow/scripts/check_opsx_routes.py --root .
 ```
 
+Behavioral changes additionally keep
+`openspec/changes/<change>/verification.json`; behavioral explore/check decisions
+also keep `discovery.json` for exact, semantic Context and capability-aware
+JetBrains-index evidence plus the current/new/validation/no-change disposition.
+Consumer check adapters expose
+structural graph validation with the ordinary spec check, an affected query/run
+during apply and verify, and `requirement_tests.py run --all --require-clean`
+during final readiness. Read the tool from the exact `.agents/workflow` pin; do not copy a
+second implementation into the consumer.
+
 Inspect native OpenSpec status/instructions for an existing selected change or a
 disposable fixture; do not create or archive a product change solely for setup.
 Refresh Codex/Claude discovery if needed. After a fresh clone, developers only need

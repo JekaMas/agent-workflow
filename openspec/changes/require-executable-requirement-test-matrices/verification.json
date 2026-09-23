@@ -1,0 +1,1859 @@
+{
+  "schema_version": 2,
+  "change": "require-executable-requirement-test-matrices",
+  "requirements": [
+    {
+      "id": "R1",
+      "capability": "adaptive-development-workflow",
+      "title": "Executable requirement evidence graph",
+      "fingerprint": "83484a0330c19bdf9c49883ef3d80fe3ce6ab4107810815254a7284497994b1b"
+    },
+    {
+      "id": "R2",
+      "capability": "adaptive-development-workflow",
+      "title": "Searchable evidence ownership",
+      "fingerprint": "885a6f7f2afa9f4153c775896f6c2d7245ccc96f566dad1c0c09494a3a0e8f11"
+    },
+    {
+      "id": "R3",
+      "capability": "portable-workflow",
+      "title": "Portable requirement evidence tooling",
+      "fingerprint": "57a9ba6cf17ba9cc8d58b7c196e25c629682d3acd083e26b86f7cceab465c989"
+    },
+    {
+      "id": "R4",
+      "capability": "adaptive-development-workflow",
+      "title": "Search-backed OpenSpec decisions",
+      "fingerprint": "0bec0969bf68f85827c754f44d5289ab3d918ffc9bafd309aae06101e41ea59d"
+    }
+  ],
+  "properties": [
+    {
+      "id": "R1.P1",
+      "requirement_id": "R1",
+      "statement": "Every behavioral scenario has normalized, source-owned, discriminating independent positive and negative exact tests.",
+      "scenarios": [
+        "Requirement and scenario coverage is complete"
+      ],
+      "owner": "EvidenceGraph.validate",
+      "oracle": "Manifest rejection and accepted fixture graph.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R1.P2",
+      "requirement_id": "R1",
+      "statement": "Changed production and case dependencies select only the affected closure and loaded results become stale on dependency drift.",
+      "scenarios": [
+        "Affected increment is applied or verified"
+      ],
+      "owner": "EvidenceGraph.select",
+      "oracle": "Selected case IDs and evidence fingerprints.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R1.P3",
+      "requirement_id": "R1",
+      "statement": "Typed observers require exact passing identities and reject missing, skipped, failed, planned or marker-only behavioral evidence.",
+      "scenarios": [
+        "Final implementation readiness is checked"
+      ],
+      "owner": "run_selection",
+      "oracle": "Per-case observed state and final report status.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R1.P4",
+      "requirement_id": "R1",
+      "statement": "Spec, scenario, source, command and dependency drift invalidate historical evidence.",
+      "scenarios": [
+        "Specification or test source drifts"
+      ],
+      "owner": "case_evidence_fingerprint",
+      "oracle": "Current versus retained evidence fingerprint.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ]
+    },
+    {
+      "id": "R1.P5",
+      "requirement_id": "R1",
+      "statement": "Canonical execution tuples deduplicate while overlapping graph edges remain explicit and valid.",
+      "scenarios": [
+        "Test coverage appears duplicated"
+      ],
+      "owner": "EvidenceGraph.validate",
+      "oracle": "Duplicate rejection and one execution record.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R1.P6",
+      "requirement_id": "R1",
+      "statement": "Protected or unavailable evidence remains blocked while authorized local evidence executes.",
+      "scenarios": [
+        "Required evidence crosses an authority boundary"
+      ],
+      "owner": "run_selection",
+      "oracle": "Authority-blocked versus passed case status.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R1.P7",
+      "requirement_id": "R1",
+      "statement": "Execution policy, containment, process groups, complete artifacts and provenance are fail closed and reproducible.",
+      "scenarios": [
+        "Verification execution is bounded and reproducible"
+      ],
+      "owner": "run_process/run_selection",
+      "oracle": "Exit, timeout, artifacts, selectors, fingerprints and Git state.",
+      "source_globs": [
+        "scripts/process_runner.py",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py",
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py"
+      ]
+    },
+    {
+      "id": "R1.P8",
+      "requirement_id": "R1",
+      "statement": "Only ADDED/MODIFIED behavioral requirements are graphed; purely historical deltas require no manifest.",
+      "scenarios": [
+        "Delta specification contains non-behavioral history"
+      ],
+      "owner": "parse_delta_specs/main",
+      "oracle": "Parsed requirement keys and not_required status.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R2.P1",
+      "requirement_id": "R2",
+      "statement": "Path glob semantics and reverse indexes select exactly mapped owners and reject unmapped paths.",
+      "scenarios": [
+        "A production owner changes"
+      ],
+      "owner": "EvidenceGraph.select",
+      "oracle": "Sorted property/case closure or explicit unmapped error.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R2.P2",
+      "requirement_id": "R2",
+      "statement": "Query exposes exact graph nodes and current or stale observed status, never suite-count substitutes.",
+      "scenarios": [
+        "Reviewer traces one specification point"
+      ],
+      "owner": "EvidenceGraph.describe",
+      "oracle": "Detailed nodes and loaded status.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P1",
+      "requirement_id": "R3",
+      "statement": "Rendered routes and repository checks validate the graph and discovery ledger without claiming execution.",
+      "scenarios": [
+        "Consumer validates an active change"
+      ],
+      "owner": "integration templates/Makefile",
+      "oracle": "Rendered contract and structural command presence.",
+      "source_globs": [
+        "scripts/integration_templates/**",
+        "openspec/config.yaml",
+        "Makefile",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P2",
+      "requirement_id": "R3",
+      "statement": "Consumer routes query and execute a nonempty affected closure with exact intended and observed identities.",
+      "scenarios": [
+        "Consumer verifies an increment"
+      ],
+      "owner": "integration templates/requirement_tests",
+      "oracle": "Route contract and selection report.",
+      "source_globs": [
+        "scripts/integration_templates/**",
+        "docs/**",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P3",
+      "requirement_id": "R3",
+      "statement": "Final check executes the complete stabilized graph and cannot turn incomplete evidence into readiness.",
+      "scenarios": [
+        "Consumer checks final readiness"
+      ],
+      "owner": "Makefile/run_selection",
+      "oracle": "run --all result and incomplete-case status.",
+      "source_globs": [
+        "Makefile",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R3.P4",
+      "requirement_id": "R3",
+      "statement": "Offline policy allows cached Go auto-selection and fails unavailable prerequisites without download.",
+      "scenarios": [
+        "Consumer requires a newer Go toolchain"
+      ],
+      "owner": "local_verify child_environment",
+      "oracle": "Child environment and unavailable artifact.",
+      "source_globs": [
+        "scripts/local_verify.py",
+        "scripts/rehearse_flow.py",
+        "scripts/test_local_verify.py"
+      ]
+    },
+    {
+      "id": "R4.P1",
+      "requirement_id": "R4",
+      "statement": "Explore records exact, semantic Context and capability-aware JetBrains-index lanes with classified results.",
+      "scenarios": [
+        "Explore scopes a behavioral property"
+      ],
+      "owner": "discovery_ledger.validate",
+      "oracle": "Complete three-lane review or explicit capability reason.",
+      "source_globs": [
+        "scripts/discovery_ledger.py",
+        "scripts/test_discovery_ledger.py",
+        "scripts/integration_templates/explore.md"
+      ]
+    },
+    {
+      "id": "R4.P2",
+      "requirement_id": "R4",
+      "statement": "Check requires selected property/test coverage and an explicit scope disposition.",
+      "scenarios": [
+        "Check decides discovered coverage disposition"
+      ],
+      "owner": "discovery_ledger.validate",
+      "oracle": "Covered identities and accepted disposition or deterministic rejection.",
+      "source_globs": [
+        "scripts/discovery_ledger.py",
+        "scripts/test_discovery_ledger.py",
+        "scripts/integration_templates/check.md"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "R1.P1.POSITIVE.01",
+      "property_id": "R1.P1",
+      "polarity": "positive",
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "setup": "Run test_case_requires_one_exact_scenario_and_review_contract against the R1.P1 positive fixture for Requirement and scenario coverage is complete.",
+      "observable": "test_case_requires_one_exact_scenario_and_review_contract observes the R1.P1 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P1 contract is enforced, test_case_requires_one_exact_scenario_and_review_contract exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P1 contract enforced, test_case_requires_one_exact_scenario_and_review_contract reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Requirement and scenario coverage is complete: test_case_requires_one_exact_scenario_and_review_contract proves the R1.P1 positive edge."
+    },
+    {
+      "id": "R1.P1.POSITIVE.02",
+      "property_id": "R1.P1",
+      "polarity": "positive",
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "setup": "Run test_multi_scenario_test_accepts_scenario_specific_reasons against the R1.P1 positive fixture for Requirement and scenario coverage is complete.",
+      "observable": "test_multi_scenario_test_accepts_scenario_specific_reasons observes the R1.P1 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P1 contract is enforced, test_multi_scenario_test_accepts_scenario_specific_reasons exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P1 contract enforced, test_multi_scenario_test_accepts_scenario_specific_reasons reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_accepts_scenario_specific_reasons",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Requirement and scenario coverage is complete: test_multi_scenario_test_accepts_scenario_specific_reasons proves the R1.P1 positive edge."
+    },
+    {
+      "id": "R1.P1.NEGATIVE.01",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "setup": "Run test_missing_polarity_and_uncovered_scenario_fail against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
+      "observable": "test_missing_polarity_and_uncovered_scenario_fail observes the R1.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P1 contract is enforced, test_missing_polarity_and_uncovered_scenario_fail exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P1 contract enforced, test_missing_polarity_and_uncovered_scenario_fail reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_polarity_and_uncovered_scenario_fail",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Requirement and scenario coverage is complete: test_missing_polarity_and_uncovered_scenario_fail proves the R1.P1 negative edge."
+    },
+    {
+      "id": "R1.P1.NEGATIVE.02",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "setup": "Run test_source_path_must_own_test_and_polarities_need_independent_tests against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
+      "observable": "test_source_path_must_own_test_and_polarities_need_independent_tests observes the R1.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P1 contract is enforced, test_source_path_must_own_test_and_polarities_need_independent_tests exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P1 contract enforced, test_source_path_must_own_test_and_polarities_need_independent_tests reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_source_path_must_own_test_and_polarities_need_independent_tests",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Requirement and scenario coverage is complete: test_source_path_must_own_test_and_polarities_need_independent_tests proves the R1.P1 negative edge."
+    },
+    {
+      "id": "R1.P1.NEGATIVE.03",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "setup": "Run test_generic_review_contract_text_is_rejected against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
+      "observable": "test_generic_review_contract_text_is_rejected observes the R1.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P1 contract is enforced, test_generic_review_contract_text_is_rejected exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P1 contract enforced, test_generic_review_contract_text_is_rejected reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_generic_review_contract_text_is_rejected",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Requirement and scenario coverage is complete: test_generic_review_contract_text_is_rejected proves the R1.P1 negative edge."
+    },
+    {
+      "id": "R1.P1.NEGATIVE.04",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "setup": "Run test_identity_whitespace_cannot_remove_cases_or_raise_keyerror against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
+      "observable": "test_identity_whitespace_cannot_remove_cases_or_raise_keyerror observes the R1.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P1 contract is enforced, test_identity_whitespace_cannot_remove_cases_or_raise_keyerror exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P1 contract enforced, test_identity_whitespace_cannot_remove_cases_or_raise_keyerror reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_identity_whitespace_cannot_remove_cases_or_raise_keyerror",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Requirement and scenario coverage is complete: test_identity_whitespace_cannot_remove_cases_or_raise_keyerror proves the R1.P1 negative edge."
+    },
+    {
+      "id": "R1.P1.NEGATIVE.05",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Requirement and scenario coverage is complete",
+      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "setup": "Run test_multi_scenario_test_requires_scenario_specific_reason against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
+      "observable": "test_multi_scenario_test_requires_scenario_specific_reason observes the R1.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P1 contract is enforced, test_multi_scenario_test_requires_scenario_specific_reason exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P1 contract enforced, test_multi_scenario_test_requires_scenario_specific_reason reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_requires_scenario_specific_reason",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Requirement and scenario coverage is complete: test_multi_scenario_test_requires_scenario_specific_reason proves the R1.P1 negative edge."
+    },
+    {
+      "id": "R1.P2.POSITIVE.01",
+      "property_id": "R1.P2",
+      "polarity": "positive",
+      "scenario": "Affected increment is applied or verified",
+      "scenario_fingerprint": "ebd135d2329034ef98f4b0c708e5052ef8055e5173cf302ccda33920f2ab9135",
+      "setup": "Run test_case_dependencies_select_and_invalidate_only_the_declared_case against the R1.P2 positive fixture for Affected increment is applied or verified.",
+      "observable": "test_case_dependencies_select_and_invalidate_only_the_declared_case observes the R1.P2 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P2 contract is enforced, test_case_dependencies_select_and_invalidate_only_the_declared_case exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P2 contract enforced, test_case_dependencies_select_and_invalidate_only_the_declared_case reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_dependencies_select_and_invalidate_only_the_declared_case",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Affected increment is applied or verified: test_case_dependencies_select_and_invalidate_only_the_declared_case proves the R1.P2 positive edge."
+    },
+    {
+      "id": "R1.P2.NEGATIVE.01",
+      "property_id": "R1.P2",
+      "polarity": "negative",
+      "scenario": "Affected increment is applied or verified",
+      "scenario_fingerprint": "ebd135d2329034ef98f4b0c708e5052ef8055e5173cf302ccda33920f2ab9135",
+      "setup": "Run test_valid_graph_queries_deterministic_affected_closure against the R1.P2 negative fixture for Affected increment is applied or verified.",
+      "observable": "test_valid_graph_queries_deterministic_affected_closure observes the R1.P2 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P2 contract is enforced, test_valid_graph_queries_deterministic_affected_closure exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P2 contract enforced, test_valid_graph_queries_deterministic_affected_closure reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Affected increment is applied or verified: test_valid_graph_queries_deterministic_affected_closure proves the R1.P2 negative edge."
+    },
+    {
+      "id": "R1.P3.POSITIVE.01",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_one_canonical_command_executes_both_cases_once against the R1.P3 positive fixture for Final implementation readiness is checked.",
+      "observable": "test_one_canonical_command_executes_both_cases_once observes the R1.P3 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_one_canonical_command_executes_both_cases_once exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_one_canonical_command_executes_both_cases_once reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_one_canonical_command_executes_both_cases_once proves the R1.P3 positive edge."
+    },
+    {
+      "id": "R1.P3.POSITIVE.02",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_go_and_cargo_observers_preserve_exact_failure_states against the R1.P3 positive fixture for Final implementation readiness is checked.",
+      "observable": "test_go_and_cargo_observers_preserve_exact_failure_states observes the R1.P3 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_go_and_cargo_observers_preserve_exact_failure_states exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_go_and_cargo_observers_preserve_exact_failure_states reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_go_and_cargo_observers_preserve_exact_failure_states",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_go_and_cargo_observers_preserve_exact_failure_states proves the R1.P3 positive edge."
+    },
+    {
+      "id": "R1.P3.POSITIVE.03",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_unittest_observer_preserves_skip_expected_failure_and_python_versions against the R1.P3 positive fixture for Final implementation readiness is checked.",
+      "observable": "test_unittest_observer_preserves_skip_expected_failure_and_python_versions observes the R1.P3 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_unittest_observer_preserves_skip_expected_failure_and_python_versions exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_unittest_observer_preserves_skip_expected_failure_and_python_versions reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unittest_observer_preserves_skip_expected_failure_and_python_versions",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_unittest_observer_preserves_skip_expected_failure_and_python_versions proves the R1.P3 positive edge."
+    },
+    {
+      "id": "R1.P3.POSITIVE.04",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_node_tap_observer_preserves_pass_fail_and_skip against the R1.P3 positive fixture for Final implementation readiness is checked.",
+      "observable": "test_node_tap_observer_preserves_pass_fail_and_skip observes the R1.P3 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_node_tap_observer_preserves_pass_fail_and_skip exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_node_tap_observer_preserves_pass_fail_and_skip reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_node_tap_observer_preserves_pass_fail_and_skip",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_node_tap_observer_preserves_pass_fail_and_skip proves the R1.P3 positive edge."
+    },
+    {
+      "id": "R1.P3.POSITIVE.05",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run one passing and one failing exact unittest identity in the same command and inspect both case rows plus the aggregate result.",
+      "observable": "The nonzero command keeps the run failed while its passing case remains passed and its failing case remains failed.",
+      "red_expectation": "A nonzero command rewrites every selected case to command_failed and destroys the exact per-case observation.",
+      "green_expectation": "Each observed case retains its own outcome while the nonzero command independently keeps the aggregate run failed.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonzero_command_preserves_each_observed_case_status",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: mixed exact outcomes remain attributable even when their shared command exits nonzero."
+    },
+    {
+      "id": "R1.P3.NEGATIVE.01",
+      "property_id": "R1.P3",
+      "polarity": "negative",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_planned_and_protected_cases_cannot_pass against the R1.P3 negative fixture for Final implementation readiness is checked.",
+      "observable": "test_planned_and_protected_cases_cannot_pass observes the R1.P3 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_planned_and_protected_cases_cannot_pass exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_planned_and_protected_cases_cannot_pass reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_planned_and_protected_cases_cannot_pass proves the R1.P3 negative edge."
+    },
+    {
+      "id": "R1.P3.NEGATIVE.02",
+      "property_id": "R1.P3",
+      "polarity": "negative",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_missing_expected_identity_and_command_failure_cannot_pass against the R1.P3 negative fixture for Final implementation readiness is checked.",
+      "observable": "test_missing_expected_identity_and_command_failure_cannot_pass observes the R1.P3 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_missing_expected_identity_and_command_failure_cannot_pass exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_missing_expected_identity_and_command_failure_cannot_pass reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_expected_identity_and_command_failure_cannot_pass",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_missing_expected_identity_and_command_failure_cannot_pass proves the R1.P3 negative edge."
+    },
+    {
+      "id": "R1.P3.NEGATIVE.03",
+      "property_id": "R1.P3",
+      "polarity": "negative",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_skipped_or_expected_failure_case_is_nonpassing against the R1.P3 negative fixture for Final implementation readiness is checked.",
+      "observable": "test_skipped_or_expected_failure_case_is_nonpassing observes the R1.P3 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_skipped_or_expected_failure_case_is_nonpassing exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_skipped_or_expected_failure_case_is_nonpassing reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_skipped_or_expected_failure_case_is_nonpassing",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_skipped_or_expected_failure_case_is_nonpassing proves the R1.P3 negative edge."
+    },
+    {
+      "id": "R1.P3.NEGATIVE.04",
+      "property_id": "R1.P3",
+      "polarity": "negative",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run test_command_markers_cannot_prove_behavioral_cases against the R1.P3 negative fixture for Final implementation readiness is checked.",
+      "observable": "test_command_markers_cannot_prove_behavioral_cases observes the R1.P3 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P3 contract is enforced, test_command_markers_cannot_prove_behavioral_cases exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P3 contract enforced, test_command_markers_cannot_prove_behavioral_cases reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_command_markers_cannot_prove_behavioral_cases",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: test_command_markers_cannot_prove_behavioral_cases proves the R1.P3 negative edge."
+    },
+    {
+      "id": "R1.P4.POSITIVE.01",
+      "property_id": "R1.P4",
+      "polarity": "positive",
+      "scenario": "Specification or test source drifts",
+      "scenario_fingerprint": "a72aa7f922f0df5ca432da4d7a6735c2a733d43f2d31af1766a8319c1b4a6267",
+      "setup": "Run test_requested_selectors_and_evidence_fingerprints_are_recorded against the R1.P4 positive fixture for Specification or test source drifts.",
+      "observable": "test_requested_selectors_and_evidence_fingerprints_are_recorded observes the R1.P4 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P4 contract is enforced, test_requested_selectors_and_evidence_fingerprints_are_recorded exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P4 contract enforced, test_requested_selectors_and_evidence_fingerprints_are_recorded reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_requested_selectors_and_evidence_fingerprints_are_recorded",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Specification or test source drifts: test_requested_selectors_and_evidence_fingerprints_are_recorded proves the R1.P4 positive edge."
+    },
+    {
+      "id": "R1.P4.NEGATIVE.01",
+      "property_id": "R1.P4",
+      "polarity": "negative",
+      "scenario": "Specification or test source drifts",
+      "scenario_fingerprint": "a72aa7f922f0df5ca432da4d7a6735c2a733d43f2d31af1766a8319c1b4a6267",
+      "setup": "Run test_stale_specification_fingerprint_fails against the R1.P4 negative fixture for Specification or test source drifts.",
+      "observable": "test_stale_specification_fingerprint_fails observes the R1.P4 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P4 contract is enforced, test_stale_specification_fingerprint_fails exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P4 contract enforced, test_stale_specification_fingerprint_fails reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_specification_fingerprint_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Specification or test source drifts: test_stale_specification_fingerprint_fails proves the R1.P4 negative edge."
+    },
+    {
+      "id": "R1.P4.NEGATIVE.02",
+      "property_id": "R1.P4",
+      "polarity": "negative",
+      "scenario": "Specification or test source drifts",
+      "scenario_fingerprint": "a72aa7f922f0df5ca432da4d7a6735c2a733d43f2d31af1766a8319c1b4a6267",
+      "setup": "Run test_stale_test_source_fingerprint_fails against the R1.P4 negative fixture for Specification or test source drifts.",
+      "observable": "test_stale_test_source_fingerprint_fails observes the R1.P4 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P4 contract is enforced, test_stale_test_source_fingerprint_fails exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P4 contract enforced, test_stale_test_source_fingerprint_fails reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Specification or test source drifts: test_stale_test_source_fingerprint_fails proves the R1.P4 negative edge."
+    },
+    {
+      "id": "R1.P5.POSITIVE.01",
+      "property_id": "R1.P5",
+      "polarity": "positive",
+      "scenario": "Test coverage appears duplicated",
+      "scenario_fingerprint": "3cceb781dbb5d946f356a252f766ba987993fd67f1ef86a2b8a30d8f92707658",
+      "setup": "Run test_execution_tuple_deduplicates_observation_variants_and_go_json against the R1.P5 positive fixture for Test coverage appears duplicated.",
+      "observable": "test_execution_tuple_deduplicates_observation_variants_and_go_json observes the R1.P5 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P5 contract is enforced, test_execution_tuple_deduplicates_observation_variants_and_go_json exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P5 contract enforced, test_execution_tuple_deduplicates_observation_variants_and_go_json reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_execution_tuple_deduplicates_observation_variants_and_go_json",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Test coverage appears duplicated: test_execution_tuple_deduplicates_observation_variants_and_go_json proves the R1.P5 positive edge."
+    },
+    {
+      "id": "R1.P5.NEGATIVE.01",
+      "property_id": "R1.P5",
+      "polarity": "negative",
+      "scenario": "Test coverage appears duplicated",
+      "scenario_fingerprint": "3cceb781dbb5d946f356a252f766ba987993fd67f1ef86a2b8a30d8f92707658",
+      "setup": "Run test_duplicate_case_and_command_definitions_fail against the R1.P5 negative fixture for Test coverage appears duplicated.",
+      "observable": "test_duplicate_case_and_command_definitions_fail observes the R1.P5 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P5 contract is enforced, test_duplicate_case_and_command_definitions_fail exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P5 contract enforced, test_duplicate_case_and_command_definitions_fail reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Test coverage appears duplicated: test_duplicate_case_and_command_definitions_fail proves the R1.P5 negative edge."
+    },
+    {
+      "id": "R1.P5.NEGATIVE.02",
+      "property_id": "R1.P5",
+      "polarity": "negative",
+      "scenario": "Test coverage appears duplicated",
+      "scenario_fingerprint": "3cceb781dbb5d946f356a252f766ba987993fd67f1ef86a2b8a30d8f92707658",
+      "setup": "Run test_duplicate_scenario_glob_dependency_and_marker_edges_fail against the R1.P5 negative fixture for Test coverage appears duplicated.",
+      "observable": "test_duplicate_scenario_glob_dependency_and_marker_edges_fail observes the R1.P5 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P5 contract is enforced, test_duplicate_scenario_glob_dependency_and_marker_edges_fail exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P5 contract enforced, test_duplicate_scenario_glob_dependency_and_marker_edges_fail reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_scenario_glob_dependency_and_marker_edges_fail",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Test coverage appears duplicated: test_duplicate_scenario_glob_dependency_and_marker_edges_fail proves the R1.P5 negative edge."
+    },
+    {
+      "id": "R1.P6.POSITIVE.01",
+      "property_id": "R1.P6",
+      "polarity": "positive",
+      "scenario": "Required evidence crosses an authority boundary",
+      "scenario_fingerprint": "617f63e28c8ef5f192621ee1f76c5986d5449e35a797ce7bf2245cf96630d535",
+      "setup": "Run test_one_canonical_command_executes_both_cases_once against the R1.P6 positive fixture for Required evidence crosses an authority boundary.",
+      "observable": "test_one_canonical_command_executes_both_cases_once observes the R1.P6 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P6 contract is enforced, test_one_canonical_command_executes_both_cases_once exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P6 contract enforced, test_one_canonical_command_executes_both_cases_once reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Required evidence crosses an authority boundary: test_one_canonical_command_executes_both_cases_once proves the R1.P6 positive edge."
+    },
+    {
+      "id": "R1.P6.NEGATIVE.01",
+      "property_id": "R1.P6",
+      "polarity": "negative",
+      "scenario": "Required evidence crosses an authority boundary",
+      "scenario_fingerprint": "617f63e28c8ef5f192621ee1f76c5986d5449e35a797ce7bf2245cf96630d535",
+      "setup": "Run test_planned_and_protected_cases_cannot_pass against the R1.P6 negative fixture for Required evidence crosses an authority boundary.",
+      "observable": "test_planned_and_protected_cases_cannot_pass observes the R1.P6 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P6 contract is enforced, test_planned_and_protected_cases_cannot_pass exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P6 contract enforced, test_planned_and_protected_cases_cannot_pass reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Required evidence crosses an authority boundary: test_planned_and_protected_cases_cannot_pass proves the R1.P6 negative edge."
+    },
+    {
+      "id": "R1.P7.POSITIVE.01",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_large_output_has_complete_artifact_beyond_preview against the R1.P7 positive fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_large_output_has_complete_artifact_beyond_preview observes the R1.P7 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_large_output_has_complete_artifact_beyond_preview exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_large_output_has_complete_artifact_beyond_preview reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_large_output_has_complete_artifact_beyond_preview",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_large_output_has_complete_artifact_beyond_preview proves the R1.P7 positive edge."
+    },
+    {
+      "id": "R1.P7.POSITIVE.02",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_requested_selectors_and_evidence_fingerprints_are_recorded against the R1.P7 positive fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_requested_selectors_and_evidence_fingerprints_are_recorded observes the R1.P7 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_requested_selectors_and_evidence_fingerprints_are_recorded exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_requested_selectors_and_evidence_fingerprints_are_recorded reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_requested_selectors_and_evidence_fingerprints_are_recorded",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_requested_selectors_and_evidence_fingerprints_are_recorded proves the R1.P7 positive edge."
+    },
+    {
+      "id": "R1.P7.POSITIVE.03",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_child_environment_disables_rustup_auto_install_without_global_mutation against the R1.P7 positive fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_child_environment_disables_rustup_auto_install_without_global_mutation observes the R1.P7 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_child_environment_disables_rustup_auto_install_without_global_mutation exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_child_environment_disables_rustup_auto_install_without_global_mutation reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_child_environment_disables_rustup_auto_install_without_global_mutation",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_child_environment_disables_rustup_auto_install_without_global_mutation proves the R1.P7 positive edge."
+    },
+    {
+      "id": "R1.P7.POSITIVE.04",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_native_process_failure_retains_exit_and_output against the R1.P7 positive fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_native_process_failure_retains_exit_and_output observes the R1.P7 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_native_process_failure_retains_exit_and_output exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_native_process_failure_retains_exit_and_output reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_failure_retains_exit_and_output",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_native_process_failure_retains_exit_and_output proves the R1.P7 positive edge."
+    },
+    {
+      "id": "R1.P7.POSITIVE.05",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_noisy_process_has_bounded_preview_and_complete_file against the R1.P7 positive fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_noisy_process_has_bounded_preview_and_complete_file observes the R1.P7 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_noisy_process_has_bounded_preview_and_complete_file exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_noisy_process_has_bounded_preview_and_complete_file reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_noisy_process_has_bounded_preview_and_complete_file",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_noisy_process_has_bounded_preview_and_complete_file proves the R1.P7 positive edge."
+    },
+    {
+      "id": "R1.P7.NEGATIVE.01",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_timeout_kills_process_group_and_keeps_complete_output against the R1.P7 negative fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_timeout_kills_process_group_and_keeps_complete_output observes the R1.P7 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_timeout_kills_process_group_and_keeps_complete_output exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_timeout_kills_process_group_and_keeps_complete_output reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_timeout_kills_process_group_and_keeps_complete_output",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_timeout_kills_process_group_and_keeps_complete_output proves the R1.P7 negative edge."
+    },
+    {
+      "id": "R1.P7.NEGATIVE.02",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_policy_environment_and_unavailable_cwd_fail_before_execution against the R1.P7 negative fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_policy_environment_and_unavailable_cwd_fail_before_execution observes the R1.P7 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_policy_environment_and_unavailable_cwd_fail_before_execution exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_policy_environment_and_unavailable_cwd_fail_before_execution reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_policy_environment_and_unavailable_cwd_fail_before_execution",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_policy_environment_and_unavailable_cwd_fail_before_execution proves the R1.P7 negative edge."
+    },
+    {
+      "id": "R1.P7.NEGATIVE.03",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_manifest_and_output_cannot_escape_change_or_repository against the R1.P7 negative fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_manifest_and_output_cannot_escape_change_or_repository observes the R1.P7 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_manifest_and_output_cannot_escape_change_or_repository exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_manifest_and_output_cannot_escape_change_or_repository reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_manifest_and_output_cannot_escape_change_or_repository",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_manifest_and_output_cannot_escape_change_or_repository proves the R1.P7 negative edge."
+    },
+    {
+      "id": "R1.P7.NEGATIVE.04",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_git_provenance_unknown_and_clean_requirement_are_explicit against the R1.P7 negative fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_git_provenance_unknown_and_clean_requirement_are_explicit observes the R1.P7 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_git_provenance_unknown_and_clean_requirement_are_explicit exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_git_provenance_unknown_and_clean_requirement_are_explicit reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_git_provenance_unknown_and_clean_requirement_are_explicit",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_git_provenance_unknown_and_clean_requirement_are_explicit proves the R1.P7 negative edge."
+    },
+    {
+      "id": "R1.P7.NEGATIVE.05",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_native_process_timeout_is_explicit against the R1.P7 negative fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_native_process_timeout_is_explicit observes the R1.P7 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_native_process_timeout_is_explicit exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_native_process_timeout_is_explicit reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_timeout_is_explicit",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_native_process_timeout_is_explicit proves the R1.P7 negative edge."
+    },
+    {
+      "id": "R1.P7.NEGATIVE.06",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_existing_result_is_never_overwritten against the R1.P7 negative fixture for Verification execution is bounded and reproducible.",
+      "observable": "test_existing_result_is_never_overwritten observes the R1.P7 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P7 contract is enforced, test_existing_result_is_never_overwritten exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P7 contract enforced, test_existing_result_is_never_overwritten reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_existing_result_is_never_overwritten",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: test_existing_result_is_never_overwritten proves the R1.P7 negative edge."
+    },
+    {
+      "id": "R1.P8.POSITIVE.01",
+      "property_id": "R1.P8",
+      "polarity": "positive",
+      "scenario": "Delta specification contains non-behavioral history",
+      "scenario_fingerprint": "bded67b4b1bc5bf05279ac456cee6063359cb8f121852fd7457ca116f22ac9c3",
+      "setup": "Run test_delta_parser_ignores_removed_renamed_and_fenced_examples against the R1.P8 positive fixture for Delta specification contains non-behavioral history.",
+      "observable": "test_delta_parser_ignores_removed_renamed_and_fenced_examples observes the R1.P8 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P8 contract is enforced, test_delta_parser_ignores_removed_renamed_and_fenced_examples exposes the forbidden positive outcome.",
+      "green_expectation": "With the R1.P8 contract enforced, test_delta_parser_ignores_removed_renamed_and_fenced_examples reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_delta_parser_ignores_removed_renamed_and_fenced_examples",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Delta specification contains non-behavioral history: test_delta_parser_ignores_removed_renamed_and_fenced_examples proves the R1.P8 positive edge."
+    },
+    {
+      "id": "R1.P8.NEGATIVE.01",
+      "property_id": "R1.P8",
+      "polarity": "negative",
+      "scenario": "Delta specification contains non-behavioral history",
+      "scenario_fingerprint": "bded67b4b1bc5bf05279ac456cee6063359cb8f121852fd7457ca116f22ac9c3",
+      "setup": "Run test_nonbehavioral_change_without_manifest_is_not_required against the R1.P8 negative fixture for Delta specification contains non-behavioral history.",
+      "observable": "test_nonbehavioral_change_without_manifest_is_not_required observes the R1.P8 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R1.P8 contract is enforced, test_nonbehavioral_change_without_manifest_is_not_required exposes the forbidden negative outcome.",
+      "green_expectation": "With the R1.P8 contract enforced, test_nonbehavioral_change_without_manifest_is_not_required reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonbehavioral_change_without_manifest_is_not_required",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Delta specification contains non-behavioral history: test_nonbehavioral_change_without_manifest_is_not_required proves the R1.P8 negative edge."
+    },
+    {
+      "id": "R2.P1.POSITIVE.01",
+      "property_id": "R2.P1",
+      "polarity": "positive",
+      "scenario": "A production owner changes",
+      "scenario_fingerprint": "0dd67c86dfc87462613dcd40b5ecac26c0f0f83cde51b754292ca761d70be950",
+      "setup": "Run test_path_globs_have_recursive_and_separator_aware_semantics against the R2.P1 positive fixture for A production owner changes.",
+      "observable": "test_path_globs_have_recursive_and_separator_aware_semantics observes the R2.P1 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R2.P1 contract is enforced, test_path_globs_have_recursive_and_separator_aware_semantics exposes the forbidden positive outcome.",
+      "green_expectation": "With the R2.P1 contract enforced, test_path_globs_have_recursive_and_separator_aware_semantics reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_path_globs_have_recursive_and_separator_aware_semantics",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "A production owner changes: test_path_globs_have_recursive_and_separator_aware_semantics proves the R2.P1 positive edge."
+    },
+    {
+      "id": "R2.P1.NEGATIVE.01",
+      "property_id": "R2.P1",
+      "polarity": "negative",
+      "scenario": "A production owner changes",
+      "scenario_fingerprint": "0dd67c86dfc87462613dcd40b5ecac26c0f0f83cde51b754292ca761d70be950",
+      "setup": "Run test_valid_graph_queries_deterministic_affected_closure against the R2.P1 negative fixture for A production owner changes.",
+      "observable": "test_valid_graph_queries_deterministic_affected_closure observes the R2.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R2.P1 contract is enforced, test_valid_graph_queries_deterministic_affected_closure exposes the forbidden negative outcome.",
+      "green_expectation": "With the R2.P1 contract enforced, test_valid_graph_queries_deterministic_affected_closure reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "A production owner changes: test_valid_graph_queries_deterministic_affected_closure proves the R2.P1 negative edge."
+    },
+    {
+      "id": "R2.P2.POSITIVE.01",
+      "property_id": "R2.P2",
+      "polarity": "positive",
+      "scenario": "Reviewer traces one specification point",
+      "scenario_fingerprint": "e0e852032c5f4bb2d32fa1234836295a74e64856ebf816355c32d8e1f69c9786",
+      "setup": "Run test_case_dependencies_select_and_invalidate_only_the_declared_case against the R2.P2 positive fixture for Reviewer traces one specification point.",
+      "observable": "test_case_dependencies_select_and_invalidate_only_the_declared_case observes the R2.P2 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R2.P2 contract is enforced, test_case_dependencies_select_and_invalidate_only_the_declared_case exposes the forbidden positive outcome.",
+      "green_expectation": "With the R2.P2 contract enforced, test_case_dependencies_select_and_invalidate_only_the_declared_case reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_dependencies_select_and_invalidate_only_the_declared_case",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Reviewer traces one specification point: test_case_dependencies_select_and_invalidate_only_the_declared_case proves the R2.P2 positive edge."
+    },
+    {
+      "id": "R2.P2.NEGATIVE.01",
+      "property_id": "R2.P2",
+      "polarity": "negative",
+      "scenario": "Reviewer traces one specification point",
+      "scenario_fingerprint": "e0e852032c5f4bb2d32fa1234836295a74e64856ebf816355c32d8e1f69c9786",
+      "setup": "Run test_stale_test_source_fingerprint_fails against the R2.P2 negative fixture for Reviewer traces one specification point.",
+      "observable": "test_stale_test_source_fingerprint_fails observes the R2.P2 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R2.P2 contract is enforced, test_stale_test_source_fingerprint_fails exposes the forbidden negative outcome.",
+      "green_expectation": "With the R2.P2 contract enforced, test_stale_test_source_fingerprint_fails reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Reviewer traces one specification point: test_stale_test_source_fingerprint_fails proves the R2.P2 negative edge."
+    },
+    {
+      "id": "R3.P1.POSITIVE.01",
+      "property_id": "R3.P1",
+      "polarity": "positive",
+      "scenario": "Consumer validates an active change",
+      "scenario_fingerprint": "7f3ef575d0934e2fd1a20820d906b9fe51a90379426fb4141ddd1eaa75eb8d3d",
+      "setup": "Run test_shared_routes_require_incremental_and_final_evidence_execution against the R3.P1 positive fixture for Consumer validates an active change.",
+      "observable": "test_shared_routes_require_incremental_and_final_evidence_execution observes the R3.P1 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P1 contract is enforced, test_shared_routes_require_incremental_and_final_evidence_execution exposes the forbidden positive outcome.",
+      "green_expectation": "With the R3.P1 contract enforced, test_shared_routes_require_incremental_and_final_evidence_execution reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer validates an active change: test_shared_routes_require_incremental_and_final_evidence_execution proves the R3.P1 positive edge."
+    },
+    {
+      "id": "R3.P1.NEGATIVE.01",
+      "property_id": "R3.P1",
+      "polarity": "negative",
+      "scenario": "Consumer validates an active change",
+      "scenario_fingerprint": "7f3ef575d0934e2fd1a20820d906b9fe51a90379426fb4141ddd1eaa75eb8d3d",
+      "setup": "Run test_command_markers_cannot_prove_behavioral_cases against the R3.P1 negative fixture for Consumer validates an active change.",
+      "observable": "test_command_markers_cannot_prove_behavioral_cases observes the R3.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P1 contract is enforced, test_command_markers_cannot_prove_behavioral_cases exposes the forbidden negative outcome.",
+      "green_expectation": "With the R3.P1 contract enforced, test_command_markers_cannot_prove_behavioral_cases reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_command_markers_cannot_prove_behavioral_cases",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer validates an active change: test_command_markers_cannot_prove_behavioral_cases proves the R3.P1 negative edge."
+    },
+    {
+      "id": "R3.P2.POSITIVE.01",
+      "property_id": "R3.P2",
+      "polarity": "positive",
+      "scenario": "Consumer verifies an increment",
+      "scenario_fingerprint": "4b848e2a8884958fd78fe8d2ddca122c533370c527d83872216c27e726e3b34d",
+      "setup": "Run test_case_dependencies_select_and_invalidate_only_the_declared_case against the R3.P2 positive fixture for Consumer verifies an increment.",
+      "observable": "test_case_dependencies_select_and_invalidate_only_the_declared_case observes the R3.P2 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P2 contract is enforced, test_case_dependencies_select_and_invalidate_only_the_declared_case exposes the forbidden positive outcome.",
+      "green_expectation": "With the R3.P2 contract enforced, test_case_dependencies_select_and_invalidate_only_the_declared_case reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_dependencies_select_and_invalidate_only_the_declared_case",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer verifies an increment: test_case_dependencies_select_and_invalidate_only_the_declared_case proves the R3.P2 positive edge."
+    },
+    {
+      "id": "R3.P2.NEGATIVE.01",
+      "property_id": "R3.P2",
+      "polarity": "negative",
+      "scenario": "Consumer verifies an increment",
+      "scenario_fingerprint": "4b848e2a8884958fd78fe8d2ddca122c533370c527d83872216c27e726e3b34d",
+      "setup": "Run test_valid_graph_queries_deterministic_affected_closure against the R3.P2 negative fixture for Consumer verifies an increment.",
+      "observable": "test_valid_graph_queries_deterministic_affected_closure observes the R3.P2 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P2 contract is enforced, test_valid_graph_queries_deterministic_affected_closure exposes the forbidden negative outcome.",
+      "green_expectation": "With the R3.P2 contract enforced, test_valid_graph_queries_deterministic_affected_closure reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer verifies an increment: test_valid_graph_queries_deterministic_affected_closure proves the R3.P2 negative edge."
+    },
+    {
+      "id": "R3.P3.POSITIVE.01",
+      "property_id": "R3.P3",
+      "polarity": "positive",
+      "scenario": "Consumer checks final readiness",
+      "scenario_fingerprint": "315b67c9a411fd6f81b669f79cb0dbe641f30d3869ff1c342ee990d69adaf547",
+      "setup": "Run test_shared_routes_require_incremental_and_final_evidence_execution against the R3.P3 positive fixture for Consumer checks final readiness.",
+      "observable": "test_shared_routes_require_incremental_and_final_evidence_execution observes the R3.P3 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P3 contract is enforced, test_shared_routes_require_incremental_and_final_evidence_execution exposes the forbidden positive outcome.",
+      "green_expectation": "With the R3.P3 contract enforced, test_shared_routes_require_incremental_and_final_evidence_execution reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer checks final readiness: test_shared_routes_require_incremental_and_final_evidence_execution proves the R3.P3 positive edge."
+    },
+    {
+      "id": "R3.P3.NEGATIVE.01",
+      "property_id": "R3.P3",
+      "polarity": "negative",
+      "scenario": "Consumer checks final readiness",
+      "scenario_fingerprint": "315b67c9a411fd6f81b669f79cb0dbe641f30d3869ff1c342ee990d69adaf547",
+      "setup": "Run test_planned_and_protected_cases_cannot_pass against the R3.P3 negative fixture for Consumer checks final readiness.",
+      "observable": "test_planned_and_protected_cases_cannot_pass observes the R3.P3 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P3 contract is enforced, test_planned_and_protected_cases_cannot_pass exposes the forbidden negative outcome.",
+      "green_expectation": "With the R3.P3 contract enforced, test_planned_and_protected_cases_cannot_pass reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer checks final readiness: test_planned_and_protected_cases_cannot_pass proves the R3.P3 negative edge."
+    },
+    {
+      "id": "R3.P4.POSITIVE.01",
+      "property_id": "R3.P4",
+      "polarity": "positive",
+      "scenario": "Consumer requires a newer Go toolchain",
+      "scenario_fingerprint": "fc08c6be087af5bb30fb42ef631089f4c42258fc36ea5b5cee0555c2feba314b",
+      "setup": "Run test_child_environment_allows_cached_required_go_toolchain_but_no_network against the R3.P4 positive fixture for Consumer requires a newer Go toolchain.",
+      "observable": "test_child_environment_allows_cached_required_go_toolchain_but_no_network observes the R3.P4 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P4 contract is enforced, test_child_environment_allows_cached_required_go_toolchain_but_no_network exposes the forbidden positive outcome.",
+      "green_expectation": "With the R3.P4 contract enforced, test_child_environment_allows_cached_required_go_toolchain_but_no_network reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer requires a newer Go toolchain: test_child_environment_allows_cached_required_go_toolchain_but_no_network proves the R3.P4 positive edge."
+    },
+    {
+      "id": "R3.P4.NEGATIVE.01",
+      "property_id": "R3.P4",
+      "polarity": "negative",
+      "scenario": "Consumer requires a newer Go toolchain",
+      "scenario_fingerprint": "fc08c6be087af5bb30fb42ef631089f4c42258fc36ea5b5cee0555c2feba314b",
+      "setup": "Run test_missing_executable_writes_unavailable_artifact against the R3.P4 negative fixture for Consumer requires a newer Go toolchain.",
+      "observable": "test_missing_executable_writes_unavailable_artifact observes the R3.P4 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R3.P4 contract is enforced, test_missing_executable_writes_unavailable_artifact exposes the forbidden negative outcome.",
+      "green_expectation": "With the R3.P4 contract enforced, test_missing_executable_writes_unavailable_artifact reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer requires a newer Go toolchain: test_missing_executable_writes_unavailable_artifact proves the R3.P4 negative edge."
+    },
+    {
+      "id": "R4.P1.POSITIVE.01",
+      "property_id": "R4.P1",
+      "polarity": "positive",
+      "scenario": "Explore scopes a behavioral property",
+      "scenario_fingerprint": "21393331d712d7a3a39eee0933b34e9c673146ccb00b68eb5ca853da430fed38",
+      "setup": "Run test_complete_three_lane_discovery_passes against the R4.P1 positive fixture for Explore scopes a behavioral property.",
+      "observable": "test_complete_three_lane_discovery_passes observes the R4.P1 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R4.P1 contract is enforced, test_complete_three_lane_discovery_passes exposes the forbidden positive outcome.",
+      "green_expectation": "With the R4.P1 contract enforced, test_complete_three_lane_discovery_passes reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_complete_three_lane_discovery_passes",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_discovery_ledger.py",
+      "source_sha256": "3c45ba167ee21125a2c10910e63e56a0610baebd5593f388237c86347ef02223",
+      "invalidation_dependencies": [
+        "scripts/test_discovery_ledger.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Explore scopes a behavioral property: test_complete_three_lane_discovery_passes proves the R4.P1 positive edge."
+    },
+    {
+      "id": "R4.P1.NEGATIVE.01",
+      "property_id": "R4.P1",
+      "polarity": "negative",
+      "scenario": "Explore scopes a behavioral property",
+      "scenario_fingerprint": "21393331d712d7a3a39eee0933b34e9c673146ccb00b68eb5ca853da430fed38",
+      "setup": "Run test_unavailable_exact_search_and_unmapped_identity_fail against the R4.P1 negative fixture for Explore scopes a behavioral property.",
+      "observable": "test_unavailable_exact_search_and_unmapped_identity_fail observes the R4.P1 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R4.P1 contract is enforced, test_unavailable_exact_search_and_unmapped_identity_fail exposes the forbidden negative outcome.",
+      "green_expectation": "With the R4.P1 contract enforced, test_unavailable_exact_search_and_unmapped_identity_fail reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_unavailable_exact_search_and_unmapped_identity_fail",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_discovery_ledger.py",
+      "source_sha256": "3c45ba167ee21125a2c10910e63e56a0610baebd5593f388237c86347ef02223",
+      "invalidation_dependencies": [
+        "scripts/test_discovery_ledger.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Explore scopes a behavioral property: test_unavailable_exact_search_and_unmapped_identity_fail proves the R4.P1 negative edge."
+    },
+    {
+      "id": "R4.P2.POSITIVE.01",
+      "property_id": "R4.P2",
+      "polarity": "positive",
+      "scenario": "Check decides discovered coverage disposition",
+      "scenario_fingerprint": "21e439a57a33baa62a642e57a30d46228563414111b799351e758509804acf0b",
+      "setup": "Run test_complete_three_lane_discovery_passes against the R4.P2 positive fixture for Check decides discovered coverage disposition.",
+      "observable": "test_complete_three_lane_discovery_passes observes the R4.P2 positive boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R4.P2 contract is enforced, test_complete_three_lane_discovery_passes exposes the forbidden positive outcome.",
+      "green_expectation": "With the R4.P2 contract enforced, test_complete_three_lane_discovery_passes reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_complete_three_lane_discovery_passes",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_discovery_ledger.py",
+      "source_sha256": "3c45ba167ee21125a2c10910e63e56a0610baebd5593f388237c86347ef02223",
+      "invalidation_dependencies": [
+        "scripts/test_discovery_ledger.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Check decides discovered coverage disposition: test_complete_three_lane_discovery_passes proves the R4.P2 positive edge."
+    },
+    {
+      "id": "R4.P2.NEGATIVE.01",
+      "property_id": "R4.P2",
+      "polarity": "negative",
+      "scenario": "Check decides discovered coverage disposition",
+      "scenario_fingerprint": "21e439a57a33baa62a642e57a30d46228563414111b799351e758509804acf0b",
+      "setup": "Run test_missing_lane_scope_or_disposition_fails against the R4.P2 negative fixture for Check decides discovered coverage disposition.",
+      "observable": "test_missing_lane_scope_or_disposition_fails observes the R4.P2 negative boundary without aggregate-suite substitution.",
+      "red_expectation": "Before the R4.P2 contract is enforced, test_missing_lane_scope_or_disposition_fails exposes the forbidden negative outcome.",
+      "green_expectation": "With the R4.P2 contract enforced, test_missing_lane_scope_or_disposition_fails reports the required exact outcome.",
+      "test_id": "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_missing_lane_scope_or_disposition_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_discovery_ledger.py",
+      "source_sha256": "3c45ba167ee21125a2c10910e63e56a0610baebd5593f388237c86347ef02223",
+      "invalidation_dependencies": [
+        "scripts/test_discovery_ledger.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Check decides discovered coverage disposition: test_missing_lane_scope_or_disposition_fails proves the R4.P2 negative edge."
+    },
+    {
+      "id": "R1.P7.POSITIVE.06",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "Run test_observer_reads_exact_identity_beyond_preview with the required unittest identity emitted after more than 64 KiB of output.",
+      "observable": "The full retained artifact, not the bounded preview, supplies the exact passing identity.",
+      "red_expectation": "A preview-only observer marks the required late identity missing.",
+      "green_expectation": "The observer parses the complete retained artifact and records the late identity as passed.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_observer_reads_exact_identity_beyond_preview",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: the complete artifact remains the observer source beyond the preview boundary."
+    }
+  ],
+  "commands": [
+    {
+      "id": "workflow-evidence-unit-tests",
+      "runner": "python-unittest",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_requirement_tests",
+        "scripts.test_discovery_ledger",
+        "scripts.test_local_verify",
+        "-v"
+      ],
+      "cwd": ".",
+      "env": {},
+      "timeout_seconds": 180,
+      "authority": "local"
+    }
+  ]
+}

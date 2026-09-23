@@ -6,7 +6,9 @@ rules:
     - Before semantic implementation, challenge intent, ambiguity, contradictions, missing cases and oracle adequacy using the shared verification procedure routed by {{verification}}; this is not an automatic approval gate.
     - Express observable requirements and meaningful positive, invalid and boundary scenarios; identify the required evidence or oracle for important invariants.
     - Preserve integer precision, serialization, error, version and recovery semantics at mixed-language boundaries; state unsupported cases explicitly.
-    - Map important requirements to falsifiable properties, independent oracles, suitable test types and existing cases; do not add duplicate coverage without a distinct purpose.
+    - For every behavioral requirement, create or update the change-owned verification.json DAG before semantic implementation. Pin exact requirements/scenarios to properties and every property/scenario edge to distinct positive and negative cases. Each case names exactly one scenario fingerprint, setup, observable, red and green expectations, exact observed test identity, test-source fingerprint, deduplicated command, substitution and invalidation dependencies.
+    - Map requirements and evidence in both directions; a shared test needs explicit distinct observable edges and duplicate property/polarity/observable/test edges are invalid.
+    - For behavioral discovery, keep discovery.json scoped to the relevant verification properties and exact tests. Record exact, semantic Context and capability-aware JetBrains-index search lanes, classify every result and choose current change, named new change, validation only or no change before accepting scope.
     - Do not substitute model agreement, simulated time or downstream rejection for a stronger requested contract.
   design:
     - Record consequential choices, dependencies, risks, assumptions, approval boundaries and rationale; link evidence rather than duplicate requirements or tasks.
@@ -30,9 +32,12 @@ operations:
       - Qualify decisive feedback and retain material failure/replay evidence using {{verification}}. Verify the whole requested outcome before no-change completion; a partial fix or passing retry is insufficient.
       - Review actual code and evidence using {{verification}}. Repair material in-scope findings and revalidate affected results; a review stage is not a handoff or task completion. Do not claim independent review for self-review.
       - Reconcile required properties and selected test sets with actual executed cases/families, skips, configurations and gaps using {{verification}}. Manifest validity is not execution or oracle evidence.
+      - Query and run the verification.json closure for every affected requirement, property, owner or source path in the increment. Confirm each expected exact test identity executed and passed; preserve failures and gaps.
+      - After each edit run only the smallest directly invalidated cases, then expand to dependent or sibling cases when required. Reuse green evidence until a declared invalidation dependency changes, and run the complete iteration case set once at the stable iteration boundary.
+      - Validate discovery.json for the affected property/test selection before accepting explore/check scope decisions. Unavailable semantic or IDE search is recorded with its exact reason, never silently substituted.
       - Execute relevant existing commands through {{checks}}; users need not invoke Make separately. Select the documented workflow, specification and readiness checks plus required behavioral evidence. Missing checks are not passes.
       - Use relevant domain skills and risk-based local checks. Read-only audit stopping applies only to audit scope; it does not limit an authorized implementation workflow.
-      - DONE includes verified no-change completion and requires the requested outcome, matching artifacts, passing required checks on the final relevant code, diff/behavior inspection and resolved material findings. Report limitations and separate local completion from external approval/deployment.
+      - DONE includes verified no-change completion and requires the requested outcome, matching artifacts, a passing complete verification.json run --all --require-clean on the final relevant code, diff/behavior inspection and resolved material findings. Report limitations and separate local completion from external approval/deployment.
   archive:
     guidance:
       - Archive only after the DONE evidence review in {{flow}}; artifact readiness, checkbox totals and a verification summary alone are insufficient.

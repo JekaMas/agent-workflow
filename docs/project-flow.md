@@ -16,8 +16,10 @@ rules are rendered from the same canonical templates.
 
 Operation skills in `.agents/skills/openspec-*` and Claude opsx commands route here.
 `check workflow` runs the shared mechanics plus bootstrap ownership check;
-`check spec <change>` validates exact artifacts; `check ready <change>` additionally
-requires completed tasks. Neither structural readiness nor a green review is DONE.
+`check spec <change>` validates exact artifacts and the complete evidence DAG;
+`check spec-tests <change> <selectors>` executes a nonempty affected DAG closure;
+`check ready <change>` requires completed tasks and executes the complete required
+DAG. Neither structural readiness nor a green review is DONE.
 Select product checks from the actual project instructions, manifests and profile.
 Native language commands are supported; Make and a universal tool version are not
 required. Preserve execution records, selected cases, relevant configurations and
@@ -60,8 +62,22 @@ Run from the consumer root; select a new output directory for each run:
   checks do not establish product behavior or selected artifact validity.
 - `spec <change>`: `python3 -B .agents/workflow/scripts/local_verify.py openspec
   --cwd . --change <change> --scope openspec --require-project-guidance
-  --output-dir <evidence-directory>`.
-- `ready <change>`: the same command with `--require-tasks-complete`.
+  --output-dir <evidence-directory>`, followed by
+  `python3 -B .agents/workflow/scripts/requirement_tests.py --root . --change
+  <change> validate`, plus `python3 -B .agents/workflow/scripts/discovery_ledger.py
+  --root . --change <change>` for a behavioral discovery/check decision.
+- `spec-tests <change> <selectors>`: run `requirement_tests.py ... query` first,
+  validate matching property/test coverage in `discovery.json`,
+  then `requirement_tests.py ... run --output <new-result>` with at least one
+  `--requirements`, `--properties`, `--cases`, `--tests`, `--commands`, `--owners`
+  or `--changed-paths` selector. Query output includes the exact graph nodes, not
+  only aggregate IDs; pass prior result paths with `--evidence` to load current
+  status. Unloaded evidence reports `not_loaded`, and dependency/spec/source drift
+  reports `stale`.
+- `ready <change>`: run the structural command with `--require-tasks-complete`,
+  then `requirement_tests.py ... run --all --require-clean --output <new-result>`.
+  Unknown or dirty Git provenance and either command failure
+  keeps readiness non-passing.
 - Language/assurance: inspect project commands and actual tool configuration first;
   the shared runner's pinned lint version is optional. Use the project's supported
   native route if it differs, retain its output and do not mislabel an unsupported
