@@ -6,7 +6,7 @@
       "id": "R1",
       "capability": "adaptive-development-workflow",
       "title": "Executable requirement evidence graph",
-      "fingerprint": "b207fb8988b9d70cd138dcc90cfedae45c5838efa359d18506b16a340b89f943"
+      "fingerprint": "d0cc7a85825c418d5ac4652eec5afa11f379e812639298229204dad12a083a0b"
     },
     {
       "id": "R2",
@@ -157,7 +157,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Requirement and scenario coverage is complete: Establishes complete graph construction for R1.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -183,7 +183,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -208,13 +208,13 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Affected increment is applied or verified: Proves execution and exact observation for R1.P2.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
       "scenario": "Affected increment is applied or verified",
-      "scenario_fingerprint": "28bc48176230ef0a785d9a8faa68f3d21c408c6b9138eecd591fe1824982ca58",
+      "scenario_fingerprint": "ad776facbb7303e0bc7d8360a8d4df1dda0b3edb03150d0f98d3c6de7066d895",
       "setup": "Execute the exact Affected increment is applied or verified scenario at scripts/requirement_tests.py:run_selection.",
       "red_expectation": "The case fails if Affected increment is applied or verified violates: One canonical command executes both selected cases exactly once.",
       "green_expectation": "The case passes only when One canonical command executes both selected cases exactly once.",
@@ -234,12 +234,12 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
       "scenario": "Affected increment is applied or verified",
-      "scenario_fingerprint": "28bc48176230ef0a785d9a8faa68f3d21c408c6b9138eecd591fe1824982ca58",
+      "scenario_fingerprint": "ad776facbb7303e0bc7d8360a8d4df1dda0b3edb03150d0f98d3c6de7066d895",
       "setup": "Execute the exact Affected increment is applied or verified scenario at scripts/requirement_tests.py:run_selection.",
       "red_expectation": "The case fails if Affected increment is applied or verified violates: An unregistered marker or nonzero command cannot pass.",
       "green_expectation": "The case passes only when An unregistered marker or nonzero command cannot pass.",
@@ -259,7 +259,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Final implementation readiness is checked: Establishes the successful final-closure state for R1.P3.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -284,7 +284,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Required evidence crosses an authority boundary: Establishes the successful final-closure state for R1.P3.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -309,7 +309,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -334,7 +334,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -359,7 +359,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Specification or test source drifts: Establishes matching current pins for R1.P4.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -384,7 +384,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -408,7 +408,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -432,7 +432,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Test coverage appears duplicated: Proves deduplicated command scheduling for R1.P5.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -456,7 +456,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -479,7 +479,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "A production owner changes: Proves indexed selector equivalence for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -503,7 +503,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Reviewer traces one specification point: Proves indexed selector equivalence for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -527,7 +527,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "A production owner changes: The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -551,7 +551,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "distinct_reason": "Reviewer traces one specification point: The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
@@ -575,7 +575,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -600,7 +600,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -625,7 +625,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -650,7 +650,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -675,7 +675,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -700,7 +700,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -779,7 +779,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -811,7 +811,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -837,7 +837,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "source_sha256": "f412125f8f881697ba50cb96cbccf755e7758bf7d1ae5ba581c405f3eaf1c125",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },

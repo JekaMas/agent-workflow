@@ -29,4 +29,5 @@
 ## 5. Review-driven scenario precision
 
 - [x] 5.1 Reject multi-scenario case claims; pin every case to one exact scenario fingerprint and require setup, observable, red expectation, green expectation and invalidation dependencies.
-- [ ] 5.2 Migrate the shared and Smart Example graphs to schema v2, add the missing GMX stale/flat/portfolio cases, run the affected closures, update the Smart pin and retain final green workflow evidence.
+- [x] 5.2 Migrate the shared and Smart Example graphs to schema v2, add the missing GMX stale/flat/portfolio cases, run the affected closures, update the Smart pin and retain final green workflow evidence.
+- [x] 5.3 Make verification gradual by default: run directly invalidated cases first, expand only as dependencies require, reuse uninvalidated green evidence, and execute the full iteration selection once at the stable boundary.

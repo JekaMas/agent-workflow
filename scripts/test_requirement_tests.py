@@ -325,11 +325,17 @@ class RequirementEvidenceGraphTest(unittest.TestCase):
         config = (root / "openspec" / "config.yaml").read_text(encoding="utf-8")
         self.assertIn("verification.json", apply)
         self.assertIn("affected", apply)
+        self.assertIn("smallest directly invalidated", apply)
+        self.assertIn("iteration case set once", apply)
         self.assertIn("verification.json", verify)
         self.assertIn("exact observed pass/fail/skip/missing", verify)
+        self.assertIn("Reuse still-valid green", verify)
+        self.assertIn("complete iteration set once", verify)
         self.assertIn("spec-tests", check)
         self.assertIn("run --all", check)
         self.assertIn("verification.json", config)
+        self.assertIn("smallest directly invalidated cases", config)
+        self.assertIn("complete iteration case set once", config)
         self.assertNotIn("GOTOOLCHAIN=local", (root / "scripts" / "local_verify.py").read_text(encoding="utf-8"))
 
 

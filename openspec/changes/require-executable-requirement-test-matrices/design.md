@@ -103,6 +103,11 @@ nonzero exit, missing expected identity, skip or fail is non-passing.
   authority-blocked cases.
 
 Apply and verify MUST call affected `run`; final readiness MUST call `run --all`.
+Within an iteration, checks progress from the smallest directly invalidated cases
+to dependent/sibling cases only when required. The complete iteration selection
+runs once after the code and artifacts stabilize; an already-green result is not
+repeated unless a declared dependency changes. This retains fast feedback without
+weakening the final iteration closure.
 Every scenario edge of every property requires both positive and negative cases,
 and one case is forbidden from naming more than one scenario. A requirement-level
 property pair cannot silently stand in for an unlisted scenario. An implemented

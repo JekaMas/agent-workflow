@@ -21,7 +21,9 @@ substitution boundary, and semantic invalidation dependencies.
 #### Scenario: Affected increment is applied or verified
 - **WHEN** apply or verify selects requirements, owners or changed source paths for the current increment
 - **THEN** the workflow resolves the transitive affected-case closure through reverse graph indexes
-- **AND** executes every required local case in that closure exactly once through its canonical command
+- **AND** after each edit it runs the smallest directly invalidated case set first and expands only after that set passes or exposes a dependency
+- **AND** at the stable iteration boundary it executes the complete iteration case set exactly once through deduplicated canonical commands
+- **AND** a prior green case is reused until one of its declared invalidation dependencies changes
 - **AND** confirms every exact expected test identity executed and passed
 
 #### Scenario: Final implementation readiness is checked
