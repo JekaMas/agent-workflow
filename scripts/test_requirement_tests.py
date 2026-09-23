@@ -85,6 +85,7 @@ class RequirementEvidenceGraphTest(unittest.TestCase):
                 "state": "implemented",
                 "source_path": "tests/ownership_test.py",
                 "source_sha256": source_sha256,
+                "distinct_reason": f"{scenario}: {observable}",
                 "substitution": {"classification": "NO_TEST_DOUBLE"},
             }
 
@@ -222,6 +223,25 @@ class RequirementEvidenceGraphTest(unittest.TestCase):
                 with self.assertRaisesRegex(evidence.MatrixError, message):
                     self.graph()
                 self.manifest = original
+
+    def test_multi_scenario_test_requires_scenario_specific_reason(self) -> None:
+        self.manifest["cases"][2]["test_id"] = "match-positive"
+        self.manifest["cases"][2]["distinct_reason"] = "generic shared test reason"
+        self.write_manifest()
+        with self.assertRaisesRegex(evidence.MatrixError, "multi-scenario test"):
+            self.graph()
+
+    def test_multi_scenario_test_accepts_scenario_specific_reasons(self) -> None:
+        self.manifest["cases"][2]["test_id"] = "match-positive"
+        self.manifest["cases"][2]["distinct_reason"] = (
+            "Different owner: proves the independent rejection branch"
+        )
+        self.write_manifest()
+        graph = self.graph()
+        self.assertEqual(
+            ["R1.P1.DIFFERENT.POS", "R1.P1.MATCH.POS"],
+            graph.select(test_ids=["match-positive"])["cases"],
+        )
 
     def test_one_canonical_command_executes_both_cases_once(self) -> None:
         graph = self.graph()

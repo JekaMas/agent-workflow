@@ -74,8 +74,9 @@ faster and safer than committing generated indexes.
 
 Within one property, `(scenario, polarity, observable, expected_test)` is unique. A command
 definition is keyed by its canonical execution tuple; identical definitions must
-share one command node. One observed test may support several properties only
-through separate edges whose observables or failure classes differ. This follows
+share one command node. One observed test may support several properties or
+scenarios only through separate edges whose observables or failure classes differ;
+every multi-scenario edge carries a distinct reason naming its exact scenario. This follows
 the strict overlap rule and prevents both duplicated execution and accidental
 loss of distinct protection.
 

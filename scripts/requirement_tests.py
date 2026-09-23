@@ -238,6 +238,7 @@ class EvidenceGraph:
         cases_by_property: dict[str, list[dict[str, Any]]] = defaultdict(list)
         scenario_case_polarities: dict[tuple[str, str], set[str]] = defaultdict(set)
         tests_to_properties: dict[str, set[str]] = defaultdict(set)
+        tests_to_scenarios: dict[str, set[tuple[str, str]]] = defaultdict(set)
         for identity, row in self.cases.items():
             property_id = required_text(row, "property_id", f"case {identity}")
             if property_id not in self.properties:
@@ -302,6 +303,7 @@ class EvidenceGraph:
             seen_case_key.add(key)
             cases_by_property[property_id].append(row)
             tests_to_properties[test_id].add(property_id)
+            tests_to_scenarios[test_id].add((property_id, scenario))
             self.by_test[test_id].add(identity)
             self.by_case_command[command_id].add(identity)
         for property_id in self.properties:
@@ -319,6 +321,17 @@ class EvidenceGraph:
                     if row["test_id"] == test_id and not str(row.get("distinct_reason", "")).strip():
                         raise MatrixError(
                             f"shared test {test_id} requires distinct_reason on every property edge"
+                        )
+        for test_id, scenario_edges in tests_to_scenarios.items():
+            if len(scenario_edges) > 1:
+                for row in self.cases.values():
+                    if row["test_id"] != test_id:
+                        continue
+                    reason = str(row.get("distinct_reason", "")).strip()
+                    if not reason or row["scenario"] not in reason:
+                        raise MatrixError(
+                            f"multi-scenario test {test_id} requires a scenario-specific "
+                            f"distinct_reason naming {row['scenario']!r}"
                         )
 
         seen_commands: dict[bytes, str] = {}

@@ -16,6 +16,7 @@ substitution boundary, and semantic invalidation dependencies.
 - **THEN** validation requires an exact graph node pinned to the current specification fingerprint
 - **AND** every scenario is covered by a property with at least one positive and one negative case
 - **AND** one case cannot claim several scenarios through one broad observable
+- **AND** one exact test reused across scenarios names a distinct scenario-specific reason on every edge
 
 #### Scenario: Affected increment is applied or verified
 - **WHEN** apply or verify selects requirements, owners or changed source paths for the current increment

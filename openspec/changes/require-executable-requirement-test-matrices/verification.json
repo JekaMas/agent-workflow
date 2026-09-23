@@ -6,7 +6,7 @@
       "id": "R1",
       "capability": "adaptive-development-workflow",
       "title": "Executable requirement evidence graph",
-      "fingerprint": "64270767e9c7566f10d834c897ea0e8eb7d7b5ce04018a3dc9168b537b9558ce"
+      "fingerprint": "b207fb8988b9d70cd138dcc90cfedae45c5838efa359d18506b16a340b89f943"
     },
     {
       "id": "R2",
@@ -157,13 +157,13 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Establishes complete graph construction for R1.P1.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Requirement and scenario coverage is complete: Establishes complete graph construction for R1.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "146b0024b4e2139672166e935ebeba087f188d296a608bd033121c69f52837b8",
+      "scenario_fingerprint": "b15da8f1a90bfa10732955f7f7e8bbd480052f6c546275911a9f792e05f43053",
       "setup": "Execute the exact Requirement and scenario coverage is complete scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
       "red_expectation": "The case fails if Requirement and scenario coverage is complete violates: A complete graph constructs and resolves its exact closure.",
       "green_expectation": "The case passes only when A complete graph constructs and resolves its exact closure.",
@@ -183,12 +183,12 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "146b0024b4e2139672166e935ebeba087f188d296a608bd033121c69f52837b8",
+      "scenario_fingerprint": "b15da8f1a90bfa10732955f7f7e8bbd480052f6c546275911a9f792e05f43053",
       "setup": "Execute the exact Requirement and scenario coverage is complete scenario at scripts/requirement_tests.py:EvidenceGraph.validate.",
       "red_expectation": "The case fails if Requirement and scenario coverage is complete violates: Missing polarity or uncovered scenario is rejected.",
       "green_expectation": "The case passes only when Missing polarity or uncovered scenario is rejected.",
@@ -208,8 +208,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Proves execution and exact observation for R1.P2.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Affected increment is applied or verified: Proves execution and exact observation for R1.P2.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -234,7 +234,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -259,8 +259,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Establishes the successful final-closure state for R1.P3.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Final implementation readiness is checked: Establishes the successful final-closure state for R1.P3.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -284,8 +284,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Establishes the successful final-closure state for R1.P3.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Required evidence crosses an authority boundary: Establishes the successful final-closure state for R1.P3.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -309,7 +309,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -322,7 +322,8 @@
         "scripts/requirement_tests.py",
         "scripts/test_requirement_tests.py",
         "scripts/integration_templates/check.md"
-      ]
+      ],
+      "distinct_reason": "Final implementation readiness is checked: Planned or protected cases stay incomplete without authority."
     },
     {
       "id": "R1.P3.NEG.S2",
@@ -333,7 +334,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -346,7 +347,8 @@
         "scripts/requirement_tests.py",
         "scripts/test_requirement_tests.py",
         "scripts/integration_templates/check.md"
-      ]
+      ],
+      "distinct_reason": "Required evidence crosses an authority boundary: Planned or protected cases stay incomplete without authority."
     },
     {
       "id": "R1.P4.POS",
@@ -357,8 +359,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Establishes matching current pins for R1.P4.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Specification or test source drifts: Establishes matching current pins for R1.P4.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -382,7 +384,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -406,7 +408,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -430,8 +432,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Proves deduplicated command scheduling for R1.P5.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Test coverage appears duplicated: Proves deduplicated command scheduling for R1.P5.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -454,7 +456,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -477,8 +479,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Proves indexed selector equivalence for R2.P1.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "A production owner changes: Proves indexed selector equivalence for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -501,8 +503,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "Proves indexed selector equivalence for R2.P1.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Reviewer traces one specification point: Proves indexed selector equivalence for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -525,8 +527,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "A production owner changes: The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -549,8 +551,8 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
-      "distinct_reason": "The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "distinct_reason": "Reviewer traces one specification point: The same test has a separate negative assertion excluding unrelated paths for R2.P1.",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -573,7 +575,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -586,7 +588,8 @@
         "scripts/integration_templates/**",
         "openspec/config.yaml",
         "scripts/test_requirement_tests.py"
-      ]
+      ],
+      "distinct_reason": "Consumer validates an active change: Rendered routes contain validate, affected execution and complete final execution."
     },
     {
       "id": "R3.P1.POS.S2",
@@ -597,7 +600,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -610,7 +613,8 @@
         "scripts/integration_templates/**",
         "openspec/config.yaml",
         "scripts/test_requirement_tests.py"
-      ]
+      ],
+      "distinct_reason": "Consumer verifies an increment: Rendered routes contain validate, affected execution and complete final execution."
     },
     {
       "id": "R3.P1.POS.S3",
@@ -621,7 +625,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -634,7 +638,8 @@
         "scripts/integration_templates/**",
         "openspec/config.yaml",
         "scripts/test_requirement_tests.py"
-      ]
+      ],
+      "distinct_reason": "Consumer checks final readiness: Rendered routes contain validate, affected execution and complete final execution."
     },
     {
       "id": "R3.P1.NEG.S1",
@@ -645,7 +650,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -658,7 +663,8 @@
         "scripts/integration_templates/**",
         "openspec/config.yaml",
         "scripts/test_requirement_tests.py"
-      ]
+      ],
+      "distinct_reason": "Consumer validates an active change: Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain."
     },
     {
       "id": "R3.P1.NEG.S2",
@@ -669,7 +675,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -682,7 +688,8 @@
         "scripts/integration_templates/**",
         "openspec/config.yaml",
         "scripts/test_requirement_tests.py"
-      ]
+      ],
+      "distinct_reason": "Consumer verifies an increment: Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain."
     },
     {
       "id": "R3.P1.NEG.S3",
@@ -693,7 +700,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
@@ -706,7 +713,8 @@
         "scripts/integration_templates/**",
         "openspec/config.yaml",
         "scripts/test_requirement_tests.py"
-      ]
+      ],
+      "distinct_reason": "Consumer checks final readiness: Rendered routes do not omit affected or complete evidence execution and do not force the local Go toolchain."
     },
     {
       "id": "R3.P2.POS",
@@ -771,12 +779,12 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5956728a639c362ad32e3ba76fa8c7b8a311116e67bf5faeacefdb272b879e2a",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
       "substitution": {
         "classification": "NO_TEST_DOUBLE"
       },
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "146b0024b4e2139672166e935ebeba087f188d296a608bd033121c69f52837b8",
+      "scenario_fingerprint": "b15da8f1a90bfa10732955f7f7e8bbd480052f6c546275911a9f792e05f43053",
       "setup": "Mutate one required single-scenario case field at a time in an otherwise valid graph.",
       "red_expectation": "A graph that accepts a broad or review-incomplete case fails the contract.",
       "green_expectation": "Every missing or stale single-scenario review field is rejected with a deterministic error.",
@@ -787,6 +795,58 @@
         "scripts/test_requirement_tests.py"
       ],
       "distinct_reason": "Directly proves the schema-v2 single-scenario and review-contract fields rather than only polarity coverage."
+    },
+    {
+      "id": "R1.P5.MULTI.POS",
+      "property_id": "R1.P5",
+      "scenario": "Test coverage appears duplicated",
+      "scenario_fingerprint": "4b9cddcbd09bf81f5948870802857243b265159c8fe40c1e344367bfe2b83d29",
+      "setup": "Reuse one exact test identity on two scenario edges and validate the scenario-specific review contract.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "openspec/changes/**/verification.json",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ],
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "polarity": "positive",
+      "observable": "A deliberately shared test is accepted only when every edge names its exact scenario proof.",
+      "red_expectation": "The valid graph is rejected even though every shared-test edge names its exact scenario.",
+      "green_expectation": "The graph constructs and the shared test selects both explicitly distinguished scenario edges.",
+      "test_id": "test_multi_scenario_test_accepts_scenario_specific_reasons (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_accepts_scenario_specific_reasons)",
+      "distinct_reason": "Test coverage appears duplicated: proves valid scenario-specific reuse remains supported."
+    },
+    {
+      "id": "R1.P5.MULTI.NEG",
+      "property_id": "R1.P5",
+      "scenario": "Test coverage appears duplicated",
+      "scenario_fingerprint": "4b9cddcbd09bf81f5948870802857243b265159c8fe40c1e344367bfe2b83d29",
+      "setup": "Reuse one exact test identity on two scenario edges and validate the scenario-specific review contract.",
+      "invalidation_dependencies": [
+        "openspec/changes/**/specs/**/spec.md",
+        "openspec/changes/**/verification.json",
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ],
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "19533bcc9337cb7966df33b70b43f7a5913942a7b55406a480b328f00f045904",
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "polarity": "negative",
+      "observable": "A shared test with only a generic reason is rejected before it can impersonate two scenario proofs.",
+      "red_expectation": "A generic shared-test reason validates and permits one test to claim unrelated scenario coverage.",
+      "green_expectation": "Validation rejects the generic reason and names the multi-scenario test contract.",
+      "test_id": "test_multi_scenario_test_requires_scenario_specific_reason (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_requires_scenario_specific_reason)",
+      "distinct_reason": "Test coverage appears duplicated: proves ambiguous multi-scenario reuse is rejected."
     }
   ],
   "commands": [
@@ -818,7 +878,9 @@
         "test_shared_routes_require_incremental_and_final_evidence_execution (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution)",
         "test_child_environment_allows_cached_required_go_toolchain_but_no_network (scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network)",
         "test_missing_executable_writes_unavailable_artifact (scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact)",
-        "test_case_requires_one_exact_scenario_and_review_contract (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract)"
+        "test_case_requires_one_exact_scenario_and_review_contract (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract)",
+        "test_multi_scenario_test_accepts_scenario_specific_reasons (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_accepts_scenario_specific_reasons)",
+        "test_multi_scenario_test_requires_scenario_specific_reason (scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_requires_scenario_specific_reason)"
       ]
     }
   ]
