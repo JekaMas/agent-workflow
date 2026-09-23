@@ -502,7 +502,11 @@ class EvidenceGraph:
                 raise MatrixError(
                     f"case {identity} test_id is not an expected marker of {row['command_id']}"
                 )
-            if command["runner"] == "command" and row.get("evidence_kind", "behavioral") != "structural":
+            if (
+                command["runner"] == "command"
+                and row["state"] == "implemented"
+                and row.get("evidence_kind", "behavioral") != "structural"
+            ):
                 raise MatrixError(
                     f"case {identity} behavioral evidence requires a typed test observer, not command markers"
                 )

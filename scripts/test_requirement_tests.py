@@ -377,6 +377,17 @@ class OwnershipTest(unittest.TestCase):
         with self.assertRaisesRegex(evidence.MatrixError, "requires a typed test observer"):
             self.graph()
 
+        for case in self.manifest["cases"]:
+            case["state"] = "planned"
+            case["substitution"] = {"classification": "UNDECIDED"}
+        self.write_manifest()
+        graph = self.graph()
+        report = evidence.run_selection(
+            graph, graph.select(all_cases=True), self.root / "planned-markers.json",
+        )
+        self.assertEqual("incomplete", report["status"])
+        self.assertTrue(all(row["status"] == "planned" for row in report["cases"].values()))
+
     def test_skipped_or_expected_failure_case_is_nonpassing(self) -> None:
         source = self.root / "tests" / "ownership_test.py"
         original_source = source.read_text()

@@ -93,7 +93,9 @@ The implementation supports:
   error, skipped, expected-failure and unexpected-success outcomes;
 - `node-test-tap`: parses exact TAP test names and preserves pass/fail/skip;
 - `command`: requires explicit stable success markers only for cases explicitly
-  classified as structural; it cannot satisfy behavioral evidence.
+  classified as structural; it cannot satisfy implemented behavioral evidence.
+  A protected marker command may retain exact intended identities for planned or
+  blocked cases, but those states never execute and always keep readiness incomplete.
 
 Commands are argv arrays and never shell-evaluated. Missing executable, timeout,
 nonzero exit, missing expected identity, skip or fail is non-passing.
