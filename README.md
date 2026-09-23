@@ -80,6 +80,14 @@ graph. Every property has positive and negative cases; exact observed test
 identities, skips and missing selections are recorded rather than inferred from
 suite names or exit codes.
 
+Behavioral explore/check decisions additionally use
+`openspec/changes/<change>/discovery.json`. The ledger binds relevant property and
+exact test IDs to exact repository search, semantic Context search and a
+capability-aware JetBrains-index lookup, classifies each result, and records
+whether it belongs to the current change, a named new change, validation only or
+no change. An unavailable semantic or IDE capability is explicit and never
+substituted by plain text search.
+
 Tested adapter versions: OpenSpec 1.13.1 and golangci-lint 2.11.3. Other versions
 are rejected until compatibility is qualified. Cargo defaults to Cargo.toml;
 consumers pass their actual manifest. Project config is supplied by the consumer.

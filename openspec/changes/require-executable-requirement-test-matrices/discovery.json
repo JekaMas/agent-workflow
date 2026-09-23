@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "change": "require-executable-requirement-test-matrices",
+  "scope": {
+    "property_ids": [
+      "R1.P1",
+      "R1.P2",
+      "R1.P3",
+      "R1.P4",
+      "R1.P5",
+      "R1.P6",
+      "R1.P7",
+      "R1.P8",
+      "R2.P1",
+      "R2.P2",
+      "R3.P1",
+      "R3.P2",
+      "R3.P3",
+      "R3.P4",
+      "R4.P1",
+      "R4.P2"
+    ],
+    "test_ids": [
+      "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_complete_three_lane_discovery_passes",
+      "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_missing_lane_scope_or_disposition_fails",
+      "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_unavailable_exact_search_and_unmapped_identity_fail",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_child_environment_disables_rustup_auto_install_without_global_mutation",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_existing_result_is_never_overwritten",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_failure_retains_exit_and_output",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_timeout_is_explicit",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_noisy_process_has_bounded_preview_and_complete_file",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_dependencies_select_and_invalidate_only_the_declared_case",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_command_markers_cannot_prove_behavioral_cases",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_delta_parser_ignores_removed_renamed_and_fenced_examples",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_scenario_glob_dependency_and_marker_edges_fail",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_execution_tuple_deduplicates_observation_variants_and_go_json",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_generic_review_contract_text_is_rejected",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_git_provenance_unknown_and_clean_requirement_are_explicit",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_go_and_cargo_observers_preserve_exact_failure_states",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_identity_whitespace_cannot_remove_cases_or_raise_keyerror",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_large_output_has_complete_artifact_beyond_preview",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_manifest_and_output_cannot_escape_change_or_repository",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_expected_identity_and_command_failure_cannot_pass",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_polarity_and_uncovered_scenario_fail",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_accepts_scenario_specific_reasons",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_requires_scenario_specific_reason",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_node_tap_observer_preserves_pass_fail_and_skip",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonbehavioral_change_without_manifest_is_not_required",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_path_globs_have_recursive_and_separator_aware_semantics",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_policy_environment_and_unavailable_cwd_fail_before_execution",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_requested_selectors_and_evidence_fingerprints_are_recorded",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_skipped_or_expected_failure_case_is_nonpassing",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_source_path_must_own_test_and_polarities_need_independent_tests",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_specification_fingerprint_fails",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_timeout_kills_process_group_and_keeps_complete_output",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unittest_observer_preserves_skip_expected_failure_and_python_versions",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "graph-and-observation",
+      "question": "Which graph, observer, selection, process, and status owners close B1-B10 and D1-D14?",
+      "property_ids": [
+        "R1.P1",
+        "R1.P2",
+        "R1.P3",
+        "R1.P4",
+        "R1.P5",
+        "R1.P6",
+        "R1.P7",
+        "R1.P8",
+        "R2.P1",
+        "R2.P2"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_child_environment_disables_rustup_auto_install_without_global_mutation",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_existing_result_is_never_overwritten",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_failure_retains_exit_and_output",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_timeout_is_explicit",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_noisy_process_has_bounded_preview_and_complete_file",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_dependencies_select_and_invalidate_only_the_declared_case",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_command_markers_cannot_prove_behavioral_cases",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_delta_parser_ignores_removed_renamed_and_fenced_examples",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_case_and_command_definitions_fail",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_duplicate_scenario_glob_dependency_and_marker_edges_fail",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_execution_tuple_deduplicates_observation_variants_and_go_json",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_generic_review_contract_text_is_rejected",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_git_provenance_unknown_and_clean_requirement_are_explicit",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_go_and_cargo_observers_preserve_exact_failure_states",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_identity_whitespace_cannot_remove_cases_or_raise_keyerror",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_large_output_has_complete_artifact_beyond_preview",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_manifest_and_output_cannot_escape_change_or_repository",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_expected_identity_and_command_failure_cannot_pass",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_missing_polarity_and_uncovered_scenario_fail",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_accepts_scenario_specific_reasons",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_requires_scenario_specific_reason",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_node_tap_observer_preserves_pass_fail_and_skip",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonbehavioral_change_without_manifest_is_not_required",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_path_globs_have_recursive_and_separator_aware_semantics",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_policy_environment_and_unavailable_cwd_fail_before_execution",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_requested_selectors_and_evidence_fingerprints_are_recorded",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_skipped_or_expected_failure_case_is_nonpassing",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_source_path_must_own_test_and_polarities_need_independent_tests",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_specification_fingerprint_fails",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_timeout_kills_process_group_and_keeps_complete_output",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unittest_observer_preserves_skip_expected_failure_and_python_versions",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "rg -n for EvidenceGraph, run_selection, discovery validation, routes, toolchain policy, and exact test methods.",
+          "outcome": "Exact source and proof owners were classified; no relevant result remains unresolved.",
+          "results": [
+            {
+              "path": "scripts/requirement_tests.py",
+              "line": 251,
+              "classification": "change_candidate",
+              "reason": "Validates graph identities and owns selection/result semantics."
+            },
+            {
+              "path": "scripts/process_runner.py",
+              "line": 1,
+              "classification": "change_candidate",
+              "reason": "Canonical bounded process-group execution owner."
+            },
+            {
+              "path": "scripts/test_requirement_tests.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Exact positive and negative unit proofs."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "completed",
+          "query": "Find the workflow implementation that maps OpenSpec requirements and properties to exact executable test identities, incremental selection, and retained results.",
+          "outcome": "Context identified requirement_tests.py, its direct unit tests, local_verify.py, and the rendered operation routes as the controlling owners.",
+          "results": [
+            {
+              "path": "scripts/requirement_tests.py",
+              "line": 251,
+              "classification": "change_candidate",
+              "reason": "Owns the executable graph and selection semantics."
+            },
+            {
+              "path": "scripts/test_requirement_tests.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Owns direct behavior proof for graph and process findings."
+            }
+          ]
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "query": "Resolve references and callers of EvidenceGraph.validate, run_selection, and discovery_ledger.validate.",
+          "outcome": "No JetBrains IDE index MCP operation is exposed in this task runtime.",
+          "reason": "The available tool registry contains no JetBrains index MCP; exact and Context evidence are retained without claiming IDE evidence.",
+          "results": []
+        }
+      ],
+      "disposition": "current_change",
+      "rationale": "These shared workflow defaults and their proof belong to the active executable-evidence change."
+    },
+    {
+      "id": "portable-defaults",
+      "question": "Which shared routes and toolchain policy must become portable defaults?",
+      "property_ids": [
+        "R3.P1",
+        "R3.P2",
+        "R3.P3",
+        "R3.P4"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_child_environment_allows_cached_required_go_toolchain_but_no_network",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_dependencies_select_and_invalidate_only_the_declared_case",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_command_markers_cannot_prove_behavioral_cases",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_planned_and_protected_cases_cannot_pass",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_shared_routes_require_incremental_and_final_evidence_execution",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "rg -n for EvidenceGraph, run_selection, discovery validation, routes, toolchain policy, and exact test methods.",
+          "outcome": "Exact source and proof owners were classified; no relevant result remains unresolved.",
+          "results": [
+            {
+              "path": "Makefile",
+              "line": 1,
+              "classification": "change_candidate",
+              "reason": "Repository checkpoint must execute the current DAG."
+            },
+            {
+              "path": "scripts/integration_templates/check.md",
+              "line": 1,
+              "classification": "change_candidate",
+              "reason": "Rendered consumer check contract owner."
+            },
+            {
+              "path": "scripts/local_verify.py",
+              "line": 1,
+              "classification": "interface_dependency",
+              "reason": "Existing portable execution boundary reused by consumers."
+            },
+            {
+              "path": "scripts/rehearse_flow.py",
+              "line": 1,
+              "classification": "change_candidate",
+              "reason": "Disposable rehearsal must share offline Go policy."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "completed",
+          "query": "Find the workflow implementation that maps OpenSpec requirements and properties to exact executable test identities, incremental selection, and retained results.",
+          "outcome": "Context identified requirement_tests.py, its direct unit tests, local_verify.py, and the rendered operation routes as the controlling owners.",
+          "results": [
+            {
+              "path": "scripts/requirement_tests.py",
+              "line": 251,
+              "classification": "change_candidate",
+              "reason": "Owns the executable graph and selection semantics."
+            },
+            {
+              "path": "scripts/test_requirement_tests.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Owns direct behavior proof for graph and process findings."
+            }
+          ]
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "query": "Resolve references and callers of EvidenceGraph.validate, run_selection, and discovery_ledger.validate.",
+          "outcome": "No JetBrains IDE index MCP operation is exposed in this task runtime.",
+          "reason": "The available tool registry contains no JetBrains index MCP; exact and Context evidence are retained without claiming IDE evidence.",
+          "results": []
+        }
+      ],
+      "disposition": "current_change",
+      "rationale": "These shared workflow defaults and their proof belong to the active executable-evidence change."
+    },
+    {
+      "id": "search-backed-decisions",
+      "question": "How are exact, semantic and IDE-index searches tied to property/test scope decisions?",
+      "property_ids": [
+        "R4.P1",
+        "R4.P2"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_complete_three_lane_discovery_passes",
+        "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_missing_lane_scope_or_disposition_fails",
+        "unittest::scripts.test_discovery_ledger.DiscoveryLedgerTest.test_unavailable_exact_search_and_unmapped_identity_fail"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "rg -n for EvidenceGraph, run_selection, discovery validation, routes, toolchain policy, and exact test methods.",
+          "outcome": "Exact source and proof owners were classified; no relevant result remains unresolved.",
+          "results": [
+            {
+              "path": "scripts/discovery_ledger.py",
+              "line": 71,
+              "classification": "change_candidate",
+              "reason": "Validates three-lane search evidence and disposition."
+            },
+            {
+              "path": "scripts/integration_templates/explore.md",
+              "line": 1,
+              "classification": "change_candidate",
+              "reason": "Explore route authors the discovery decision."
+            },
+            {
+              "path": "scripts/integration_templates/check.md",
+              "line": 16,
+              "classification": "change_candidate",
+              "reason": "Check route validates discovery coverage."
+            },
+            {
+              "path": "scripts/test_discovery_ledger.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Positive and negative ledger validation cases."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "completed",
+          "query": "Find the workflow implementation that maps OpenSpec requirements and properties to exact executable test identities, incremental selection, and retained results.",
+          "outcome": "Context identified requirement_tests.py, its direct unit tests, local_verify.py, and the rendered operation routes as the controlling owners.",
+          "results": [
+            {
+              "path": "scripts/requirement_tests.py",
+              "line": 251,
+              "classification": "change_candidate",
+              "reason": "Owns the executable graph and selection semantics."
+            },
+            {
+              "path": "scripts/test_requirement_tests.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Owns direct behavior proof for graph and process findings."
+            }
+          ]
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "query": "Resolve references and callers of EvidenceGraph.validate, run_selection, and discovery_ledger.validate.",
+          "outcome": "No JetBrains IDE index MCP operation is exposed in this task runtime.",
+          "reason": "The available tool registry contains no JetBrains index MCP; exact and Context evidence are retained without claiming IDE evidence.",
+          "results": []
+        }
+      ],
+      "disposition": "current_change",
+      "rationale": "These shared workflow defaults and their proof belong to the active executable-evidence change."
+    }
+  ]
+}

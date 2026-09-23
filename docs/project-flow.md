@@ -64,12 +64,16 @@ Run from the consumer root; select a new output directory for each run:
   --cwd . --change <change> --scope openspec --require-project-guidance
   --output-dir <evidence-directory>`, followed by
   `python3 -B .agents/workflow/scripts/requirement_tests.py --root . --change
-  <change> validate`.
+  <change> validate`, plus `python3 -B .agents/workflow/scripts/discovery_ledger.py
+  --root . --change <change>` for a behavioral discovery/check decision.
 - `spec-tests <change> <selectors>`: run `requirement_tests.py ... query` first,
+  validate matching property/test coverage in `discovery.json`,
   then `requirement_tests.py ... run --output <new-result>` with at least one
   `--requirements`, `--properties`, `--cases`, `--tests`, `--commands`, `--owners`
   or `--changed-paths` selector. Query output includes the exact graph nodes, not
-  only aggregate IDs; latest status is `not_loaded` until a selected run observes it.
+  only aggregate IDs; pass prior result paths with `--evidence` to load current
+  status. Unloaded evidence reports `not_loaded`, and dependency/spec/source drift
+  reports `stale`.
 - `ready <change>`: run the structural command with `--require-tasks-complete`,
   then `requirement_tests.py ... run --all --output <new-result>`. Either failure
   keeps readiness non-passing.

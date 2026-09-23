@@ -119,7 +119,10 @@ python3 -B .agents/workflow/scripts/check_opsx_routes.py --root .
 ```
 
 Behavioral changes additionally keep
-`openspec/changes/<change>/verification.json`. Consumer check adapters expose
+`openspec/changes/<change>/verification.json`; behavioral explore/check decisions
+also keep `discovery.json` for exact, semantic Context and capability-aware
+JetBrains-index evidence plus the current/new/validation/no-change disposition.
+Consumer check adapters expose
 structural graph validation with the ordinary spec check, an affected query/run
 during apply and verify, and `requirement_tests.py run --all` during final
 readiness. Read the tool from the exact `.agents/workflow` pin; do not copy a

@@ -1,0 +1,869 @@
+{
+  "schema_version": 2,
+  "change": "unify-workflow-adoption",
+  "requirements": [
+    {
+      "id": "R1",
+      "capability": "portable-workflow",
+      "title": "Safe adoption and updates",
+      "fingerprint": "beed433b2ff95b15abf87c60a65238356c0e85da50e563f0e074b3f945b4a51f"
+    },
+    {
+      "id": "R2",
+      "capability": "unified-adoption",
+      "title": "General procedures have shared owners",
+      "fingerprint": "d1d09607db74c2400319b3f2c6d81318ef8df38185ed157b2cb86807a3c23d42"
+    },
+    {
+      "id": "R3",
+      "capability": "unified-adoption",
+      "title": "Simple safe adoption",
+      "fingerprint": "b065518d65e2f4f437530fbf32e4ca98fedcda58fecf2869332cfe67bb570307"
+    },
+    {
+      "id": "R4",
+      "capability": "unified-adoption",
+      "title": "Local policy stays explicit",
+      "fingerprint": "e88e86ac63985230cf30b6fb785e90fa0f8cbd9047eb234271913c24a0f5e780"
+    },
+    {
+      "id": "R5",
+      "capability": "unified-adoption",
+      "title": "Preservation of extracted evidence contracts",
+      "fingerprint": "7fcec3af8ce7309509c7d08eb8be18c9e5dc8654e648a06b4a1f0fe0cb703605"
+    },
+    {
+      "id": "R6",
+      "capability": "unified-adoption",
+      "title": "Consumer checks are reachable by default",
+      "fingerprint": "573acb38a31fb8a552d85debd35d72fcc6e532b7778966acfb2c184037cba860"
+    }
+  ],
+  "properties": [
+    {
+      "id": "R1.P1",
+      "requirement_id": "R1",
+      "statement": "Managed updates preserve allowed edits and reject changed owned content.",
+      "scenarios": [
+        "Collision or changed managed file"
+      ],
+      "owner": "bootstrap managed update",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R1.P2",
+      "requirement_id": "R1",
+      "statement": "Repeat installation is idempotent only without drift.",
+      "scenarios": [
+        "Repeat installation"
+      ],
+      "owner": "bootstrap repeat install",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R2.P3",
+      "requirement_id": "R2",
+      "statement": "Shared procedure identities resolve and broken owners fail closed.",
+      "scenarios": [
+        "Authorized repair"
+      ],
+      "owner": "specialist package graph",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_specialist_skills.py"
+      ]
+    },
+    {
+      "id": "R2.P4",
+      "requirement_id": "R2",
+      "statement": "Read-only preview reports without mutation.",
+      "scenarios": [
+        "Diagnosis only"
+      ],
+      "owner": "bootstrap preview",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R3.P5",
+      "requirement_id": "R3",
+      "statement": "Reviewed migration applies only to pinned inputs.",
+      "scenarios": [
+        "Stale reviewed plan"
+      ],
+      "owner": "existing adoption",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R3.P6",
+      "requirement_id": "R3",
+      "statement": "Adoption preserves active OpenSpec artifacts.",
+      "scenarios": [
+        "Existing active change"
+      ],
+      "owner": "existing adoption",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R4.P7",
+      "requirement_id": "R4",
+      "statement": "Consumer policy remains authoritative.",
+      "scenarios": [
+        "Consumer policy violation"
+      ],
+      "owner": "consumer policy",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R5.P8",
+      "requirement_id": "R5",
+      "statement": "Per-reference checks cannot be replaced by aggregate presence.",
+      "scenarios": [
+        "Aggregate masks a missing per-run disposition"
+      ],
+      "owner": "specialist package graph",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_specialist_skills.py"
+      ]
+    },
+    {
+      "id": "R5.P9",
+      "requirement_id": "R5",
+      "statement": "Unconfirmed or stale correction inputs do not mutate.",
+      "scenarios": [
+        "Proposed fix includes an unconfirmed cause"
+      ],
+      "owner": "bootstrap migration plan",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R5.P10",
+      "requirement_id": "R5",
+      "statement": "Conflicting ownership is rejected without unrelated overwrite.",
+      "scenarios": [
+        "Current conflict slice is unresolved"
+      ],
+      "owner": "bootstrap collision boundary",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R6.P11",
+      "requirement_id": "R6",
+      "statement": "Default checks include publication validation.",
+      "scenarios": [
+        "Unpublished active skill"
+      ],
+      "owner": "consumer default checks",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R6.P12",
+      "requirement_id": "R6",
+      "statement": "Default checks include packaged reference validation.",
+      "scenarios": [
+        "Missing skill reference"
+      ],
+      "owner": "consumer default checks",
+      "oracle": "Exact unittest identity and deterministic assertion outcome.",
+      "source_globs": [
+        "scripts/test_bootstrap.py"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "R1.P1.POSITIVE",
+      "property_id": "R1.P1",
+      "polarity": "positive",
+      "scenario": "Collision or changed managed file",
+      "scenario_fingerprint": "4f12b7f1002f109b2486937a9394f89748da2fbead942754eb5caf12a4ac5bc2",
+      "setup": "Run test_user_edits_outside_block_survive_update against the Collision or changed managed file positive fixture.",
+      "observable": "test_user_edits_outside_block_survive_update observes the positive boundary for Collision or changed managed file.",
+      "red_expectation": "Without the contract, test_user_edits_outside_block_survive_update exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_user_edits_outside_block_survive_update reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_user_edits_outside_block_survive_update",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Collision or changed managed file: test_user_edits_outside_block_survive_update proves the positive edge."
+    },
+    {
+      "id": "R1.P1.NEGATIVE",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Collision or changed managed file",
+      "scenario_fingerprint": "4f12b7f1002f109b2486937a9394f89748da2fbead942754eb5caf12a4ac5bc2",
+      "setup": "Run test_modified_owned_file_blocks_update against the Collision or changed managed file negative fixture.",
+      "observable": "test_modified_owned_file_blocks_update observes the negative boundary for Collision or changed managed file.",
+      "red_expectation": "Without the contract, test_modified_owned_file_blocks_update exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_modified_owned_file_blocks_update reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Collision or changed managed file: test_modified_owned_file_blocks_update proves the negative edge."
+    },
+    {
+      "id": "R1.P2.POSITIVE",
+      "property_id": "R1.P2",
+      "polarity": "positive",
+      "scenario": "Repeat installation",
+      "scenario_fingerprint": "176507c3a52a30ae5df68b5a82b65482a35354745025d23878f1b85de837ae19",
+      "setup": "Run test_adoption_and_repeat_preserve_domain_and_exact_pin against the Repeat installation positive fixture.",
+      "observable": "test_adoption_and_repeat_preserve_domain_and_exact_pin observes the positive boundary for Repeat installation.",
+      "red_expectation": "Without the contract, test_adoption_and_repeat_preserve_domain_and_exact_pin exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_adoption_and_repeat_preserve_domain_and_exact_pin reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Repeat installation: test_adoption_and_repeat_preserve_domain_and_exact_pin proves the positive edge."
+    },
+    {
+      "id": "R1.P2.NEGATIVE",
+      "property_id": "R1.P2",
+      "polarity": "negative",
+      "scenario": "Repeat installation",
+      "scenario_fingerprint": "176507c3a52a30ae5df68b5a82b65482a35354745025d23878f1b85de837ae19",
+      "setup": "Run test_personal_managed_edit_rejected against the Repeat installation negative fixture.",
+      "observable": "test_personal_managed_edit_rejected observes the negative boundary for Repeat installation.",
+      "red_expectation": "Without the contract, test_personal_managed_edit_rejected exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_personal_managed_edit_rejected reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_personal_managed_edit_rejected",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Repeat installation: test_personal_managed_edit_rejected proves the negative edge."
+    },
+    {
+      "id": "R2.P3.POSITIVE",
+      "property_id": "R2.P3",
+      "polarity": "positive",
+      "scenario": "Authorized repair",
+      "scenario_fingerprint": "cf4039562e3503005afe6a3a11976eb25bb1c0041c81ca90eaa3f7cef25c6503",
+      "setup": "Run test_reference_graph_and_identity against the Authorized repair positive fixture.",
+      "observable": "test_reference_graph_and_identity observes the positive boundary for Authorized repair.",
+      "red_expectation": "Without the contract, test_reference_graph_and_identity exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_reference_graph_and_identity reports the required exact result.",
+      "test_id": "unittest::scripts.test_specialist_skills.SpecialistPackages.test_reference_graph_and_identity",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_specialist_skills.py",
+      "source_sha256": "d7b584eb65e055d07e0cd609cf659c0227d2bf2329c99065850eeb3eb9641e1e",
+      "invalidation_dependencies": [
+        "scripts/test_specialist_skills.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Authorized repair: test_reference_graph_and_identity proves the positive edge."
+    },
+    {
+      "id": "R2.P3.NEGATIVE",
+      "property_id": "R2.P3",
+      "polarity": "negative",
+      "scenario": "Authorized repair",
+      "scenario_fingerprint": "cf4039562e3503005afe6a3a11976eb25bb1c0041c81ca90eaa3f7cef25c6503",
+      "setup": "Run test_missing_declared_reference_is_rejected against the Authorized repair negative fixture.",
+      "observable": "test_missing_declared_reference_is_rejected observes the negative boundary for Authorized repair.",
+      "red_expectation": "Without the contract, test_missing_declared_reference_is_rejected exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_missing_declared_reference_is_rejected reports the required exact result.",
+      "test_id": "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_specialist_skills.py",
+      "source_sha256": "d7b584eb65e055d07e0cd609cf659c0227d2bf2329c99065850eeb3eb9641e1e",
+      "invalidation_dependencies": [
+        "scripts/test_specialist_skills.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Authorized repair: test_missing_declared_reference_is_rejected proves the negative edge."
+    },
+    {
+      "id": "R2.P4.POSITIVE",
+      "property_id": "R2.P4",
+      "polarity": "positive",
+      "scenario": "Diagnosis only",
+      "scenario_fingerprint": "96f9a059d03e6920e842c8fa9df5cd7b194994510c3efffb7111d012cbff35f4",
+      "setup": "Run test_preview_does_not_write against the Diagnosis only positive fixture.",
+      "observable": "test_preview_does_not_write observes the positive boundary for Diagnosis only.",
+      "red_expectation": "Without the contract, test_preview_does_not_write exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_preview_does_not_write reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_preview_does_not_write",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Diagnosis only: test_preview_does_not_write proves the positive edge."
+    },
+    {
+      "id": "R2.P4.NEGATIVE",
+      "property_id": "R2.P4",
+      "polarity": "negative",
+      "scenario": "Diagnosis only",
+      "scenario_fingerprint": "96f9a059d03e6920e842c8fa9df5cd7b194994510c3efffb7111d012cbff35f4",
+      "setup": "Run test_unmanaged_collision_preserves_everything against the Diagnosis only negative fixture.",
+      "observable": "test_unmanaged_collision_preserves_everything observes the negative boundary for Diagnosis only.",
+      "red_expectation": "Without the contract, test_unmanaged_collision_preserves_everything exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_unmanaged_collision_preserves_everything reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_unmanaged_collision_preserves_everything",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Diagnosis only: test_unmanaged_collision_preserves_everything proves the negative edge."
+    },
+    {
+      "id": "R3.P5.POSITIVE",
+      "property_id": "R3.P5",
+      "polarity": "positive",
+      "scenario": "Stale reviewed plan",
+      "scenario_fingerprint": "30d52fea0d2b8f47bf2aa3dc6cdeb3b9da8aad4c85d75778e5d152f12fa01e4c",
+      "setup": "Run test_reviewed_existing_setup_preserves_active_artifacts against the Stale reviewed plan positive fixture.",
+      "observable": "test_reviewed_existing_setup_preserves_active_artifacts observes the positive boundary for Stale reviewed plan.",
+      "red_expectation": "Without the contract, test_reviewed_existing_setup_preserves_active_artifacts exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_reviewed_existing_setup_preserves_active_artifacts reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_reviewed_existing_setup_preserves_active_artifacts",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Stale reviewed plan: test_reviewed_existing_setup_preserves_active_artifacts proves the positive edge."
+    },
+    {
+      "id": "R3.P5.NEGATIVE",
+      "property_id": "R3.P5",
+      "polarity": "negative",
+      "scenario": "Stale reviewed plan",
+      "scenario_fingerprint": "30d52fea0d2b8f47bf2aa3dc6cdeb3b9da8aad4c85d75778e5d152f12fa01e4c",
+      "setup": "Run test_stale_migration_refuses_before_any_setup against the Stale reviewed plan negative fixture.",
+      "observable": "test_stale_migration_refuses_before_any_setup observes the negative boundary for Stale reviewed plan.",
+      "red_expectation": "Without the contract, test_stale_migration_refuses_before_any_setup exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_stale_migration_refuses_before_any_setup reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_stale_migration_refuses_before_any_setup",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Stale reviewed plan: test_stale_migration_refuses_before_any_setup proves the negative edge."
+    },
+    {
+      "id": "R3.P6.POSITIVE",
+      "property_id": "R3.P6",
+      "polarity": "positive",
+      "scenario": "Existing active change",
+      "scenario_fingerprint": "bf8cb980f12659247eb4bfa9d81613b6a53b9dbccd96d3da1a90aefcc92ce662",
+      "setup": "Run test_reviewed_existing_setup_preserves_active_artifacts against the Existing active change positive fixture.",
+      "observable": "test_reviewed_existing_setup_preserves_active_artifacts observes the positive boundary for Existing active change.",
+      "red_expectation": "Without the contract, test_reviewed_existing_setup_preserves_active_artifacts exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_reviewed_existing_setup_preserves_active_artifacts reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_reviewed_existing_setup_preserves_active_artifacts",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Existing active change: test_reviewed_existing_setup_preserves_active_artifacts proves the positive edge."
+    },
+    {
+      "id": "R3.P6.NEGATIVE",
+      "property_id": "R3.P6",
+      "polarity": "negative",
+      "scenario": "Existing active change",
+      "scenario_fingerprint": "bf8cb980f12659247eb4bfa9d81613b6a53b9dbccd96d3da1a90aefcc92ce662",
+      "setup": "Run test_existing_openspec_not_overwritten against the Existing active change negative fixture.",
+      "observable": "test_existing_openspec_not_overwritten observes the negative boundary for Existing active change.",
+      "red_expectation": "Without the contract, test_existing_openspec_not_overwritten exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_existing_openspec_not_overwritten reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_existing_openspec_not_overwritten",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Existing active change: test_existing_openspec_not_overwritten proves the negative edge."
+    },
+    {
+      "id": "R4.P7.POSITIVE",
+      "property_id": "R4.P7",
+      "polarity": "positive",
+      "scenario": "Consumer policy violation",
+      "scenario_fingerprint": "a82baa9459fb9346cfad932d5718f02e1e25686aff0f3cba2d9be3369be3d9d6",
+      "setup": "Run test_selected_consumer_policy_is_preserved_and_enforced against the Consumer policy violation positive fixture.",
+      "observable": "test_selected_consumer_policy_is_preserved_and_enforced observes the positive boundary for Consumer policy violation.",
+      "red_expectation": "Without the contract, test_selected_consumer_policy_is_preserved_and_enforced exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_selected_consumer_policy_is_preserved_and_enforced reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_selected_consumer_policy_is_preserved_and_enforced",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer policy violation: test_selected_consumer_policy_is_preserved_and_enforced proves the positive edge."
+    },
+    {
+      "id": "R4.P7.NEGATIVE",
+      "property_id": "R4.P7",
+      "polarity": "negative",
+      "scenario": "Consumer policy violation",
+      "scenario_fingerprint": "a82baa9459fb9346cfad932d5718f02e1e25686aff0f3cba2d9be3369be3d9d6",
+      "setup": "Run test_local_profile_reference_must_be_published against the Consumer policy violation negative fixture.",
+      "observable": "test_local_profile_reference_must_be_published observes the negative boundary for Consumer policy violation.",
+      "red_expectation": "Without the contract, test_local_profile_reference_must_be_published exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_local_profile_reference_must_be_published reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_local_profile_reference_must_be_published",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Consumer policy violation: test_local_profile_reference_must_be_published proves the negative edge."
+    },
+    {
+      "id": "R5.P8.POSITIVE",
+      "property_id": "R5.P8",
+      "polarity": "positive",
+      "scenario": "Aggregate masks a missing per-run disposition",
+      "scenario_fingerprint": "e06f3e7cb430085e14923c9e6e4d38705aa056a2031c64725243b86c6398728c",
+      "setup": "Run test_reference_graph_and_identity against the Aggregate masks a missing per-run disposition positive fixture.",
+      "observable": "test_reference_graph_and_identity observes the positive boundary for Aggregate masks a missing per-run disposition.",
+      "red_expectation": "Without the contract, test_reference_graph_and_identity exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_reference_graph_and_identity reports the required exact result.",
+      "test_id": "unittest::scripts.test_specialist_skills.SpecialistPackages.test_reference_graph_and_identity",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_specialist_skills.py",
+      "source_sha256": "d7b584eb65e055d07e0cd609cf659c0227d2bf2329c99065850eeb3eb9641e1e",
+      "invalidation_dependencies": [
+        "scripts/test_specialist_skills.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Aggregate masks a missing per-run disposition: test_reference_graph_and_identity proves the positive edge."
+    },
+    {
+      "id": "R5.P8.NEGATIVE",
+      "property_id": "R5.P8",
+      "polarity": "negative",
+      "scenario": "Aggregate masks a missing per-run disposition",
+      "scenario_fingerprint": "e06f3e7cb430085e14923c9e6e4d38705aa056a2031c64725243b86c6398728c",
+      "setup": "Run test_missing_declared_reference_is_rejected against the Aggregate masks a missing per-run disposition negative fixture.",
+      "observable": "test_missing_declared_reference_is_rejected observes the negative boundary for Aggregate masks a missing per-run disposition.",
+      "red_expectation": "Without the contract, test_missing_declared_reference_is_rejected exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_missing_declared_reference_is_rejected reports the required exact result.",
+      "test_id": "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_specialist_skills.py",
+      "source_sha256": "d7b584eb65e055d07e0cd609cf659c0227d2bf2329c99065850eeb3eb9641e1e",
+      "invalidation_dependencies": [
+        "scripts/test_specialist_skills.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Aggregate masks a missing per-run disposition: test_missing_declared_reference_is_rejected proves the negative edge."
+    },
+    {
+      "id": "R5.P9.POSITIVE",
+      "property_id": "R5.P9",
+      "polarity": "positive",
+      "scenario": "Proposed fix includes an unconfirmed cause",
+      "scenario_fingerprint": "60d63806060985dbce23ffde6de7dbae1d29cebcb9828fb1147ac0fa4f18a701",
+      "setup": "Run test_preview_does_not_write against the Proposed fix includes an unconfirmed cause positive fixture.",
+      "observable": "test_preview_does_not_write observes the positive boundary for Proposed fix includes an unconfirmed cause.",
+      "red_expectation": "Without the contract, test_preview_does_not_write exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_preview_does_not_write reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_preview_does_not_write",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Proposed fix includes an unconfirmed cause: test_preview_does_not_write proves the positive edge."
+    },
+    {
+      "id": "R5.P9.NEGATIVE",
+      "property_id": "R5.P9",
+      "polarity": "negative",
+      "scenario": "Proposed fix includes an unconfirmed cause",
+      "scenario_fingerprint": "60d63806060985dbce23ffde6de7dbae1d29cebcb9828fb1147ac0fa4f18a701",
+      "setup": "Run test_changed_profile_and_revision_reject_plan against the Proposed fix includes an unconfirmed cause negative fixture.",
+      "observable": "test_changed_profile_and_revision_reject_plan observes the negative boundary for Proposed fix includes an unconfirmed cause.",
+      "red_expectation": "Without the contract, test_changed_profile_and_revision_reject_plan exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_changed_profile_and_revision_reject_plan reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_changed_profile_and_revision_reject_plan",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Proposed fix includes an unconfirmed cause: test_changed_profile_and_revision_reject_plan proves the negative edge."
+    },
+    {
+      "id": "R5.P10.POSITIVE",
+      "property_id": "R5.P10",
+      "polarity": "positive",
+      "scenario": "Current conflict slice is unresolved",
+      "scenario_fingerprint": "8be080826666675175406bb99d8327a80ae8fffa566dafe58093d777c9f5470a",
+      "setup": "Run test_user_edits_outside_block_survive_update against the Current conflict slice is unresolved positive fixture.",
+      "observable": "test_user_edits_outside_block_survive_update observes the positive boundary for Current conflict slice is unresolved.",
+      "red_expectation": "Without the contract, test_user_edits_outside_block_survive_update exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_user_edits_outside_block_survive_update reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_user_edits_outside_block_survive_update",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Current conflict slice is unresolved: test_user_edits_outside_block_survive_update proves the positive edge."
+    },
+    {
+      "id": "R5.P10.NEGATIVE",
+      "property_id": "R5.P10",
+      "polarity": "negative",
+      "scenario": "Current conflict slice is unresolved",
+      "scenario_fingerprint": "8be080826666675175406bb99d8327a80ae8fffa566dafe58093d777c9f5470a",
+      "setup": "Run test_specialist_collision_does_not_overwrite against the Current conflict slice is unresolved negative fixture.",
+      "observable": "test_specialist_collision_does_not_overwrite observes the negative boundary for Current conflict slice is unresolved.",
+      "red_expectation": "Without the contract, test_specialist_collision_does_not_overwrite exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_specialist_collision_does_not_overwrite reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_specialist_collision_does_not_overwrite",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Current conflict slice is unresolved: test_specialist_collision_does_not_overwrite proves the negative edge."
+    },
+    {
+      "id": "R6.P11.POSITIVE",
+      "property_id": "R6.P11",
+      "polarity": "positive",
+      "scenario": "Unpublished active skill",
+      "scenario_fingerprint": "5defc1b4f6454527b76aefea484ae772c749ff84f56ad42fa6b984898c5e6034",
+      "setup": "Run test_staged_adopter_runs_both_consumer_checks against the Unpublished active skill positive fixture.",
+      "observable": "test_staged_adopter_runs_both_consumer_checks observes the positive boundary for Unpublished active skill.",
+      "red_expectation": "Without the contract, test_staged_adopter_runs_both_consumer_checks exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_staged_adopter_runs_both_consumer_checks reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_staged_adopter_runs_both_consumer_checks",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Unpublished active skill: test_staged_adopter_runs_both_consumer_checks proves the positive edge."
+    },
+    {
+      "id": "R6.P11.NEGATIVE",
+      "property_id": "R6.P11",
+      "polarity": "negative",
+      "scenario": "Unpublished active skill",
+      "scenario_fingerprint": "5defc1b4f6454527b76aefea484ae772c749ff84f56ad42fa6b984898c5e6034",
+      "setup": "Run test_untracked_and_force_added_ignored_skill_fail_publication against the Unpublished active skill negative fixture.",
+      "observable": "test_untracked_and_force_added_ignored_skill_fail_publication observes the negative boundary for Unpublished active skill.",
+      "red_expectation": "Without the contract, test_untracked_and_force_added_ignored_skill_fail_publication exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_untracked_and_force_added_ignored_skill_fail_publication reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_untracked_and_force_added_ignored_skill_fail_publication",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Unpublished active skill: test_untracked_and_force_added_ignored_skill_fail_publication proves the negative edge."
+    },
+    {
+      "id": "R6.P12.POSITIVE",
+      "property_id": "R6.P12",
+      "polarity": "positive",
+      "scenario": "Missing skill reference",
+      "scenario_fingerprint": "653a8cb259e87b44f01e026801957d7f83622f61b087a0bdcb29046378d8bb42",
+      "setup": "Run test_staged_adopter_runs_both_consumer_checks against the Missing skill reference positive fixture.",
+      "observable": "test_staged_adopter_runs_both_consumer_checks observes the positive boundary for Missing skill reference.",
+      "red_expectation": "Without the contract, test_staged_adopter_runs_both_consumer_checks exposes the forbidden positive result.",
+      "green_expectation": "With the contract, test_staged_adopter_runs_both_consumer_checks reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_staged_adopter_runs_both_consumer_checks",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Missing skill reference: test_staged_adopter_runs_both_consumer_checks proves the positive edge."
+    },
+    {
+      "id": "R6.P12.NEGATIVE",
+      "property_id": "R6.P12",
+      "polarity": "negative",
+      "scenario": "Missing skill reference",
+      "scenario_fingerprint": "653a8cb259e87b44f01e026801957d7f83622f61b087a0bdcb29046378d8bb42",
+      "setup": "Run test_staged_skill_with_missing_reference_fails_packaging against the Missing skill reference negative fixture.",
+      "observable": "test_staged_skill_with_missing_reference_fails_packaging observes the negative boundary for Missing skill reference.",
+      "red_expectation": "Without the contract, test_staged_skill_with_missing_reference_fails_packaging exposes the forbidden negative result.",
+      "green_expectation": "With the contract, test_staged_skill_with_missing_reference_fails_packaging reports the required exact result.",
+      "test_id": "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_staged_skill_with_missing_reference_fails_packaging",
+      "command_id": "unify-workflow-adoption-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "source_sha256": "3bc6811881ec7d326aee73ab1e6343708e596b29e65188c2ab6b0ec16e9578e7",
+      "invalidation_dependencies": [
+        "scripts/test_bootstrap.py",
+        "scripts/bootstrap.py",
+        "scripts/integration.py",
+        "skills/**",
+        "docs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Missing skill reference: test_staged_skill_with_missing_reference_fails_packaging proves the negative edge."
+    }
+  ],
+  "commands": [
+    {
+      "id": "unify-workflow-adoption-unit-tests",
+      "runner": "python-unittest",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_bootstrap",
+        "scripts.test_specialist_skills",
+        "-v"
+      ],
+      "cwd": ".",
+      "env": {},
+      "timeout_seconds": 240,
+      "authority": "local"
+    }
+  ]
+}

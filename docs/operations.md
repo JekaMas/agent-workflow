@@ -28,7 +28,7 @@ and retain full outputs outside conversational context when useful.
 | apply / repair | Native apply context files; shared delivery **Execute and adapt**; matching language/owner procedures; affected `verification.json` closure | Decisive feedback, failure diagnosis, relevant verification commands |
 | verify | Actual diff/results and acceptance; validated and executed affected `verification.json` closure; shared verification **Inspect, repair and revalidate**, **Completion and handoff** | Oracle qualification, coverage or overlap sections when needed; final verification runs the complete graph |
 | sync / archive / bulk-archive | Selected status paths and native instructions; shared delivery **Review and finish** | Main-spec merge/selection and unresolved acceptance evidence |
-| explore / onboard | Requested question or next walkthrough operation | Its actual uncertainty or language/domain boundary |
+| explore / onboard | Requested question or next walkthrough operation; behavioral explore also loads the selected verification/discovery scope | Its actual uncertainty or language/domain boundary |
 
 Native instruction responses already supply project context and selected artifact
 rules. Inspect raw config for configuration work, discrepancies or missing fields;
@@ -70,6 +70,14 @@ incremental apply/verify, and execute `run --all` before final readiness. The gr
 pins specification points to properties and single-scenario positive/negative
 cases with setup, red/green expectations, exact observed tests and deduplicated
 commands; missing or unexecuted nodes remain incomplete.
+
+Behavioral explore/check decisions also own
+`openspec/changes/<change>/discovery.json`. Validate it with
+`python3 -B scripts/discovery_ledger.py --root . --change <change>` (or the pinned
+consumer path). Every selected property/test is covered by exact repository,
+semantic Context and JetBrains-index lanes. Exact search must complete; unavailable
+semantic/IDE capabilities record the exact reason. Results are classified and the
+review records current change, named new change, validation only or no change.
 
 Iteration uses update/continue/apply as needed. Repair uses apply followed by
 verify under existing implementation authority. `iterate` and `repair` are

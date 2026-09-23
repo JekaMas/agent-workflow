@@ -14,6 +14,7 @@ rules:
     - Preserve integer precision, serialization, error, version and recovery semantics at mixed-language boundaries; state unsupported cases explicitly.
     - For every behavioral requirement, create or update the change-owned verification.json DAG before semantic implementation. Pin exact requirements/scenarios to properties and every property/scenario edge to distinct positive and negative cases. Each case names exactly one scenario fingerprint, setup, observable, red and green expectations, exact observed test identity, test-source fingerprint, deduplicated command, substitution and invalidation dependencies.
     - Map requirements and evidence in both directions; a shared test needs explicit distinct observable edges and duplicate property/polarity/observable/test edges are invalid.
+    - For behavioral discovery, keep discovery.json scoped to the relevant verification properties and exact tests. Record exact, semantic Context and capability-aware JetBrains-index search lanes, classify every result and choose current change, named new change, validation only or no change before accepting scope.
     - Do not substitute model agreement, simulated time or downstream rejection for a stronger requested contract.
   design:
     - Record consequential choices, dependencies, risks, assumptions, approval boundaries and rationale; link evidence rather than duplicate requirements or tasks.
@@ -39,6 +40,7 @@ operations:
       - Reconcile required properties and selected test sets with actual executed cases/families, skips, configurations and gaps using skills/verification-design/SKILL.md. Manifest validity is not execution or oracle evidence.
       - Query and run the verification.json closure for every affected requirement, property, owner or source path in the increment. Confirm each expected exact test identity executed and passed; preserve failures and gaps.
       - After each edit run only the smallest directly invalidated cases, then expand to dependent or sibling cases when required. Reuse green evidence until a declared invalidation dependency changes, and run the complete iteration case set once at the stable iteration boundary.
+      - Validate discovery.json for the affected property/test selection before accepting explore/check scope decisions. Unavailable semantic or IDE search is recorded with its exact reason, never silently substituted.
       - Execute relevant existing commands through docs/maintenance.md; users need not invoke Make separately. Select the documented workflow, specification and readiness checks plus required behavioral evidence. Missing checks are not passes.
       - Use relevant domain skills and risk-based local checks. Read-only audit stopping applies only to audit scope; it does not limit an authorized implementation workflow.
       - DONE includes verified no-change completion and requires the requested outcome, matching artifacts, a passing complete verification.json run --all on the final relevant code, diff/behavior inspection and resolved material findings. Report limitations and separate local completion from external approval/deployment.

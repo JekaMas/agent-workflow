@@ -12,3 +12,10 @@ For behavioral OpenSpec work, `spec` validates the complete evidence DAG,
 property, owner or changed path, and `ready` executes the complete required DAG
 with the evidence tool's `run --all` operation.
 Report intended and observed exact test identities; a zero selection is failure.
+Before deciding whether relevant properties/tests belong to this change or require
+a new change, validate their `discovery.json` coverage. Check must include exact repository search,
+one focused semantic Context search for unknown ownership or
+sibling coverage, and a targeted JetBrains-index lookup when exposed and healthy.
+Unavailable capabilities require an exact recorded reason. Classify results and
+retain an explicit current-change, named-new-change, validation-only or no-change
+disposition; unresolved results remain uncertainty, not a pass.

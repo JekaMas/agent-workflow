@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "change": "share-evidence-language-guidance",
+  "scope": {
+    "property_ids": [
+      "R1.P1",
+      "R1.P2",
+      "R2.P3",
+      "R2.P4"
+    ],
+    "test_ids": [
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_language_selection_and_removal_boundary",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_specialist_collision_does_not_overwrite",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_specialists_resolve_from_both_clients_in_fresh_clone",
+      "unittest::scripts.test_specialist_skills.SpecialistPackages.test_declared_references_exist",
+      "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "active-change-default-audit",
+      "question": "Which behavior from this active historical change is now a portable shared default, and what exact tests retain it?",
+      "property_ids": [
+        "R1.P1",
+        "R1.P2",
+        "R2.P3",
+        "R2.P4"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_language_selection_and_removal_boundary",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_specialist_collision_does_not_overwrite",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_specialists_resolve_from_both_clients_in_fresh_clone",
+        "unittest::scripts.test_specialist_skills.SpecialistPackages.test_declared_references_exist",
+        "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "rg exact requirement terms across bootstrap, integration, skills, documentation, and unit tests.",
+          "outcome": "Every requirement/scenario maps to a current shared owner and exact proof.",
+          "results": [
+            {
+              "path": "scripts/bootstrap.py",
+              "line": 1,
+              "classification": "reusable_unchanged",
+              "reason": "Existing adoption owner retained."
+            },
+            {
+              "path": "scripts/test_bootstrap.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Exact positive and negative adoption proof."
+            },
+            {
+              "path": "scripts/test_specialist_skills.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Exact packaged-reference proof."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "completed",
+          "query": "Find shared workflow owners for portable adoption, conditional specialists, policy validation, and preserved evidence contracts.",
+          "outcome": "Context confirmed bootstrap, integration templates, shared skills, and their direct tests as canonical owners.",
+          "results": [
+            {
+              "path": "scripts/bootstrap.py",
+              "line": 1,
+              "classification": "reusable_unchanged",
+              "reason": "Semantic owner confirmed."
+            }
+          ]
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "query": "Find references to bootstrap adoption and specialist package validation symbols.",
+          "outcome": "No JetBrains index MCP is exposed in this task.",
+          "reason": "Capability absent from the available tool registry; no IDE evidence claimed.",
+          "results": []
+        }
+      ],
+      "disposition": "validation_only",
+      "rationale": "The historical change behavior is already in shared defaults; this audit adds executable traceability without reopening implementation scope."
+    }
+  ]
+}

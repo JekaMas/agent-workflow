@@ -23,7 +23,8 @@ root = Path(__file__).resolve().parents[1]
 project = output / 'project'
 project.mkdir()
 env = dict(os.environ, OPENSPEC_TELEMETRY='0', DO_NOT_TRACK='1', OPENSPEC_NO_UPDATE_CHECK='1',
-           GOTOOLCHAIN='local', GOWORK='off', GOPROXY='off', GOFLAGS='-mod=readonly', PYTHONDONTWRITEBYTECODE='1')
+           GOTOOLCHAIN='auto', GOWORK='off', GOPROXY='off', GONOPROXY='none',
+           GOFLAGS='-mod=readonly', PYTHONDONTWRITEBYTECODE='1')
 env.pop("GOROOT", None)  # Let the explicitly selected binary resolve its own toolchain.
 steps = []
 

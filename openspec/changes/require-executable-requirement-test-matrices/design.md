@@ -20,6 +20,8 @@ newer toolchain is already cached.
   covered.
 - Commands are deduplicated and shared test edges remain explicit.
 - Final readiness runs the complete required graph once on stabilized source.
+- Explore/check decisions retain exact, semantic Context and capability-aware
+  JetBrains-index discovery evidence beside the change.
 
 **Non-Goals:**
 
@@ -82,13 +84,16 @@ loss of distinct protection.
 
 ### 5. Observe test identities through runner adapters
 
-The first implementation supports:
+The implementation supports:
 
 - `go-test-json`: injects `-json`, parses exact test/subtest pass/fail/skip events,
   and requires every selected expected identity to pass;
 - `cargo-test`: parses exact libtest `test <name> ... ok|FAILED|ignored` records;
-- `command`: requires explicit stable success markers for non-language structural
-  checks and cannot satisfy a behavioral case without such a marker.
+- `python-unittest`: parses exact qualified methods and preserves pass, fail,
+  error, skipped, expected-failure and unexpected-success outcomes;
+- `node-test-tap`: parses exact TAP test names and preserves pass/fail/skip;
+- `command`: requires explicit stable success markers only for cases explicitly
+  classified as structural; it cannot satisfy behavioral evidence.
 
 Commands are argv arrays and never shell-evaluated. Missing executable, timeout,
 nonzero exit, missing expected identity, skip or fail is non-passing.
@@ -122,6 +127,28 @@ The shared Go runner stops forcing `GOTOOLCHAIN=local`. It uses `GOTOOLCHAIN=aut
 with `GOWORK=off`, `GOPROXY=off`, `GONOPROXY=none` and read-only module flags.
 An already-cached toolchain can satisfy `go.mod`; an uncached toolchain or module
 fails without network installation.
+
+### 8. Make discovery a change-owned decision ledger
+
+`openspec/changes/<change>/discovery.json` records reviews scoped to verification
+property IDs and exact test IDs. Each review carries three capability-aware lanes:
+exact repository search must complete; semantic Context and JetBrains-index lookup
+must complete when available or record a concrete unavailable/not-applicable
+reason. Results are classified and the review chooses current change, a named new
+change, validation only, or no change. Explore authors the ledger; check validates
+the selected property/test subset before accepting a coverage decision. This makes
+search a reproducible input to the DAG without pretending all repositories expose
+the same IDE or semantic service.
+
+### 9. Use one hardened process and observation boundary
+
+All workflow command execution shares one process-group runner. Manifest commands
+cannot override offline/toolchain policy, escape their repository/change, or use
+an unavailable cwd. Complete stdout/stderr artifacts are retained while JSON
+previews are byte bounded. Command identity excludes observer-only metadata and
+normalizes Go `-json`, so one execution tuple runs once. Result artifacts retain
+requested selectors, Git known/unknown and dirty state, and fingerprints for the
+specification, case, command, test source, and declared dependency contents.
 
 ## Risks / Trade-offs
 

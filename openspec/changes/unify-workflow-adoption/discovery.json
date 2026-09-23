@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "change": "unify-workflow-adoption",
+  "scope": {
+    "property_ids": [
+      "R1.P1",
+      "R1.P2",
+      "R2.P3",
+      "R2.P4",
+      "R3.P5",
+      "R3.P6",
+      "R4.P7",
+      "R5.P8",
+      "R5.P9",
+      "R5.P10",
+      "R6.P11",
+      "R6.P12"
+    ],
+    "test_ids": [
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_existing_openspec_not_overwritten",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_personal_managed_edit_rejected",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_preview_does_not_write",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_specialist_collision_does_not_overwrite",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_unmanaged_collision_preserves_everything",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_user_edits_outside_block_survive_update",
+      "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_local_profile_reference_must_be_published",
+      "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_selected_consumer_policy_is_preserved_and_enforced",
+      "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_staged_adopter_runs_both_consumer_checks",
+      "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_staged_skill_with_missing_reference_fails_packaging",
+      "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_untracked_and_force_added_ignored_skill_fail_publication",
+      "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_changed_profile_and_revision_reject_plan",
+      "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_reviewed_existing_setup_preserves_active_artifacts",
+      "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_stale_migration_refuses_before_any_setup",
+      "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected",
+      "unittest::scripts.test_specialist_skills.SpecialistPackages.test_reference_graph_and_identity"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "active-change-default-audit",
+      "question": "Which unified adoption behavior is already a portable default and which exact tests retain it?",
+      "property_ids": [
+        "R1.P1",
+        "R1.P2",
+        "R2.P3",
+        "R2.P4",
+        "R3.P5",
+        "R3.P6",
+        "R4.P7",
+        "R5.P8",
+        "R5.P9",
+        "R5.P10",
+        "R6.P11",
+        "R6.P12"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_existing_openspec_not_overwritten",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_personal_managed_edit_rejected",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_preview_does_not_write",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_specialist_collision_does_not_overwrite",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_unmanaged_collision_preserves_everything",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_user_edits_outside_block_survive_update",
+        "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_local_profile_reference_must_be_published",
+        "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_selected_consumer_policy_is_preserved_and_enforced",
+        "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_staged_adopter_runs_both_consumer_checks",
+        "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_staged_skill_with_missing_reference_fails_packaging",
+        "unittest::scripts.test_bootstrap.ConsumerVerificationTests.test_untracked_and_force_added_ignored_skill_fail_publication",
+        "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_changed_profile_and_revision_reject_plan",
+        "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_reviewed_existing_setup_preserves_active_artifacts",
+        "unittest::scripts.test_bootstrap.ExistingAdoptionTests.test_stale_migration_refuses_before_any_setup",
+        "unittest::scripts.test_specialist_skills.SpecialistPackages.test_missing_declared_reference_is_rejected",
+        "unittest::scripts.test_specialist_skills.SpecialistPackages.test_reference_graph_and_identity"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "rg exact requirements across bootstrap, integration, skills, policy, and tests.",
+          "outcome": "All scenarios have current owners and exact positive/negative proofs.",
+          "results": [
+            {
+              "path": "scripts/bootstrap.py",
+              "line": 1,
+              "classification": "reusable_unchanged",
+              "reason": "Canonical adoption owner."
+            },
+            {
+              "path": "scripts/test_bootstrap.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Exact adoption and consumer policy proofs."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "completed",
+          "query": "Find shared owners for portable adoption, policy validation, reference packaging, and preserved evidence contracts.",
+          "outcome": "Context confirmed bootstrap and specialist package owners.",
+          "results": [
+            {
+              "path": "scripts/bootstrap.py",
+              "line": 1,
+              "classification": "reusable_unchanged",
+              "reason": "Semantic owner confirmed."
+            }
+          ]
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "query": "Find callers and references for bootstrap adoption and package validation.",
+          "outcome": "No JetBrains index MCP is exposed.",
+          "reason": "Capability absent from available tool registry; no IDE evidence claimed.",
+          "results": []
+        }
+      ],
+      "disposition": "validation_only",
+      "rationale": "Behavior is already in shared defaults; executable traceability is added without reopening it."
+    }
+  ]
+}

@@ -31,3 +31,12 @@
 - [x] 5.1 Reject multi-scenario case claims; pin every case to one exact scenario fingerprint and require setup, observable, red expectation, green expectation and invalidation dependencies.
 - [x] 5.2 Migrate the shared and Smart Example graphs to schema v2, add the missing GMX stale/flat/portfolio cases, run the affected closures, update the Smart pin and retain final green workflow evidence.
 - [x] 5.3 Make verification gradual by default: run directly invalidated cases first, expand only as dependencies require, reuse uninvalidated green evidence, and execute the full iteration selection once at the stable boundary.
+
+## 6. Scrutiny findings and default discovery flow
+
+- [x] 6.1 Close B1-B10: typed Python/Node observers, normalized IDs, executable invalidation/result loading, ADDED/MODIFIED-only parsing, observed status, immutable execution policy, canonical command identity, shared process runner, correct glob semantics, and non-behavioral/older-change compatibility.
+- [x] 6.2 Close D1-D14: early cwd/provenance/path validation, source ownership, changed-path completeness, discriminating contracts, independent polarity cases, complete DAG registration, portable rehearsal toolchains, Python-version-compatible parsing, self-executing `make check`, dirty/requested-selector evidence, qualified Cargo/Go observations, source/spec/dependency fingerprints and byte-accurate artifacts.
+- [x] 6.3 Add and test the change-owned discovery ledger; require exact, semantic Context and capability-aware JetBrains-index lanes plus classified results and an explicit current/new/validation/no-change disposition in explore and check.
+- [x] 6.4 Audit every active shared OpenSpec change and move generally applicable behavior into defaults; migrate every behavioral active change to the executable graph or prove it has no ADDED/MODIFIED behavior.
+- [ ] 6.5 Run directly touched tests, then related property closures, then one full stabilized shared change DAG and `make check`; retain the final scrutiny evidence without repeated full-suite runs after each edit.
+- [ ] 6.6 Update Smart Example to the final shared commit, render repository adapters, migrate its GMX Node observer and discovery ledger, run affected GMX properties, then one final full current required graph/checkpoint.
