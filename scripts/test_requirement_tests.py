@@ -344,6 +344,9 @@ class OwnershipTest(unittest.TestCase):
             "test_expected (pkg.Case.test_expected) ... expected failure",
             "test_unexpected (pkg.Case.test_unexpected) ... unexpected success",
             "test_old (pkg.Case) ... ok",
+            "test_noisy (pkg.Case.test_noisy) ... child process output",
+            "still child output",
+            "ok",
         ))
         self.assertEqual({
             "unittest::pkg.Case.test_ok": "pass",
@@ -351,6 +354,7 @@ class OwnershipTest(unittest.TestCase):
             "unittest::pkg.Case.test_expected": "skip",
             "unittest::pkg.Case.test_unexpected": "fail",
             "unittest::pkg.Case.test_old": "pass",
+            "unittest::pkg.Case.test_noisy": "pass",
         }, evidence.parse_unittest_events(raw))
 
     def test_node_tap_observer_preserves_pass_fail_and_skip(self) -> None:

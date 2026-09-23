@@ -729,25 +729,32 @@ def parse_cargo_events(raw: str, namespace: str) -> dict[str, str]:
 def parse_unittest_events(raw: str) -> dict[str, str]:
     observed: dict[str, str] = {}
     priority = {"pass": 0, "skip": 1, "fail": 2}
-    outcomes = {
+    outcome_status = {
         "ok": "pass",
         "FAIL": "fail",
         "ERROR": "fail",
         "expected failure": "skip",
         "unexpected success": "fail",
     }
-    pattern = re.compile(
-        r"^(\S+) \(([^)]+)\) \.\.\. "
-        r"(ok|FAIL|ERROR|expected failure|unexpected success|skipped(?: .*)?)$"
+    start = re.compile(
+        r"^(\S+) \(([^)]+)\) \.\.\. ?(.*)$", re.MULTILINE
     )
-    for line in raw.splitlines():
-        match = pattern.match(line.strip())
-        if not match:
+    outcome_line = re.compile(
+        r"^(ok|FAIL|ERROR|expected failure|unexpected success|skipped(?: .*)?)$",
+        re.MULTILINE,
+    )
+    starts = list(start.finditer(raw))
+    for index, match in enumerate(starts):
+        end = starts[index + 1].start() if index + 1 < len(starts) else len(raw)
+        segment = match.group(3) + "\n" + raw[match.end():end]
+        outcome_matches = list(outcome_line.finditer(segment))
+        if not outcome_matches:
             continue
-        method, qualified, raw_outcome = match.groups()
+        method, qualified = match.group(1), match.group(2)
+        raw_outcome = outcome_matches[-1].group(1)
         if not qualified.endswith("." + method):
             qualified = qualified + "." + method
-        outcome = "skip" if raw_outcome.startswith("skipped") else outcomes[raw_outcome]
+        outcome = "skip" if raw_outcome.startswith("skipped") else outcome_status[raw_outcome]
         identity = f"unittest::{qualified}"
         observed[identity] = max(observed.get(identity, "pass"), outcome, key=priority.get)
     return observed
