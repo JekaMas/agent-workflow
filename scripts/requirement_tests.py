@@ -105,6 +105,16 @@ def required_list(row: dict[str, Any], field: str, owner: str) -> list[Any]:
     return value
 
 
+def unique_text_list(row: dict[str, Any], field: str, owner: str) -> list[str]:
+    values = required_list(row, field, owner)
+    if any(not isinstance(value, str) or not value.strip() for value in values):
+        raise MatrixError(f"{owner}.{field} must contain nonempty text")
+    normalized = [value.strip() for value in values]
+    if len(set(normalized)) != len(normalized):
+        raise MatrixError(f"{owner}.{field} contains duplicate edges")
+    return normalized
+
+
 def unique_rows(rows: Any, kind: str) -> dict[str, dict[str, Any]]:
     if not isinstance(rows, list) or not rows:
         raise MatrixError(f"manifest {kind} must be a nonempty list")
@@ -191,13 +201,13 @@ class EvidenceGraph:
             required_text(row, "statement", f"property {identity}")
             owner = required_text(row, "owner", f"property {identity}")
             required_text(row, "oracle", f"property {identity}")
-            scenarios = required_list(row, "scenarios", f"property {identity}")
+            scenarios = unique_text_list(row, "scenarios", f"property {identity}")
             for scenario in scenarios:
                 if not isinstance(scenario, str) or scenario not in requirement_scenarios[requirement_id]:
                     raise MatrixError(f"property {identity} has unknown scenario: {scenario!r}")
                 scenario_coverage[requirement_id].add(scenario)
                 self.by_scenario[f"{requirement_id}::{scenario}"].add(identity)
-            globs = required_list(row, "source_globs", f"property {identity}")
+            globs = unique_text_list(row, "source_globs", f"property {identity}")
             for pattern in globs:
                 if not isinstance(pattern, str) or not pattern.strip():
                     raise MatrixError(f"property {identity} has invalid source glob")
@@ -223,7 +233,7 @@ class EvidenceGraph:
             if polarity not in {"positive", "negative"}:
                 raise MatrixError(f"case {identity} polarity must be positive or negative")
             observable = required_text(row, "observable", f"case {identity}")
-            case_scenarios = required_list(row, "scenarios", f"case {identity}")
+            case_scenarios = unique_text_list(row, "scenarios", f"case {identity}")
             property_scenarios = set(self.properties[property_id]["scenarios"])
             for scenario in case_scenarios:
                 if not isinstance(scenario, str) or scenario not in property_scenarios:
@@ -310,7 +320,7 @@ class EvidenceGraph:
             if runner == "cargo-test" and (len(argv) < 2 or argv[1] != "test"):
                 raise MatrixError(f"command {identity} cargo runner must invoke cargo test")
             if runner == "command":
-                markers = required_list(row, "expected_markers", f"command {identity}")
+                markers = unique_text_list(row, "expected_markers", f"command {identity}")
                 if any(not isinstance(marker, str) or not marker for marker in markers):
                     raise MatrixError(f"command {identity} markers must be nonempty text")
             key = command_key(row)

@@ -164,6 +164,20 @@ class RequirementEvidenceGraphTest(unittest.TestCase):
         with self.assertRaisesRegex(evidence.MatrixError, "duplicate command definition"):
             self.graph()
 
+    def test_duplicate_scenario_glob_and_marker_edges_fail(self) -> None:
+        for mutation, message in (
+            (lambda manifest: manifest["properties"][0]["scenarios"].append("Matching owner"), "scenarios contains duplicate edges"),
+            (lambda manifest: manifest["properties"][0]["source_globs"].append("src/ownership/**"), "source_globs contains duplicate edges"),
+            (lambda manifest: manifest["commands"][0]["expected_markers"].append("positive-case"), "expected_markers contains duplicate edges"),
+        ):
+            with self.subTest(message=message):
+                original = copy.deepcopy(self.manifest)
+                mutation(self.manifest)
+                self.write_manifest()
+                with self.assertRaisesRegex(evidence.MatrixError, message):
+                    self.graph()
+                self.manifest = original
+
     def test_one_canonical_command_executes_both_cases_once(self) -> None:
         graph = self.graph()
         output = self.root / "evidence" / "result.json"
