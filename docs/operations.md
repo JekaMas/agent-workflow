@@ -66,7 +66,7 @@ required evidence. OpenSpec structure alone does not establish behavior.
 
 Behavioral changes own `openspec/changes/<change>/verification.json`. Use
 `scripts/requirement_tests.py validate`, query a nonempty affected closure for
-incremental apply/verify, and execute `run --all` before final readiness. The graph
+incremental apply/verify, and execute `run --all --require-clean` before final readiness. The graph
 pins specification points to properties and single-scenario positive/negative
 cases with setup, red/green expectations, exact observed tests and deduplicated
 commands; missing or unexecuted nodes remain incomplete.

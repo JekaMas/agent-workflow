@@ -5,8 +5,8 @@ requirement/property/owner/path closure, run directly invalidated cases before
 expanding to their dependent iteration closure, and reconcile every intended case
 with an exact observed pass/fail/skip/missing result. Reuse still-valid green
 results; run the complete iteration set once at its stable boundary. Final change
-completion executes `run --all`; structural OpenSpec success or a manually chosen
-package list cannot replace the graph.
+completion executes `run --all --require-clean`; structural OpenSpec success or a
+manually chosen package list cannot replace the graph.
 
 Use `{{checks}}` to select and execute the existing workflow,
 specification, language and assurance checks. This operation owns that execution;

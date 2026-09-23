@@ -321,6 +321,26 @@ class OwnershipTest(unittest.TestCase):
         self.assertEqual("failed", report["status"])
         self.assertNotEqual(0, report["commands"][0]["exit_code"])
 
+    def test_nonzero_command_preserves_each_observed_case_status(self) -> None:
+        source = self.root / "tests" / "ownership_test.py"
+        source.write_text(source.read_text().replace(
+            "    def test_match_negative(self):\n        self.assertTrue(True)",
+            "    def test_match_negative(self):\n        self.assertTrue(False)",
+        ))
+        digest = evidence.sha256_bytes(source.read_bytes())
+        for case in self.manifest["cases"]:
+            case["source_sha256"] = digest
+        self.write_manifest()
+        graph = self.graph()
+        report = evidence.run_selection(
+            graph, graph.select(all_cases=True), self.root / "mixed-outcome.json",
+        )
+        self.assertEqual("failed", report["status"])
+        self.assertNotEqual(0, report["commands"][0]["exit_code"])
+        self.assertEqual("passed", report["cases"]["R1.P1.MATCH.POS"]["status"])
+        self.assertEqual("fail", report["cases"]["R1.P1.MATCH.NEG"]["status"])
+        self.assertEqual("passed", report["cases"]["R1.P1.DIFFERENT.POS"]["status"])
+
     def test_go_and_cargo_observers_preserve_exact_failure_states(self) -> None:
         go = "\n".join(json.dumps(row) for row in (
             {"Action": "pass", "Package": "example/p", "Test": "TestPositive"},
@@ -600,6 +620,15 @@ class OwnershipTest(unittest.TestCase):
             output.write_text("{}")
             evidence.run_selection(graph, graph.select(all_cases=True), output)
 
+        stderr = io.StringIO()
+        with contextlib.redirect_stderr(stderr):
+            status = evidence.main([
+                "--root", str(self.root), "--change", self.change,
+                "run", "--all", "--output", str(self.root.parent / "outside-result.json"),
+            ])
+        self.assertEqual(1, status)
+        self.assertIn("evidence output must stay inside repository", stderr.getvalue())
+
     def test_git_provenance_unknown_and_clean_requirement_are_explicit(self) -> None:
         state = evidence.git_state(self.root)
         self.assertEqual("unknown", state["status"])
@@ -607,6 +636,19 @@ class OwnershipTest(unittest.TestCase):
         report = evidence.run_selection(
             graph, graph.select(all_cases=True), self.root / "clean.json", require_clean=True,
         )
+        self.assertEqual("incomplete", report["status"])
+        self.assertEqual("provenance_blocked", report["cases"]["R1.P1.MATCH.POS"]["status"])
+
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "config", "user.email", "fixture@example.invalid"], cwd=self.root, check=True)
+        subprocess.run(["git", "config", "user.name", "Fixture"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "."], cwd=self.root, check=True)
+        subprocess.run(["git", "commit", "-qm", "fixture"], cwd=self.root, check=True)
+        (self.root / "dirty.txt").write_text("uncommitted\n")
+        report = evidence.run_selection(
+            graph, graph.select(all_cases=True), self.root / "dirty.json", require_clean=True,
+        )
+        self.assertEqual(True, report["git"]["dirty"])
         self.assertEqual("incomplete", report["status"])
         self.assertEqual("provenance_blocked", report["cases"]["R1.P1.MATCH.POS"]["status"])
 
@@ -638,6 +680,8 @@ class OwnershipTest(unittest.TestCase):
         self.assertIn("complete iteration set once", verify)
         self.assertIn("spec-tests", check)
         self.assertIn("run --all", check)
+        self.assertIn("--require-clean", check)
+        self.assertIn("--require-clean", verify)
         for route in (explore, check):
             self.assertIn("exact repository search", route)
             self.assertIn("semantic Context", route)

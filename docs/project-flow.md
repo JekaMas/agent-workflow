@@ -75,7 +75,8 @@ Run from the consumer root; select a new output directory for each run:
   status. Unloaded evidence reports `not_loaded`, and dependency/spec/source drift
   reports `stale`.
 - `ready <change>`: run the structural command with `--require-tasks-complete`,
-  then `requirement_tests.py ... run --all --output <new-result>`. Either failure
+  then `requirement_tests.py ... run --all --require-clean --output <new-result>`.
+  Unknown or dirty Git provenance and either command failure
   keeps readiness non-passing.
 - Language/assurance: inspect project commands and actual tool configuration first;
   the shared runner's pinned lint version is optional. Use the project's supported

@@ -21,7 +21,7 @@
 ## 4. Shared and consumer proof
 
 - [x] 4.1 Add shared unit and lifecycle fixtures covering graph validation, search, execution, deduplication, drift and failure semantics; run the exact affected tests and `make check`.
-- [x] 4.2 Publish reviewable PR #6 at shared revision `9216236921ad3555a5a9098347a43fded15975ac`, and update Smart Example commit `e34a34a7f7d2b8e8ea04ec0c493de688c803256d` to that exact submodule pin plus rendered integration.
+- [x] 4.2 Publish the initial reviewable PR #6 checkpoint at shared revision `9216236921ad3555a5a9098347a43fded15975ac`, and update the initial Smart Example checkpoint `e34a34a7f7d2b8e8ea04ec0c493de688c803256d` to that exact submodule pin plus rendered integration. Later review corrections supersede these historical checkpoints below.
 - [x] 4.3 Add the Smart Example GMX graph with all forty requirements/every scenario, explicit planned positive/negative cases and exact implemented I-1/I-2 cases; the I-1 property selection resolves 19 cases through two deduplicated commands.
 - [x] 4.4 Repair the two iteration-one fixtures, add `GMX-C02-TD-01..04` and `GMX-C03-TD-01` declarations, execute all 19 selected C02/C03 cases on stabilized Smart Example commit `e34a34a7f7d2b8e8ea04ec0c493de688c803256d`, and replace the false checkpoint claim with exact observed evidence.
 - [ ] 4.5 Run Smart Example workflow/spec validation and full current required graph closure once after final relevant edits; record any later GMX requirements as planned/incomplete rather than passed.
@@ -29,7 +29,7 @@
 ## 5. Review-driven scenario precision
 
 - [x] 5.1 Reject multi-scenario case claims; pin every case to one exact scenario fingerprint and require setup, observable, red expectation, green expectation and invalidation dependencies.
-- [x] 5.2 Migrate the shared and Smart Example graphs to schema v2, add the missing GMX stale/flat/portfolio cases, run the affected closures, update the Smart pin and retain final green workflow evidence.
+- [x] 5.2 Migrate the shared and Smart Example graphs to schema v2, add the missing GMX stale/flat/portfolio cases, run the affected closures, and retain final green workflow evidence. The final reviewed shared pin before this scrutiny pass was `114867e00036d7148e220d9b4dc739e788fa54bd`; Smart Example clean head `6d58ae169b0512a7c4a69ed2bf39e22345111a02` pins it exactly, and its clean `9bd6d533c6c29b3976a688da24f115abe146617a` evidence run passed 77 implemented cases through five canonical commands. Planned GMX cases remain explicitly incomplete, so task 4.5 remains open.
 - [x] 5.3 Make verification gradual by default: run directly invalidated cases first, expand only as dependencies require, reuse uninvalidated green evidence, and execute the full iteration selection once at the stable boundary.
 
 ## 6. Scrutiny findings and default discovery flow
@@ -40,3 +40,4 @@
 - [x] 6.4 Audit every active shared OpenSpec change and move generally applicable behavior into defaults; migrate every behavioral active change to the executable graph or prove it has no ADDED/MODIFIED behavior.
 - [x] 6.5 Run directly touched tests, then related property closures, then one full stabilized shared change DAG and `make check`; retain the final scrutiny evidence without repeated full-suite runs after each edit.
 - [x] 6.6 Publish a final shared revision that contains the Smart Example consumer tooling: rendered explore/check defaults, Node TAP observer, discovery validator, and migrated-active-change compatibility. The Smart repository owns its subsequent pin, adapter render, GMX graph migration and consumer checkpoint.
+- [x] 6.7 Verify review rounds 1 and 2 against the current PR head, repair confirmed sibling false-evidence paths for mixed command outcomes and dirty final readiness, execute the affected and full stabilized graph, and publish the clean correction to PR #6.

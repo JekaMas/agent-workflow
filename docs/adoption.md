@@ -124,8 +124,8 @@ also keep `discovery.json` for exact, semantic Context and capability-aware
 JetBrains-index evidence plus the current/new/validation/no-change disposition.
 Consumer check adapters expose
 structural graph validation with the ordinary spec check, an affected query/run
-during apply and verify, and `requirement_tests.py run --all` during final
-readiness. Read the tool from the exact `.agents/workflow` pin; do not copy a
+during apply and verify, and `requirement_tests.py run --all --require-clean`
+during final readiness. Read the tool from the exact `.agents/workflow` pin; do not copy a
 second implementation into the consumer.
 
 Inspect native OpenSpec status/instructions for an existing selected change or a

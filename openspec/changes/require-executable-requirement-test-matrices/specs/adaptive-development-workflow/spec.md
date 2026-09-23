@@ -38,6 +38,8 @@ substitution boundary, and semantic invalidation dependencies.
 - **AND** missing, planned-only, stale, skipped, zero-selected, failed, timed-out or unauthorized cases keep readiness non-passing
 - **AND** expected failures, unexpected successes, ignored cases and unavailable command working directories remain non-passing
 - **AND** Python unittest, Go test JSON, Cargo libtest and Node TAP observers preserve exact case status
+- **AND** a nonzero suite exit keeps the run failed while preserving each observed case as passed, failed, skipped, or missing
+- **AND** unknown or dirty Git provenance keeps final readiness non-passing
 - **AND** arbitrary success markers cannot prove behavioral cases
 
 #### Scenario: Specification or test source drifts

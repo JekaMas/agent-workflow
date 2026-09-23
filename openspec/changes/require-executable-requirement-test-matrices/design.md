@@ -106,10 +106,11 @@ nonzero exit, missing expected identity, skip or fail is non-passing.
 - `query` prints deterministic closure for review/search.
 - `run --requirements/--properties/--owners/--changed-paths` requires nonempty
   selection and executes the affected closure.
-- `run --all` executes every required implemented case and fails on planned or
-  authority-blocked cases.
+- `run --all --require-clean` executes every required implemented case and fails
+  on unknown/dirty provenance, planned cases, or authority-blocked cases.
 
-Apply and verify MUST call affected `run`; final readiness MUST call `run --all`.
+Apply and verify MUST call affected `run`; final readiness MUST call
+`run --all --require-clean`.
 Within an iteration, checks progress from the smallest directly invalidated cases
 to dependent/sibling cases only when required. The complete iteration selection
 runs once after the code and artifacts stabilize; an already-green result is not

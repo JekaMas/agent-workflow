@@ -918,17 +918,19 @@ def run_selection(
             "stderr_truncated": process["stderr_truncated"],
         }
         report["commands"].append(command_result)
+        if process_status == "exited" and exit_code != 0:
+            report["status"] = "failed"
         for case_id in selected_by_command[command_id]:
             expected = graph.cases[case_id]["test_id"]
             observed_status = observed.get(expected, "missing")
             if process_status != "exited":
                 status = process_status
+            elif observed_status != "missing":
+                status = "passed" if observed_status == "pass" else observed_status
             elif exit_code != 0:
                 status = "command_failed"
-            elif observed_status == "pass":
-                status = "passed"
             else:
-                status = observed_status
+                status = "missing"
             report["cases"][case_id] = case_result(case_id, status)
             if status != "passed":
                 next_status = "failed" if status in {"fail", "command_failed"} else "incomplete"

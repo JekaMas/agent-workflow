@@ -37,7 +37,7 @@ operations:
       - Validate discovery.json for the affected property/test selection before accepting explore/check scope decisions. Unavailable semantic or IDE search is recorded with its exact reason, never silently substituted.
       - Execute relevant existing commands through {{checks}}; users need not invoke Make separately. Select the documented workflow, specification and readiness checks plus required behavioral evidence. Missing checks are not passes.
       - Use relevant domain skills and risk-based local checks. Read-only audit stopping applies only to audit scope; it does not limit an authorized implementation workflow.
-      - DONE includes verified no-change completion and requires the requested outcome, matching artifacts, a passing complete verification.json run --all on the final relevant code, diff/behavior inspection and resolved material findings. Report limitations and separate local completion from external approval/deployment.
+      - DONE includes verified no-change completion and requires the requested outcome, matching artifacts, a passing complete verification.json run --all --require-clean on the final relevant code, diff/behavior inspection and resolved material findings. Report limitations and separate local completion from external approval/deployment.
   archive:
     guidance:
       - Archive only after the DONE evidence review in {{flow}}; artifact readiness, checkbox totals and a verification summary alone are insufficient.

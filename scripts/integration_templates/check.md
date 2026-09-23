@@ -10,7 +10,8 @@ through repair and affected revalidation. Checks alone never mark tasks DONE.
 For behavioral OpenSpec work, `spec` validates the complete evidence DAG,
 `spec-tests` executes a nonempty affected closure selected by requirement,
 property, owner or changed path, and `ready` executes the complete required DAG
-with the evidence tool's `run --all` operation.
+with the evidence tool's `run --all --require-clean` operation. Unknown or dirty
+Git provenance keeps readiness non-passing.
 Report intended and observed exact test identities; a zero selection is failure.
 Before deciding whether relevant properties/tests belong to this change or require
 a new change, validate their `discovery.json` coverage. Check must include exact repository search,

@@ -50,6 +50,7 @@
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_requires_scenario_specific_reason",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_node_tap_observer_preserves_pass_fail_and_skip",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonbehavioral_change_without_manifest_is_not_required",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonzero_command_preserves_each_observed_case_status",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_observer_reads_exact_identity_beyond_preview",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_path_globs_have_recursive_and_separator_aware_semantics",
@@ -107,6 +108,7 @@
         "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_multi_scenario_test_requires_scenario_specific_reason",
         "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_node_tap_observer_preserves_pass_fail_and_skip",
         "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonbehavioral_change_without_manifest_is_not_required",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonzero_command_preserves_each_observed_case_status",
         "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_observer_reads_exact_identity_beyond_preview",
         "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_one_canonical_command_executes_both_cases_once",
         "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_path_globs_have_recursive_and_separator_aware_semantics",
@@ -126,7 +128,7 @@
           "kind": "exact",
           "status": "completed",
           "query": "rg -n for EvidenceGraph, run_selection, discovery validation, routes, toolchain policy, and exact test methods.",
-          "outcome": "Exact source and proof owners were classified; no relevant result remains unresolved.",
+          "outcome": "Exact source and proof owners were classified. Follow-up inspection confirmed two sibling gaps in the current change: nonzero command exits erased exact per-case outcomes, and the ready route did not require clean provenance. Both remain owned by this change.",
           "results": [
             {
               "path": "scripts/requirement_tests.py",
@@ -151,8 +153,8 @@
         {
           "kind": "semantic",
           "status": "completed",
-          "query": "Find the workflow implementation that maps OpenSpec requirements and properties to exact executable test identities, incremental selection, and retained results.",
-          "outcome": "Context identified requirement_tests.py, its direct unit tests, local_verify.py, and the rendered operation routes as the controlling owners.",
+          "query": "Find all owners that decide whether an OpenSpec requirement-to-test evidence run can falsely report complete or passed when cases, paths, identities, commands, provenance, or retained results are missing, stale, skipped, or deduplicated incorrectly.",
+          "outcome": "Context at exact reviewed revision 114867e00036 identified requirement_tests.py, its direct unit tests, the executable graph, and rendered operation routes as the controlling owners; exact reads then confirmed and scoped the two sibling gaps repaired by this scrutiny pass.",
           "results": [
             {
               "path": "scripts/requirement_tests.py",

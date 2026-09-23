@@ -6,7 +6,7 @@
       "id": "R1",
       "capability": "adaptive-development-workflow",
       "title": "Executable requirement evidence graph",
-      "fingerprint": "53fa92a6ba4b9802e822767cb2a58a41223192264715ba507c35149c39dcde4b"
+      "fingerprint": "83484a0330c19bdf9c49883ef3d80fe3ce6ab4107810815254a7284497994b1b"
     },
     {
       "id": "R2",
@@ -281,7 +281,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -309,7 +309,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -337,7 +337,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -365,7 +365,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -393,7 +393,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -421,7 +421,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -449,7 +449,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -477,7 +477,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -505,7 +505,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -524,7 +524,7 @@
       "property_id": "R1.P3",
       "polarity": "positive",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_one_canonical_command_executes_both_cases_once against the R1.P3 positive fixture for Final implementation readiness is checked.",
       "observable": "test_one_canonical_command_executes_both_cases_once observes the R1.P3 positive boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_one_canonical_command_executes_both_cases_once exposes the forbidden positive outcome.",
@@ -533,7 +533,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -552,7 +552,7 @@
       "property_id": "R1.P3",
       "polarity": "positive",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_go_and_cargo_observers_preserve_exact_failure_states against the R1.P3 positive fixture for Final implementation readiness is checked.",
       "observable": "test_go_and_cargo_observers_preserve_exact_failure_states observes the R1.P3 positive boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_go_and_cargo_observers_preserve_exact_failure_states exposes the forbidden positive outcome.",
@@ -561,7 +561,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -580,7 +580,7 @@
       "property_id": "R1.P3",
       "polarity": "positive",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_unittest_observer_preserves_skip_expected_failure_and_python_versions against the R1.P3 positive fixture for Final implementation readiness is checked.",
       "observable": "test_unittest_observer_preserves_skip_expected_failure_and_python_versions observes the R1.P3 positive boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_unittest_observer_preserves_skip_expected_failure_and_python_versions exposes the forbidden positive outcome.",
@@ -589,7 +589,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -608,7 +608,7 @@
       "property_id": "R1.P3",
       "polarity": "positive",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_node_tap_observer_preserves_pass_fail_and_skip against the R1.P3 positive fixture for Final implementation readiness is checked.",
       "observable": "test_node_tap_observer_preserves_pass_fail_and_skip observes the R1.P3 positive boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_node_tap_observer_preserves_pass_fail_and_skip exposes the forbidden positive outcome.",
@@ -617,7 +617,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -632,11 +632,39 @@
       "distinct_reason": "Final implementation readiness is checked: test_node_tap_observer_preserves_pass_fail_and_skip proves the R1.P3 positive edge."
     },
     {
+      "id": "R1.P3.POSITIVE.05",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "scenario": "Final implementation readiness is checked",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
+      "setup": "Run one passing and one failing exact unittest identity in the same command and inspect both case rows plus the aggregate result.",
+      "observable": "The nonzero command keeps the run failed while its passing case remains passed and its failing case remains failed.",
+      "red_expectation": "A nonzero command rewrites every selected case to command_failed and destroys the exact per-case observation.",
+      "green_expectation": "Each observed case retains its own outcome while the nonzero command independently keeps the aggregate run failed.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_nonzero_command_preserves_each_observed_case_status",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Final implementation readiness is checked: mixed exact outcomes remain attributable even when their shared command exits nonzero."
+    },
+    {
       "id": "R1.P3.NEGATIVE.01",
       "property_id": "R1.P3",
       "polarity": "negative",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_planned_and_protected_cases_cannot_pass against the R1.P3 negative fixture for Final implementation readiness is checked.",
       "observable": "test_planned_and_protected_cases_cannot_pass observes the R1.P3 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_planned_and_protected_cases_cannot_pass exposes the forbidden negative outcome.",
@@ -645,7 +673,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -664,7 +692,7 @@
       "property_id": "R1.P3",
       "polarity": "negative",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_missing_expected_identity_and_command_failure_cannot_pass against the R1.P3 negative fixture for Final implementation readiness is checked.",
       "observable": "test_missing_expected_identity_and_command_failure_cannot_pass observes the R1.P3 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_missing_expected_identity_and_command_failure_cannot_pass exposes the forbidden negative outcome.",
@@ -673,7 +701,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -692,7 +720,7 @@
       "property_id": "R1.P3",
       "polarity": "negative",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_skipped_or_expected_failure_case_is_nonpassing against the R1.P3 negative fixture for Final implementation readiness is checked.",
       "observable": "test_skipped_or_expected_failure_case_is_nonpassing observes the R1.P3 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_skipped_or_expected_failure_case_is_nonpassing exposes the forbidden negative outcome.",
@@ -701,7 +729,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -720,7 +748,7 @@
       "property_id": "R1.P3",
       "polarity": "negative",
       "scenario": "Final implementation readiness is checked",
-      "scenario_fingerprint": "f3a833fb8bb9050f267eeb7a8692be343e0b86cba3ba35cdfcf3d8d804ffefe6",
+      "scenario_fingerprint": "df12f7bdbb98423ec7d920fff6ef285b034e13e4e32a297b58f827a043ad182f",
       "setup": "Run test_command_markers_cannot_prove_behavioral_cases against the R1.P3 negative fixture for Final implementation readiness is checked.",
       "observable": "test_command_markers_cannot_prove_behavioral_cases observes the R1.P3 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P3 contract is enforced, test_command_markers_cannot_prove_behavioral_cases exposes the forbidden negative outcome.",
@@ -729,7 +757,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -757,7 +785,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -785,7 +813,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -813,7 +841,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -841,7 +869,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -869,7 +897,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -897,7 +925,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -925,7 +953,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -953,7 +981,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -981,7 +1009,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1009,7 +1037,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1121,7 +1149,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1149,7 +1177,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1177,7 +1205,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1205,7 +1233,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1289,7 +1317,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1317,7 +1345,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1345,7 +1373,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1373,7 +1401,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1401,7 +1429,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1429,7 +1457,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1457,7 +1485,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1485,7 +1513,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1513,7 +1541,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1541,7 +1569,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1569,7 +1597,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1597,7 +1625,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
@@ -1793,7 +1821,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_requirement_tests.py",
-      "source_sha256": "5e901a9949977b61418738d4419596b8024f5addefcce3796dcfcfd80a558a46",
+      "source_sha256": "a461bed8450ad7fade80b6e6dd1b3af33a3dca47798c43680efe274886cc4b15",
       "invalidation_dependencies": [
         "scripts/test_requirement_tests.py",
         "scripts/requirement_tests.py",
