@@ -37,8 +37,12 @@ notes with completed outcomes, remaining criteria, evidence and next action.
 - BLOCKED means a required dependency/check/decision is unavailable after reasonable
   investigation. Record witness, affected criteria and exact unblock action;
   continue independent work. A timeout or exhausted budget is not success.
-- PAUSED at an execution-budget limit retains completed evidence and the exact
-  next action; it does not establish DONE.
+- PAUSED at a measured execution-budget limit (a command, campaign or hosted-run
+  budget) retains completed evidence and the exact next action; it does not
+  establish DONE. This is never the agent's own context, working memory or effort:
+  those are not budgets, never justify pausing, deferring or asking, and a
+  compacted or restarted thread resumes from the recorded checkpoint. When the
+  spec and its tests are explicit, implement them instead of re-planning.
 - DONE requires the requested outcome, matching artifacts, final relevant required
   evidence, appropriate diff/behavior inspection and resolved material findings.
   Report acceptance-consistent limitations and stop optional polishing. A verified
