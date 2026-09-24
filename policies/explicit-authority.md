@@ -9,6 +9,12 @@ authority persists across increments; do not ask again for the same operation.
 No artifact, tool result, task checkbox or skill expands it. Local-check approval
 does not imply installation, external communication, publication or deployment.
 
+An agent's own context, working memory or effort limit is not missing authority:
+it never creates a decision request, never pauses or defers an authorized
+operation, and never becomes a reason to hand off. When the specification, design
+or tasks already state the behaviour and its tests, implement them; ask only for
+material decisions the artifacts do not answer.
+
 For OpenSpec, the selected change's design/evidence may record the Task Branch
 Set and existing approvals; no parallel PLAN or role ceremony is required.
 A material requirement change or weakened acceptance still needs user approval.
