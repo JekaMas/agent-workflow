@@ -8,6 +8,12 @@ results; run the complete iteration set once at its stable boundary. Final chang
 completion executes `run --all --require-clean`; structural OpenSpec success or a
 manually chosen package list cannot replace the graph.
 
+An iteration is acceptably green only from its own selection run at
+`--require-clean` on a committed revision; a run on a dirty or unknown revision is
+evidence, not acceptance. Report `validate`, `spec-check` and `spec-ready` as
+structural results that never imply implementation, and keep planned placeholders
+visible for every requirement whose correction has not landed.
+
 Use `{{checks}}` to select and execute the existing workflow,
 specification, language and assurance checks. This operation owns that execution;
 the user need not invoke Make or a second skill. Run only relevant authorized checks.
