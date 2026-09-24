@@ -1065,7 +1065,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1093,7 +1093,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1121,7 +1121,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1261,7 +1261,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1289,7 +1289,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1653,7 +1653,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1681,7 +1681,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "d601dc1f95b42962a3c816d042a7dc48aff194ad8c79328833a6258632e5d626",
+      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
