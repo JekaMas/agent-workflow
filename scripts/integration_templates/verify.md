@@ -14,6 +14,12 @@ evidence, not acceptance. Report `validate`, `spec-check` and `spec-ready` as
 structural results that never imply implementation, and keep planned placeholders
 visible for every requirement whose correction has not landed.
 
+Never report your own context, working memory or effort as a blocker, and never
+defer verification for that reason: resume from the change's recorded checkpoint
+and complete the operation. Only external blockers — missing authority,
+credentials or dependency, an unresolved requirement, or a protected operation —
+stop the work.
+
 Use `{{checks}}` to select and execute the existing workflow,
 specification, language and assurance checks. This operation owns that execution;
 the user need not invoke Make or a second skill. Run only relevant authorized checks.
