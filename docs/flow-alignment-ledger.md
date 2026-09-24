@@ -10,24 +10,24 @@ Files: 100 | lines: 10057
 
 | status | file | lines |
 |---|---|---|
-| TODO — read paragraph by paragraph | `AGENTS.md` | 8 |
-| TODO — read paragraph by paragraph | `README.md` | 137 |
+| aligned | `AGENTS.md` | 8 |
+| aligned | `README.md` | 137 |
 | TODO — read paragraph by paragraph | `docs/adoption.md` | 232 |
-| TODO — read paragraph by paragraph | `docs/knowledge-maintenance.md` | 9 |
-| TODO — read paragraph by paragraph | `docs/local-checks.md` | 25 |
-| TODO — read paragraph by paragraph | `docs/maintenance.md` | 100 |
-| TODO — read paragraph by paragraph | `docs/model-review.md` | 15 |
-| TODO — read paragraph by paragraph | `docs/native-openspec.md` | 46 |
+| aligned | `docs/knowledge-maintenance.md` | 9 |
+| aligned | `docs/local-checks.md` | 25 |
+| aligned | `docs/maintenance.md` | 100 |
+| aligned | `docs/model-review.md` | 15 |
+| aligned | `docs/native-openspec.md` | 46 |
 | fixed (flow-wide stop conditions merged into one paragraph) | `docs/operations.md` | 106 |
 | aligned (evidence graph gates; packaging budgets unrelated) | `docs/project-flow.md` | 125 |
-| TODO — read paragraph by paragraph | `docs/quickstart.md` | 99 |
-| TODO — read paragraph by paragraph | `docs/validation.md` | 36 |
+| fixed (removed "stop at a chosen stage"; states DONE-or-three-stops) | `docs/quickstart.md` | 99 |
+| aligned | `docs/validation.md` | 36 |
 | aligned (rendered rules) | `openspec/config.yaml` | 51 |
-| TODO — read paragraph by paragraph | `openspec/specs/adaptive-development-workflow/spec.md` | 224 |
-| TODO — read paragraph by paragraph | `openspec/specs/assurance-routing/spec.md` | 55 |
-| TODO — read paragraph by paragraph | `openspec/specs/portable-workflow/spec.md` | 49 |
-| TODO — read paragraph by paragraph | `policies/coordinated-review.md` | 15 |
-| TODO — read paragraph by paragraph | `policies/exhaustive-investigation.md` | 27 |
+| fixed (added requirement: execution continues to DONE or one of three stops) | `openspec/specs/adaptive-development-workflow/spec.md` | 224 |
+| aligned (deferral = missing external prerequisite) | `openspec/specs/assurance-routing/spec.md` | 55 |
+| aligned | `openspec/specs/portable-workflow/spec.md` | 49 |
+| aligned | `policies/coordinated-review.md` | 15 |
+| aligned | `policies/exhaustive-investigation.md` | 27 |
 | fixed (agent limits are not missing authority) | `policies/explicit-authority.md` | 116 |
 | fixed (three stops; no turn boundary; no self-blocker; vague wording removed) | `scripts/integration_templates/apply.md` | 53 |
 | TODO — read paragraph by paragraph | `scripts/integration_templates/archive.md` | 1 |
@@ -45,8 +45,8 @@ Files: 100 | lines: 10057
 | TODO — read paragraph by paragraph | `scripts/integration_templates/sync.md` | 18 |
 | TODO — read paragraph by paragraph | `scripts/integration_templates/update.md` | 1 |
 | fixed (structural vs implementation gates; no self-blocker) | `scripts/integration_templates/verify.md` | 25 |
-| TODO — read paragraph by paragraph | `skills/conflict-resolution/SKILL.md` | 38 |
-| TODO — read paragraph by paragraph | `skills/event-sequence-pbt/SKILL.md` | 201 |
+| aligned (blockers are product choices/prerequisites) | `skills/conflict-resolution/SKILL.md` | 38 |
+| aligned | `skills/event-sequence-pbt/SKILL.md` | 201 |
 | TODO — read paragraph by paragraph | `skills/event-sequence-pbt/references/change-impact.md` | 19 |
 | TODO — read paragraph by paragraph | `skills/event-sequence-pbt/references/event-modeling.md` | 244 |
 | TODO — read paragraph by paragraph | `skills/event-sequence-pbt/references/examples.md` | 372 |
@@ -57,7 +57,7 @@ Files: 100 | lines: 10057
 | TODO — read paragraph by paragraph | `skills/event-sequence-pbt/references/property_discovery.md` | 279 |
 | TODO — read paragraph by paragraph | `skills/event-sequence-pbt/references/rapid_recipes.md` | 333 |
 | TODO — read paragraph by paragraph | `skills/event-sequence-pbt/references/replay-and-review.md` | 53 |
-| TODO — read paragraph by paragraph | `skills/golang-optimization/SKILL.md` | 227 |
+| aligned (benchmark approval reuses existing approval; no new prompt) | `skills/golang-optimization/SKILL.md` | 227 |
 | TODO — read paragraph by paragraph | `skills/golang-optimization/references/branching-and-branchless.md` | 146 |
 | TODO — read paragraph by paragraph | `skills/golang-optimization/references/compiler-and-machine-code.md` | 334 |
 | TODO — read paragraph by paragraph | `skills/golang-optimization/references/data-structures-and-dispatch.md` | 118 |
@@ -73,7 +73,7 @@ Files: 100 | lines: 10057
 | TODO — read paragraph by paragraph | `skills/golang-optimization/references/runtime-and-concurrency-techniques.md` | 354 |
 | TODO — read paragraph by paragraph | `skills/golang-optimization/references/technique-expectation-matrix.md` | 93 |
 | TODO — read paragraph by paragraph | `skills/golang-optimization/references/technique-result-rubrics.md` | 81 |
-| TODO — read paragraph by paragraph | `skills/golang-performance-diagnostics/SKILL.md` | 116 |
+| aligned (handoff = internal routing) | `skills/golang-performance-diagnostics/SKILL.md` | 116 |
 | TODO — read paragraph by paragraph | `skills/golang-performance-diagnostics/references/benchmarking.md` | 260 |
 | TODO — read paragraph by paragraph | `skills/golang-performance-diagnostics/references/cpu-cache-analysis.md` | 236 |
 | TODO — read paragraph by paragraph | `skills/golang-performance-diagnostics/references/interpreting-performance-results.md` | 234 |
@@ -81,24 +81,24 @@ Files: 100 | lines: 10057
 | TODO — read paragraph by paragraph | `skills/golang-performance-diagnostics/references/performance-diffs.md` | 307 |
 | TODO — read paragraph by paragraph | `skills/golang-performance-diagnostics/references/profiling-and-tracing.md` | 238 |
 | TODO — read paragraph by paragraph | `skills/golang-performance-diagnostics/references/text-artifacts-and-targeting.md` | 291 |
-| TODO — read paragraph by paragraph | `skills/golang-testing/SKILL.md` | 24 |
+| aligned | `skills/golang-testing/SKILL.md` | 24 |
 | TODO — read paragraph by paragraph | `skills/golang-testing/references/live-deadlocks.md` | 79 |
-| TODO — read paragraph by paragraph | `skills/hypothesis-debugging/SKILL.md` | 19 |
+| aligned | `skills/hypothesis-debugging/SKILL.md` | 19 |
 | TODO — read paragraph by paragraph | `skills/hypothesis-debugging/references/evidence-sources.md` | 9 |
-| TODO — read paragraph by paragraph | `skills/openspec-delivery/SKILL.md` | 14 |
+| aligned | `skills/openspec-delivery/SKILL.md` | 14 |
 | fixed (PAUSED scoped to measured budgets) | `skills/openspec-delivery/references/delivery.md` | 68 |
 | TODO — read paragraph by paragraph | `skills/openspec-delivery/references/engineering-evidence.md` | 52 |
-| TODO — read paragraph by paragraph | `skills/sdd-go/SKILL.md` | 45 |
+| aligned | `skills/sdd-go/SKILL.md` | 45 |
 | TODO — read paragraph by paragraph | `skills/sdd-go/references/concurrency-and-memory.md` | 59 |
 | TODO — read paragraph by paragraph | `skills/sdd-go/references/design-types-and-errors.md` | 62 |
 | TODO — read paragraph by paragraph | `skills/sdd-go/references/language-and-tooling.md` | 48 |
 | TODO — read paragraph by paragraph | `skills/sdd-go/references/testing-and-http.md` | 36 |
-| TODO — read paragraph by paragraph | `skills/sdd-maintenance/SKILL.md` | 14 |
-| TODO — read paragraph by paragraph | `skills/sdd-rust/SKILL.md` | 40 |
+| aligned | `skills/sdd-maintenance/SKILL.md` | 14 |
+| aligned | `skills/sdd-rust/SKILL.md` | 40 |
 | TODO — read paragraph by paragraph | `skills/sdd-rust/references/async-lifecycle-and-testing.md` | 27 |
 | TODO — read paragraph by paragraph | `skills/sdd-rust/references/boundaries-and-resources.md` | 17 |
-| TODO — read paragraph by paragraph | `skills/sdd-workflow/SKILL.md` | 32 |
-| TODO — read paragraph by paragraph | `skills/verification-design/SKILL.md` | 35 |
+| aligned | `skills/sdd-workflow/SKILL.md` | 32 |
+| aligned | `skills/verification-design/SKILL.md` | 35 |
 | TODO — read paragraph by paragraph | `skills/verification-design/references/architecture-and-contracts.md` | 88 |
 | TODO — read paragraph by paragraph | `skills/verification-design/references/behavior-and-boundaries.md` | 43 |
 | TODO — read paragraph by paragraph | `skills/verification-design/references/code-inspection.md` | 9 |

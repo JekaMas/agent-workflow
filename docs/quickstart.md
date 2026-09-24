@@ -56,9 +56,14 @@ Implement, run the required checks, repair findings and verify the result.
 ```
 
 A plain-language request can authorize the full development cycle. Separate
-commands let you stop at a chosen stage. `iterate` and `repair` describe activities,
-not additional native CLI commands. `/opsx:update` revises artifacts; native
-`openspec update` refreshes integrations and is a different operation.
+commands choose which stage to work on; they do not create stop points. An
+authorized request runs to absolute DONE — no partials — or to one of the three
+stop conditions (spec contradiction, in-scope-unrepairable spec state, or a
+decision the artifacts cannot answer); a turn boundary, compaction or a long run
+resumes from the recorded checkpoint instead of stopping. `iterate` and `repair`
+describe activities, not additional native CLI commands. `/opsx:update` revises
+artifacts; native `openspec update` refreshes integrations and is a different
+operation.
 
 ## Resume and evidence
 

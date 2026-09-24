@@ -98,6 +98,30 @@ repair and affected revalidation without requiring legacy role handoffs or score
 - **THEN** the agent follows the current repository's OpenSpec route
 - **AND** it does not mutate global configuration or revive removed project instructions
 
+### Requirement: Execution continues to DONE or one of three stops
+An authorized request SHALL run to absolute DONE — never to an accepted partial —
+and SHALL stop only for a direct contradiction inside the specification or
+requirements, an in-scope-unrepairable spec or artifact state, or a decision the
+artifacts cannot answer. An agent turn boundary, context or compaction, effort,
+elapsed time, a long run, a landed milestone or an unfinished increment SHALL NOT
+be treated as a stop, and the work SHALL resume from the change's recorded
+checkpoint instead.
+
+#### Scenario: A milestone lands mid-request
+- **WHEN** an increment is committed or a focused gate turns green while authorized scope remains
+- **THEN** the flow continues to the remaining findings without reporting a stop
+- **AND** progress is reported with the next action already in flight
+
+#### Scenario: A turn or context boundary interrupts long work
+- **WHEN** the executing agent's turn ends, its context is compacted, or the run is long
+- **THEN** the work resumes from the change's recorded checkpoint and continues the same increment
+- **AND** no partial landing, plan or status report is accepted as completion
+
+#### Scenario: Only a decision blocker halts the flow
+- **WHEN** the specification contradicts itself, the artifact state cannot be repaired in scope, or a decision the artifacts cannot answer is required
+- **THEN** the flow records the exact blocker with witnesses and stops only for that decision
+- **AND** every other condition continues to DONE
+
 ### Requirement: Validate specification adequacy before semantic implementation
 For meaningful behavior changes the flow SHALL challenge the specification against
 intent and plausible faulty behavior, and SHALL link a proportionate validation
@@ -221,4 +245,3 @@ external tool/service prerequisites without assuming a personal global setup.
 - **WHEN** a developer uses the documented client-neutral bootstrap
 - **THEN** the same tracked authority, operation, language and verification routes are identified
 - **AND** unsupported UI dispatch or unavailable tools remain explicit gaps
-
