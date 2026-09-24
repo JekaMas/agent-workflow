@@ -91,6 +91,7 @@ JUSTIFIED = [
     ("verb 'turn'", re.compile(r"\bturn (an|incomplete|it|the|a|each|contracts|rows|them|into|an L1)\b", re.I)),
     ("runtime GC term", re.compile(r"pause/latency|pause/assist|GC CPU/assists", re.I)),
     ("authorized handoff artifact", re.compile(r"authorizes a handoff|task authorizes", re.I)),
+    ("verb 'turn' (wrapped)", re.compile(r"do not turn|must not turn|can turn|\bturn$", re.I)),
 ]
 
 

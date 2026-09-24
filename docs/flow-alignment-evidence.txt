@@ -1,9 +1,10 @@
 == /Users/jekamas/projects/0xatelerix/_worktrees/smart_example_gmx_i0_i1_lifecycle_backbone_20260921/.agents/workflow
-   files scanned: 145   hard findings: 1   justified technical markers: 21
+   files scanned: 145   hard findings: 0   justified technical markers: 22
    justified [negated ceremony] openspec/config.yaml:39 (handoff-as-stop)
    justified [missing external prerequisite] openspec/specs/assurance-routing/spec.md:39 (defer)
    justified [negated ceremony] scripts/integration_templates/rules.yaml:33 (handoff-as-stop)
    justified [test-concept handoff] skills/event-sequence-pbt/SKILL.md:123 (handoff-as-stop)
+   justified [verb 'turn' (wrapped)] skills/golang-optimization/references/branching-and-branchless.md:92 (turn-as-stop)
    justified [verb 'turn'] skills/golang-optimization/references/compiler-and-machine-code.md:218 (turn-as-stop)
    justified [verb 'turn'] skills/golang-optimization/references/mdbx-ordered-cursor-optimization.md:102 (turn-as-stop)
    justified [runtime GC term] skills/golang-optimization/references/memory-gc-and-lifetime-techniques.md:32 (pause)
@@ -21,5 +22,4 @@
    justified [evidence batching guidance] skills/openspec-delivery/references/engineering-evidence.md:24 (handoff-as-stop)
    justified [negated ceremony] skills/openspec-delivery/references/engineering-evidence.md:28 (handoff-as-stop)
    justified [negated ceremony] skills/verification-design/SKILL.md:33 (handoff-as-stop)
-   [turn-as-stop] skills/golang-optimization/references/branching-and-branchless.md:92: Avoid clever signed min/max/clamp formulas that can overflow. Do not turn
-RESULT: 1 findings to remove or justify
+RESULT: clean — no unjustified stale flow wording
