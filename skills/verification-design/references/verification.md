@@ -13,7 +13,8 @@ autonomously, without a separate approval or role gate.
 For each behavioral requirement, keep its validation contract in the change-owned
 `verification.json` evidence DAG: exact pinned requirement/scenarios and test-source hashes, observable
 properties, owner/boundary, independent oracle, positive and negative cases,
-exact observed test identities, deduplicated commands, substitution boundaries,
+exact observed test identities, deduplicated commands, substitution boundaries
+with their replaced owner and forbidden claims,
 invalidation dependencies and required result. Revisit it when evidence changes
 assumptions. Routine nonbehavioral edits may use proportionate inspection instead.
 Structural OpenSpec validation does not establish that a specification is correct,

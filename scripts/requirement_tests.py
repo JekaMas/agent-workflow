@@ -50,6 +50,39 @@ def normalize_block(lines: list[str]) -> str:
     return "\n".join(line.rstrip() for line in lines).strip() + "\n"
 
 
+def substitution_claim_gap(identity: str, substitution: Mapping[str, Any]) -> str:
+    """Return the reported migration gap for an incompletely recorded substitution.
+
+    A substituted boundary must name the replaced owner and at least one claim it
+    may not support. A case may record its migration instead of the fields, which
+    reports a gap and keeps readiness non-passing until the fields exist.
+    """
+
+    if substitution.get("classification") in {"NO_TEST_DOUBLE", "UNDECIDED"}:
+        return ""
+    allowed = substitution.get("allowed_proof")
+    if allowed is not None and (not isinstance(allowed, str) or not allowed.strip()):
+        raise MatrixError(f"case {identity} substitution.allowed_proof must be nonempty text")
+    missing = []
+    owner = substitution.get("owner_replaced")
+    if not isinstance(owner, str) or not owner.strip():
+        missing.append("owner_replaced")
+    claims = substitution.get("forbidden_claims")
+    if not isinstance(claims, list) or not claims or not all(
+        isinstance(claim, str) and claim.strip() for claim in claims
+    ):
+        missing.append("forbidden_claims")
+    if not missing:
+        return ""
+    pending = substitution.get("claims_pending")
+    if isinstance(pending, str) and pending.strip():
+        return f"{identity}: missing {', '.join(missing)} — {pending.strip()}"
+    raise MatrixError(
+        f"case {identity} must record substitution.owner_replaced and a non-empty forbidden_claims list "
+        f"for {substitution.get('classification')}, or claims_pending with the migration reason"
+    )
+
+
 def parse_delta_specs(change_root: Path) -> dict[tuple[str, str], dict[str, Any]]:
     specs_root = change_root / "specs"
     if not specs_root.is_dir():
@@ -268,6 +301,7 @@ class EvidenceGraph:
         self.by_owner: dict[str, set[str]] = defaultdict(set)
         self.by_case_command: dict[str, set[str]] = defaultdict(set)
         self.by_test: dict[str, set[str]] = defaultdict(set)
+        self.substitution_gaps: dict[str, str] = {}
         self.validate()
 
     def validate(self) -> None:
@@ -401,6 +435,9 @@ class EvidenceGraph:
                 raise MatrixError(f"case {identity} must disclose its substitution classification")
             if state == "implemented" and substitution.get("classification") == "UNDECIDED":
                 raise MatrixError(f"implemented case {identity} cannot have an undecided substitution boundary")
+            gap = substitution_claim_gap(identity, substitution)
+            if gap:
+                self.substitution_gaps[identity] = gap
             key = (property_id, scenario, polarity, observable, test_id)
             if key in seen_case_key:
                 raise MatrixError(f"duplicate case edge for property {property_id}: {identity}")
@@ -600,6 +637,7 @@ class EvidenceGraph:
             "change": self.change,
             "manifest": manifest,
             "manifest_sha256": sha256_bytes(self.manifest_path.read_bytes()),
+            "substitution_gaps": [self.substitution_gaps[identity] for identity in sorted(self.substitution_gaps)],
             "specifications": {
                 identity: self.requirements[identity]["fingerprint"]
                 for identity in selected["requirements"]
@@ -838,6 +876,18 @@ def run_selection(
     if require_clean and (provenance.get("status") != "known" or provenance.get("dirty") is not False):
         for case_id in selection["cases"]:
             report["cases"][case_id] = case_result(case_id, "provenance_blocked")
+        report["status"] = "incomplete"
+        report["finished_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
+        output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        return report
+
+    blocked = sorted(set(selection["cases"]) & set(graph.substitution_gaps))
+    if require_clean and blocked:
+        for case_id in selection["cases"]:
+            report["cases"][case_id] = case_result(
+                case_id, "substitution_gap" if case_id in graph.substitution_gaps else "blocked_by_sibling_gap"
+            )
+        report["substitution_gaps"] = [graph.substitution_gaps[case_id] for case_id in blocked]
         report["status"] = "incomplete"
         report["finished_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
         output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")

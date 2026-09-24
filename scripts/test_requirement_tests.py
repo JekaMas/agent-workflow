@@ -652,6 +652,77 @@ class OwnershipTest(unittest.TestCase):
         self.assertEqual("incomplete", report["status"])
         self.assertEqual("provenance_blocked", report["cases"]["R1.P1.MATCH.POS"]["status"])
 
+    def substituted_case(self, substitution: dict[str, object]) -> None:
+        self.manifest["cases"][0]["substitution"] = substitution
+        self.write_manifest()
+
+    def test_substituted_case_requires_owner_and_forbidden_claims(self) -> None:
+        self.substituted_case({"classification": "APPROVED_TEST_DOUBLE"})
+
+        with self.assertRaises(evidence.MatrixError) as raised:
+            self.graph()
+
+        message = str(raised.exception)
+        self.assertIn("owner_replaced", message)
+        self.assertIn("forbidden_claims", message)
+
+    def test_substituted_case_with_owner_and_claims_validates(self) -> None:
+        self.substituted_case({
+            "classification": "APPROVED_TEST_DOUBLE",
+            "owner_replaced": "venue public HTTP transport",
+            "forbidden_claims": ["real", "production"],
+            "allowed_proof": "bounded fixture delivery only",
+        })
+
+        graph = self.graph()
+
+        self.assertEqual({}, graph.substitution_gaps)
+        self.assertEqual([], graph.summary()["substitution_gaps"])
+
+    def test_claims_pending_reports_gap_and_blocks_readiness(self) -> None:
+        self.substituted_case({
+            "classification": "EXTERNAL_BOUNDARY",
+            "claims_pending": "migrating the retired record into the graph",
+        })
+        graph = self.graph()
+        self.assertIn("R1.P1.MATCH.POS", graph.substitution_gaps)
+        self.assertEqual(
+            ["R1.P1.MATCH.POS: missing owner_replaced, forbidden_claims — migrating the retired record into the graph"],
+            graph.summary()["substitution_gaps"],
+        )
+
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "config", "user.email", "fixture@example.invalid"], cwd=self.root, check=True)
+        subprocess.run(["git", "config", "user.name", "Fixture"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "."], cwd=self.root, check=True)
+        subprocess.run(["git", "commit", "-qm", "fixture"], cwd=self.root, check=True)
+
+        report = evidence.run_selection(
+            graph, graph.select(all_cases=True), self.root / "gaps.json", require_clean=True,
+        )
+
+        self.assertEqual("incomplete", report["status"])
+        self.assertEqual("substitution_gap", report["cases"]["R1.P1.MATCH.POS"]["status"])
+        self.assertEqual(1, len(report["substitution_gaps"]))
+
+    def test_claims_pending_without_reason_is_rejected(self) -> None:
+        self.substituted_case({
+            "classification": "APPROVED_TEST_DOUBLE",
+            "claims_pending": "   ",
+        })
+
+        with self.assertRaises(evidence.MatrixError):
+            self.graph()
+
+    def test_unsubstituted_case_needs_no_claim_limits(self) -> None:
+        self.assertEqual({}, self.graph().substitution_gaps)
+
+    def test_implemented_undecided_case_is_still_rejected(self) -> None:
+        self.substituted_case({"classification": "UNDECIDED"})
+
+        with self.assertRaises(evidence.MatrixError):
+            self.graph()
+
     def test_requested_selectors_and_evidence_fingerprints_are_recorded(self) -> None:
         graph = self.graph()
         selection = graph.select(property_ids=["R1.P1"])
