@@ -85,6 +85,12 @@ JUSTIFIED = [
     ("authorized handoff artifact", re.compile(r"handoff\.md|explicit handoff|For explicit handoffs", re.I)),
     ("negated ceremony", re.compile(r"role handoff|without requiring|do not impose|No fixed checkpoint count|do not impose a separate", re.I)),
     ("evidence batching guidance", re.compile(r"verification, pause or handoff|handoff boundaries", re.I)),
+    ("negated ceremony", re.compile(r"not a (separate )?handoff|stage is not a handoff|is not a h", re.I)),
+    ("missing external prerequisite", re.compile(r"deferral reason|missing prerequisite", re.I)),
+    ("test-concept handoff", re.compile(r"regression handoff|fuzz handoff", re.I)),
+    ("verb 'turn'", re.compile(r"\bturn (an|incomplete|it|the|a|each|contracts|rows|them|into|an L1)\b", re.I)),
+    ("runtime GC term", re.compile(r"pause/latency|pause/assist|GC CPU/assists", re.I)),
+    ("authorized handoff artifact", re.compile(r"authorizes a handoff|task authorizes", re.I)),
 ]
 
 

@@ -1,5 +1,13 @@
 == /Users/jekamas/projects/0xatelerix/_worktrees/smart_example_gmx_i0_i1_lifecycle_backbone_20260921/.agents/workflow
-   files scanned: 144   hard findings: 10   justified technical markers: 12
+   files scanned: 145   hard findings: 1   justified technical markers: 21
+   justified [negated ceremony] openspec/config.yaml:39 (handoff-as-stop)
+   justified [missing external prerequisite] openspec/specs/assurance-routing/spec.md:39 (defer)
+   justified [negated ceremony] scripts/integration_templates/rules.yaml:33 (handoff-as-stop)
+   justified [test-concept handoff] skills/event-sequence-pbt/SKILL.md:123 (handoff-as-stop)
+   justified [verb 'turn'] skills/golang-optimization/references/compiler-and-machine-code.md:218 (turn-as-stop)
+   justified [verb 'turn'] skills/golang-optimization/references/mdbx-ordered-cursor-optimization.md:102 (turn-as-stop)
+   justified [runtime GC term] skills/golang-optimization/references/memory-gc-and-lifetime-techniques.md:32 (pause)
+   justified [verb 'turn'] skills/golang-optimization/references/memory-gc-and-lifetime-techniques.md:91 (turn-as-stop)
    justified [runtime/GC term] skills/golang-optimization/references/memory-gc-and-lifetime-techniques.md:100 (defer)
    justified [runtime/GC term] skills/golang-optimization/references/technique-expectation-matrix.md:27 (pause)
    justified [internal skill routing] skills/golang-performance-diagnostics/SKILL.md:40 (handoff-as-stop)
@@ -8,18 +16,10 @@
    justified [runtime/GC term] skills/golang-testing/references/live-deadlocks.md:48 (pause)
    justified [authorized handoff artifact] skills/hypothesis-debugging/SKILL.md:19 (handoff-as-stop)
    justified [internal skill routing] skills/hypothesis-debugging/assets/handoff.md:1 (handoff-as-stop)
+   justified [authorized handoff artifact] skills/hypothesis-debugging/assets/handoff.md:3 (handoff-as-stop)
    justified [evidence batching guidance] skills/openspec-delivery/references/engineering-evidence.md:24 (pause)
    justified [evidence batching guidance] skills/openspec-delivery/references/engineering-evidence.md:24 (handoff-as-stop)
    justified [negated ceremony] skills/openspec-delivery/references/engineering-evidence.md:28 (handoff-as-stop)
    justified [negated ceremony] skills/verification-design/SKILL.md:33 (handoff-as-stop)
-   [handoff-as-stop] openspec/config.yaml:39: - Review actual code and evidence using skills/verification-design/SKILL.md. Repair material in-scope findings and revalidate affected results; a revi
-   [defer] openspec/specs/assurance-routing/spec.md:39: - **THEN** record the exact target and missing prerequisite or deferral reason without claiming implementation proof or installing an unrelated catalo
-   [handoff-as-stop] scripts/integration_templates/rules.yaml:33: - Review actual code and evidence using {{verification}}. Repair material in-scope findings and revalidate affected results; a review stage is not a h
-   [handoff-as-stop] skills/event-sequence-pbt/SKILL.md:123: deterministic regression handoff, and final review rejection criteria.
    [turn-as-stop] skills/golang-optimization/references/branching-and-branchless.md:92: Avoid clever signed min/max/clamp formulas that can overflow. Do not turn
-   [turn-as-stop] skills/golang-optimization/references/compiler-and-machine-code.md:218: It increases every element's footprint and can turn an L1/L2-resident array
-   [turn-as-stop] skills/golang-optimization/references/mdbx-ordered-cursor-optimization.md:102: - Keep malformed-key behavior fail-closed. An optimization must not turn an
-   [pause] skills/golang-optimization/references/memory-gc-and-lifetime-techniques.md:32: - `/gc/scan/*`, heap objects, live bytes, GC CPU/assists, and pause/latency;
-   [turn-as-stop] skills/golang-optimization/references/memory-gc-and-lifetime-techniques.md:91: large by-value call chains, or many simultaneously live locals can turn an
-   [handoff-as-stop] skills/hypothesis-debugging/assets/handoff.md:3: Use only when the task authorizes a handoff. Supply the discrepancy, required behavior, source/run identity, current authority, facts, tested/refuted 
-RESULT: 10 findings to remove or justify
+RESULT: 1 findings to remove or justify
