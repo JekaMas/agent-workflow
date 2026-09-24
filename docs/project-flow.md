@@ -55,6 +55,11 @@ Run from the consumer root; select a new output directory for each run:
   3. `python3 -B .agents/workflow/scripts/workflow_publication.py --root . --policy .agents/publication-policy.json`.
   4. `python3 -B .agents/workflow/scripts/check_opsx_routes.py --root .`.
   5. `make -C .agents/workflow check` for shared mechanics.
+  `workflow-tests` resolves the consumer suites (`scripts.test_local_verify`,
+  `scripts.test_openspec_workflow`) from the consumer root and the shared suites
+  (`scripts.test_requirement_tests`, `scripts.test_discovery_ledger`) from the
+  shared package, each in its own process, so a consumer that owns `scripts/`
+  cannot shadow them.
   Inspect and stage the intended new setup sources before publication validation;
   an untracked/ignored active source is a failure, not a setup pass. The generated
   policy files keep consumer choices explicit. Existing custom consumers may use
@@ -65,7 +70,12 @@ Run from the consumer root; select a new output directory for each run:
   --output-dir <evidence-directory>`, followed by
   `python3 -B .agents/workflow/scripts/requirement_tests.py --root . --change
   <change> validate`, plus `python3 -B .agents/workflow/scripts/discovery_ledger.py
-  --root . --change <change>` for a behavioral discovery/check decision.
+  --root . --change <change>` for a behavioral discovery/check decision. The
+  shared `scripts/evidence_graph_check.py --root . --change <change> validate`
+  runs exactly those two graph steps and reports a consumer change recorded in
+  `.agents/evidence-transition.json` as a `transition_gap`: the change predates
+  the evidence graph, keeps its structural check, and cannot claim graph-backed
+  readiness until it authors one. An unrecorded change without a graph is refused.
 - `spec-tests <change> <selectors>`: run `requirement_tests.py ... query` first,
   validate matching property/test coverage in `discovery.json`,
   then `requirement_tests.py ... run --output <new-result>` with at least one
@@ -73,11 +83,14 @@ Run from the consumer root; select a new output directory for each run:
   or `--changed-paths` selector. Query output includes the exact graph nodes, not
   only aggregate IDs; pass prior result paths with `--evidence` to load current
   status. Unloaded evidence reports `not_loaded`, and dependency/spec/source drift
-  reports `stale`.
+  reports `stale`. `scripts/evidence_graph_check.py ... query|run <selector>`
+  forwards the selector and returns the shared executor's record.
 - `ready <change>`: run the structural command with `--require-tasks-complete`,
   then `requirement_tests.py ... run --all --require-clean --output <new-result>`.
   Unknown or dirty Git provenance and either command failure
-  keeps readiness non-passing.
+  keeps readiness non-passing. `scripts/evidence_graph_check.py ... ready` runs
+  that execution and writes its own unique record under the consumer's evidence
+  directory.
 - Language/assurance: inspect project commands and actual tool configuration first;
   the shared runner's pinned lint version is optional. Use the project's supported
   native route if it differs, retain its output and do not mislabel an unsupported

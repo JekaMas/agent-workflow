@@ -346,5 +346,80 @@ class LocalVerifyTest(unittest.TestCase):
             self.assertEqual(7, report["steps"][-1]["exit_code"])
 
 
+class ConsumerWorkflowTestsTest(unittest.TestCase):
+    """The shared suites must not resolve through a consumer's scripts package."""
+
+    def run_workflow_tests(self, project: Path) -> tuple[int, dict]:
+        environment = {**os.environ, "LOCAL_VERIFY_PROJECT_ROOT": str(project)}
+        process = subprocess.run(
+            [sys.executable, "-B", str(Path(verify.__file__).resolve()), "_workflow-tests"],
+            cwd=str(Path(verify.__file__).resolve().parents[1]), env=environment,
+            capture_output=True, text=True, check=False)
+
+        return process.returncode, json.loads(process.stdout.strip().splitlines()[-1])
+
+    def consumer_project(self, directory: str, body: str) -> Path:
+        project = Path(directory)
+        (project / "scripts").mkdir(parents=True)
+        (project / "scripts" / "__init__.py").write_text("", encoding="utf-8")
+        for name in ("test_local_verify", "test_openspec_workflow"):
+            (project / "scripts" / f"{name}.py").write_text(body, encoding="utf-8")
+
+        return project
+
+    def test_consumer_scripts_package_is_used_for_consumer_modules(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            project = self.consumer_project(directory, "import unittest\n\nclass T(unittest.TestCase):\n    def test_ok(self):\n        pass\n")
+
+            code, report = self.run_workflow_tests(project)
+
+        self.assertEqual(0, code, report)
+        self.assertEqual("passed", report["status"])
+        self.assertEqual({"scripts.test_local_verify": 1, "scripts.test_openspec_workflow": 1}, {
+            name: count for name, count in report["selected"].items() if name.startswith("scripts.test_local_verify")
+            or name.startswith("scripts.test_openspec_workflow")})
+        self.assertIn("scripts.test_requirement_tests", report["selected"])
+        self.assertIn("scripts.test_discovery_ledger", report["selected"])
+
+    def test_failing_consumer_module_is_reported_with_its_group(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            project = self.consumer_project(directory, "import unittest\n\nclass T(unittest.TestCase):\n    def test_bad(self):\n        self.fail('consumer failure')\n")
+
+            code, report = self.run_workflow_tests(project)
+
+        self.assertNotEqual(0, code)
+        self.assertEqual("failed", report["status"])
+        self.assertEqual("consumer", report["group"])
+
+    def test_consumer_file_cannot_shadow_a_shared_suite(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            project = self.consumer_project(directory, "import unittest\n\nclass T(unittest.TestCase):\n    def test_ok(self):\n        pass\n")
+            (project / "scripts" / "test_requirement_tests.py").write_text(
+                "import unittest\n\nclass T(unittest.TestCase):\n    def test_shadow(self):\n        self.fail('consumer shadow must not be loaded')\n",
+                encoding="utf-8")
+            (project / "scripts" / "requirement_tests.py").write_text(
+                "def broken():\n    raise AssertionError('consumer shadow module')\n", encoding="utf-8")
+
+            code, report = self.run_workflow_tests(project)
+
+        self.assertEqual(0, code, report)
+        self.assertEqual("passed", report["status"])
+        self.assertNotIn("scripts.test_local_verify.T.test_shadow", report["selected"])
+        self.assertGreater(report["selected"]["scripts.test_requirement_tests"], 1)
+
+    def test_consumer_shadow_module_fails_when_loaded_directly(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            project = self.consumer_project(directory, "import unittest\n\nclass T(unittest.TestCase):\n    def test_ok(self):\n        pass\n")
+            (project / "scripts" / "test_requirement_tests.py").write_text(
+                "import unittest\n\nclass T(unittest.TestCase):\n    def test_shadow(self):\n        self.fail('consumer shadow must not be loaded')\n",
+                encoding="utf-8")
+
+            process = subprocess.run([sys.executable, "-B", "-m", "unittest", "scripts.test_requirement_tests"],
+                                     cwd=project, capture_output=True, text=True, check=False)
+
+        self.assertNotEqual(0, process.returncode)
+        self.assertIn("consumer shadow must not be loaded", process.stdout + process.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()

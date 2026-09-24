@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "change": "consumer-workflow-and-evidence-adoption",
+  "scope": {
+    "property_ids": [
+      "R1.P1",
+      "R1.P2",
+      "R2.P1",
+      "R2.P2",
+      "R2.P3"
+    ],
+    "test_ids": [
+      "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_query_reaches_the_shared_executor",
+      "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_recorded_transition_gap_cannot_claim_readiness",
+      "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_recorded_transition_gap_passes_validation",
+      "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_unknown_selector_is_refused_by_the_shared_executor",
+      "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_unrecorded_change_without_a_graph_is_refused",
+      "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_validate_delegates_to_the_shared_graph",
+      "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_consumer_file_cannot_shadow_a_shared_suite",
+      "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_consumer_scripts_package_is_used_for_consumer_modules",
+      "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_consumer_shadow_module_fails_when_loaded_directly",
+      "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_failing_consumer_module_is_reported_with_its_group"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "consumer-package-ownership",
+      "question": "Which owners decide suite resolution and evidence-graph admission for a consumer that owns its own scripts package?",
+      "disposition": "current_change",
+      "rationale": "Both gaps are generic adoption behavior, so they belong to this package while consumer lists, commands and domain data stay local.",
+      "property_ids": [
+        "R1.P1",
+        "R1.P2",
+        "R2.P1",
+        "R2.P2",
+        "R2.P3"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_query_reaches_the_shared_executor",
+        "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_recorded_transition_gap_cannot_claim_readiness",
+        "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_recorded_transition_gap_passes_validation",
+        "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_unknown_selector_is_refused_by_the_shared_executor",
+        "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_unrecorded_change_without_a_graph_is_refused",
+        "unittest::scripts.test_evidence_graph_check.EvidenceGraphCheckTest.test_validate_delegates_to_the_shared_graph",
+        "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_consumer_file_cannot_shadow_a_shared_suite",
+        "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_consumer_scripts_package_is_used_for_consumer_modules",
+        "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_consumer_shadow_module_fails_when_loaded_directly",
+        "unittest::scripts.test_local_verify.ConsumerWorkflowTestsTest.test_failing_consumer_module_is_reported_with_its_group"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "grep and direct execution across scripts/local_verify.py, scripts/requirement_tests.py, scripts/discovery_ledger.py, docs/project-flow.md and the consumer workaround files",
+          "outcome": "The runner's import path, the graph tooling owners and the consumer workaround were identified; the consumer-side duplicates are replaced by one shared wrapper.",
+          "results": [
+            {
+              "path": "scripts/local_verify.py",
+              "line": 27,
+              "classification": "change_candidate",
+              "reason": "workflow_tests resolved every suite through the consumer root; split into consumer and shared groups."
+            },
+            {
+              "path": "scripts/requirement_tests.py",
+              "line": 1,
+              "classification": "reusable_unchanged",
+              "reason": "Graph validation, selection and execution stay the single implementation."
+            },
+            {
+              "path": "scripts/discovery_ledger.py",
+              "line": 1,
+              "classification": "reusable_unchanged",
+              "reason": "Discovery validation stays the single implementation."
+            },
+            {
+              "path": "docs/project-flow.md",
+              "line": 63,
+              "classification": "change_candidate",
+              "reason": "Consumer command guidance now names the shared admission wrapper and the transition record."
+            },
+            {
+              "path": "scripts/test_local_verify.py",
+              "line": 1,
+              "classification": "test_proof",
+              "reason": "Fixtures now cover the consumer package binding, the failing group and the shadowing trap."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "unavailable",
+          "reason": "The registered jbcontext index covers pelacli@f021e09422e9 and sdk@3e7060038922; this checkout has no index, so no semantic lane result exists.",
+          "query": "jbcontext search for consumer package resolution and evidence graph admission owners",
+          "outcome": "unavailable",
+          "results": []
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "reason": "The IntelliJ index MCP endpoint is not reachable from this session (transport error against http://127.0.0.1:64342/stream).",
+          "query": "mcp__intellij.search_symbol for workflow_tests and evidence_graph_check",
+          "outcome": "unavailable",
+          "results": []
+        }
+      ]
+    }
+  ]
+}

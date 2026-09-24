@@ -26,26 +26,49 @@ OPENSPEC_VERSION = "1.13.1"
 GOLANGCI_VERSION = "2.11.3"
 def workflow_tests() -> int:
     """Run only workflow-mechanics tests, rejecting missing or skipped coverage."""
+    shared_root = Path(__file__).resolve().parents[1]
+    project_root = Path(os.environ.get("LOCAL_VERIFY_PROJECT_ROOT", str(shared_root))).resolve()
+    groups = [("consumer", project_root, ("scripts.test_local_verify", "scripts.test_openspec_workflow"))]
+    if project_root != shared_root:
+        groups.append(("shared", shared_root, ("scripts.test_requirement_tests", "scripts.test_discovery_ledger")))
+    report = {"status": "passed", "selected": {}, "tests": 0, "failures": 0, "errors": 0, "skipped": 0,
+              "claim": "synthetic workflow/parser/process fixtures only"}
+    for name, root, modules in groups:
+        environment = {**os.environ, "LOCAL_VERIFY_WORKFLOW_ROOT": str(root),
+                       "LOCAL_VERIFY_WORKFLOW_MODULES": ",".join(modules)}
+        process = subprocess.run(
+            [sys.executable, "-B", str(Path(__file__).resolve()), "_workflow-tests-group"],
+            cwd=str(root), env=environment, capture_output=True, text=True, check=False)
+        payload = json.loads(process.stdout.strip().splitlines()[-1]) if process.stdout.strip() else {}
+        if process.returncode != 0 or payload.get("status") != "passed":
+            print(json.dumps({**report, **payload, "status": "failed", "group": name,
+                              "group_returncode": process.returncode}))
+            return process.returncode or 1
+        report["selected"].update(payload.get("selected", {}))
+        for key in ("tests", "failures", "errors", "skipped"):
+            report[key] += int(payload.get(key, 0))
+    print(json.dumps(report))
+    return 0
+
+
+def workflow_tests_group() -> int:
+    """Test one module group with its own package root; prints one JSON line."""
     import unittest
 
-    sys.path.insert(0, os.environ.get("LOCAL_VERIFY_PROJECT_ROOT", str(Path(__file__).resolve().parents[1])))
-    names = [
-        "scripts.test_local_verify",
-        "scripts.test_openspec_workflow",
-        "scripts.test_requirement_tests",
-        "scripts.test_discovery_ledger",
-    ]
-    suites = [unittest.defaultTestLoader.loadTestsFromName(name) for name in names]
-    selected = {name: suite.countTestCases() for name, suite in zip(names, suites)}
+    root = Path(os.environ["LOCAL_VERIFY_WORKFLOW_ROOT"])
+    modules = [name for name in os.environ["LOCAL_VERIFY_WORKFLOW_MODULES"].split(",") if name]
+    sys.path.insert(0, str(root))
+    suites = [unittest.defaultTestLoader.loadTestsFromName(name) for name in modules]
+    selected = {name: suite.countTestCases() for name, suite in zip(modules, suites)}
     if any(count == 0 for count in selected.values()):
-        print(json.dumps({"status": "no_tests", "selected": selected}))
+        print(json.dumps({"status": "no_tests", "selected": selected, "tests": 0,
+                          "failures": 0, "errors": 0, "skipped": 0}))
         return 1
     result = unittest.TextTestRunner(stream=sys.stderr, verbosity=2).run(unittest.TestSuite(suites))
     passed = result.wasSuccessful() and not result.skipped and result.testsRun > 0
     print(json.dumps({"status": "passed" if passed else "failed", "selected": selected,
                       "tests": result.testsRun, "failures": len(result.failures),
-                      "errors": len(result.errors), "skipped": len(result.skipped),
-                      "claim": "synthetic workflow/parser/process fixtures only"}))
+                      "errors": len(result.errors), "skipped": len(result.skipped)}))
     return 0 if passed else 1
 
 
@@ -420,4 +443,8 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(workflow_tests() if sys.argv[1:] == ["_workflow-tests"] else main())
+    if sys.argv[1:] == ["_workflow-tests"]:
+        raise SystemExit(workflow_tests())
+    if sys.argv[1:] == ["_workflow-tests-group"]:
+        raise SystemExit(workflow_tests_group())
+    raise SystemExit(main())

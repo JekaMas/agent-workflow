@@ -1,6 +1,7 @@
 .PHONY: check verify-go-test
 CHANGE ?= require-executable-requirement-test-matrices
 check:
+	python3 -B scripts/test_evidence_graph_check.py
 	python3 -B scripts/test_portable_policies.py
 	python3 -B scripts/test_full_lifecycle.py
 	python3 -B scripts/test_specialist_skills.py
