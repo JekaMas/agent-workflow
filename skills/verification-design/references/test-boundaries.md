@@ -29,6 +29,12 @@ and reassess affected evidence.
 
 ## Choose proportionate records
 
+Record the claim limits of a substituted boundary in the case itself: the
+replaced owner, at least one claim the case may not support, and optionally the
+proof it may carry. A case that records its migration instead of those fields
+reports a gap and keeps readiness non-passing until they exist; a case that
+claims a substituted boundary without either is rejected.
+
 Default to the selected OpenSpec change's evidence and native test reports.
 Record command/cwd, source and relevant dirty state, configuration/tool version,
 selection, outcomes and important artifact identities once per useful run.
@@ -39,4 +45,3 @@ Use a machine-readable manifest when complex mixed-boundary campaigns, immutable
 datasets, replay corpora, multiple repository identities or explicit acceptance
 need it. Reuse an existing format that answers that need. Use dataset manifests for provenance and run records for observed execution. Preserve small irreplaceable failures;
 record access/retention limits for larger artifacts. /tmp is not durable storage.
-

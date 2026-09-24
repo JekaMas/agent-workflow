@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "change": "substitution-claim-limits",
+  "scope": {
+    "property_ids": [
+      "R1.P1",
+      "R1.P2",
+      "R1.P3"
+    ],
+    "test_ids": [
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_claims_pending_reports_gap_and_blocks_readiness",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_claims_pending_without_reason_is_rejected",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_implemented_undecided_case_is_still_rejected",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_substituted_case_requires_owner_and_forbidden_claims",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_substituted_case_with_owner_and_claims_validates",
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unsubstituted_case_needs_no_claim_limits"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "claim-limit-owners",
+      "question": "Where were the retired manifests' per-case claim limits recorded, and which graph owners must carry them now?",
+      "disposition": "current_change",
+      "rationale": "The limits are generic evidence-graph behavior, so the case schema and the readiness gate own them; campaign approvals stay removed by the earlier decision.",
+      "property_ids": [
+        "R1.P1",
+        "R1.P2",
+        "R1.P3"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_claims_pending_reports_gap_and_blocks_readiness",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_claims_pending_without_reason_is_rejected",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_implemented_undecided_case_is_still_rejected",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_substituted_case_requires_owner_and_forbidden_claims",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_substituted_case_with_owner_and_claims_validates",
+        "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unsubstituted_case_needs_no_claim_limits"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "grep for allowed_proof, forbidden_claims, owner_replaced and substitution across scripts/requirement_tests.py, the retired manifest shape, the verification references and the consumer graph",
+          "outcome": "The retired manifests' claim fields have no equivalent in the graph schema; the validator, the readiness gate and the guidance are the owners that must carry them.",
+          "results": [
+            {
+              "path": "scripts/requirement_tests.py",
+              "line": 386,
+              "classification": "change_candidate",
+              "reason": "Case validation owned the substitution classification only; it now owns owner and claim limits plus the migration gap."
+            },
+            {
+              "path": "skills/verification-design/references/test-boundaries.md",
+              "line": 1,
+              "classification": "change_candidate",
+              "reason": "Guidance asked for a disclosure without naming the replaced owner or forbidden claims."
+            },
+            {
+              "path": "docs/project-flow.md",
+              "line": 63,
+              "classification": "change_candidate",
+              "reason": "Consumer command guidance now states the required case shape and the readiness effect of a recorded gap."
+            },
+            {
+              "path": "openspec/changes/require-executable-requirement-test-matrices/verification.json",
+              "line": 1,
+              "classification": "reusable_unchanged",
+              "reason": "Every case in this repository classifies as NO_TEST_DOUBLE, so the new rule does not invalidate an existing record."
+            },
+            {
+              "path": "scripts/test_requirement_tests.py",
+              "line": 632,
+              "classification": "test_proof",
+              "reason": "Fixtures now cover the rejected, accepted, pending and unaffected shapes."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "unavailable",
+          "reason": "The registered jbcontext index covers pelacli@f021e09422e9 and sdk@3e7060038922; this checkout has no index.",
+          "query": "jbcontext search for evidence claim limits and substitution owners",
+          "outcome": "unavailable",
+          "results": []
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "reason": "The IntelliJ index MCP endpoint is not reachable from this session (transport error against http://127.0.0.1:64342/stream).",
+          "query": "mcp__intellij.search_symbol for substitution_claim_gap",
+          "outcome": "unavailable",
+          "results": []
+        }
+      ]
+    }
+  ]
+}

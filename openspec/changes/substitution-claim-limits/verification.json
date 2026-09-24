@@ -1,0 +1,224 @@
+{
+  "schema_version": 2,
+  "change": "substitution-claim-limits",
+  "requirements": [
+    {
+      "id": "R1",
+      "capability": "portable-workflow",
+      "title": "Substituted cases record their owner and claim limits",
+      "fingerprint": "810ba4f5862233c91746d9a5324d4b19d8297422cd696a8adeeb212515b668e2"
+    }
+  ],
+  "properties": [
+    {
+      "id": "R1.P1",
+      "requirement_id": "R1",
+      "statement": "A substituted case is accepted with a recorded owner and forbidden claims, and rejected without them.",
+      "scenarios": [
+        "Substituted case limits"
+      ],
+      "owner": "scripts.requirement_tests.substitution_claim_gap with EvidenceGraph.validate",
+      "oracle": "A complete substituted case record, and the same record without the owner and claim fields.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R1.P2",
+      "requirement_id": "R1",
+      "statement": "A case that records its migration is reported as a gap, keeps readiness incomplete, and cannot pass with an empty reason.",
+      "scenarios": [
+        "Migration gap is visible"
+      ],
+      "owner": "scripts.requirement_tests.substitution_claim_gap with run_selection readiness gate",
+      "oracle": "A clean git fixture whose substituted case records claims_pending, and the same case with an empty reason.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    },
+    {
+      "id": "R1.P3",
+      "requirement_id": "R1",
+      "statement": "Unsubstituted and planned-undecided cases keep their previous behavior.",
+      "scenarios": [
+        "Unsubstituted case is unaffected"
+      ],
+      "owner": "scripts.requirement_tests.substitution_claim_gap with EvidenceGraph.validate",
+      "oracle": "The default fixture case and an implemented undecided case.",
+      "source_globs": [
+        "scripts/requirement_tests.py",
+        "scripts/test_requirement_tests.py"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "R1.P1.POSITIVE.01",
+      "property_id": "R1.P1",
+      "polarity": "positive",
+      "scenario": "Substituted case limits",
+      "scenario_fingerprint": "46a0f2491130e9543ff6ff3f8399bc922f48541408f3d4299371d7ecf035bd9e",
+      "setup": "Set the fixture's first case to an approved substitution carrying owner_replaced, forbidden_claims and allowed_proof, then build the graph.",
+      "observable": "The graph builds and reports no substitution gap.",
+      "red_expectation": "A validator that demanded a field the record already has would reject a complete case.",
+      "green_expectation": "The complete substituted case validates with an empty gap list.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_substituted_case_with_owner_and_claims_validates",
+      "command_id": "requirement-claim-limits",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "537dd67b368d7d2cd61bf3b03200aa86b4fbcaac5a03ec017ac771eb283903bc",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE",
+        "note": "The temporary fixture repository is controlled input to the real validator."
+      },
+      "distinct_reason": "Proves the completed shape is accepted rather than unconditionally rejected."
+    },
+    {
+      "id": "R1.P1.NEGATIVE.01",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Substituted case limits",
+      "scenario_fingerprint": "46a0f2491130e9543ff6ff3f8399bc922f48541408f3d4299371d7ecf035bd9e",
+      "setup": "Set the same case to an approved substitution with neither owner_replaced nor forbidden_claims and build the graph.",
+      "observable": "The validator rejects the case and names both missing fields.",
+      "red_expectation": "A validator that accepted the bare classification would report no error.",
+      "green_expectation": "The rejection message names owner_replaced and forbidden_claims.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_substituted_case_requires_owner_and_forbidden_claims",
+      "command_id": "requirement-claim-limits",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "537dd67b368d7d2cd61bf3b03200aa86b4fbcaac5a03ec017ac771eb283903bc",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE",
+        "note": "The incomplete record is controlled invalid input."
+      },
+      "distinct_reason": "Restores the retired manifests' per-case claim discipline as a hard rejection."
+    },
+    {
+      "id": "R1.P2.POSITIVE.01",
+      "property_id": "R1.P2",
+      "polarity": "positive",
+      "scenario": "Migration gap is visible",
+      "scenario_fingerprint": "8d82d600d5f7fafbae089d3a31b97582b3d28d92a53811d41eb3a14c1ecc3e65",
+      "setup": "Record claims_pending with a migration reason on the substituted case, commit a clean git fixture, and run the complete selection with require_clean.",
+      "observable": "The gap is listed in the summary and the run is incomplete with a substitution_gap case status.",
+      "red_expectation": "A validator that hid the pending gap would report a passing readiness run.",
+      "green_expectation": "Readiness stays incomplete while the recorded gap exists.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_claims_pending_reports_gap_and_blocks_readiness",
+      "command_id": "requirement-claim-limits",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "537dd67b368d7d2cd61bf3b03200aa86b4fbcaac5a03ec017ac771eb283903bc",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE",
+        "note": "The git fixture is a controlled local repository."
+      },
+      "distinct_reason": "Provides the documented migration route without letting it claim readiness."
+    },
+    {
+      "id": "R1.P2.NEGATIVE.01",
+      "property_id": "R1.P2",
+      "polarity": "negative",
+      "scenario": "Migration gap is visible",
+      "scenario_fingerprint": "8d82d600d5f7fafbae089d3a31b97582b3d28d92a53811d41eb3a14c1ecc3e65",
+      "setup": "Record claims_pending as whitespace on the substituted case and build the graph.",
+      "observable": "The validator rejects the case.",
+      "red_expectation": "A validator that accepted an empty migration reason would let the gap disappear silently.",
+      "green_expectation": "The empty reason is rejected.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_claims_pending_without_reason_is_rejected",
+      "command_id": "requirement-claim-limits",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "537dd67b368d7d2cd61bf3b03200aa86b4fbcaac5a03ec017ac771eb283903bc",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE",
+        "note": "The empty reason is controlled invalid input."
+      },
+      "distinct_reason": "Closes the loophole an empty migration reason would open."
+    },
+    {
+      "id": "R1.P3.POSITIVE.01",
+      "property_id": "R1.P3",
+      "polarity": "positive",
+      "scenario": "Unsubstituted case is unaffected",
+      "scenario_fingerprint": "486935d3ce57052b0b5047c8c9e66d90a5b0a1c9ac704d9eae1b6c7a1293b53b",
+      "setup": "Build the default fixture, whose cases classify themselves as NO_TEST_DOUBLE.",
+      "observable": "No substitution gap is reported.",
+      "red_expectation": "A validator that demanded claim limits from unsubstituted cases would block every existing graph.",
+      "green_expectation": "The unsubstituted fixture reports an empty gap list.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unsubstituted_case_needs_no_claim_limits",
+      "command_id": "requirement-claim-limits",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "537dd67b368d7d2cd61bf3b03200aa86b4fbcaac5a03ec017ac771eb283903bc",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Preserves every existing NO_TEST_DOUBLE graph unchanged."
+    },
+    {
+      "id": "R1.P3.NEGATIVE.01",
+      "property_id": "R1.P3",
+      "polarity": "negative",
+      "scenario": "Unsubstituted case is unaffected",
+      "scenario_fingerprint": "486935d3ce57052b0b5047c8c9e66d90a5b0a1c9ac704d9eae1b6c7a1293b53b",
+      "setup": "Set an implemented case to UNDECIDED and build the graph.",
+      "observable": "The existing implemented-undecided rejection still fires.",
+      "red_expectation": "A validator that skipped the undecided rule would accept an unresolved boundary.",
+      "green_expectation": "The undecided implemented case is rejected.",
+      "test_id": "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_implemented_undecided_case_is_still_rejected",
+      "command_id": "requirement-claim-limits",
+      "state": "implemented",
+      "source_path": "scripts/test_requirement_tests.py",
+      "source_sha256": "537dd67b368d7d2cd61bf3b03200aa86b4fbcaac5a03ec017ac771eb283903bc",
+      "invalidation_dependencies": [
+        "scripts/test_requirement_tests.py",
+        "scripts/requirement_tests.py"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Proves the new rule did not replace the existing boundary rule."
+    }
+  ],
+  "commands": [
+    {
+      "id": "requirement-claim-limits",
+      "runner": "python-unittest",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_requirement_tests",
+        "-v"
+      ],
+      "cwd": ".",
+      "env": {},
+      "timeout_seconds": 300,
+      "authority": "local"
+    }
+  ]
+}
