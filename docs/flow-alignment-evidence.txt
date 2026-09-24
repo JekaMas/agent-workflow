@@ -1,5 +1,5 @@
 == /Users/jekamas/projects/0xatelerix/_worktrees/smart_example_gmx_i0_i1_lifecycle_backbone_20260921/.agents/workflow
-   files scanned: 145   hard findings: 0   justified technical markers: 22
+   files scanned: 144   hard findings: 0   justified technical markers: 22
    justified [negated ceremony] openspec/config.yaml:39 (handoff-as-stop)
    justified [missing external prerequisite] openspec/specs/assurance-routing/spec.md:39 (defer)
    justified [negated ceremony] scripts/integration_templates/rules.yaml:33 (handoff-as-stop)

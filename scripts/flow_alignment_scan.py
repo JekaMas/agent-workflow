@@ -45,7 +45,7 @@ SKIP_DIRS = {".git", "__pycache__", "node_modules", ".venv", "testdata"}
 # Historical change records quote the old wording; the ledger names removed
 # phrases; local_verify.py uses "pause"/"cont" as CLI verbs. None are live rules.
 SKIP_PREFIXES = ("openspec/changes/",)
-SKIP_FILES = {"docs/flow-alignment-ledger.md", "scripts/flow_alignment_scan.py"}
+SKIP_FILES = {"docs/flow-alignment-ledger.md", "docs/flow-alignment-evidence.txt", "scripts/flow_alignment_scan.py"}
 # Context-dependent markers that are technical terms, not flow licences.
 TECHNICAL = re.compile(
     r"\bturn (each|contracts|rows|it|them|the|a|into|incomplete)\b|fuzz handoff|"
