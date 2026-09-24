@@ -47,3 +47,12 @@ Iteration completion contract (default):
 - When the specification and its tests are already explicit, implement them.
   Do not ask for a decision that the spec, design or tasks already answer, and
   do not substitute a plan, a proposal or a partial landing for the work.
+- Apply continues until one of exactly three conditions holds, and no others:
+  (1) a direct contradiction inside the specification or requirements; (2) a
+  spec/artifact state that cannot be repaired in scope; (3) an absolute need for
+  a user decision that the artifacts cannot answer (missing authority, mutually
+  exclusive requirements, or a protected/external operation). An agent turn
+  boundary, a compacted or restarted thread, a long run, or an unfinished
+  increment is none of these: resume from the change's recorded checkpoint and
+  keep applying in the next turn, reporting progress rather than declaring a
+  stop.

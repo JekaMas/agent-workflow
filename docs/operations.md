@@ -68,6 +68,12 @@ or dependency, a protected operation, an unresolved requirement or oracle, or a
 failing gate that cannot be repaired in scope. When the specification, design or
 tasks already state the behaviour and its tests, implement them; ask only for
 material decisions the artifacts do not already answer.
+Apply and its sibling operations run until one of exactly three conditions holds:
+a direct contradiction inside the specification or requirements; a spec/artifact
+state that cannot be repaired in scope; or an absolute need for a user decision
+the artifacts cannot answer. An agent turn boundary, a compacted thread, a long
+run or an unfinished increment is not a stop condition — resume from the change's
+recorded checkpoint and continue in the next turn.
 The shared delivery procedure owns DONE; project references own domain safeguards.
 `make` is optional. Direct native language commands or the local runner provide
 required evidence. OpenSpec structure alone does not establish behavior.
