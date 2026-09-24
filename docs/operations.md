@@ -60,14 +60,16 @@ Use process-scoped OPENSPEC_TELEMETRY=0, DO_NOT_TRACK=1 and
 OPENSPEC_NO_UPDATE_CHECK=1. A standalone operation respects its requested scope.
 A full delivery request continues through authorized operations, iterations,
 review, repair and revalidation; no per-artifact approval or fixed iteration limit.
-An agent's own context, working memory or effort is never a blocker for any
-operation: it is not a reason to defer, hand off, pause or ask for a decision, and
-a compacted thread resumes from the change's recorded checkpoint and continues the
-same increment. Only external blockers stop work — missing authority, credentials
-or dependency, a protected operation, an unresolved requirement or oracle, or a
-failing gate that cannot be repaired in scope. When the specification, design or
-tasks already state the behaviour and its tests, implement them; ask only for
-material decisions the artifacts do not already answer.
+Apply and its sibling operations run until one of exactly three conditions holds:
+a direct contradiction inside the specification or requirements; a spec/artifact
+state that cannot be repaired in scope; or an absolute need for a user decision
+the artifacts cannot answer (missing authority, mutually exclusive requirements,
+or a protected/external operation). An agent's own context, working memory or
+effort is never a blocker, and an agent turn boundary, a compacted or restarted
+thread, a long run or an unfinished increment is not a stop condition: resume from
+the change's recorded checkpoint and continue in the next turn. When the
+specification, design or tasks already state the behaviour and its tests, implement
+them; ask only for material decisions the artifacts do not already answer.
 The shared delivery procedure owns DONE; project references own domain safeguards.
 `make` is optional. Direct native language commands or the local runner provide
 required evidence. OpenSpec structure alone does not establish behavior.
