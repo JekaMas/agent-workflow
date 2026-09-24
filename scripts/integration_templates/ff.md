@@ -1,1 +1,1 @@
-Read status and create missing artifacts in native dependency order using each instruction response. Stop at apply readiness for a planning-only request; continue to implementation if the enclosing task authorizes it.
+Read status and create missing artifacts in native dependency order using each instruction response. For a planning-only request, apply readiness is the requested outcome and therefore DONE; when the enclosing task authorizes implementation, continue straight into implementation in the same run.
