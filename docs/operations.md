@@ -70,6 +70,9 @@ thread, a long run or an unfinished increment is not a stop condition: resume fr
 the change's recorded checkpoint and continue in the next turn. When the
 specification, design or tasks already state the behaviour and its tests, implement
 them; ask only for material decisions the artifacts do not already answer.
+Concurrent writers, shared or dirty checkouts, and unclear revisions are not
+stops either: pin the exact revision you verify (or use an isolated checkout and
+record its revision), preserve unrelated edits, and continue the same increment.
 The shared delivery procedure owns DONE; project references own domain safeguards.
 `make` is optional. Direct native language commands or the local runner provide
 required evidence. OpenSpec structure alone does not establish behavior.

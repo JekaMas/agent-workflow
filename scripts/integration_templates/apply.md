@@ -51,3 +51,6 @@ Iteration completion contract (default):
   reason to defer, hand off, pause or ask for a decision answered by the spec,
   design or tasks. When those already state the behaviour and its tests, implement
   them; do not substitute a plan, a proposal or a partial landing for the work.
+- A status report, progress update or partial-result summary is never the end of
+  an operation: continue with the next authorized action and report only at DONE
+  or at one of the three stops above.
