@@ -1,4 +1,4 @@
-Read `openspec instructions apply --change <name> --json` and its resolved context files. Select the next useful increment, implement, inspect, repair and revalidate. Replan within intent when evidence changes approach. Check tasks only against actual outcomes. Continue until acceptance is supported or a genuine blocker remains; artifact all_done is not product DONE.
+Read `openspec instructions apply --change <name> --json` and its resolved context files. Select the next useful increment, implement, inspect, repair and revalidate. Replan within intent when evidence changes approach. Check tasks only against actual outcomes. Continue until one of the three stop conditions below holds; artifact all_done is not product DONE.
 
 For a behavioral change, validate its change-owned `verification.json` evidence
 graph before implementation. Select the affected requirement/property/owner/path
@@ -38,15 +38,6 @@ Iteration completion contract (default):
 - Check a task box only when its finding's cases are implemented and their
   commands passed in the acceptance run for that revision; otherwise leave it
   unchecked and state the blocker.
-- Your own context, working memory or effort is never a blocker and never a
-  reason to defer, hand off or ask for a decision. Only external blockers count:
-  missing authority or credentials, an unresolved requirement or oracle, an
-  unavailable dependency, a protected operation, or a failing gate you cannot
-  repair in scope. If the thread is compacted or you lose working state, resume
-  from the change's recorded checkpoint and continue the same increment.
-- When the specification and its tests are already explicit, implement them.
-  Do not ask for a decision that the spec, design or tasks already answer, and
-  do not substitute a plan, a proposal or a partial landing for the work.
 - Apply continues until one of exactly three conditions holds, and no others:
   (1) a direct contradiction inside the specification or requirements; (2) a
   spec/artifact state that cannot be repaired in scope; (3) an absolute need for
@@ -56,3 +47,7 @@ Iteration completion contract (default):
   increment is none of these: resume from the change's recorded checkpoint and
   keep applying in the next turn, reporting progress rather than declaring a
   stop.
+- Your own context, working memory or effort is never a blocker and never a
+  reason to defer, hand off, pause or ask for a decision answered by the spec,
+  design or tasks. When those already state the behaviour and its tests, implement
+  them; do not substitute a plan, a proposal or a partial landing for the work.
