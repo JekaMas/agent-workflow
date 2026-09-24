@@ -38,3 +38,12 @@ Iteration completion contract (default):
 - Check a task box only when its finding's cases are implemented and their
   commands passed in the acceptance run for that revision; otherwise leave it
   unchecked and state the blocker.
+- Your own context, working memory or effort is never a blocker and never a
+  reason to defer, hand off or ask for a decision. Only external blockers count:
+  missing authority or credentials, an unresolved requirement or oracle, an
+  unavailable dependency, a protected operation, or a failing gate you cannot
+  repair in scope. If the thread is compacted or you lose working state, resume
+  from the change's recorded checkpoint and continue the same increment.
+- When the specification and its tests are already explicit, implement them.
+  Do not ask for a decision that the spec, design or tasks already answer, and
+  do not substitute a plan, a proposal or a partial landing for the work.
