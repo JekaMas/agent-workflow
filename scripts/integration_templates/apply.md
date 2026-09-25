@@ -15,14 +15,19 @@ the user need not invoke Make or a second skill. Run only relevant authorized ch
 
 Iteration completion contract (default):
 
-- An increment is green only when every finding in its scope is implemented, its
-  requirements carry implemented cases in `verification.json` with no planned
-  placeholders left for those requirements, the language and specification checks
-  pass on the same revision, and
-  `requirement_tests.py run --<iteration selection> --require-clean` reports
-  `passed` on a committed revision. Structural results (`validate`, `spec-check`,
-  `spec-ready`) never imply implementation; label them structural whenever you
-  report them.
+- The completion unit is the **full iteration**, not a finding, increment or
+  milestone. An iteration is complete only when **every** finding in it is
+  implemented, every one of its tasks is checked against implemented cases, its
+  requirements carry no planned placeholders, `requirement_tests.py run
+  --<iteration selection> --require-clean` reports `passed` on a committed
+  revision, and the language, specification and required preservation checks pass
+  on that same revision. A single finding landed, a passing focused gate, a
+  committed increment or a subset of the iteration is not an iteration result and
+  must not be reported as one.
+- Work the iteration's findings through to that verified result in the same run:
+  after each finding, continue to the next one instead of summarising. Structural
+  results (`validate`, `spec-check`, `spec-ready`) never imply implementation;
+  label them structural whenever you report them.
 - Land a finding as one unit. When its correction spans coupled edits — for
   example a publish-time change plus the transition that completes it — land all
   of them together with their red/green cases, or leave the task unchecked and
@@ -51,3 +56,14 @@ Iteration completion contract (default):
   reason to defer, hand off, pause or ask for a decision answered by the spec,
   design or tasks. When those already state the behaviour and its tests, implement
   them; do not substitute a plan, a proposal or a partial landing for the work.
+- A status report, progress update or partial-result summary is never the end of
+  an operation: continue with the next authorized action and report only at the
+  iteration's verified result or at one of the three stops above.
+- Progress belongs in intermediate updates during the run. The operation's final
+  message is what ends the agent turn, so emit it only at the iteration's verified
+  result or at one of the three stops above - never as a progress report, and
+  never because a finding, commit or gate just landed while iteration work
+  remains.
+- A real blocker means one of the three stops above, with a recorded witness and
+  the exact unblock action. Nothing else - including a hard finding, a red gate, a
+  long repair or a shared/dirty checkout - qualifies; repair and continue.
