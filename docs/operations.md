@@ -67,10 +67,12 @@ specification); an absolute implementation blocker the agent cannot resolve
 mutually exclusive requirements); or the iteration is finished, 100% implemented,
 every check green and verified with `--require-clean` on a committed revision. A
 finding aligned with the specification and needing no spec change is never a stop:
-put it in the iteration's task list and apply it. An agent's own context, working memory or
-effort is never a blocker, and an agent turn boundary, a compacted or restarted
-thread, a long run or an unfinished increment is not a stop condition: resume from
-the change's recorded checkpoint and continue in the next turn. When the
+put it in the iteration's task list and apply it. An agent's own context, working
+memory or effort is never a blocker, and an agent turn boundary, a compacted or
+restarted thread, context exhaustion or a truncated response, a prediction of
+truncation, a long run, a landed milestone or an unfinished increment is not a stop
+condition: checkpoint each step so truncation is resumable, and resume from the
+change's recorded checkpoint and continue. When the
 specification, design or tasks already state the behaviour and its tests, implement
 them; ask only for material decisions the artifacts do not already answer.
 Progress updates during a run are not the operation's end: the final message that

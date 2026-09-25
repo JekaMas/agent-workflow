@@ -102,10 +102,17 @@ repair and affected revalidation without requiring legacy role handoffs or score
 An authorized request SHALL run to absolute DONE — never to an accepted partial —
 and SHALL stop only for a direct contradiction inside the specification or
 requirements, an in-scope-unrepairable spec or artifact state, or a decision the
-artifacts cannot answer. An agent turn boundary, context or compaction, effort,
-elapsed time, a long run, a landed milestone or an unfinished increment SHALL NOT
-be treated as a stop, and the work SHALL resume from the change's recorded
-checkpoint instead.
+artifacts cannot answer. An agent turn boundary, context or compaction, context
+exhaustion or a truncated response, a prediction of truncation, effort, elapsed
+time, a long run, a landed milestone or an unfinished increment SHALL NOT be
+treated as a stop; each step SHALL be checkpointed so that a ceiling is resumable,
+and the work SHALL resume from the change's recorded checkpoint instead.
+
+#### Scenario: The context ceiling is reached mid-iteration
+- **WHEN** the executing agent's context or output window fills, or its response is truncated while iteration work remains
+- **THEN** the checkpoint written for the current step is the resume point and the same increment continues
+- **AND** no partial landing, plan or status report is accepted as the iteration's result
+- **AND** a prediction of truncation is not treated as the truncation itself and does not stop the run
 
 #### Scenario: A milestone lands mid-request
 - **WHEN** an increment is committed or a focused gate turns green while authorized scope remains

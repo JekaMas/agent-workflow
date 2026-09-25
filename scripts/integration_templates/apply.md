@@ -51,8 +51,12 @@ Iteration completion contract (default):
   requirements; (3) **the iteration is finished** - 100% implemented, every
   check green, and `requirement_tests.py run --<iteration selection>
   --require-clean` passed on a committed revision. An agent turn boundary, a
-  compacted or restarted thread, a long run, or an unfinished increment is none
-  of these: resume from the change's recorded checkpoint and keep applying.
+  compacted or restarted thread, context exhaustion or a truncated response, a
+  prediction of truncation or of any other condition here, effort, elapsed time,
+  a long run, a landed milestone, or an unfinished increment is none of these.
+  Checkpoint each step so a ceiling is resumable, then resume from the change's
+  recorded checkpoint and keep applying; the ceiling is a reason to checkpoint
+  and keep steps small, never a reason to stop.
 - A finding that is aligned with the specification and needs no spec change is
   never a stop. Record it in the iteration's task list and apply it in the same
   run; do not hand findings back for a decision that the spec already answers.
