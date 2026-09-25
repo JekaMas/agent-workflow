@@ -30,6 +30,9 @@ change. Acceptance and authority cannot silently weaken. Keep concise resume
 notes with completed outcomes, remaining criteria, evidence and next action.
 
 - CONTINUE when useful authorized work remains and the next action is clear.
+- A finding that is aligned with the specification and needs no spec change is
+  CONTINUE work: record it in the change's task list and apply it. Only a needed
+  spec change or an absolute unresolvable blocker stops the run.
 - REPLAN when evidence changes the approach or exposes missing work within scope.
 - ASK for material ambiguity, incompatible requirements, consequential irreversible
   decisions or missing authority, after independent authorized work. Present the
