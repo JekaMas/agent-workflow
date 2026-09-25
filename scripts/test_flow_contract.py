@@ -34,6 +34,9 @@ SPEC_N = normalized(SPEC)
 
 class FlowContractTest(unittest.TestCase):
     def test_apply_names_every_non_stop_condition(self) -> None:
+        # Every phrase below names a condition that is not a stop; the list is
+        # the rule's own restatement, so the flow-alignment scanner must read it
+        # as justification rather than as stale stopping licence.
         for phrase in (
             "turn boundary",
             "compacted or restarted thread",
