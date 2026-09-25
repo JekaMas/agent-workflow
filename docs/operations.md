@@ -60,11 +60,14 @@ Use process-scoped OPENSPEC_TELEMETRY=0, DO_NOT_TRACK=1 and
 OPENSPEC_NO_UPDATE_CHECK=1. A standalone operation respects its requested scope.
 A full delivery request continues through authorized operations, iterations,
 review, repair and revalidation; no per-artifact approval or fixed iteration limit.
-Apply and its sibling operations run until one of exactly three conditions holds:
-a direct contradiction inside the specification or requirements; a spec/artifact
-state that cannot be repaired in scope; or an absolute need for a user decision
-the artifacts cannot answer (missing authority, mutually exclusive requirements,
-or a protected/external operation). An agent's own context, working memory or
+Apply and its sibling operations stop at exactly three points: a spec change is
+needed (the finding cannot be satisfied without changing the approved
+specification); an absolute implementation blocker the agent cannot resolve
+(missing authority, credentials or dependency, a protected/external operation, or
+mutually exclusive requirements); or the iteration is finished, 100% implemented,
+every check green and verified with `--require-clean` on a committed revision. A
+finding aligned with the specification and needing no spec change is never a stop:
+put it in the iteration's task list and apply it. An agent's own context, working memory or
 effort is never a blocker, and an agent turn boundary, a compacted or restarted
 thread, a long run or an unfinished increment is not a stop condition: resume from
 the change's recorded checkpoint and continue in the next turn. When the

@@ -43,15 +43,19 @@ Iteration completion contract (default):
 - Check a task box only when its finding's cases are implemented and their
   commands passed in the acceptance run for that revision; otherwise leave it
   unchecked and state the blocker.
-- Apply continues until one of exactly three conditions holds, and no others:
-  (1) a direct contradiction inside the specification or requirements; (2) a
-  spec/artifact state that cannot be repaired in scope; (3) an absolute need for
-  a user decision that the artifacts cannot answer (missing authority, mutually
-  exclusive requirements, or a protected/external operation). An agent turn
-  boundary, a compacted or restarted thread, a long run, or an unfinished
-  increment is none of these: resume from the change's recorded checkpoint and
-  keep applying in the next turn, reporting progress rather than declaring a
-  stop.
+- Apply stops at exactly three points, and nowhere else: (1) **a spec change is
+  needed** - the finding cannot be satisfied without changing the approved
+  specification, so the user must decide; (2) **an absolute implementation
+  blocker** the agent cannot resolve - missing authority, credentials or
+  dependency, a protected/external operation, or mutually exclusive
+  requirements; (3) **the iteration is finished** - 100% implemented, every
+  check green, and `requirement_tests.py run --<iteration selection>
+  --require-clean` passed on a committed revision. An agent turn boundary, a
+  compacted or restarted thread, a long run, or an unfinished increment is none
+  of these: resume from the change's recorded checkpoint and keep applying.
+- A finding that is aligned with the specification and needs no spec change is
+  never a stop. Record it in the iteration's task list and apply it in the same
+  run; do not hand findings back for a decision that the spec already answers.
 - Your own context, working memory or effort is never a blocker and never a
   reason to defer, hand off, pause or ask for a decision answered by the spec,
   design or tasks. When those already state the behaviour and its tests, implement
@@ -64,6 +68,6 @@ Iteration completion contract (default):
   result or at one of the three stops above - never as a progress report, and
   never because a finding, commit or gate just landed while iteration work
   remains.
-- A real blocker means one of the three stops above, with a recorded witness and
-  the exact unblock action. Nothing else - including a hard finding, a red gate, a
-  long repair or a shared/dirty checkout - qualifies; repair and continue.
+- A real blocker means stop (1) or stop (2) above, with a recorded witness and the
+  exact unblock action. Nothing else - including a hard finding, a red gate, a long
+  repair or a shared/dirty checkout - qualifies; record it as a task and continue.
