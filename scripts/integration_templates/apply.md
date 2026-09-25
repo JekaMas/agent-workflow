@@ -54,3 +54,6 @@ Iteration completion contract (default):
 - A status report, progress update or partial-result summary is never the end of
   an operation: continue with the next authorized action and report only at DONE
   or at one of the three stops above.
+- Progress belongs in intermediate updates during the run. The operation's final
+  message is what ends the agent turn, so emit it only at DONE or at one of the
+  three stops above - never as a progress report while authorized work remains.

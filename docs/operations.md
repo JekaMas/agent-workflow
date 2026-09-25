@@ -70,6 +70,8 @@ thread, a long run or an unfinished increment is not a stop condition: resume fr
 the change's recorded checkpoint and continue in the next turn. When the
 specification, design or tasks already state the behaviour and its tests, implement
 them; ask only for material decisions the artifacts do not already answer.
+Progress updates during a run are not the operation's end: the final message that
+closes the agent turn is emitted only at DONE or at one of the three stops.
 Concurrent writers, shared or dirty checkouts, and unclear revisions are not
 stops either: pin the exact revision you verify (or use an isolated checkout and
 record its revision), preserve unrelated edits, and continue the same increment.
