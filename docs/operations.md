@@ -72,6 +72,9 @@ specification, design or tasks already state the behaviour and its tests, implem
 them; ask only for material decisions the artifacts do not already answer.
 Progress updates during a run are not the operation's end: the final message that
 closes the agent turn is emitted only at DONE or at one of the three stops.
+The completion unit is the authorized iteration: continue through all of its
+findings until the verified iteration result or one of the three stops, and never
+report a finding, commit, gate or increment as the iteration's outcome.
 Concurrent writers, shared or dirty checkouts, and unclear revisions are not
 stops either: pin the exact revision you verify (or use an isolated checkout and
 record its revision), preserve unrelated edits, and continue the same increment.

@@ -14,6 +14,11 @@ evidence, not acceptance. Report `validate`, `spec-check` and `spec-ready` as
 structural results that never imply implementation, and keep planned placeholders
 visible for every requirement whose correction has not landed.
 
+Verification covers the **full iteration**: every finding in it has implemented
+cases, the complete iteration case set executed at its stable boundary, and the
+required preservation checks passed. A subset run, a single finding or an
+increment-level pass is evidence, never iteration acceptance.
+
 Never report your own context, working memory or effort as a blocker, and never
 defer verification for that reason: resume from the change's recorded checkpoint
 and complete the operation. Only external blockers — missing authority,
