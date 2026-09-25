@@ -46,6 +46,8 @@ notes with completed outcomes, remaining criteria, evidence and next action.
   those are not budgets, never justify pausing, deferring or asking, and a
   compacted or restarted thread resumes from the recorded checkpoint. When the
   spec and its tests are explicit, implement them instead of re-planning.
+  A context ceiling, a truncated response or an estimate of either is not a
+  measured budget: checkpoint the step and keep applying.
 - DONE requires the requested outcome, matching artifacts, final relevant required
   evidence, appropriate diff/behavior inspection and resolved material findings.
   Report acceptance-consistent limitations and stop optional polishing. A verified
