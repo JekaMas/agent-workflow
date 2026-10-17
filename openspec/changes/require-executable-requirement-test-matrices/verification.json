@@ -1836,7 +1836,7 @@
       "distinct_reason": "Verification execution is bounded and reproducible: the complete artifact remains the observer source beyond the preview boundary."
     },
     {
-      "id": "R1.P7.POSITIVE.06",
+      "id": "R1.P7.ARTIFACT.POSITIVE.01",
       "property_id": "R1.P7",
       "polarity": "positive",
       "scenario": "Verification execution is bounded and reproducible",
@@ -1864,7 +1864,7 @@
       "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_parses_complete_large_artifact"
     },
     {
-      "id": "R1.P7.NEGATIVE.07",
+      "id": "R1.P7.ARTIFACT.NEGATIVE.01",
       "property_id": "R1.P7",
       "polarity": "negative",
       "scenario": "Verification execution is bounded and reproducible",
@@ -1892,7 +1892,7 @@
       "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_large_missing_guidance_stays_non_green"
     },
     {
-      "id": "R1.P7.NEGATIVE.08",
+      "id": "R1.P7.ARTIFACT.NEGATIVE.02",
       "property_id": "R1.P7",
       "polarity": "negative",
       "scenario": "Verification execution is bounded and reproducible",
@@ -1920,7 +1920,7 @@
       "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_large_invalid_tail_stays_non_green"
     },
     {
-      "id": "R1.P7.NEGATIVE.09",
+      "id": "R1.P7.ARTIFACT.NEGATIVE.03",
       "property_id": "R1.P7",
       "polarity": "negative",
       "scenario": "Verification execution is bounded and reproducible",
