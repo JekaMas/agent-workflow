@@ -64,7 +64,11 @@
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_timeout_kills_process_group_and_keeps_complete_output",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unittest_observer_preserves_skip_expected_failure_and_python_versions",
-      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure"
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_parses_complete_large_artifact",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_missing_guidance_stays_non_green",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_invalid_tail_stays_non_green",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_incomplete_tasks_stay_non_green"
     ]
   },
   "reviews": [
@@ -341,6 +345,59 @@
       ],
       "disposition": "current_change",
       "rationale": "These shared workflow defaults and their proof belong to the active executable-evidence change."
+    },
+    {
+      "id": "large-openspec-artifact-20261017",
+      "question": "Does OpenSpec verification parse its complete captured JSON while keeping output previews bounded and failures explicit?",
+      "property_ids": [
+        "R1.P7"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_parses_complete_large_artifact",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_missing_guidance_stays_non_green",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_invalid_tail_stays_non_green",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_incomplete_tasks_stay_non_green"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "local_verify.py OpenSpec result, guidance and task parser dispatch; process_runner complete-artifact/preview contract; native synthetic process tests",
+          "outcome": "Go already reads complete artifacts; OpenSpec passes the bounded preview. Use the existing saved stdout for all OpenSpec JSON observers without raising preview limits.",
+          "results": [
+            {
+              "path": "scripts/local_verify.py",
+              "line": 399,
+              "classification": "change_candidate",
+              "reason": "OpenSpec JSON parser dispatch receives preview instead of full artifact."
+            },
+            {
+              "path": "scripts/test_local_verify.py",
+              "line": 297,
+              "classification": "test_proof",
+              "reason": "Real subprocess capture with synthetic valid, missing, malformed and incomplete large JSON."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "not_applicable",
+          "query": "Known exact parser and process owner",
+          "reason": "Known file/symbol defect; no unfamiliar ownership search.",
+          "outcome": "No semantic evidence claimed.",
+          "results": []
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "not_applicable",
+          "query": "Known Python dispatch branch",
+          "reason": "No symbol refactor or IDE operation required.",
+          "outcome": "No IDE evidence claimed.",
+          "results": []
+        }
+      ],
+      "disposition": "current_change",
+      "rationale": "Repairs existing complete-artifact contract, not a new workflow policy or relaxed completion requirement."
     }
   ]
 }

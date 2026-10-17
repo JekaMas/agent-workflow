@@ -294,6 +294,54 @@ class LocalVerifyTest(unittest.TestCase):
         self.assertTrue(result["stdout_truncated"])
         self.assertEqual(size, Path(result["stdout_artifact"]).stat().st_size)
 
+    def openspec_large_artifact(self, condition):
+        """Real subprocess capture, synthetic OpenSpec JSON; no native spec claim."""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            output = root / "result.json"
+            payload = {
+                "root": {"path": str(root)}, "changeName": "workflow",
+                "changeDir": str(root / "openspec/changes/workflow"),
+                "context": "full context " * verify.PREVIEW_BYTES,
+                "operationGuidance": ["retain exact evidence"],
+                "tasks": [{"id": "one", "done": False}],
+                "progress": {"total": 1, "complete": 0, "remaining": 1},
+                "state": "apply_ready",
+            }
+            if condition == "missing_guidance":
+                payload["operationGuidance"] = []
+            raw = json.dumps(payload)
+            if condition == "invalid_tail":
+                raw = raw[:-1] + "invalid tail"
+            (root / "payload.json").write_text(raw)
+            emit = root / "emit.py"
+            emit.write_text("from pathlib import Path\nimport sys\nsys.stdout.write(Path(__file__).with_name('payload.json').read_text())\n")
+            plan = ([sys.executable, "-c", "print('1.13.1')"],
+                    [("guidance:apply", [sys.executable, str(emit)])])
+            arguments = ["openspec", "--cwd", str(root), "--scope", "openspec",
+                         "--change", "workflow", "--output", str(output)]
+            if condition == "incomplete_tasks":
+                arguments += ["--require-tasks-complete"]
+            with patch.object(verify, "command_plan", return_value=plan), contextlib.redirect_stdout(io.StringIO()):
+                code = verify.main(arguments)
+            report = json.loads(output.read_text())
+            step = report["steps"][-1]
+            self.assertTrue(step["stdout_truncated"])
+            self.assertEqual(raw, Path(step["stdout_artifact"]).read_text())
+            return code, report["status"]
+
+    def test_openspec_parses_complete_large_artifact(self):
+        self.assertEqual((0, "passed"), self.openspec_large_artifact("valid"))
+
+    def test_openspec_large_missing_guidance_stays_non_green(self):
+        self.assertEqual((1, "missing_project_guidance"), self.openspec_large_artifact("missing_guidance"))
+
+    def test_openspec_large_invalid_tail_stays_non_green(self):
+        self.assertEqual((1, "invalid_output"), self.openspec_large_artifact("invalid_tail"))
+
+    def test_openspec_large_incomplete_tasks_stay_non_green(self):
+        self.assertEqual((1, "incomplete_tasks"), self.openspec_large_artifact("incomplete_tasks"))
+
     def test_missing_executable_writes_unavailable_artifact(self):
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary) / "check.json"

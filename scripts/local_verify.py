@@ -397,12 +397,16 @@ def main(argv: list[str] | None = None) -> int:
                     else:
                         status, details = proof_result(args.kind, process['stdout'] + process['stderr'])
                 elif args.kind == "openspec":
+                    # Process previews are bounded; JSON observers need the
+                    # complete saved document, including its closing fields.
+                    raw = (Path(process["stdout_artifact"]).read_text(encoding="utf-8", errors="replace")
+                           if process.get("stdout_artifact") else process["stdout"])
                     if label.startswith("guidance:"):
-                        status, details = guidance_result(process["stdout"], cwd, args.change, label.split(":")[1])
+                        status, details = guidance_result(raw, cwd, args.change, label.split(":")[1])
                         if status == "passed" and label == "guidance:apply" and args.require_tasks_complete:
-                            status, details = task_result(process["stdout"], cwd, args.change)
+                            status, details = task_result(raw, cwd, args.change)
                     else:
-                        status, details = (task_result if label == "tasks" else openspec_result)(process["stdout"], cwd, args.change)
+                        status, details = (task_result if label == "tasks" else openspec_result)(raw, cwd, args.change)
                 elif args.kind == "go-test":
                     if label == "packages":
                         expected_packages = set(process["stdout"].splitlines())
