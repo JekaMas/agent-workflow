@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 from collections import defaultdict
 import datetime as dt
+from functools import lru_cache
 import hashlib
 import json
 import math
@@ -225,6 +226,7 @@ def command_key(row: dict[str, Any]) -> bytes:
     return canonical_json(fields)
 
 
+@lru_cache(maxsize=1024)
 def path_glob_regex(pattern: str) -> re.Pattern[str]:
     """Compile repository-relative glob syntax where * never crosses '/'."""
 
