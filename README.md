@@ -88,7 +88,7 @@ whether it belongs to the current change, a named new change, validation only or
 no change. An unavailable semantic or IDE capability is explicit and never
 substituted by plain text search.
 
-Tested adapter versions: OpenSpec 1.13.1 and golangci-lint 2.11.3. Other versions
+Tested adapter versions: OpenSpec 1.14.3 and golangci-lint 2.11.3. Other versions
 are rejected until compatibility is qualified. Cargo defaults to Cargo.toml;
 consumers pass their actual manifest. Project config is supplied by the consumer.
 `LOCAL_VERIFY_PROJECT_CONFIG` selects a consumer config for native integration

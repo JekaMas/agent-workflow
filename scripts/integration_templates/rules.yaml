@@ -5,6 +5,8 @@ rules:
   specs:
     - Before semantic implementation, challenge intent, ambiguity, contradictions, missing cases and oracle adequacy using the shared verification procedure routed by {{verification}}; this is not an automatic approval gate.
     - Express observable requirements and meaningful positive, invalid and boundary scenarios; identify the required evidence or oracle for important invariants.
+    - Keep new requirement descriptions within 500 characters; put examples and detailed cases in scenarios. Preserve every existing obligation when repairing strict findings.
+    - Put durable obligations in requirements and scenarios. Strict validation rejects extra delta prose or sections that archive cannot carry into main specs; retain change rationale in proposal or design.
     - Preserve integer precision, serialization, error, version and recovery semantics at mixed-language boundaries; state unsupported cases explicitly.
     - For every behavioral requirement, create or update the change-owned verification.json DAG before semantic implementation. Pin exact requirements/scenarios to properties and every property/scenario edge to distinct positive and negative cases. Each case names exactly one scenario fingerprint, setup, observable, red and green expectations, exact observed test identity, test-source fingerprint, deduplicated command, substitution and invalidation dependencies.
     - Map requirements and evidence in both directions; a shared test needs explicit distinct observable edges and duplicate property/polarity/observable/test edges are invalid.

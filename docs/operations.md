@@ -108,6 +108,9 @@ activities, not additional native command names.
 
 ## Maintenance
 
+Use [updating specifications](updating-specs.md) for the existing-consumer path,
+including selected stores, strict delta repairs and resulting main-spec validation.
+
 `openspec update` refreshes generated integrations and can overwrite standard
 operation paths; it is different from `/opsx:update`. Maintain these shared-rendered
 adapters through reviewed edits. Inspect generator output in a disposable directory

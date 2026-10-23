@@ -407,6 +407,20 @@ class LocalVerifyTest(unittest.TestCase):
     def test_permission_denied_openspec_tasks_artifact_after_passing_specs_fails(self):
         self.openspec_unreadable_artifact("permission")
 
+    def test_unsupported_openspec_version_is_rejected_before_validation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "result.json"
+            plan = ([sys.executable, "-c", "print('1.14.99')"],
+                    [("specs", [sys.executable, "-c", "raise RuntimeError('must not validate')"])])
+            with patch.object(verify, "command_plan", return_value=plan), contextlib.redirect_stdout(io.StringIO()):
+                code = verify.main(["openspec", "--cwd", temporary, "--scope", "openspec",
+                                    "--change", "workflow", "--output", str(output)])
+            report = json.loads(output.read_text())
+            self.assertEqual(1, code)
+            self.assertEqual("unsupported_tool_version", report["status"])
+            self.assertEqual("1.14.99", report["tool"]["version"])
+            self.assertEqual(1, len(report["steps"]))
+
     def test_missing_executable_writes_unavailable_artifact(self):
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary) / "check.json"

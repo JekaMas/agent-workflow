@@ -6,7 +6,7 @@
       "id": "R1",
       "capability": "adaptive-development-workflow",
       "title": "Executable requirement evidence graph",
-      "fingerprint": "83484a0330c19bdf9c49883ef3d80fe3ce6ab4107810815254a7284497994b1b"
+      "fingerprint": "b1fd81dbda2399930f23f6322119a42f7819547a71f14b8091a96735c60768d6"
     },
     {
       "id": "R2",
@@ -272,7 +272,7 @@
       "property_id": "R1.P1",
       "polarity": "positive",
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "scenario_fingerprint": "a67a1e50c280ed6b3080a4b50589057a8c39c8fd6d868174d0df3da9d9d0970e",
       "setup": "Run test_case_requires_one_exact_scenario_and_review_contract against the R1.P1 positive fixture for Requirement and scenario coverage is complete.",
       "observable": "test_case_requires_one_exact_scenario_and_review_contract observes the R1.P1 positive boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P1 contract is enforced, test_case_requires_one_exact_scenario_and_review_contract exposes the forbidden positive outcome.",
@@ -300,7 +300,7 @@
       "property_id": "R1.P1",
       "polarity": "positive",
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "scenario_fingerprint": "a67a1e50c280ed6b3080a4b50589057a8c39c8fd6d868174d0df3da9d9d0970e",
       "setup": "Run test_multi_scenario_test_accepts_scenario_specific_reasons against the R1.P1 positive fixture for Requirement and scenario coverage is complete.",
       "observable": "test_multi_scenario_test_accepts_scenario_specific_reasons observes the R1.P1 positive boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P1 contract is enforced, test_multi_scenario_test_accepts_scenario_specific_reasons exposes the forbidden positive outcome.",
@@ -328,7 +328,7 @@
       "property_id": "R1.P1",
       "polarity": "negative",
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "scenario_fingerprint": "a67a1e50c280ed6b3080a4b50589057a8c39c8fd6d868174d0df3da9d9d0970e",
       "setup": "Run test_missing_polarity_and_uncovered_scenario_fail against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
       "observable": "test_missing_polarity_and_uncovered_scenario_fail observes the R1.P1 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P1 contract is enforced, test_missing_polarity_and_uncovered_scenario_fail exposes the forbidden negative outcome.",
@@ -356,7 +356,7 @@
       "property_id": "R1.P1",
       "polarity": "negative",
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "scenario_fingerprint": "a67a1e50c280ed6b3080a4b50589057a8c39c8fd6d868174d0df3da9d9d0970e",
       "setup": "Run test_source_path_must_own_test_and_polarities_need_independent_tests against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
       "observable": "test_source_path_must_own_test_and_polarities_need_independent_tests observes the R1.P1 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P1 contract is enforced, test_source_path_must_own_test_and_polarities_need_independent_tests exposes the forbidden negative outcome.",
@@ -384,7 +384,7 @@
       "property_id": "R1.P1",
       "polarity": "negative",
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "scenario_fingerprint": "a67a1e50c280ed6b3080a4b50589057a8c39c8fd6d868174d0df3da9d9d0970e",
       "setup": "Run test_generic_review_contract_text_is_rejected against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
       "observable": "test_generic_review_contract_text_is_rejected observes the R1.P1 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P1 contract is enforced, test_generic_review_contract_text_is_rejected exposes the forbidden negative outcome.",
@@ -412,7 +412,7 @@
       "property_id": "R1.P1",
       "polarity": "negative",
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "scenario_fingerprint": "a67a1e50c280ed6b3080a4b50589057a8c39c8fd6d868174d0df3da9d9d0970e",
       "setup": "Run test_identity_whitespace_cannot_remove_cases_or_raise_keyerror against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
       "observable": "test_identity_whitespace_cannot_remove_cases_or_raise_keyerror observes the R1.P1 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P1 contract is enforced, test_identity_whitespace_cannot_remove_cases_or_raise_keyerror exposes the forbidden negative outcome.",
@@ -440,7 +440,7 @@
       "property_id": "R1.P1",
       "polarity": "negative",
       "scenario": "Requirement and scenario coverage is complete",
-      "scenario_fingerprint": "79d18abfd95fa7f4a77690ba6416a7ed41092dcfd232be7d9964b5f9215678db",
+      "scenario_fingerprint": "a67a1e50c280ed6b3080a4b50589057a8c39c8fd6d868174d0df3da9d9d0970e",
       "setup": "Run test_multi_scenario_test_requires_scenario_specific_reason against the R1.P1 negative fixture for Requirement and scenario coverage is complete.",
       "observable": "test_multi_scenario_test_requires_scenario_specific_reason observes the R1.P1 negative boundary without aggregate-suite substitution.",
       "red_expectation": "Before the R1.P1 contract is enforced, test_multi_scenario_test_requires_scenario_specific_reason exposes the forbidden negative outcome.",
@@ -1065,7 +1065,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1093,7 +1093,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1121,7 +1121,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1261,7 +1261,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1289,7 +1289,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1653,7 +1653,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1681,7 +1681,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1849,7 +1849,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1877,7 +1877,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1905,7 +1905,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1933,7 +1933,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1961,7 +1961,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "openspec/changes/require-executable-requirement-test-matrices/specs/**",
         "scripts/discovery_ledger.py",
@@ -1995,7 +1995,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "openspec/changes/require-executable-requirement-test-matrices/specs/**",
         "scripts/discovery_ledger.py",

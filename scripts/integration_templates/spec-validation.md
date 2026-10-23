@@ -5,3 +5,6 @@ strict main-spec validation. After sync/archive, run
 for every affected main spec, preserving the selected store/root. Inspect its
 requirements, links and scenarios. A successful archive command alone is not
 valid synchronization; repair any resulting spec defect and revalidate.
+Before archive, strictly validate the selected deltas and resolve blocking
+findings. A blocking sync result stops archive; do not proceed with unchanged main
+specs or bypass the finding with an archive flag.

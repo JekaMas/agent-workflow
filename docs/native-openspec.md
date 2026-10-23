@@ -1,6 +1,9 @@
 # Native OpenSpec use
 
-These commands are qualified against the installed 1.13.1 spec-driven setup. Inspect the installed version and emitted guidance on upgrades; do not reinstall merely to follow a task.
+These commands are qualified against the installed 1.14.3 spec-driven setup. Inspect the installed version and emitted guidance on upgrades; do not reinstall merely to follow a task.
+
+For existing consumer maintenance, use [updating specifications](updating-specs.md)
+to distinguish CLI upgrades, workflow-pin updates and spec-content edits.
 
 
 
@@ -39,8 +42,39 @@ actual worktree still matches the recorded identity.
 
 Routine typo/config-description changes with no durable planning need may be
 completed directly. If such work needs a durable change but alters no specified
-behavior, installed 1.13.1 supports `skip_specs: true` in `.openspec.yaml`; document
+behavior, the qualified CLI supports `skip_specs: true` in `.openspec.yaml`; document
 why, do not invent a spec or use the flag to omit a changed behavioral contract.
 
 
 For sync/archive use the shared operation procedures and strict resulting-spec validation in docs/project-flow.md and docs/operations.md.
+
+## Upgrading from 1.13.1
+
+OpenSpec 1.14.3 is the exact shared runner pin. Upgrade the CLI separately from
+the reviewed shared-source and consumer-pin rollout. Run native fixtures on that
+version; do not widen the gate to an untested version range. The historical
+1.13.1 extraction receipts in validation.md keep their original proof boundary.
+
+Descriptions over 500 characters produce warnings in `ADDED` delta requirements
+and main specs, so strict validation fails on them. Change validation deliberately
+preserves inherited `MODIFIED` blocks: never split, trim or rewrite that content
+merely for length. Restructure an inherited requirement only in a change explicitly
+requested for that purpose, preserving every behavior and scenario. A strict main
+spec can still fail after sync; surface and resolve that finding under the required
+authority without silently changing accepted contracts or suppressing validation.
+
+Strict validation also fails on extra delta sections/prose archive would discard.
+Preserve the complete contract when repairing a finding. Lowercase `x-` metadata
+is ignored by this CLI without a warning; other unknown keys still fail strict
+validation. It is not a supported extension API. Symlink layouts remain unofficial
+and are not qualified by this package.
+
+Apply returns each task's `sourcePath` and `line`; confirm that exact checkbox
+before editing it. Completed tracked tasks still require review before archive.
+The shared rendered procedures also retain canonical artifact-path checks and
+removed-requirement provenance. Do not run `openspec update --force` over these
+custom generated adapters; update their pinned source and renderer through the
+reviewed adoption path.
+
+Release references: [1.14.2](https://github.com/Fission-AI/OpenSpec/releases/tag/v1.14.2)
+and [1.14.3](https://github.com/Fission-AI/OpenSpec/releases/tag/v1.14.3).
