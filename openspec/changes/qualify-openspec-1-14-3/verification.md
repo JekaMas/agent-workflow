@@ -60,12 +60,16 @@ The aggregate `make check` command itself was not executed. Its full required
 command/test set is accounted for through these receipts and the retained graph,
 discovery, native and configuration checks.
 
-Self-review found one qualification correction: the unqualified-version unit
-fixture substitutes the command planner, so it must disclose that owner and its
-forbidden native-release claim. Correct that case's substitution metadata and
-narrow its command to the one affected test; retain the original full-suite
-receipt, rerun just this changed qualification, and reconcile all eleven cases
-through the two receipts. Production/test source inputs are unchanged.
+Self-review found and repaired one qualification correction: the unqualified-
+version unit fixture substitutes the command planner. Its metadata now discloses
+that owner and the forbidden native-release claim; its command selects only the
+affected test. That corrected qualification passed with `--require-clean` on
+`8c3ac6901861a1a0f1e04079c20d04d77fb311ce`, in
+`data/checks/openspec-1143-acceptance/qualification-correction.json`.
+The original full-suite receipt is retained. Loading both receipts through the
+native graph query reports all eleven cases currently `passed`, without stale or
+missing evidence. See `final-coverage.json` and `reconciliation.json` alongside the
+original receipt. Production/test source inputs are unchanged.
 
 The generic unittest observer recognizes 85 of the 86 unit identities because
 one pre-existing unregistered test has a two-line description. Its retained
@@ -73,6 +77,12 @@ native output explicitly names the test and reports `... ok`, and the unittest
 summary reports 86/86. It is manually reconciled as passing; none of the eleven
 new or sixty older graph edges is missing. Broader multiline-description parser
 support is a separate pre-existing limitation, not an OpenSpec upgrade claim.
+
+The source ownership audit passed for all 197 files in the declared source roots.
+An initial audit incorrectly included the repository's ignored data/evidence
+directory as source and refused those files as designed; the corrected command
+selects defaults, skills, docs, scripts, policies, openspec, AGENTS.md and README.md.
+No ignored evidence was staged to make the audit pass.
 
 ## Inspection and rollout limits
 
