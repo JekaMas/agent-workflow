@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "change": "qualify-openspec-1-14-3",
+  "scope": {
+    "property_ids": [
+      "R1.P1",
+      "R1.P2",
+      "R2.P1",
+      "R2.P2"
+    ],
+    "test_ids": [
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_native_upgrade_safeguards_reach_both_client_routes",
+      "unittest::scripts.test_bootstrap.BootstrapTests.test_upgrade_safeguard_drift_is_rejected",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_unsupported_openspec_version_is_rejected_before_validation",
+      "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_apply_tasks_identify_exact_source_checkbox",
+      "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_overlong_requirement_fails_strict_validation",
+      "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_unapplied_delta_prose_fails_strict_validation",
+      "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_unknown_metadata_fails_strict_validation",
+      "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_valid_complete_change_passes_local_boundary",
+      "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_x_metadata_passes_strict_validation"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "D1",
+      "question": "Which existing native checks and canonical operation owners need a 1.14.3 compatibility update?",
+      "property_ids": [
+        "R1.P1",
+        "R1.P2",
+        "R2.P1",
+        "R2.P2"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_native_upgrade_safeguards_reach_both_client_routes",
+        "unittest::scripts.test_bootstrap.BootstrapTests.test_upgrade_safeguard_drift_is_rejected",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_unsupported_openspec_version_is_rejected_before_validation",
+        "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_apply_tasks_identify_exact_source_checkbox",
+        "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_overlong_requirement_fails_strict_validation",
+        "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_unapplied_delta_prose_fails_strict_validation",
+        "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_unknown_metadata_fails_strict_validation",
+        "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_valid_complete_change_passes_local_boundary",
+        "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_x_metadata_passes_strict_validation"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "rg 1.13.1 OPENSPEC_VERSION and targeted native/renderer fixture reads at the selected source",
+          "outcome": "Located exact version gate, strict fixtures and canonical rendered procedures; PR #16 already owns full stdout parsing.",
+          "results": [
+            {
+              "path": "scripts/local_verify.py",
+              "line": 25,
+              "classification": "change_candidate",
+              "reason": "Exact qualified version gate."
+            },
+            {
+              "path": "scripts/test_openspec_workflow.py",
+              "line": 208,
+              "classification": "test_proof",
+              "reason": "Existing native disposable boundary."
+            },
+            {
+              "path": "scripts/integration.py",
+              "line": 40,
+              "classification": "change_candidate",
+              "reason": "One renderer owns both client routes."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "unavailable",
+          "query": "jbcontext status for agent-workflow at 3a2ccce / isolated upgrade worktree",
+          "outcome": "Context explorer found only indexes for unrelated repositories; bounded text/source reads used.",
+          "reason": "No exact repository/revision index exists. No index was created.",
+          "results": []
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "unavailable",
+          "query": "ide_index_status(project_path=isolated agent-workflow worktree)",
+          "outcome": "project_not_found; only an unrelated open project is available.",
+          "reason": "The selected worktree has no open IntelliJ project or exact IDE index. No project was opened or enrolled.",
+          "results": []
+        }
+      ],
+      "disposition": "current_change",
+      "rationale": "The upgrade affects shared compatibility and emitted safeguards. Product pins and runtime acceptance remain outside this change."
+    }
+  ]
+}

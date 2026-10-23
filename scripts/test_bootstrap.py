@@ -59,6 +59,40 @@ class BootstrapTests(unittest.TestCase):
         for op,name in b.operation_names(self.profile).items():
             self.assertIn(name,(self.root/f'.claude/commands/opsx/{op}.md').read_text())
 
+    def test_native_upgrade_safeguards_reach_both_client_routes(self):
+        self.adopt()
+        routes=b.operation_names(self.profile)
+        for op in ('propose','ff','continue','explore','update'):
+            with self.subTest(operation=op):
+                route=f'.agents/skills/{routes[op]}/SKILL.md'
+                text=(self.root/route).read_text()
+                self.assertIn("concrete output's canonical path",text)
+                self.assertIn('inside the selected `changeDir` before any',text)
+                self.assertIn('symlink escape',text)
+                self.assertIn('before delegating creation to a skill or command',text)
+                self.assertIn(route,(self.root/f'.claude/commands/opsx/{op}.md').read_text())
+        apply=(self.root/f'.agents/skills/{routes["apply"]}/SKILL.md').read_text()
+        self.assertIn('`sourcePath` and `line`',apply)
+        self.assertIn('unchanged checkbox',apply)
+        verify=(self.root/f'.agents/skills/{routes["verify"]}/SKILL.md').read_text()
+        self.assertIn('REMOVED requirement',verify)
+        self.assertIn('original text and scenarios',verify)
+        self.assertIn('report the requirement as unverified',verify)
+        for op in ('archive','bulk-archive'):
+            text=(self.root/f'.agents/skills/{routes[op]}/SKILL.md').read_text()
+            self.assertIn('A blocking sync result stops archive',text)
+        from check_opsx_routes import inspect
+        self.assertEqual([],inspect(self.root)['errors'])
+
+    def test_upgrade_safeguard_drift_is_rejected(self):
+        self.adopt()
+        route=self.root/'.agents/skills/openspec-continue-change/SKILL.md'
+        text=route.read_text()
+        self.assertIn("concrete output's canonical path",text)
+        route.write_text(text.replace("concrete output's canonical path",'unchecked output path'))
+        from check_opsx_routes import inspect
+        self.assertIn('shared integration drift: .agents/skills/openspec-continue-change/SKILL.md',inspect(self.root)['errors'])
+
     def test_specialists_resolve_from_both_clients_in_fresh_clone(self):
         self.adopt()
         self.git(self.root,'add','.')

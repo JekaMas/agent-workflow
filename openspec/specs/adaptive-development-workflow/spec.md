@@ -99,14 +99,7 @@ repair and affected revalidation without requiring legacy role handoffs or score
 - **AND** it does not mutate global configuration or revive removed project instructions
 
 ### Requirement: Execution continues to DONE or one of three stops
-An authorized request SHALL run to absolute DONE — never to an accepted partial —
-and SHALL stop only for a direct contradiction inside the specification or
-requirements, an in-scope-unrepairable spec or artifact state, or a decision the
-artifacts cannot answer. An agent turn boundary, context or compaction, context
-exhaustion or a truncated response, a prediction of truncation, effort, elapsed
-time, a long run, a landed milestone or an unfinished increment SHALL NOT be
-treated as a stop; each step SHALL be checkpointed so that a ceiling is resumable,
-and the work SHALL resume from the change's recorded checkpoint instead.
+An authorized request SHALL run to absolute DONE, never an accepted partial, and stop only for a direct specification/requirements contradiction, an in-scope-unrepairable spec or artifact state, or a decision the artifacts cannot answer. Turn boundaries, context/compaction/exhaustion, truncated responses or predictions, effort, elapsed time, long runs, landed milestones and unfinished increments SHALL NOT be stops. Every step SHALL be checkpointed; work SHALL resume from its recorded checkpoint.
 
 #### Scenario: The context ceiling is reached mid-iteration
 - **WHEN** the executing agent's context or output window fills, or its response is truncated while iteration work remains

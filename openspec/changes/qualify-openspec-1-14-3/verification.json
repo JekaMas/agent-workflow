@@ -1,0 +1,460 @@
+{
+  "schema_version": 2,
+  "change": "qualify-openspec-1-14-3",
+  "requirements": [
+    {
+      "id": "R1",
+      "capability": "portable-workflow",
+      "title": "Qualified consumer integration",
+      "fingerprint": "4e75deb0ecf9c5f32623753c133705f3f063516fefdd15e6ebc2cfee5ff8eb20"
+    },
+    {
+      "id": "R2",
+      "capability": "portable-workflow",
+      "title": "One canonical OpenSpec integration",
+      "fingerprint": "c7b113405f06f053f5fd0899065676b684cc43a70fcb867a3a465736b3d5852a"
+    }
+  ],
+  "properties": [
+    {
+      "id": "R1.P1",
+      "requirement_id": "R1",
+      "statement": "Only the qualified CLI passes native guidance/task checks; unknown versions are rejected before validation.",
+      "owner": "scripts/local_verify.py",
+      "oracle": "Actual 1.14.3 native fixture; deliberately unqualified version process.",
+      "scenarios": [
+        "Pilot adoption"
+      ],
+      "source_globs": [
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py",
+        "scripts/test_openspec_workflow.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R1.P2",
+      "requirement_id": "R1",
+      "statement": "Strict warnings remain failures while accepted x- metadata stays valid.",
+      "owner": "scripts/local_verify.py",
+      "oracle": "Native warning/error levels, exit codes and unchanged fixture content.",
+      "scenarios": [
+        "Native strict validation reports a warning"
+      ],
+      "source_globs": [
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py",
+        "scripts/test_openspec_workflow.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R2.P1",
+      "requirement_id": "R2",
+      "statement": "Both client routes retain the canonical path, task location and removed-requirement provenance guidance.",
+      "owner": "scripts/integration.py",
+      "oracle": "Rendered source, real native task location and isolated consumer route inspection.",
+      "scenarios": [
+        "Existing consumer migration"
+      ],
+      "source_globs": [
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py",
+        "scripts/test_openspec_workflow.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py"
+      ]
+    },
+    {
+      "id": "R2.P2",
+      "requirement_id": "R2",
+      "statement": "Managed repeat adoption preserves source identity, and managed drift cannot be silently overwritten.",
+      "owner": "scripts/integration.py",
+      "oracle": "Actual disposable Git installation, repeat and edited-file refusal.",
+      "scenarios": [
+        "Drift"
+      ],
+      "source_globs": [
+        "scripts/local_verify.py",
+        "scripts/test_local_verify.py",
+        "scripts/test_openspec_workflow.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "R1.P1.POSITIVE.01",
+      "property_id": "R1.P1",
+      "polarity": "positive",
+      "scenario": "Pilot adoption",
+      "scenario_fingerprint": "977c0aad0c7aeceb499a58ecbc8fb1d8070c169204fbbfe0e4462fa4ed1b0ff9",
+      "setup": "Create a complete disposable spec-driven change with context, rules and operation guidance.",
+      "observable": "Native strict validation, project guidance and completed checkboxes pass.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_valid_complete_change_passes_local_boundary",
+      "command_id": "native",
+      "state": "implemented",
+      "source_path": "scripts/test_openspec_workflow.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_openspec_workflow.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Pilot adoption: Native strict validation, project guidance and completed checkboxes pass.",
+      "source_sha256": "bb22f56ee084e2a7dbce7e8f485cd785d7be5b561ac65a5035f074269dd34776"
+    },
+    {
+      "id": "R1.P1.NEGATIVE.02",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Pilot adoption",
+      "scenario_fingerprint": "977c0aad0c7aeceb499a58ecbc8fb1d8070c169204fbbfe0e4462fa4ed1b0ff9",
+      "setup": "Return version 1.14.99 from an isolated version process and make the validation command fail if invoked.",
+      "observable": "The wrapper returns unsupported_tool_version without invoking validation.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_unsupported_openspec_version_is_rejected_before_validation",
+      "command_id": "unit",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_local_verify.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Pilot adoption: The wrapper returns unsupported_tool_version without invoking validation.",
+      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2"
+    },
+    {
+      "id": "R1.P2.POSITIVE.01",
+      "property_id": "R1.P2",
+      "polarity": "positive",
+      "scenario": "Native strict validation reports a warning",
+      "scenario_fingerprint": "fd7565cf3b69727b467862164ab537b1d59f87cffa49f3d39fb0485779014ef9",
+      "setup": "Add lowercase x-tracker to fixture metadata.",
+      "observable": "The actual native strict validator accepts x-tracker.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_x_metadata_passes_strict_validation",
+      "command_id": "native",
+      "state": "implemented",
+      "source_path": "scripts/test_openspec_workflow.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_openspec_workflow.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Native strict validation reports a warning: The actual native strict validator accepts x-tracker.",
+      "source_sha256": "bb22f56ee084e2a7dbce7e8f485cd785d7be5b561ac65a5035f074269dd34776"
+    },
+    {
+      "id": "R1.P2.NEGATIVE.02",
+      "property_id": "R1.P2",
+      "polarity": "negative",
+      "scenario": "Native strict validation reports a warning",
+      "scenario_fingerprint": "fd7565cf3b69727b467862164ab537b1d59f87cffa49f3d39fb0485779014ef9",
+      "setup": "Replace the fixture body with a normative description longer than 500 characters.",
+      "observable": "Non-strict validation warns and succeeds; strict validation and the wrapper fail.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_overlong_requirement_fails_strict_validation",
+      "command_id": "native",
+      "state": "implemented",
+      "source_path": "scripts/test_openspec_workflow.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_openspec_workflow.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Native strict validation reports a warning: Non-strict validation warns and succeeds; strict validation and the wrapper fail.",
+      "source_sha256": "bb22f56ee084e2a7dbce7e8f485cd785d7be5b561ac65a5035f074269dd34776"
+    },
+    {
+      "id": "R1.P2.NEGATIVE.03",
+      "property_id": "R1.P2",
+      "polarity": "negative",
+      "scenario": "Native strict validation reports a warning",
+      "scenario_fingerprint": "fd7565cf3b69727b467862164ab537b1d59f87cffa49f3d39fb0485779014ef9",
+      "setup": "Insert an extra Notes section before the added requirement.",
+      "observable": "The native discarded-content warning fails strict validation and the wrapper.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_unapplied_delta_prose_fails_strict_validation",
+      "command_id": "native",
+      "state": "implemented",
+      "source_path": "scripts/test_openspec_workflow.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_openspec_workflow.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Native strict validation reports a warning: The native discarded-content warning fails strict validation and the wrapper.",
+      "source_sha256": "bb22f56ee084e2a7dbce7e8f485cd785d7be5b561ac65a5035f074269dd34776"
+    },
+    {
+      "id": "R1.P2.NEGATIVE.04",
+      "property_id": "R1.P2",
+      "polarity": "negative",
+      "scenario": "Native strict validation reports a warning",
+      "scenario_fingerprint": "fd7565cf3b69727b467862164ab537b1d59f87cffa49f3d39fb0485779014ef9",
+      "setup": "Add unsupported skip_design metadata rather than x- metadata.",
+      "observable": "Strict validation reports the ignored unknown key instead of passing.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_unknown_metadata_fails_strict_validation",
+      "command_id": "native",
+      "state": "implemented",
+      "source_path": "scripts/test_openspec_workflow.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_openspec_workflow.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Native strict validation reports a warning: Strict validation reports the ignored unknown key instead of passing.",
+      "source_sha256": "bb22f56ee084e2a7dbce7e8f485cd785d7be5b561ac65a5035f074269dd34776"
+    },
+    {
+      "id": "R2.P1.POSITIVE.01",
+      "property_id": "R2.P1",
+      "polarity": "positive",
+      "scenario": "Existing consumer migration",
+      "scenario_fingerprint": "522a920bf06619e310f3db47f72b2de27aa2825ae1c1730d3f6974b75260d9cd",
+      "setup": "Adopt an isolated committed shared source into a disposable consumer.",
+      "observable": "All five artifact-writing routes contain the shared canonical-path guard; apply and verify preserve provenance safeguards; Claude resolves the same skills.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_native_upgrade_safeguards_reach_both_client_routes",
+      "command_id": "consumer",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Existing consumer migration: All five artifact-writing routes contain the shared canonical-path guard; apply and verify preserve provenance safeguards; Claude resolves the same skills.",
+      "source_sha256": "3e026f50ca53296adec974265654b12531e06f34d9351a30bc834b2e5a6db09a"
+    },
+    {
+      "id": "R2.P1.POSITIVE.02",
+      "property_id": "R2.P1",
+      "polarity": "positive",
+      "scenario": "Existing consumer migration",
+      "scenario_fingerprint": "522a920bf06619e310f3db47f72b2de27aa2825ae1c1730d3f6974b75260d9cd",
+      "setup": "Request apply instructions for a fixture with its checkbox on line five.",
+      "observable": "Native sourcePath and line locate the exact unchanged checkbox; all_done guidance requires review.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_openspec_workflow.OpenSpecWorkflowIntegrationTest.test_apply_tasks_identify_exact_source_checkbox",
+      "command_id": "native",
+      "state": "implemented",
+      "source_path": "scripts/test_openspec_workflow.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_openspec_workflow.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Existing consumer migration: Native sourcePath and line locate the exact unchanged checkbox; all_done guidance requires review.",
+      "source_sha256": "bb22f56ee084e2a7dbce7e8f485cd785d7be5b561ac65a5035f074269dd34776"
+    },
+    {
+      "id": "R2.P1.NEGATIVE.03",
+      "property_id": "R2.P1",
+      "polarity": "negative",
+      "scenario": "Existing consumer migration",
+      "scenario_fingerprint": "522a920bf06619e310f3db47f72b2de27aa2825ae1c1730d3f6974b75260d9cd",
+      "setup": "Remove the concrete-output guard from one generated consumer route.",
+      "observable": "Route inspection rejects that independently modified operation.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_upgrade_safeguard_drift_is_rejected",
+      "command_id": "consumer",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Existing consumer migration: Route inspection rejects that independently modified operation.",
+      "source_sha256": "3e026f50ca53296adec974265654b12531e06f34d9351a30bc834b2e5a6db09a"
+    },
+    {
+      "id": "R2.P2.POSITIVE.01",
+      "property_id": "R2.P2",
+      "polarity": "positive",
+      "scenario": "Drift",
+      "scenario_fingerprint": "5a825914a11c11fa1b85ac9c46ffae8cc7b034289756daaaf8d0b5eb414200e6",
+      "setup": "Adopt twice into a consumer containing a domain instruction.",
+      "observable": "Domain text and exact shared gitlink survive repeat adoption.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_adoption_and_repeat_preserve_domain_and_exact_pin",
+      "command_id": "consumer",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Drift: Domain text and exact shared gitlink survive repeat adoption.",
+      "source_sha256": "3e026f50ca53296adec974265654b12531e06f34d9351a30bc834b2e5a6db09a"
+    },
+    {
+      "id": "R2.P2.NEGATIVE.02",
+      "property_id": "R2.P2",
+      "polarity": "negative",
+      "scenario": "Drift",
+      "scenario_fingerprint": "5a825914a11c11fa1b85ac9c46ffae8cc7b034289756daaaf8d0b5eb414200e6",
+      "setup": "Edit a managed consumer workflow guide after adoption.",
+      "observable": "The updater refuses the conflict and preserves the edited bytes.",
+      "red_expectation": "A stale pin, dropped native diagnostic or missing rendered safeguard fails the named assertion.",
+      "green_expectation": "The independently specified native outcome or consumer route assertion holds, including the named refusal.",
+      "test_id": "unittest::scripts.test_bootstrap.BootstrapTests.test_modified_owned_file_blocks_update",
+      "command_id": "consumer",
+      "state": "implemented",
+      "source_path": "scripts/test_bootstrap.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_bootstrap.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Drift: The updater refuses the conflict and preserves the edited bytes.",
+      "source_sha256": "3e026f50ca53296adec974265654b12531e06f34d9351a30bc834b2e5a6db09a"
+    }
+  ],
+  "commands": [
+    {
+      "id": "unit",
+      "runner": "python-unittest",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_requirement_tests",
+        "scripts.test_discovery_ledger",
+        "scripts.test_local_verify",
+        "-v"
+      ],
+      "cwd": ".",
+      "env": {
+        "PYTHONPATH": "scripts"
+      },
+      "timeout_seconds": 240,
+      "authority": "local"
+    },
+    {
+      "id": "native",
+      "runner": "python-unittest",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_openspec_workflow",
+        "-v"
+      ],
+      "cwd": ".",
+      "env": {
+        "PYTHONPATH": "scripts"
+      },
+      "timeout_seconds": 240,
+      "authority": "local"
+    },
+    {
+      "id": "consumer",
+      "runner": "python-unittest",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "scripts.test_bootstrap",
+        "-v"
+      ],
+      "cwd": ".",
+      "env": {
+        "PYTHONPATH": "scripts"
+      },
+      "timeout_seconds": 240,
+      "authority": "local"
+    }
+  ]
+}

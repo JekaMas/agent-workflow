@@ -108,7 +108,7 @@ class OpenSpecWorkflowIntegrationTest(unittest.TestCase):
     def setUpClass(cls) -> None:
         configured = os.environ.get("OPENSPEC_BIN") or shutil.which("openspec")
         if not configured:
-            raise RuntimeError("OpenSpec 1.13.1 is required; integration checks were not run")
+            raise RuntimeError("OpenSpec 1.14.3 is required; integration checks were not run")
         cls.tool = str(Path(configured).absolute())
         if not Path(cls.tool).is_file():
             raise RuntimeError(f"OpenSpec executable is unavailable: {cls.tool}")
@@ -210,6 +210,68 @@ class OpenSpecWorkflowIntegrationTest(unittest.TestCase):
         code, manifest = self.verify(require_complete=True, require_guidance=True)
         self.assertEqual(code, 0, manifest)
         self.assertEqual(manifest["status"], "passed", manifest)
+
+    def validation(self, *, strict: bool = True) -> tuple[int, dict]:
+        command = [self.tool, "validate", CHANGE, "--type", "change", "--json", "--no-interactive"]
+        if strict:
+            command.append("--strict")
+        result = subprocess.run(command, cwd=self.root, env=child_environment(),
+                                capture_output=True, text=True, timeout=30, check=False)
+        return result.returncode, json.loads(result.stdout)
+
+    def assert_strict_warning(self, message: str) -> None:
+        normal_code, normal = self.validation(strict=False)
+        self.assertEqual(0, normal_code, normal)
+        self.assertTrue(normal["items"][0]["valid"])
+        strict_code, strict = self.validation()
+        self.assertEqual(1, strict_code, strict)
+        self.assertFalse(strict["items"][0]["valid"])
+        self.assertTrue(any(issue["level"] == "WARNING" and message in issue["message"]
+                            for issue in strict["items"][0]["issues"]), strict)
+        rejected = self.assert_rejected(self.verify())
+        self.assertEqual("failed", rejected["status"], rejected)
+        log = Path(rejected["steps"][-1]["stdout_artifact"]).read_text(encoding="utf-8")
+        self.assertIn(message, log)
+
+    def test_overlong_requirement_fails_strict_validation(self) -> None:
+        self.project()
+        delta = self.change / "specs" / "workflow-mechanics" / "spec.md"
+        body = "The fixture SHALL preserve every observable validation outcome. " + "Required detail. " * 40
+        self.assertGreater(len(body), 500)
+        delta.write_text(SPEC.replace("The fixture SHALL report whether its local validation succeeded.", body), encoding="utf-8")
+        self.assert_strict_warning(">500 characters")
+
+    def test_unapplied_delta_prose_fails_strict_validation(self) -> None:
+        self.project()
+        delta = self.change / "specs" / "workflow-mechanics" / "spec.md"
+        delta.write_text(SPEC.replace("## ADDED Requirements", "## Notes\n\nRetain this contractual note.\n\n## ADDED Requirements"), encoding="utf-8")
+        self.assert_strict_warning("not carried into the main spec by archive")
+
+    def test_x_metadata_passes_strict_validation(self) -> None:
+        self.project()
+        metadata = self.change / ".openspec.yaml"
+        metadata.write_text(metadata.read_text() + "x-tracker: fixture-123\n", encoding="utf-8")
+        code, result = self.validation()
+        self.assertEqual(0, code, result)
+        self.assertEqual([], result["items"][0]["issues"])
+
+    def test_unknown_metadata_fails_strict_validation(self) -> None:
+        self.project()
+        metadata = self.change / ".openspec.yaml"
+        metadata.write_text(metadata.read_text() + "skip_design: true\n", encoding="utf-8")
+        self.assert_strict_warning("skip_design")
+
+    def test_apply_tasks_identify_exact_source_checkbox(self) -> None:
+        self.project()
+        instructions = self.native("instructions", "apply", "--change", CHANGE, "--json")
+        self.assertEqual("all_done", instructions["state"])
+        task, = instructions["tasks"]
+        self.assertEqual(self.change / "tasks.md", Path(task["sourcePath"]))
+        self.assertEqual(5, task["line"])
+        source_line = Path(task["sourcePath"]).read_text().splitlines()[task["line"] - 1]
+        self.assertEqual("- [x] " + task["description"], source_line)
+        self.assertIn("Review or verify", instructions["instruction"])
+        self.assertNotIn("ready to archive", instructions["instruction"].lower())
 
     def test_missing_change_is_rejected(self) -> None:
         self.project()

@@ -22,7 +22,7 @@ except ModuleNotFoundError:  # Direct `python scripts/local_verify.py` route.
     from process_runner import PREVIEW_BYTES, run_process
 
 
-OPENSPEC_VERSION = "1.13.1"
+OPENSPEC_VERSION = "1.14.3"
 GOLANGCI_VERSION = "2.11.3"
 def workflow_tests() -> int:
     """Run only workflow-mechanics tests, rejecting missing or skipped coverage."""

@@ -45,3 +45,13 @@
 - [x] Verification performance correction2026-10-17: reuse compiled pure glob patterns with a bounded cache. Preserve current file reads/hashes, selectors, negative/skip/missing semantics and exact outcomes; qualify existing glob/invalidation fixtures and shared make check. A consumer23385path/three-pattern sample produced identical matches at0.559s versus0.011s; this is a bounded diagnostic, not a universal performance claim.
 
 Shared qualification: make check passes on469f145ae6ab7e0a56c4baf626f397a1e9fdfe2d, including the complete60-edge --all --require-clean graph. Compiled patterns alone are cached; dependency files/hashes stay live. No test outcomes or selection contracts changed.
+
+## OpenSpec 1.14.3 qualification note
+
+The qualification change moves the complete case-field enumeration from the R1
+requirement body into its existing coverage scenario so strict validation accepts
+it. Every field, scenario identity and obligation remains. This formatting input
+and the version-fixture source changes invalidate their prior fingerprint-bound
+receipts; the original 1.13.1 receipts retain their original inputs. Updated
+manifest fingerprints and new shared-test evidence are recorded by
+`qualify-openspec-1-14-3`; consumer task 4.5 remains incomplete.

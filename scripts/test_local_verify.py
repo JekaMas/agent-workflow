@@ -316,7 +316,7 @@ class LocalVerifyTest(unittest.TestCase):
             (root / "payload.json").write_text(raw)
             emit = root / "emit.py"
             emit.write_text("from pathlib import Path\nimport sys\nsys.stdout.write(Path(__file__).with_name('payload.json').read_text())\n")
-            plan = ([sys.executable, "-c", "print('1.13.1')"],
+            plan = ([sys.executable, "-c", "print('1.14.3')"],
                     [("guidance:apply", [sys.executable, str(emit)])])
             arguments = ["openspec", "--cwd", str(root), "--scope", "openspec",
                          "--change", "workflow", "--output", str(output)]
@@ -341,6 +341,20 @@ class LocalVerifyTest(unittest.TestCase):
 
     def test_openspec_large_incomplete_tasks_stay_non_green(self):
         self.assertEqual((1, "incomplete_tasks"), self.openspec_large_artifact("incomplete_tasks"))
+
+    def test_unsupported_openspec_version_is_rejected_before_validation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "result.json"
+            plan = ([sys.executable, "-c", "print('1.14.99')"],
+                    [("specs", [sys.executable, "-c", "raise RuntimeError('must not validate')"])])
+            with patch.object(verify, "command_plan", return_value=plan), contextlib.redirect_stdout(io.StringIO()):
+                code = verify.main(["openspec", "--cwd", temporary, "--scope", "openspec",
+                                    "--change", "workflow", "--output", str(output)])
+            report = json.loads(output.read_text())
+            self.assertEqual(1, code)
+            self.assertEqual("unsupported_tool_version", report["status"])
+            self.assertEqual("1.14.99", report["tool"]["version"])
+            self.assertEqual(1, len(report["steps"]))
 
     def test_missing_executable_writes_unavailable_artifact(self):
         with tempfile.TemporaryDirectory() as temporary:

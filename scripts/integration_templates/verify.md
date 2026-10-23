@@ -1,5 +1,12 @@
 Compare actual implementation, important properties, test selection and observed results with specs/design/tasks. Use the project review adapter and shared verification procedure as relevant. Report demonstrated defects, missing evidence, artifact drift and material decisions separately. Verify-only remains read-only. Within an implementation-and-repair request, repair in-scope findings and rerun affected checks, then verify again. A clean report alone is not DONE.
 
+For every REMOVED requirement, recover its original text and scenarios from the
+selected main spec before searching the implementation. If an earlier sync removed
+that text, use the exact prior Git revision and record its provenance. A REMOVED
+header and its Reason/Migration prose do not describe the old contract. If the
+original cannot be recovered, report the requirement as unverified; do not pass it.
+The ADDED/MODIFIED evidence graph does not cover removal verification by itself.
+
 Validate the selected change's `verification.json`, query the exact affected
 requirement/property/owner/path closure, run directly invalidated cases before
 expanding to their dependent iteration closure, and reconcile every intended case

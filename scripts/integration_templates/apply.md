@@ -75,3 +75,7 @@ Iteration completion contract (default):
 - A real blocker means stop (1) or stop (2) above, with a recorded witness and the
   exact unblock action. Nothing else - including a hard finding, a red gate, a long
   repair or a shared/dirty checkout - qualifies; record it as a task and continue.
+- Before marking a task complete, use its native `sourcePath` and `line` from
+  `openspec instructions apply --json` and confirm that the unchanged checkbox
+  still describes the task just implemented. If its location or text changed,
+  refresh the instructions before editing; never select a similarly numbered box.
