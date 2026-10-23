@@ -48,3 +48,11 @@ Commit and review shared source before changing consumer pins. Do not run native
 workflow release and product consumer pins need a separately reviewed rollout;
 this patch does not overwrite them. Downgrade the CLI with the previous exact npm
 version if a rollback is needed. No product changes are archived by qualification.
+
+The user subsequently authorized a dedicated spec-update guide, review with
+subagents, PR preparation/merge and the existing personal workflow rollout.
+Keep guide ownership under docs with links to canonical procedures. Review the
+parser dependency and upgrade together, then merge #16 before retargeting #17 to
+main; use the reviewed exact head for each merge. Preview/apply the personal
+installer only from a clean merged checkout and verify its exact release pointer,
+backups and installed native compatibility. Preserve product consumer pins.

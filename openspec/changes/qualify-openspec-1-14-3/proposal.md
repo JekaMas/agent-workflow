@@ -40,3 +40,8 @@ compatibility documentation and the two affected specification sources. The
 existing full-stdout parser repair in PR #16 is a dependency, not reimplemented
 here. Consumer pins, global workflow instructions and product changes are outside
 this patch; the requested local OpenSpec CLI upgrade is already installed.
+
+The follow-up request adds a separate spec-update guide, review with subagents,
+preparation/merge of this PR and its parser dependency, and updating the existing
+installed personal workflow from the reviewed merged revision. Existing product
+consumer migrations remain separate and use the new guide.
