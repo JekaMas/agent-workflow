@@ -1065,7 +1065,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1093,7 +1093,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1121,7 +1121,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1261,7 +1261,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1289,7 +1289,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1653,7 +1653,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1681,7 +1681,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "cffc29ee122a75bbfcb6a50eb1fefc05d2e5a220b79afd60253501ddaedaff86",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1834,6 +1834,186 @@
         "classification": "NO_TEST_DOUBLE"
       },
       "distinct_reason": "Verification execution is bounded and reproducible: the complete artifact remains the observer source beyond the preview boundary."
+    },
+    {
+      "id": "R1.P7.ARTIFACT.POSITIVE.01",
+      "property_id": "R1.P7",
+      "polarity": "positive",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A real Python child emits a synthetic OpenSpec document larger than the process preview, with observed fields and final JSON syntax after that boundary.",
+      "observable": "Valid large JSON passes using complete captured artifact; preview remains bounded.",
+      "red_expectation": "Detect preview-only JSON parsing or false success from missing/malformed/incomplete complete output.",
+      "green_expectation": "Valid large JSON passes using complete captured artifact; preview remains bounded.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_parses_complete_large_artifact",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_parses_complete_large_artifact"
+    },
+    {
+      "id": "R1.P7.ARTIFACT.NEGATIVE.01",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A real Python child emits a synthetic OpenSpec document larger than the process preview, with observed fields and final JSON syntax after that boundary.",
+      "observable": "Empty guidance after the preview boundary remains missing_project_guidance.",
+      "red_expectation": "Detect preview-only JSON parsing or false success from missing/malformed/incomplete complete output.",
+      "green_expectation": "Empty guidance after the preview boundary remains missing_project_guidance.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_missing_guidance_stays_non_green",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_large_missing_guidance_stays_non_green"
+    },
+    {
+      "id": "R1.P7.ARTIFACT.NEGATIVE.02",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A real Python child emits a synthetic OpenSpec document larger than the process preview, with observed fields and final JSON syntax after that boundary.",
+      "observable": "Invalid JSON tail after the preview boundary remains invalid_output.",
+      "red_expectation": "Detect preview-only JSON parsing or false success from missing/malformed/incomplete complete output.",
+      "green_expectation": "Invalid JSON tail after the preview boundary remains invalid_output.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_invalid_tail_stays_non_green",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_large_invalid_tail_stays_non_green"
+    },
+    {
+      "id": "R1.P7.ARTIFACT.NEGATIVE.03",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A real Python child emits a synthetic OpenSpec document larger than the process preview, with observed fields and final JSON syntax after that boundary.",
+      "observable": "Incomplete task records after the preview boundary remain incomplete_tasks.",
+      "red_expectation": "Detect preview-only JSON parsing or false success from missing/malformed/incomplete complete output.",
+      "green_expectation": "Incomplete task records after the preview boundary remain incomplete_tasks.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_incomplete_tasks_stay_non_green",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "invalidation_dependencies": [
+        "scripts/test_local_verify.py",
+        "scripts/requirement_tests.py",
+        "scripts/process_runner.py",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**"
+      ],
+      "substitution": {
+        "classification": "NO_TEST_DOUBLE"
+      },
+      "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_large_incomplete_tasks_stay_non_green"
+    },
+    {
+      "id": "R1.P7.ARTIFACT.NEGATIVE.04",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A passing specs result is followed by a success-looking guidance preview whose retained stdout file is missing.",
+      "observable": "The selected guidance observation and report both record artifact_read_failed, retain the missing path/reason, and return nonzero.",
+      "red_expectation": "The previously passing specs status survives the later artifact read exception and the wrapper falsely exits zero.",
+      "green_expectation": "The failed artifact read is recorded on the failed step and report; the wrapper exits one without preview fallback.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_openspec_guidance_artifact_after_passing_specs_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "invalidation_dependencies": [
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/requirement_tests.py",
+        "scripts/test_local_verify.py"
+      ],
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "owner_replaced": "run_process returns controlled prior-success and unreadable-artifact results; the permission case injects PermissionError in Path.read_text.",
+        "allowed_proof": "The actual OpenSpec wrapper handles saved-stdout read failure after an earlier successful observation.",
+        "forbidden_claims": [
+          "These fixtures do not qualify native OpenSpec output production or operating-system permission enforcement."
+        ]
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: The selected guidance observation and report both record artifact_read_failed, retain the missing path/reason, and return nonzero."
+    },
+    {
+      "id": "R1.P7.ARTIFACT.NEGATIVE.05",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A passing specs result is followed by a success-looking completed-task preview whose retained stdout read raises PermissionError.",
+      "observable": "The selected task observation and report both record artifact_read_failed, retain the denied path/reason, and return nonzero.",
+      "red_expectation": "The previously passing specs status survives the later artifact read exception and the wrapper falsely exits zero.",
+      "green_expectation": "The failed artifact read is recorded on the failed step and report; the wrapper exits one without preview fallback.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_permission_denied_openspec_tasks_artifact_after_passing_specs_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "fd25c9a7c33f7df5fdbdbece50d6fa71ad7d9d295d5b0b96964d51eecd9ec85a",
+      "invalidation_dependencies": [
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/requirement_tests.py",
+        "scripts/test_local_verify.py"
+      ],
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "owner_replaced": "run_process returns controlled prior-success and unreadable-artifact results; the permission case injects PermissionError in Path.read_text.",
+        "allowed_proof": "The actual OpenSpec wrapper handles saved-stdout read failure after an earlier successful observation.",
+        "forbidden_claims": [
+          "These fixtures do not qualify native OpenSpec output production or operating-system permission enforcement."
+        ]
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: The selected task observation and report both record artifact_read_failed, retain the denied path/reason, and return nonzero."
     }
   ],
   "commands": [
