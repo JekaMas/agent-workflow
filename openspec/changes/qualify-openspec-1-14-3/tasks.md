@@ -12,8 +12,8 @@
 
 - [x] 2.1 Add a separate spec-update guide and entrypoint links, preserving the canonical procedure owners; inspect its commands, links, root selection and contract-preservation guidance.
 - [x] 2.2 Review the existing parser/upgrade changes and the completed guide with subagents; resolve material findings and revalidate only changed semantic inputs while retaining valid greens.
-- [ ] 2.3 Update the PR description and prepare its final reviewed head; merge parser PR #16, retarget PR #17 to main, and merge it with exact-head protection after required checks/reviews.
-- [ ] 2.4 Preview and apply the installed personal workflow update from a clean private overlay of the merged revision, preserve the existing custom instructions and backup/rollback state, and verify installed ownership, exact pin and native compatibility. Keep other consumer repositories unchanged and use the separate guide for their rollout.
+- [x] 2.3 Update the PR description and prepare its final reviewed head; merge parser PR #16, retarget PR #17 to main, and merge it with exact-head protection after required checks/reviews.
+- [x] 2.4 Preview and apply the installed personal workflow update from a clean private overlay of the merged revision, preserve the existing custom instructions and backup/rollback state, and verify installed ownership, exact pin and native compatibility. Keep other consumer repositories unchanged and use the separate guide for their rollout.
 
 ## Resume
 
@@ -22,7 +22,8 @@ the separate guide and subagent review are complete. See review-and-rollout.md
 for the repaired findings, 173 reconciled passing suite cases, 13 clean-state
 upgrade edges and 62 current legacy identities. Verification.md retains the
 initial checkpoint and receipts. The supported native lane remains the local
-spec-driven CLI. Ordered PR merges and preserved personal activation remain.
+spec-driven CLI. Ordered PR merges and preserved personal activation are complete;
+review-and-rollout.md records the exact merged and private-overlay revisions.
 The original consumer acceptance task 4.5 in the evidence-graph change remains open.
 
 The user subsequently authorized a separate spec-update guide, subagent review,
