@@ -45,3 +45,16 @@
 - [x] Verification performance correction2026-10-17: reuse compiled pure glob patterns with a bounded cache. Preserve current file reads/hashes, selectors, negative/skip/missing semantics and exact outcomes; qualify existing glob/invalidation fixtures and shared make check. A consumer23385path/three-pattern sample produced identical matches at0.559s versus0.011s; this is a bounded diagnostic, not a universal performance claim.
 
 Shared qualification: make check passes on469f145ae6ab7e0a56c4baf626f397a1e9fdfe2d, including the complete60-edge --all --require-clean graph. Compiled patterns alone are cached; dependency files/hashes stay live. No test outcomes or selection contracts changed.
+
+## Parser review correction — 2026-10-23
+
+A subagent found that a later stdout-artifact OSError could preserve an earlier
+passing specs result. Missing guidance and permission-denied task fixtures both
+reproduced exit 0/status passed before repair. The local read handler now records
+artifact_read_failed on the step and report and returns nonzero, without preview
+fallback. The two new regressions and four directly affected full-artifact cases
+passed (6/6). The process/permission doubles and native-CLI proof limits are
+recorded in the two new graph edges. A separate subagent rechecked the exact fix
+and retained red/green logs and found no remaining blocker. Older unrelated green
+evidence remains at its original inputs; current test-source bindings are explicit.
+The shared graph now has 62 edges. Product task 4.5 remains open.
