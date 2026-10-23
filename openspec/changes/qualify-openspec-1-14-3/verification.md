@@ -1,5 +1,12 @@
 # OpenSpec 1.14.3 qualification — 2026-10-23
 
+This file retains the initial qualification checkpoint and its original receipts.
+The subsequently authorized guide, subagent repairs, merged-source validation
+and local rollout are recorded in [review-and-rollout.md](review-and-rollout.md).
+That follow-up reconciles 173 passing suite cases and 13 upgrade edges; the
+initial counts and unmerged/uninstalled state below describe their original
+checkpoint, not the later outcome.
+
 ## Scope and baseline
 
 The global npm installation changed from `@fission-ai/openspec@1.13.1` to exact

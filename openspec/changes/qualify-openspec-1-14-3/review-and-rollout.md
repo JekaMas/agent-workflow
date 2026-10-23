@@ -87,3 +87,37 @@ link and semantic review; it does not invalidate those behavior cases.
 
 These are subagent reviews, not claims of independent empirical or autonomous-
 agent acceptance. Final merge and installed-runtime observations follow below.
+
+## Final reviewed source and retained evidence
+
+The integrated source at `1e3374109011e66dfa2a087228b00023e4cb1c3d` passed the
+complete 13-edge upgrade graph with `--all --require-clean`. Its receipt is
+`data/checks/openspec-1143-reviewed-readfix/result.json`. The native logs report
+35 consumer/bootstrap, 15 native OpenSpec and 88 unit cases passing, without
+skips. All 62 legacy graph identities have exact passing observations and
+matching current source fingerprints. The existing multiline-description
+observer limitation still requires one unregistered unit identity to be
+reconciled against its explicit native `... ok` and suite summary; no registered
+edge is missing.
+
+The one wrapper-dependent lifecycle refusal passed its affected recheck in
+`data/checks/openspec-1143-reviewed-lifecycle/result.json`. The other 34
+preservation cases retain their valid original observations. This accounts for
+173 unique passing suite cases: 139 current executions plus 34 retained results.
+The aggregate `make check` recipe was not rerun; its required set is reconciled
+from these observations rather than duplicating valid greens.
+
+The structural-guidance receipt alongside the reviewed graph covers all four
+artifact and both operation guidance surfaces. It does not request or claim
+completed follow-up tasks. Native strict validation freshly passes this change
+and the legacy evidence-graph change; seven other unchanged item observations
+remain valid, reconciling all nine native items. Source ownership passes for
+199 declared source files. Conflict-resolution syntax and whitespace checks
+also pass. These source/evidence inspections do not establish installed-runtime
+discovery or product behavior.
+
+The final implementation/evidence subagent reinspection found no remaining merge
+blocker at that integrated source. The separate guide reinspection also found
+no blocker after its two P2 repairs. Later progress-only commits preserve these
+receipts and their original revisions; they do not refresh evidence fingerprints
+or cause another behavior-suite run.
