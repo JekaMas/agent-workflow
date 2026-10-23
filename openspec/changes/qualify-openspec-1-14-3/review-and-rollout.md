@@ -169,3 +169,11 @@ checkbox content requires a final completed-task gate; unchanged guidance and
 behavior suites retain their prior receipts. Product consumers, their workflow
 pins and their specifications remain outside this rollout. The separate
 [spec-update guide](../../../docs/updating-specs.md) owns their future procedure.
+
+The installed wrapper's final `--require-tasks-complete` gate passed after the
+actual outcomes were checked: nine tasks complete, zero remaining, with strict
+change validation also passing. Receipt:
+`data/checks/openspec-1143-personal-completed-tasks.json`. Only task/evidence
+records changed for that gate; it did not repeat the guidance or behavior suites.
+The native checkbox result is reconciled with the source reviews and actual
+activation observations above, rather than treated as standalone acceptance.
