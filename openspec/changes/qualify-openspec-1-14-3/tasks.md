@@ -18,5 +18,5 @@ The original consumer acceptance task 4.5 in the evidence-graph change remains o
 
 ## Workflow follow-up
 
-- Review the patch after its parser dependency PR #16; no merge or product-pin rollout is implied.
+- Review draft PR #17 after its parser dependency PR #16; no merge or product-pin rollout is implied.
 - Archive only after review and inspect synchronized specs.

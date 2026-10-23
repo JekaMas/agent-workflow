@@ -84,6 +84,20 @@ directory as source and refused those files as designed; the corrected command
 selects defaults, skills, docs, scripts, policies, openspec, AGENTS.md and README.md.
 No ignored evidence was staged to make the audit pass.
 
+The final structural wrapper gate also passed with both
+`--require-project-guidance` and `--require-tasks-complete`: all four artifact
+guidance surfaces, both operation surfaces and all five task checkboxes were
+observed on OpenSpec 1.14.3. Receipt:
+`data/checks/openspec-1143-acceptance/native-readiness.json`.
+
+## Review handoff
+
+[Draft PR #17](https://github.com/JekaMas/agent-workflow/pull/17) is stacked on
+[parser PR #16](https://github.com/JekaMas/agent-workflow/pull/16). The three
+qualification commits preserve that dependency; later commits record evidence
+without changing tested production or test source. Neither PR was merged by
+this qualification. Consumer pins and the active personal release are unchanged.
+
 ## Inspection and rollout limits
 
 Self-review checks the exact version refusal, warning preservation, concrete
