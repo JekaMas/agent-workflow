@@ -177,3 +177,9 @@ change validation also passing. Receipt:
 records changed for that gate; it did not repeat the guidance or behavior suites.
 The native checkbox result is reconciled with the source reviews and actual
 activation observations above, rather than treated as standalone acceptance.
+
+The rollout/evidence subagent's final read-only inspection confirmed the merged
+heads/trees, clean private ancestry, exact preserved bytes, links, hashes, both
+backups and the installed native/task receipts. It found no blocker to this
+documentation-only completion. That inspection did not rerun tests or mutate the
+installation, and does not broaden the proof limits above.
