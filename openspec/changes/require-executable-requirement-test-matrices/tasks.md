@@ -55,3 +55,16 @@ and the version-fixture source changes invalidate their prior fingerprint-bound
 receipts; the original 1.13.1 receipts retain their original inputs. Updated
 manifest fingerprints and new shared-test evidence are recorded by
 `qualify-openspec-1-14-3`; consumer task 4.5 remains incomplete.
+
+## Parser review correction — 2026-10-23
+
+A subagent found that a later stdout-artifact OSError could preserve an earlier
+passing specs result. Missing guidance and permission-denied task fixtures both
+reproduced exit 0/status passed before repair. The local read handler now records
+artifact_read_failed on the step and report and returns nonzero, without preview
+fallback. The two new regressions and four directly affected full-artifact cases
+passed (6/6). The process/permission doubles and native-CLI proof limits are
+recorded in the two new graph edges. A separate subagent rechecked the exact fix
+and retained red/green logs and found no remaining blocker. Older unrelated green
+evidence remains at its original inputs; current test-source bindings are explicit.
+The shared graph now has 62 edges. Product task 4.5 remains open.

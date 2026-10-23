@@ -28,9 +28,15 @@
       "unittest::scripts.test_local_verify.LocalVerifyTest.test_child_environment_disables_rustup_auto_install_without_global_mutation",
       "unittest::scripts.test_local_verify.LocalVerifyTest.test_existing_result_is_never_overwritten",
       "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_executable_writes_unavailable_artifact",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_openspec_guidance_artifact_after_passing_specs_fails",
       "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_failure_retains_exit_and_output",
       "unittest::scripts.test_local_verify.LocalVerifyTest.test_native_process_timeout_is_explicit",
       "unittest::scripts.test_local_verify.LocalVerifyTest.test_noisy_process_has_bounded_preview_and_complete_file",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_incomplete_tasks_stay_non_green",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_invalid_tail_stays_non_green",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_missing_guidance_stays_non_green",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_parses_complete_large_artifact",
+      "unittest::scripts.test_local_verify.LocalVerifyTest.test_permission_denied_openspec_tasks_artifact_after_passing_specs_fails",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_dependencies_select_and_invalidate_only_the_declared_case",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_case_requires_one_exact_scenario_and_review_contract",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_command_markers_cannot_prove_behavioral_cases",
@@ -64,11 +70,7 @@
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_stale_test_source_fingerprint_fails",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_timeout_kills_process_group_and_keeps_complete_output",
       "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_unittest_observer_preserves_skip_expected_failure_and_python_versions",
-      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure",
-      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_parses_complete_large_artifact",
-      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_missing_guidance_stays_non_green",
-      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_invalid_tail_stays_non_green",
-      "unittest::scripts.test_local_verify.LocalVerifyTest.test_openspec_large_incomplete_tasks_stay_non_green"
+      "unittest::scripts.test_requirement_tests.RequirementEvidenceGraphTest.test_valid_graph_queries_deterministic_affected_closure"
     ]
   },
   "reviews": [
@@ -398,6 +400,57 @@
       ],
       "disposition": "current_change",
       "rationale": "Repairs existing complete-artifact contract, not a new workflow policy or relaxed completion requirement."
+    },
+    {
+      "id": "unreadable-openspec-artifact-20261023",
+      "question": "Can a failed later stdout-artifact read retain an earlier passing OpenSpec observation?",
+      "property_ids": [
+        "R1.P7"
+      ],
+      "test_ids": [
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_openspec_guidance_artifact_after_passing_specs_fails",
+        "unittest::scripts.test_local_verify.LocalVerifyTest.test_permission_denied_openspec_tasks_artifact_after_passing_specs_fails"
+      ],
+      "searches": [
+        {
+          "kind": "exact",
+          "status": "completed",
+          "query": "local_verify.py saved stdout reader, exception handler, and focused missing/permission regressions",
+          "outcome": "Confirmed prior passing report survives OSError; local artifact_read_failed handling and exact negative cases close the path.",
+          "results": [
+            {
+              "path": "scripts/local_verify.py",
+              "line": 399,
+              "classification": "change_candidate",
+              "reason": "OpenSpec JSON parser dispatch receives preview instead of full artifact."
+            },
+            {
+              "path": "scripts/test_local_verify.py",
+              "line": 297,
+              "classification": "test_proof",
+              "reason": "Real subprocess capture with synthetic valid, missing, malformed and incomplete large JSON."
+            }
+          ]
+        },
+        {
+          "kind": "semantic",
+          "status": "not_applicable",
+          "query": "Known exact parser and process owner",
+          "reason": "Known file/symbol defect; no unfamiliar ownership search.",
+          "outcome": "No semantic evidence claimed.",
+          "results": []
+        },
+        {
+          "kind": "jetbrains-index",
+          "status": "not_applicable",
+          "query": "Known Python dispatch branch",
+          "reason": "No symbol refactor or IDE operation required.",
+          "outcome": "No IDE evidence claimed.",
+          "results": []
+        }
+      ],
+      "disposition": "current_change",
+      "rationale": "Subagent review found a fail-open exception path in the complete-artifact reader; missing and permission-denied evidence must fail closed."
     }
   ]
 }

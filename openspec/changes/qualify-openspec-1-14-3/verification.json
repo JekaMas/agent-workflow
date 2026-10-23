@@ -19,9 +19,9 @@
     {
       "id": "R1.P1",
       "requirement_id": "R1",
-      "statement": "Only the qualified CLI passes native guidance/task checks; unknown versions are rejected before validation.",
+      "statement": "Only the qualified CLI passes native guidance/task checks; unqualified versions and unreadable selected evidence fail closed.",
       "owner": "scripts/local_verify.py",
-      "oracle": "Actual 1.14.3 native fixture; deliberately unqualified version process.",
+      "oracle": "Actual 1.14.3 native fixture, controlled unqualified version, and missing/permission-denied saved evidence after a prior successful result.",
       "scenarios": [
         "Pilot adoption"
       ],
@@ -149,7 +149,7 @@
         ]
       },
       "distinct_reason": "Pilot adoption: The wrapper returns unsupported_tool_version without invoking validation.",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2"
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f"
     },
     {
       "id": "R1.P2.POSITIVE.01",
@@ -402,6 +402,72 @@
       },
       "distinct_reason": "Drift: The updater refuses the conflict and preserves the edited bytes.",
       "source_sha256": "3e026f50ca53296adec974265654b12531e06f34d9351a30bc834b2e5a6db09a"
+    },
+    {
+      "id": "R1.P1.NEGATIVE.03",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Pilot adoption",
+      "scenario_fingerprint": "977c0aad0c7aeceb499a58ecbc8fb1d8070c169204fbbfe0e4462fa4ed1b0ff9",
+      "setup": "A prior specs observation passes, followed by a success-looking guidance preview with a missing saved stdout file.",
+      "observable": "Missing guidance evidence records artifact_read_failed on the failed step and whole report and returns exit one.",
+      "red_expectation": "A later evidence-file read exception leaves the earlier passing specs status in the overall report and falsely exits zero.",
+      "green_expectation": "The artifact-read failure records its reason and path, stops evaluation, and returns one without falling back to the preview.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_openspec_guidance_artifact_after_passing_specs_fails",
+      "command_id": "unit",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_local_verify.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "owner_replaced": "Controlled run_process results and, for permission denial, an injected Path.read_text PermissionError.",
+        "allowed_proof": "The real wrapper handles an unreadable later OpenSpec stdout artifact after an earlier passing specs result.",
+        "forbidden_claims": [
+          "This does not qualify native OpenSpec output production or operating-system permission enforcement."
+        ]
+      },
+      "distinct_reason": "Pilot adoption: Missing guidance evidence records artifact_read_failed on the failed step and whole report and returns exit one.",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f"
+    },
+    {
+      "id": "R1.P1.NEGATIVE.04",
+      "property_id": "R1.P1",
+      "polarity": "negative",
+      "scenario": "Pilot adoption",
+      "scenario_fingerprint": "977c0aad0c7aeceb499a58ecbc8fb1d8070c169204fbbfe0e4462fa4ed1b0ff9",
+      "setup": "A prior specs observation passes, followed by complete-looking task output whose saved stdout read raises PermissionError.",
+      "observable": "Unreadable task evidence records artifact_read_failed on the failed step and whole report and returns exit one.",
+      "red_expectation": "A later evidence-file read exception leaves the earlier passing specs status in the overall report and falsely exits zero.",
+      "green_expectation": "The artifact-read failure records its reason and path, stops evaluation, and returns one without falling back to the preview.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_permission_denied_openspec_tasks_artifact_after_passing_specs_fails",
+      "command_id": "unit",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "invalidation_dependencies": [
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/integration.py",
+        "scripts/integration_templates/**",
+        "scripts/test_local_verify.py",
+        "openspec/config.yaml"
+      ],
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "owner_replaced": "Controlled run_process results and, for permission denial, an injected Path.read_text PermissionError.",
+        "allowed_proof": "The real wrapper handles an unreadable later OpenSpec stdout artifact after an earlier passing specs result.",
+        "forbidden_claims": [
+          "This does not qualify native OpenSpec output production or operating-system permission enforcement."
+        ]
+      },
+      "distinct_reason": "Pilot adoption: Unreadable task evidence records artifact_read_failed on the failed step and whole report and returns exit one.",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f"
     }
   ],
   "commands": [
@@ -413,7 +479,9 @@
         "-B",
         "-m",
         "unittest",
-        "scripts.test_local_verify.LocalVerifyTest.test_unsupported_openspec_version_is_rejected_before_validation",
+        "scripts.test_requirement_tests",
+        "scripts.test_discovery_ledger",
+        "scripts.test_local_verify",
         "-v"
       ],
       "cwd": ".",

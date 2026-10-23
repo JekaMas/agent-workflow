@@ -1065,7 +1065,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1093,7 +1093,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1121,7 +1121,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1261,7 +1261,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1289,7 +1289,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1653,7 +1653,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1681,7 +1681,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1849,7 +1849,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1877,7 +1877,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1905,7 +1905,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1933,7 +1933,7 @@
       "command_id": "workflow-evidence-unit-tests",
       "state": "implemented",
       "source_path": "scripts/test_local_verify.py",
-      "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
       "invalidation_dependencies": [
         "scripts/test_local_verify.py",
         "scripts/requirement_tests.py",
@@ -1946,6 +1946,74 @@
         "classification": "NO_TEST_DOUBLE"
       },
       "distinct_reason": "Bounded preview/full-artifact observer contract: test_openspec_large_incomplete_tasks_stay_non_green"
+    },
+    {
+      "id": "R1.P7.ARTIFACT.NEGATIVE.04",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A passing specs result is followed by a success-looking guidance preview whose retained stdout file is missing.",
+      "observable": "The selected guidance observation and report both record artifact_read_failed, retain the missing path/reason, and return nonzero.",
+      "red_expectation": "The previously passing specs status survives the later artifact read exception and the wrapper falsely exits zero.",
+      "green_expectation": "The failed artifact read is recorded on the failed step and report; the wrapper exits one without preview fallback.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_missing_openspec_guidance_artifact_after_passing_specs_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
+      "invalidation_dependencies": [
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/requirement_tests.py",
+        "scripts/test_local_verify.py"
+      ],
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "owner_replaced": "run_process returns controlled prior-success and unreadable-artifact results; the permission case injects PermissionError in Path.read_text.",
+        "allowed_proof": "The actual OpenSpec wrapper handles saved-stdout read failure after an earlier successful observation.",
+        "forbidden_claims": [
+          "These fixtures do not qualify native OpenSpec output production or operating-system permission enforcement."
+        ]
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: The selected guidance observation and report both record artifact_read_failed, retain the missing path/reason, and return nonzero."
+    },
+    {
+      "id": "R1.P7.ARTIFACT.NEGATIVE.05",
+      "property_id": "R1.P7",
+      "polarity": "negative",
+      "scenario": "Verification execution is bounded and reproducible",
+      "scenario_fingerprint": "b76ff0cc277fbd5c0d09c2a81088441d2cb2c2ace078b34511a2adcaa2f317d4",
+      "setup": "A passing specs result is followed by a success-looking completed-task preview whose retained stdout read raises PermissionError.",
+      "observable": "The selected task observation and report both record artifact_read_failed, retain the denied path/reason, and return nonzero.",
+      "red_expectation": "The previously passing specs status survives the later artifact read exception and the wrapper falsely exits zero.",
+      "green_expectation": "The failed artifact read is recorded on the failed step and report; the wrapper exits one without preview fallback.",
+      "test_id": "unittest::scripts.test_local_verify.LocalVerifyTest.test_permission_denied_openspec_tasks_artifact_after_passing_specs_fails",
+      "command_id": "workflow-evidence-unit-tests",
+      "state": "implemented",
+      "source_path": "scripts/test_local_verify.py",
+      "source_sha256": "68b49f2f25949b0af1f0ee7a5dc15e5dd9e70be62246439a44f906df6f9b5f2f",
+      "invalidation_dependencies": [
+        "openspec/changes/require-executable-requirement-test-matrices/specs/**",
+        "scripts/discovery_ledger.py",
+        "scripts/integration_templates/**",
+        "scripts/local_verify.py",
+        "scripts/process_runner.py",
+        "scripts/requirement_tests.py",
+        "scripts/test_local_verify.py"
+      ],
+      "substitution": {
+        "classification": "APPROVED_TEST_DOUBLE",
+        "owner_replaced": "run_process returns controlled prior-success and unreadable-artifact results; the permission case injects PermissionError in Path.read_text.",
+        "allowed_proof": "The actual OpenSpec wrapper handles saved-stdout read failure after an earlier successful observation.",
+        "forbidden_claims": [
+          "These fixtures do not qualify native OpenSpec output production or operating-system permission enforcement."
+        ]
+      },
+      "distinct_reason": "Verification execution is bounded and reproducible: The selected task observation and report both record artifact_read_failed, retain the denied path/reason, and return nonzero."
     }
   ],
   "commands": [

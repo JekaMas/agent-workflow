@@ -1,6 +1,7 @@
 """Synthetic parser/process fixtures; no Go/Rust product test or live service runs."""
 
 import contextlib
+import errno
 import io
 import json
 import os
@@ -316,7 +317,7 @@ class LocalVerifyTest(unittest.TestCase):
             (root / "payload.json").write_text(raw)
             emit = root / "emit.py"
             emit.write_text("from pathlib import Path\nimport sys\nsys.stdout.write(Path(__file__).with_name('payload.json').read_text())\n")
-            plan = ([sys.executable, "-c", "print('1.14.3')"],
+            plan = ([sys.executable, "-c", f"print({verify.OPENSPEC_VERSION!r})"],
                     [("guidance:apply", [sys.executable, str(emit)])])
             arguments = ["openspec", "--cwd", str(root), "--scope", "openspec",
                          "--change", "workflow", "--output", str(output)]
@@ -341,6 +342,70 @@ class LocalVerifyTest(unittest.TestCase):
 
     def test_openspec_large_incomplete_tasks_stay_non_green(self):
         self.assertEqual((1, "incomplete_tasks"), self.openspec_large_artifact("incomplete_tasks"))
+
+    def openspec_unreadable_artifact(self, condition):
+        """Process doubles and injected permission error qualify wrapper handling only."""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            output = root / "result.json"
+            specs = root / "specs.stdout.log"
+            specs_raw = json.dumps({
+                "root": {"path": str(root)},
+                "items": [{"id": "workflow", "type": "change", "valid": True}],
+                "summary": {"totals": {"items": 1, "passed": 1, "failed": 0}},
+            })
+            specs.write_text(specs_raw)
+            artifact = root / "unreadable.stdout.log"
+            failed_raw = json.dumps({
+                "root": {"path": str(root)}, "changeName": "workflow",
+                "artifactId": "proposal", "context": "selected project context",
+                "rules": ["retain required evidence"],
+                "changeDir": str(root / "openspec/changes/workflow"),
+                "tasks": [{"id": "one", "done": True}],
+                "progress": {"total": 1, "complete": 1, "remaining": 0},
+                "state": "all_done",
+            })
+            if condition == "permission":
+                artifact.write_text(failed_raw)
+            original_read_text = Path.read_text
+
+            def read_text(path, *args, **kwargs):
+                if condition == "permission" and path == artifact:
+                    raise PermissionError(errno.EACCES, "Permission denied", str(path))
+                return original_read_text(path, *args, **kwargs)
+
+            outputs = [
+                {"command": ["openspec", "--version"], "status": "exited", "exit_code": 0,
+                 "stdout": verify.OPENSPEC_VERSION, "stderr": ""},
+                {"command": ["openspec", "validate"], "status": "exited", "exit_code": 0,
+                 "stdout": specs_raw, "stderr": "", "stdout_artifact": str(specs)},
+                {"command": ["openspec", "instructions"], "status": "exited", "exit_code": 0,
+                 "stdout": failed_raw, "stderr": "", "stdout_artifact": str(artifact)},
+            ]
+            arguments = ["openspec", "--cwd", str(root), "--scope", "openspec",
+                         "--change", "workflow", "--output", str(output)]
+            arguments.append("--require-project-guidance" if condition == "missing" else "--require-tasks-complete")
+            with patch.object(verify, "run_process", side_effect=outputs) as process, \
+                    patch.object(Path, "read_text", autospec=True, side_effect=read_text), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                code = verify.main(arguments)
+            report = json.loads(output.read_text())
+            self.assertEqual(3, process.call_count)
+            self.assertEqual("passed", report["steps"][1]["result"])
+            self.assertEqual(1, code, report)
+            self.assertEqual("artifact_read_failed", report["status"])
+            self.assertIn(str(artifact), report["reason"])
+            step = report["steps"][-1]
+            self.assertEqual("guidance:proposal" if condition == "missing" else "tasks", step["label"])
+            self.assertEqual("artifact_read_failed", step["result"])
+            self.assertIn("No such file" if condition == "missing" else "Permission denied", step["observed"]["reason"])
+            self.assertEqual(str(artifact), step["stdout_artifact"])
+
+    def test_missing_openspec_guidance_artifact_after_passing_specs_fails(self):
+        self.openspec_unreadable_artifact("missing")
+
+    def test_permission_denied_openspec_tasks_artifact_after_passing_specs_fails(self):
+        self.openspec_unreadable_artifact("permission")
 
     def test_unsupported_openspec_version_is_rejected_before_validation(self):
         with tempfile.TemporaryDirectory() as temporary:

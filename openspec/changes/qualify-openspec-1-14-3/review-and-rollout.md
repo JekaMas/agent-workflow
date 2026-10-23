@@ -15,8 +15,18 @@ with the documented Make and multiline-description observation limits.
 It found one P2: after an earlier specs observation passes, an OSError reading a
 later OpenSpec stdout artifact can leave the report marked passed. The exception
 handler records only a reason. The missing guidance/task response therefore
-fails open. This must be repaired in PR #16 before either merge. A worker owns
-the focused reproduction and correction in an isolated dependency worktree.
+fails open. The worker reproduced both missing-guidance and permission-denied task
+paths as false greens, then repaired PR #16's artifact-read branch. The failed
+step and report now record `artifact_read_failed`, preserve reason/path and return
+nonzero without preview fallback. Its two new cases and four affected large-output
+cases passed (6/6). The implementation reviewer rechecked the fix and results and
+found no remaining blocker.
+
+The separate guide reviewer found two P2 documentation issues: distinguish the
+ADDED/main-spec 500-character warnings from inherited MODIFIED preservation, and
+inspect Git diffs under the selected planning store's actual owner. The author
+repaired both; reinspection against the installed 1.14.3 sources found no remaining
+guide blocker. Both client entrypoint links resolve to the separate guide.
 
 Changing that production artifact-read owner invalidates the affected wrapper
 and native guidance/task observations. New regression assertions and test-source
@@ -48,5 +58,32 @@ the captured content, state and links. Record both the private pre-reconciliatio
 backup and the installer's normal rollback backup. Verify merged ancestry, clean
 tracked active source, exact instruction bytes, links and native compatibility.
 
-The guide review and preservation-plan review are in progress. This is subagent
-review, not a claim of independent empirical or autonomous-agent acceptance.
+The preservation-plan reviewer confirmed the two local additions are appended to
+unchanged committed defaults, all eleven managed links match, and the backup/
+private-overlay route respects the installer's checks. Rollback must restore the
+entire captured pointer/link/content/state tuple after a partial installer failure,
+not only the current pointer. The standard install backup will contain normalized
+old bytes; retain the separate pre-reconciliation backup of customized bytes.
+
+## Integrated conflict resolution and revalidation
+
+The receiving upgrade head `93f0a2c` and incoming parser repair `af8f49b` have
+three interacting conflicts: test fixtures, graph bindings and appended progress
+notes. Keep the upgrade's exact 1.14.3 policy plus unknown-version rejection, the
+repair's missing/unreadable-artifact cases and full-artifact handling, and both
+sets of progress notes. The controlled large-artifact fixture reads the selected
+module version; the actual native-version gate remains an independent oracle.
+An AST comparison confirms every test method from both sides survives unchanged.
+The existing graph now has 62 edges; the upgrade graph includes the two explicit
+read-error cases for 13 edges. Current test-source fingerprints were calculated
+once after the combined source stabilized.
+
+The changed artifact-read owner, merged version fixture and new assertions
+invalidate the wrapper/native graph closure. Re-execute that complete closure on
+clean integrated source. The lifecycle incomplete-task refusal also calls this
+wrapper and needs an affected recheck. Other preserved policy/audit/model/direct
+archive cases retain their original receipts. The appended documentation requires
+link and semantic review; it does not invalidate those behavior cases.
+
+These are subagent reviews, not claims of independent empirical or autonomous-
+agent acceptance. Final merge and installed-runtime observations follow below.
