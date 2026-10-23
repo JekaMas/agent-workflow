@@ -20,9 +20,9 @@ No requirement, field or scenario was removed to obtain that result.
 ## Validation contract
 
 `verification.json` owns two requirements, four properties, eleven exact case
-edges and three deduplicated commands. Its commands cover the complete adapter,
-graph/discovery, native OpenSpec and bootstrap suites, including legacy negative
-and large-artifact cases. Source fingerprints were stabilized once after the
+edges and three deduplicated commands. The initial acceptance commands cover the
+complete adapter, graph/discovery, native OpenSpec and bootstrap suites, including
+legacy negative and large-artifact cases. Source fingerprints were stabilized once after the
 implementation batch. The older evidence-graph manifest records its actual R1
 format/scenario and test-source invalidations; old receipts are not refreshed.
 
@@ -38,8 +38,41 @@ whitespace inspection passed after removing one trailing blank line.
 
 ## Results
 
-Implementation and acceptance executions are pending at this checkpoint. Tasks
-remain unchecked until exact observed cases and the clean-state gate pass.
+The complete qualification DAG passed all eleven edges with `--all
+--require-clean` at clean implementation commit
+`87d8267878583ebbd15057dad9eaeb6f6bf6f0ab`. Receipt:
+`data/checks/openspec-1143-acceptance/result.json`.
+
+| Group | Observed tests | Outcome |
+| --- | ---: | --- |
+| Disposable consumer/bootstrap | 35 | Passed, no skips |
+| Actual native OpenSpec 1.14.3 | 15 | Passed, no skips |
+| Adapter, evidence graph and discovery | 86 | Passed, no skips |
+| Remaining Make preservation groups | 35 | Passed, no skips |
+| Total unique suite cases | 171 | Passed |
+
+The preservation receipt is
+`data/checks/openspec-1143-preservation/result.json`. The initial unit receipt
+contains passing observations for all sixty required edges of the older shared
+evidence-graph change. That evidence is reconciled by exact test identity;
+the older graph executor was not rerun solely to generate a second green receipt.
+The aggregate `make check` command itself was not executed. Its full required
+command/test set is accounted for through these receipts and the retained graph,
+discovery, native and configuration checks.
+
+Self-review found one qualification correction: the unqualified-version unit
+fixture substitutes the command planner, so it must disclose that owner and its
+forbidden native-release claim. Correct that case's substitution metadata and
+narrow its command to the one affected test; retain the original full-suite
+receipt, rerun just this changed qualification, and reconcile all eleven cases
+through the two receipts. Production/test source inputs are unchanged.
+
+The generic unittest observer recognizes 85 of the 86 unit identities because
+one pre-existing unregistered test has a two-line description. Its retained
+native output explicitly names the test and reports `... ok`, and the unittest
+summary reports 86/86. It is manually reconciled as passing; none of the eleven
+new or sixty older graph edges is missing. Broader multiline-description parser
+support is a separate pre-existing limitation, not an OpenSpec upgrade claim.
 
 ## Inspection and rollout limits
 

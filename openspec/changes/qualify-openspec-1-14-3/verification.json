@@ -141,7 +141,12 @@
         "openspec/config.yaml"
       ],
       "substitution": {
-        "classification": "NO_TEST_DOUBLE"
+        "classification": "APPROVED_TEST_DOUBLE",
+        "owner_replaced": "OpenSpec version command planning is replaced with a controlled subprocess that prints 1.14.99.",
+        "allowed_proof": "The real wrapper rejects an unqualified version before invoking its validation command.",
+        "forbidden_claims": [
+          "This fixture does not qualify an actual OpenSpec 1.14.99 release or its native validator."
+        ]
       },
       "distinct_reason": "Pilot adoption: The wrapper returns unsupported_tool_version without invoking validation.",
       "source_sha256": "42e9bc3410a07ec922cc69362158155c8fc9da60f4fa3395831b566970861cf2"
@@ -408,9 +413,7 @@
         "-B",
         "-m",
         "unittest",
-        "scripts.test_requirement_tests",
-        "scripts.test_discovery_ledger",
-        "scripts.test_local_verify",
+        "scripts.test_local_verify.LocalVerifyTest.test_unsupported_openspec_version_is_rejected_before_validation",
         "-v"
       ],
       "cwd": ".",
