@@ -121,3 +121,65 @@ blocker at that integrated source. The separate guide reinspection also found
 no blocker after its two P2 repairs. Later progress-only commits preserve these
 receipts and their original revisions; they do not refresh evidence fingerprints
 or cause another behavior-suite run.
+
+## Merged source and personal activation
+
+[Parser PR #16](https://github.com/JekaMas/agent-workflow/pull/16) merged the
+exact reviewed head `af8f49bb16fcb4293df2669760cc1ed17bbce39f` as
+`0d159f404dd6fa4af3837367498d0605ba6ec84d`. After retargeting to main,
+[upgrade/guide PR #17](https://github.com/JekaMas/agent-workflow/pull/17) merged
+the exact final head `5db007119c9b8ac9208de4c0f55938a535c4913c` as
+`aa105e2d150e89b89e1ea9e6d5b27c798c663fa0`. Both used merge commits and
+exact-head protection, with clean mergeability and passing hosted CodeRabbit
+status. GitHub records no human reviews; the subagent findings and reinspection
+above are the actual source-review evidence. No administrative bypass was used.
+The merged tree exactly equals the final upgrade head; only progress/evidence
+documents differ from the integrated behavior-test commit.
+
+The concrete activation helper and captured state received a read-only subagent
+review before execution, with no blocker for the single-writer invocation. Its
+rollback covers the captured customized files, active pointer, all eleven links
+and original installer state. Rollback was inspected, not executed as a failure
+experiment.
+
+The ordinary installer preview and apply then succeeded from a clean private
+overlay of merged source `aa105e2`. The active private Git revision is
+`f8e7ba481bf356600925e01936d7e9f3f1ac0084`; ancestry and a clean tracked
+checkout are verified. The only overlay differences are the two preserved local
+default instruction files. Their content is byte-for-byte equal to the captured
+customized files, all eleven managed links match, and normal installer ownership
+hashes match the installed content. The private source's push URL is disabled.
+The pre-reconciliation preservation packet and ordinary installer rollback backup
+remain private and are both recorded in the local activation receipt. No private
+instruction text, state file or backup contents are published with this change.
+
+Activation changes the installed source owner and resolved entrypoints. Those
+inputs require installed-owner/native checks; they do not invalidate the 173
+retained behavior observations. The actual installed source audit passes for
+199 declared source files and personal entrypoints in
+`data/checks/openspec-1143-personal-source-audit.json`. Its OpenSpec wrapper also
+passes this change's strict validation and all four artifact/two operation
+guidance surfaces in `data/checks/openspec-1143-personal-native.json`.
+`openspec --version` and the global npm inventory both report exact 1.14.3.
+These observations establish installed ownership and native spec-driven
+compatibility, not client-cache refresh or product-runtime acceptance.
+
+Tasks 2.3 and 2.4 are checked only after those actual outcomes. Their changed
+checkbox content requires a final completed-task gate; unchanged guidance and
+behavior suites retain their prior receipts. Product consumers, their workflow
+pins and their specifications remain outside this rollout. The separate
+[spec-update guide](../../../docs/updating-specs.md) owns their future procedure.
+
+The installed wrapper's final `--require-tasks-complete` gate passed after the
+actual outcomes were checked: nine tasks complete, zero remaining, with strict
+change validation also passing. Receipt:
+`data/checks/openspec-1143-personal-completed-tasks.json`. Only task/evidence
+records changed for that gate; it did not repeat the guidance or behavior suites.
+The native checkbox result is reconciled with the source reviews and actual
+activation observations above, rather than treated as standalone acceptance.
+
+The rollout/evidence subagent's final read-only inspection confirmed the merged
+heads/trees, clean private ancestry, exact preserved bytes, links, hashes, both
+backups and the installed native/task receipts. It found no blocker to this
+documentation-only completion. That inspection did not rerun tests or mutate the
+installation, and does not broaden the proof limits above.
